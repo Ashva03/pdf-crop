@@ -11,11 +11,12 @@ const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f8fafc;
 `
 
 const MainContent = styled.main`
   flex: 1;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
   width: 100%;
@@ -23,77 +24,89 @@ const MainContent = styled.main`
 
 const Header = styled.header`
   text-align: center;
-  margin-bottom: 2rem;
-  background: linear-gradient(135deg, #0070f3 0%, #00a8ff 100%);
-  padding: 3rem 0;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  padding: 4rem 0;
   color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 `
 
 const Title = styled.h1`
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 800;
+  letter-spacing: -0.025em;
 `
 
 const Description = styled.p`
-  font-size: 1.1rem;
-  max-width: 600px;
+  font-size: 1.25rem;
+  max-width: 700px;
   margin: 0 auto 2rem;
   opacity: 0.9;
+  line-height: 1.6;
 `
 
 const UploadSection = styled.div`
   background: white;
-  border: 2px dashed #0070f3;
-  padding: 2rem;
+  border: 2px dashed #4f46e5;
+  padding: 3rem;
   text-align: center;
-  margin-bottom: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: #00a8ff;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-color: #7c3aed;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
   }
 `
 
 const Select = styled.select`
-  padding: 0.75rem;
-  margin: 1rem 0;
+  padding: 1rem;
+  margin: 1.5rem 0;
   width: 100%;
-  max-width: 300px;
-  border-radius: 8px;
+  max-width: 400px;
+  border-radius: 12px;
   border: 2px solid #e5e7eb;
-  font-size: 1rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
+  background-color: white;
+  color: #1f2937;
 
   &:focus {
     outline: none;
-    border-color: #0070f3;
-    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  }
+
+  &:hover {
+    border-color: #7c3aed;
   }
 `
 
 const Button = styled.button`
-  background-color: #0070f3;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin: 1rem 0;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: #0051b3;
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
   &:disabled {
-    background-color: #ccc;
+    background: #e5e7eb;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
@@ -101,15 +114,15 @@ const Button = styled.button`
 `
 
 const PDFViewer = styled.div`
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
   .react-pdf__Document {
     position: relative;
@@ -120,12 +133,14 @@ const PDFViewer = styled.div`
 
   .react-pdf__Page {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .react-pdf__Page canvas {
     max-width: 100%;
     height: auto !important;
+    border-radius: 8px;
   }
 `
 
@@ -133,33 +148,36 @@ const PageControls = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
   background: #f8fafc;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 `
 
 const Footer = styled.footer`
-  background: #1a1a1a;
+  background: #1f2937;
   color: white;
-  padding: 3rem 0;
+  padding: 4rem 0;
   margin-top: 4rem;
 `
 
 const FooterContent = styled.div`
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
 `
 
 const FooterSection = styled.div`
   h3 {
-    color: #0070f3;
-    margin-bottom: 1rem;
+    color: #4f46e5;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 
   ul {
@@ -168,25 +186,32 @@ const FooterSection = styled.div`
   }
 
   li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: #e5e7eb;
   }
 
   a {
-    color: #fff;
+    color: #e5e7eb;
     text-decoration: none;
     transition: color 0.3s ease;
 
     &:hover {
-      color: #0070f3;
+      color: #4f46e5;
     }
+  }
+
+  p {
+    color: #e5e7eb;
+    line-height: 1.6;
   }
 `
 
 const Copyright = styled.div`
   text-align: center;
   padding-top: 2rem;
-  margin-top: 2rem;
-  border-top: 1px solid #333;
+  margin-top: 3rem;
+  border-top: 1px solid #374151;
+  color: #9ca3af;
 `
 
 const cropOptions = [
