@@ -100,25 +100,74 @@ const PDFViewer = styled.div`
   padding: 2.5rem;
   border-radius: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  min-height: 600px;
+`
 
-  .react-pdf__Document {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+const PDFContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const PDFContent = styled.div`
+  position: relative;
+  margin-bottom: 1rem;
+`
+
+const CropButtonContainer = styled.div`
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+`
+
+const CropButton = styled(Button)`
+  min-width: 250px;
+  font-size: 1.2rem;
+  padding: 1.2rem 2.5rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
-  .react-pdf__Page {
-    position: relative;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  &:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
   }
+`
 
-  .react-pdf__Page canvas {
-    max-width: 100%;
-    height: auto !important;
-    border-radius: 8px;
-  }
+const ButtonText = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+const ButtonIcon = styled.span`
+  display: inline-flex;
+  align-items: center;
 `
 
 const PageControls = styled.div`
@@ -343,54 +392,71 @@ export default function Home() {
             onChange={onFileChange}
             style={{ marginBottom: '1rem' }}
           />
-
-          <Button
-            onClick={handleCrop}
-            disabled={!file || !customCropBox}
-          >
-            Crop PDF
-          </Button>
         </UploadSection>
 
         {file && (
           <PDFViewer>
-            <Document
-              file={file}
-              onLoadSuccess={onDocumentLoadSuccess}
-              onLoadError={onDocumentLoadError}
-              loading={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading PDF...</div>}
-              error={
-                <div style={{ color: 'red', padding: '2rem', textAlign: 'center' }}>
-                  {error || 'Failed to load PDF file. Please try again.'}
-                </div>
-              }
-              options={pdfOptions}
-            >
-              <div style={{ position: 'relative' }}>
-                <Page
-                  pageNumber={pageNumber}
-                  width={600}
-                  renderTextLayer={false}
-                />
-                {isCustomCropping && (
-                  <CustomCrop
-                    onCrop={handleCustomCrop}
-                    onCancel={() => setIsCustomCropping(false)}
-                  />
-                )}
-              </div>
-            </Document>
-            {numPages && numPages > 1 && (
-              <PageControls>
-                <Button onClick={() => handlePageChange(-1)} disabled={pageNumber === 1}>
-                  Previous
-                </Button>
-                <span>Page {pageNumber} of {numPages}</span>
-                <Button onClick={() => handlePageChange(1)} disabled={pageNumber === numPages}>
-                  Next
-                </Button>
-              </PageControls>
-            )}
+            <PDFContainer>
+              <PDFContent>
+                <Document
+                  file={file}
+                  onLoadSuccess={onDocumentLoadSuccess}
+                  onLoadError={onDocumentLoadError}
+                  loading={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading PDF...</div>}
+                  error={
+                    <div style={{ color: 'red', padding: '2rem', textAlign: 'center' }}>
+                      {error || 'Failed to load PDF file. Please try again.'}
+                    </div>
+                  }
+                  options={pdfOptions}
+                >
+                  <div style={{ position: 'relative' }}>
+                    <Page
+                      pageNumber={pageNumber}
+                      width={600}
+                      renderTextLayer={false}
+                    />
+                    {isCustomCropping && (
+                      <CustomCrop
+                        onCrop={handleCustomCrop}
+                        onCancel={() => setIsCustomCropping(false)}
+                      />
+                    )}
+                  </div>
+                </Document>
+              </PDFContent>
+              {numPages && numPages > 1 && (
+                <PageControls>
+                  <Button onClick={() => handlePageChange(-1)} disabled={pageNumber === 1}>
+                    Previous
+                  </Button>
+                  <span>Page {pageNumber} of {numPages}</span>
+                  <Button onClick={() => handlePageChange(1)} disabled={pageNumber === numPages}>
+                    Next
+                  </Button>
+                </PageControls>
+              )}
+              <CropButtonContainer>
+                <CropButton
+                  onClick={handleCrop}
+                  disabled={!file || !customCropBox}
+                >
+                  <ButtonText>
+                    {customCropBox ? (
+                      <>
+                        <ButtonIcon>📥</ButtonIcon>
+                        Download Cropped PDF
+                      </>
+                    ) : (
+                      <>
+                        <ButtonIcon>✏️</ButtonIcon>
+                        Select Area to Crop
+                      </>
+                    )}
+                  </ButtonText>
+                </CropButton>
+              </CropButtonContainer>
+            </PDFContainer>
           </PDFViewer>
         )}
       </MainContent>
