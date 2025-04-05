@@ -1,0 +1,110 @@
+'use client'
+
+import Link from 'next/link'
+import styled from 'styled-components'
+
+const Footer = styled.footer`
+  background: #1f2937;
+  color: white;
+  padding: 3rem 0;
+  margin-top: 4rem;
+`
+
+const FooterContent = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+`
+
+const FooterSection = styled.div`
+  h3 {
+    color: #4f46e5;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+    color: #e5e7eb;
+  }
+
+  a {
+    color: #e5e7eb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #4f46e5;
+    }
+  }
+
+  p {
+    color: #e5e7eb;
+    line-height: 1.6;
+  }
+`
+
+const Copyright = styled.div`
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid #374151;
+  color: #9ca3af;
+`
+
+export default function FooterComponent() {
+    return (
+        <Footer>
+            <FooterContent>
+                <FooterSection>
+                    <h3>About PDF Cropper</h3>
+                    <p>PDF Cropper is a professional-grade tool designed for businesses and individuals who need precise document editing capabilities.</p>
+                </FooterSection>
+                <FooterSection>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><Link href="/features">Features</Link></li>
+                        <li><Link href="/how-it-works">How It Works</Link></li>
+                        <li><Link href="/pricing">Pricing</Link></li>
+                        <li><Link href="/blog">Blog</Link></li>
+                        <li><Link href="/contact">Contact</Link></li>
+                    </ul>
+                </FooterSection>
+                <FooterSection>
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><Link href="/tutorials">Tutorials</Link></li>
+                        <li><Link href="/documentation">Documentation</Link></li>
+                        <li><Link href="/faq">FAQ</Link></li>
+                        <li><Link href="/support">Support</Link></li>
+                    </ul>
+                </FooterSection>
+                <FooterSection>
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: support@pdfcropper.com</li>
+                        <li>Phone: +1 (555) 123-4567</li>
+                        <li>Address: 123 Business St, Suite 100</li>
+                    </ul>
+                </FooterSection>
+            </FooterContent>
+            <Copyright>
+                <p>&copy; {new Date().getFullYear()} PDF Cropper. All rights reserved.</p>
+                <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
+                    <Link href="/privacy" style={{ color: '#9ca3af', marginRight: '1rem' }}>Privacy Policy</Link>
+                    <Link href="/terms" style={{ color: '#9ca3af', marginRight: '1rem' }}>Terms of Service</Link>
+                    <Link href="/cookies" style={{ color: '#9ca3af' }}>Cookie Policy</Link>
+                </p>
+            </Copyright>
+        </Footer>
+    )
+} 

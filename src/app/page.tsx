@@ -23,12 +23,141 @@ const MainContent = styled.main`
 `
 
 const Header = styled.header`
-  text-align: center;
-  margin-bottom: 3rem;
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  padding: 4rem 0;
   color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+`
+
+const Navbar = styled.nav`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+`
+
+const Logo = styled.div`
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+const NavLinks = styled.div`
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #e5e7eb;
+    }
+  }
+`
+
+const HeroSection = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+`
+
+const FeaturesSection = styled.section`
+  padding: 4rem 2rem;
+  background: white;
+`
+
+const FeaturesGrid = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+`
+
+const FeatureCard = styled.div`
+  background: #f8fafc;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  h3 {
+    color: #4f46e5;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: #4b5563;
+    line-height: 1.6;
+  }
+`
+
+const HowItWorks = styled.section`
+  padding: 4rem 2rem;
+  background: #f8fafc;
+`
+
+const StepsContainer = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`
+
+const Step = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+  .step-number {
+    background: #4f46e5;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .step-content {
+    flex: 1;
+
+    h3 {
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: #4b5563;
+      line-height: 1.6;
+    }
+  }
 `
 
 const Title = styled.h1`
@@ -180,6 +309,72 @@ const PageControls = styled.div`
   background: #f8fafc;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+`
+
+const FAQSection = styled.section`
+  padding: 4rem 2rem;
+  background: white;
+`
+
+const FAQContainer = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+`
+
+const FAQItem = styled.div`
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    color: #4f46e5;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: #4b5563;
+    line-height: 1.6;
+  }
+`
+
+const TestimonialsSection = styled.section`
+  padding: 4rem 2rem;
+  background: #f8fafc;
+`
+
+const TestimonialsGrid = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+`
+
+const TestimonialCard = styled.div`
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+  .quote {
+    color: #4f46e5;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .author {
+    font-weight: 600;
+    color: #1f2937;
+  }
 `
 
 const Footer = styled.footer`
@@ -378,10 +573,23 @@ export default function Home() {
   return (
     <Container>
       <Header>
-        <Title>PDF Cropper</Title>
-        <Description>
-          Upload your PDF and crop it with precision. Draw a custom crop area to extract exactly what you need.
-        </Description>
+        <Navbar>
+          <Logo>
+            <span>📄</span>
+            PDF Cropper
+          </Logo>
+          <NavLinks>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#contact">Contact</a>
+          </NavLinks>
+        </Navbar>
+        <HeroSection>
+          <Title>Professional PDF Cropping Tool</Title>
+          <Description>
+            Transform your PDF documents with precision. Our advanced cropping tool helps you extract exactly what you need from your PDFs, whether it's invoices, receipts, or important documents.
+          </Description>
+        </HeroSection>
       </Header>
 
       <MainContent>
@@ -459,49 +667,152 @@ export default function Home() {
             </PDFContainer>
           </PDFViewer>
         )}
+
+        <FeaturesSection id="features">
+          <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem', color: '#1f2937' }}>
+            Powerful Features
+          </h2>
+          <FeaturesGrid>
+            <FeatureCard>
+              <h3>Precision Cropping</h3>
+              <p>Select exact areas of your PDF with pixel-perfect precision. Our intuitive interface makes it easy to get the perfect crop every time.</p>
+            </FeatureCard>
+            <FeatureCard>
+              <h3>High-Quality Output</h3>
+              <p>Maintain the highest quality in your cropped PDFs. Our tool preserves the original resolution and clarity of your documents.</p>
+            </FeatureCard>
+            <FeatureCard>
+              <h3>Multi-Page Support</h3>
+              <p>Work with PDFs of any length. Easily navigate between pages and apply consistent cropping across multiple pages.</p>
+            </FeatureCard>
+          </FeaturesGrid>
+        </FeaturesSection>
+
+        <HowItWorks id="how-it-works">
+          <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem', color: '#1f2937' }}>
+            How It Works
+          </h2>
+          <StepsContainer>
+            <Step>
+              <div className="step-number">1</div>
+              <div className="step-content">
+                <h3>Upload Your PDF</h3>
+                <p>Simply drag and drop your PDF file or click to browse. We support all standard PDF formats.</p>
+              </div>
+            </Step>
+            <Step>
+              <div className="step-number">2</div>
+              <div className="step-content">
+                <h3>Select Crop Area</h3>
+                <p>Use our intuitive interface to draw the exact area you want to crop. Preview your selection in real-time.</p>
+              </div>
+            </Step>
+            <Step>
+              <div className="step-number">3</div>
+              <div className="step-content">
+                <h3>Download Your Cropped PDF</h3>
+                <p>Get your perfectly cropped PDF instantly. Your document is ready to use right away.</p>
+              </div>
+            </Step>
+          </StepsContainer>
+        </HowItWorks>
+
+        <FAQSection>
+          <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem', color: '#1f2937' }}>
+            Frequently Asked Questions
+          </h2>
+          <FAQContainer>
+            <FAQItem>
+              <h3>What types of PDFs can I crop?</h3>
+              <p>Our PDF cropping tool supports all standard PDF formats, including scanned documents, digital PDFs, and multi-page documents. Whether you&apos;re working with invoices, receipts, contracts, or any other PDF document, our tool can help you extract the exact content you need.</p>
+            </FAQItem>
+            <FAQItem>
+              <h3>Is my data secure?</h3>
+              <p>Yes, your data security is our top priority. All PDF processing is done locally in your browser, and we don&apos;t store any of your documents on our servers. Your files remain completely private and secure throughout the cropping process.</p>
+            </FAQItem>
+            <FAQItem>
+              <h3>Can I crop multiple pages at once?</h3>
+              <p>Absolutely! Our tool supports multi-page PDF cropping. You can apply the same crop area to multiple pages or use different crop areas for different pages, giving you complete control over your document editing process.</p>
+            </FAQItem>
+          </FAQContainer>
+        </FAQSection>
+
+        <TestimonialsSection>
+          <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem', color: '#1f2937' }}>
+            What Our Users Say
+          </h2>
+          <TestimonialsGrid>
+            <TestimonialCard>
+              <div className="quote">&ldquo;</div>
+              <p>This PDF cropping tool has revolutionized how we handle our document processing. The precision and ease of use are unmatched.</p>
+              <div className="author">- Sarah Johnson, Document Manager</div>
+            </TestimonialCard>
+            <TestimonialCard>
+              <div className="quote">&ldquo;</div>
+              <p>As a small business owner, this tool has saved me countless hours of manual document editing. Highly recommended!</p>
+              <div className="author">- Michael Chen, Business Owner</div>
+            </TestimonialCard>
+            <TestimonialCard>
+              <div className="quote">&ldquo;</div>
+              <p>The quality of the cropped PDFs is exceptional. It&apos;s become an essential tool in our daily workflow.</p>
+              <div className="author">- Emily Rodriguez, Office Administrator</div>
+            </TestimonialCard>
+          </TestimonialsGrid>
+        </TestimonialsSection>
+
       </MainContent>
 
-      <Footer>
+      <Footer id="contact">
         <FooterContent>
           <FooterSection>
-            <h3>About Us</h3>
-            <p>Professional PDF cropping tool designed for e-commerce platforms and business documents.</p>
-            <ul>
-              <li>Fast and efficient</li>
-              <li>Multiple crop templates</li>
-              <li>Custom crop options</li>
-              <li>Batch processing</li>
-            </ul>
+            <h3>About PDF Cropper</h3>
+            <p>PDF Cropper is a professional-grade tool designed for businesses and individuals who need precise document editing capabilities. Our mission is to simplify PDF document management while maintaining the highest quality standards.</p>
+            <p>Founded in 2024, we&apos;ve helped thousands of users streamline their document processing workflow with our easy-to-use, powerful PDF cropping solution.</p>
           </FooterSection>
           <FooterSection>
             <h3>Quick Links</h3>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Templates</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </FooterSection>
           <FooterSection>
-            <h3>Legal</h3>
+            <h3>Resources</h3>
             <ul>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Cookie Policy</a></li>
-              <li><a href="#">GDPR Compliance</a></li>
+              <li><a href="/blog">PDF Editing Tips</a></li>
+              <li><a href="/tutorials">Video Tutorials</a></li>
+              <li><a href="/documentation">User Guide</a></li>
+              <li><a href="/updates">Latest Updates</a></li>
             </ul>
           </FooterSection>
           <FooterSection>
-            <h3>Contact</h3>
+            <h3>Contact Us</h3>
             <ul>
               <li>Email: support@pdfcropper.com</li>
               <li>Phone: +1 (555) 123-4567</li>
               <li>Address: 123 Business St, Suite 100</li>
+              <li>Hours: Mon-Fri, 9AM-5PM EST</li>
             </ul>
+            <div style={{ marginTop: '1rem' }}>
+              <h3>Follow Us</h3>
+              <ul>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Facebook</a></li>
+              </ul>
+            </div>
           </FooterSection>
         </FooterContent>
         <Copyright>
           <p>&copy; {new Date().getFullYear()} PDF Cropper. All rights reserved.</p>
+          <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
+            <a href="/privacy" style={{ color: '#9ca3af', marginRight: '1rem' }}>Privacy Policy</a>
+            <a href="/terms" style={{ color: '#9ca3af', marginRight: '1rem' }}>Terms of Service</a>
+            <a href="/cookies" style={{ color: '#9ca3af' }}>Cookie Policy</a>
+          </p>
         </Copyright>
       </Footer>
     </Container>
