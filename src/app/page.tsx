@@ -6,12 +6,14 @@ import { Document, Page, pdfjs } from 'react-pdf'
 // import { PDFDocument } from 'pdf-lib'
 import CustomCrop from '@/components/CustomCrop'
 import * as PDFLib from 'pdf-lib'
+import Loading from '@/components/Loading'
 
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: #f8fafc;
+  padding-top: 64px; // Height of the navigation bar
 `
 
 const MainContent = styled.main`
@@ -30,41 +32,6 @@ const Header = styled.header`
   overflow: hidden;
 `
 
-const Navbar = styled.nav`
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-`
-
-const Logo = styled.div`
-  font-size: 1.5rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`
-
-const NavLinks = styled.div`
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-
-  a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-
-    &:hover {
-      color: #e5e7eb;
-    }
-  }
-`
-
 const HeroSection = styled.div`
   max-width: 1400px;
   margin: 0 auto;
@@ -76,7 +43,12 @@ const HeroSection = styled.div`
 
 const FeaturesSection = styled.section`
   padding: 4rem 2rem;
-  background: white;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+
+  h2 {
+    color: white !important;
+  }
 `
 
 const FeaturesGrid = styled.div`
@@ -88,25 +60,27 @@ const FeaturesGrid = styled.div`
 `
 
 const FeatureCard = styled.div`
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.1);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
   }
 
   h3 {
-    color: #4f46e5;
+    color: white;
     margin-bottom: 1rem;
     font-size: 1.5rem;
   }
 
   p {
-    color: #4b5563;
+    color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
   }
 `
@@ -435,6 +409,67 @@ const Copyright = styled.div`
   color: #9ca3af;
 `
 
+const LoadingOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const UploadButton = styled(Button)`
+  min-width: 250px;
+  font-size: 1.2rem;
+  padding: 1.2rem 2.5rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  &:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+  }
+`
+
+const ErrorMessage = styled.div`
+  color: red;
+  padding: 2rem;
+  text-align: center;
+`
+
+const FeatureTitle = styled.h3`
+  color: #4f46e5;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+`
+
+const FeatureDescription = styled.p`
+  color: #4b5563;
+  line-height: 1.6;
+`
+
 export default function Home() {
   const [file, setFile] = useState<File | null>(null)
   const [numPages, setNumPages] = useState<number | null>(null)
@@ -442,6 +477,7 @@ export default function Home() {
   const [isCustomCropping, setIsCustomCropping] = useState(false)
   const [customCropBox, setCustomCropBox] = useState<{ x: number; y: number; width: number; height: number } | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   // Memoize the PDF.js options
   const pdfOptions = useMemo(() => ({
@@ -483,6 +519,7 @@ export default function Home() {
     if (!file || !customCropBox) return
 
     try {
+      setIsLoading(true)
       const pdfBytes = await file.arrayBuffer()
       const pdf = await pdfjs.getDocument({ data: pdfBytes }).promise
       const pages = pdf.numPages
@@ -559,6 +596,8 @@ export default function Home() {
     } catch (error) {
       console.error('Error cropping PDF:', error)
       alert('Error cropping PDF. Please try again.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -572,22 +611,18 @@ export default function Home() {
 
   return (
     <Container>
+      {isLoading && (
+        <LoadingOverlay>
+          <Loading />
+        </LoadingOverlay>
+      )}
+
       <Header>
-        <Navbar>
-          <Logo>
-            <span>📄</span>
-            PDF Cropper
-          </Logo>
-          <NavLinks>
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#contact">Contact</a>
-          </NavLinks>
-        </Navbar>
         <HeroSection>
-          <Title>Professional PDF Cropping Tool</Title>
+          <Title>PDF Cropper</Title>
           <Description>
-            Transform your PDF documents with precision. Our advanced cropping tool helps you extract exactly what you need from your PDFs, whether it's invoices, receipts, or important documents.
+            Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.
+            Select a predefined template or create your own custom crop.
           </Description>
         </HeroSection>
       </Header>
@@ -598,8 +633,12 @@ export default function Home() {
             type="file"
             accept=".pdf"
             onChange={onFileChange}
-            style={{ marginBottom: '1rem' }}
+            style={{ display: 'none' }}
+            id="pdf-upload"
           />
+          <UploadButton onClick={() => document.getElementById('pdf-upload')?.click()}>
+            Upload PDF
+          </UploadButton>
         </UploadSection>
 
         {file && (
@@ -668,22 +707,40 @@ export default function Home() {
           </PDFViewer>
         )}
 
+        {error && (
+          <ErrorMessage>
+            {error}
+          </ErrorMessage>
+        )}
+
         <FeaturesSection id="features">
           <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem', color: '#1f2937' }}>
             Powerful Features
           </h2>
           <FeaturesGrid>
             <FeatureCard>
-              <h3>Precision Cropping</h3>
-              <p>Select exact areas of your PDF with pixel-perfect precision. Our intuitive interface makes it easy to get the perfect crop every time.</p>
+              <FeatureTitle>Precise Cropping</FeatureTitle>
+              <FeatureDescription>
+                Crop your PDFs with pixel-perfect precision. Our advanced tools ensure accurate results every time.
+              </FeatureDescription>
             </FeatureCard>
             <FeatureCard>
-              <h3>High-Quality Output</h3>
-              <p>Maintain the highest quality in your cropped PDFs. Our tool preserves the original resolution and clarity of your documents.</p>
+              <FeatureTitle>Multiple Templates</FeatureTitle>
+              <FeatureDescription>
+                Choose from a variety of predefined templates or create your own custom crop settings.
+              </FeatureDescription>
             </FeatureCard>
             <FeatureCard>
-              <h3>Multi-Page Support</h3>
-              <p>Work with PDFs of any length. Easily navigate between pages and apply consistent cropping across multiple pages.</p>
+              <FeatureTitle>Batch Processing</FeatureTitle>
+              <FeatureDescription>
+                Process multiple PDFs at once with our efficient batch cropping feature.
+              </FeatureDescription>
+            </FeatureCard>
+            <FeatureCard>
+              <FeatureTitle>Secure Processing</FeatureTitle>
+              <FeatureDescription>
+                Your documents are processed securely in your browser. No data leaves your device.
+              </FeatureDescription>
             </FeatureCard>
           </FeaturesGrid>
         </FeaturesSection>

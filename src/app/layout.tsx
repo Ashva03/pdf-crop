@@ -1,9 +1,13 @@
-import { Inter } from "next/font/google";
+'use client'
+
+import { Inter } from 'next/font/google'
+import StyledComponentsRegistry from '@/lib/registry'
+import Navigation from '@/components/Navigation'
 import "./globals.css";
 import Script from 'next/script'
 import LayoutWrapper from '@/components/LayoutWrapper'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -20,10 +24,13 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <LayoutWrapper>
-          {children}
-        </LayoutWrapper>
+        <StyledComponentsRegistry>
+          <Navigation />
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
+        </StyledComponentsRegistry>
       </body>
     </html>
-  );
+  )
 }
