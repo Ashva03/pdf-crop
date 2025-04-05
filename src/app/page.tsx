@@ -64,29 +64,6 @@ const UploadSection = styled.div`
   }
 `
 
-const Select = styled.select`
-  padding: 1rem;
-  margin: 1.5rem 0;
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-  border: 2px solid #e5e7eb;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  background-color: white;
-  color: #1f2937;
-
-  &:focus {
-    outline: none;
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-  }
-
-  &:hover {
-    border-color: #7c3aed;
-  }
-`
-
 const Button = styled.button`
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: white;
@@ -214,19 +191,10 @@ const Copyright = styled.div`
   color: #9ca3af;
 `
 
-const cropOptions = [
-  { value: '', label: 'Select Crop Type' },
-  { value: 'flipkart', label: 'Flipkart Invoice' },
-  { value: 'myntra', label: 'Myntra Invoice' },
-  { value: 'meesho', label: 'Meesho Invoice' },
-  { value: 'custom', label: 'Custom Crop' },
-]
-
 export default function Home() {
   const [file, setFile] = useState<File | null>(null)
   const [numPages, setNumPages] = useState<number | null>(null)
   const [pageNumber, setPageNumber] = useState(1)
-  const [selectedCrop, setSelectedCrop] = useState('')
   const [isCustomCropping, setIsCustomCropping] = useState(false)
   const [customCropBox, setCustomCropBox] = useState<{ x: number; y: number; width: number; height: number } | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -247,7 +215,7 @@ export default function Home() {
     if (file && file.type === 'application/pdf') {
       setFile(file)
       setCustomCropBox(null)
-      setSelectedCrop('')
+      setIsCustomCropping(true)
       setError(null)
     }
   }
@@ -363,8 +331,7 @@ export default function Home() {
       <Header>
         <Title>PDF Cropper</Title>
         <Description>
-          Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.
-          Select a predefined template or create your own custom crop.
+          Upload your PDF and crop it with precision. Draw a custom crop area to extract exactly what you need.
         </Description>
       </Header>
 
@@ -377,26 +344,9 @@ export default function Home() {
             style={{ marginBottom: '1rem' }}
           />
 
-          <Select
-            value={selectedCrop}
-            onChange={(e) => {
-              setSelectedCrop(e.target.value)
-              if (e.target.value === 'custom') {
-                setIsCustomCropping(true)
-              }
-            }}
-            disabled={!file}
-          >
-            {cropOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </Select>
-
           <Button
             onClick={handleCrop}
-            disabled={!file || !selectedCrop || (selectedCrop === 'custom' && !customCropBox)}
+            disabled={!file || !customCropBox}
           >
             Crop PDF
           </Button>
