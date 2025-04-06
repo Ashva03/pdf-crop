@@ -5,6 +5,7 @@ const nextConfig = {
             config.resolve.fallback = {
                 ...config.resolve.fallback,
                 fs: false,
+                canvas: false,
             };
         }
         return config;
