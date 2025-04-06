@@ -1,55 +1,35 @@
+'use client'
+
 import { Inter } from 'next/font/google'
+import { createGlobalStyle } from 'styled-components'
+import StyledComponentsRegistry from '@/lib/registry'
+import Navigation from '@/components/Navigation'
 import "./globals.css";
-import LayoutContent from '@/components/LayoutContent'
-import type { Metadata } from 'next'
+import LayoutWrapper from '@/components/LayoutWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'PDF Cropper - Crop Your PDF Documents with Precision',
-  description: 'Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.',
-  icons: {
-    icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      {
-        rel: 'android-chrome-192x192',
-        url: '/android-chrome-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
-      },
-      {
-        rel: 'android-chrome-512x512',
-        url: '/android-chrome-512x512.png',
-        sizes: '512x512',
-        type: 'image/png',
-      },
-    ],
-  },
-  manifest: '/site.webmanifest',
-  themeColor: '#4f46e5',
-  viewport: 'width=device-width, initial-scale=1',
-  robots: 'index, follow',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://pdf-crop.vercel.app',
-    title: 'PDF Cropper - Crop Your PDF Documents with Precision',
-    description: 'Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.',
-    siteName: 'PDF Cropper',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'PDF Cropper - Crop Your PDF Documents with Precision',
-    description: 'Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.',
-  },
-}
+const GlobalStyle = createGlobalStyle`
+  :root {
+    --primary-color: #4f46e5;
+    --secondary-color: #818cf8;
+    --background-color: #f9fafb;
+    --text-color: #1f2937;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: ${inter.style.fontFamily}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+`;
 
 export default function RootLayout({
   children,
@@ -58,10 +38,22 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#4f46e5" />
+      </head>
       <body className={inter.className}>
-        <LayoutContent>
-          {children}
-        </LayoutContent>
+        <StyledComponentsRegistry>
+          <GlobalStyle />
+          <Navigation />
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
+        </StyledComponentsRegistry>
       </body>
     </html>
   )
