@@ -6,8 +6,9 @@ import type { Metadata } from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'PDF Cropper - Crop Your PDF Documents with Precision',
-  description: 'Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.',
+  title: 'PDF Cropper - Free Online PDF Tools for Document Management',
+  description: 'Free online PDF tools for cropping, compressing, merging, splitting, rotating, converting, and optimizing PDF documents. Perfect for businesses, students, and professionals.',
+  keywords: 'PDF cropper, PDF tools, PDF editor, PDF compressor, PDF merger, PDF splitter, PDF converter, PDF optimizer, PDF watermark, PDF sign, PDF OCR, document management, online PDF tools, free PDF tools, PDF manipulation, PDF processing, PDF editing software, PDF utilities, PDF workflow, PDF automation, PDF business tools, PDF student tools, PDF professional tools',
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -39,15 +40,33 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://pdf-crop.vercel.app',
-    title: 'PDF Cropper - Crop Your PDF Documents with Precision',
-    description: 'Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.',
+    url: 'https://pdfcrope.ashvainfo.co.in',
+    title: 'PDF Cropper - Free Online PDF Tools for Document Management',
+    description: 'Free online PDF tools for cropping, compressing, merging, splitting, rotating, converting, and optimizing PDF documents. Perfect for businesses, students, and professionals.',
     siteName: 'PDF Cropper',
+    images: [
+      {
+        url: 'https://pdfcrope.ashvainfo.co.in/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'PDF Cropper - Free Online PDF Tools',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PDF Cropper - Crop Your PDF Documents with Precision',
-    description: 'Crop your PDF documents with precision. Perfect for e-commerce platforms and business documents.',
+    title: 'PDF Cropper - Free Online PDF Tools for Document Management',
+    description: 'Free online PDF tools for cropping, compressing, merging, splitting, rotating, converting, and optimizing PDF documents. Perfect for businesses, students, and professionals.',
+    images: ['https://pdfcrope.ashvainfo.co.in/twitter-image.png'],
+  },
+  alternates: {
+    canonical: 'https://pdfcrope.ashvainfo.co.in',
+  },
+  authors: [{ name: 'PDF Cropper Team' }],
+  category: 'technology',
+  classification: 'Business & Productivity',
+  verification: {
+    google: 'your-google-site-verification',
   },
 }
 
