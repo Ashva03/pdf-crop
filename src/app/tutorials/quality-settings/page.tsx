@@ -214,7 +214,7 @@ export default function QualitySettingsPage() {
             </SettingCard>
             <SettingCard>
               <h3>Grayscale</h3>
-              <p>Convert to black and white. Perfect for documents that don't require color.</p>
+              <p>Convert to black and white. Perfect for documents that don&apos;t require color.</p>
             </SettingCard>
           </SettingGrid>
         </TutorialStep>

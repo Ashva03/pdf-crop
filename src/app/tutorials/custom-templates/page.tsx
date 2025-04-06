@@ -136,88 +136,88 @@ const NavigationLinks = styled.div`
 `
 
 export default function CustomTemplatesPage() {
-    return (
-        <Container>
-            <HeroSection>
-                <Title>Custom Templates</Title>
-                <Description>
-                    Learn how to create and use custom templates to streamline your PDF cropping workflow.
-                </Description>
-            </HeroSection>
+  return (
+    <Container>
+      <HeroSection>
+        <Title>Custom Templates</Title>
+        <Description>
+          Learn how to create and use custom templates to streamline your PDF cropping workflow.
+        </Description>
+      </HeroSection>
 
-            <ContentSection>
-                <TutorialStep>
-                    <h2>Creating Templates</h2>
-                    <p>To create a new template:</p>
-                    <ul>
-                        <li>Set up your desired crop settings</li>
-                        <li>Click the "Save as Template" button</li>
-                        <li>Give your template a descriptive name</li>
-                        <li>Add tags for easy organization</li>
-                        <li>Save the template for future use</li>
-                    </ul>
-                    <img src="/tutorials/create-template.jpg" alt="Creating Templates" />
-                </TutorialStep>
+      <ContentSection>
+        <TutorialStep>
+          <h2>Creating Templates</h2>
+          <p>To create a new template:</p>
+          <ul>
+            <li>Set up your desired crop settings</li>
+            <li>Click the &quot;Save as Template&quot; button</li>
+            <li>Give your template a descriptive name</li>
+            <li>Add tags for easy organization</li>
+            <li>Save the template for future use</li>
+          </ul>
+          <img src="/tutorials/create-template.jpg" alt="Creating Templates" />
+        </TutorialStep>
 
-                <TutorialStep>
-                    <h2>Template Management</h2>
-                    <p>Organize and manage your templates effectively:</p>
-                    <TemplateGrid>
-                        <TemplateCard>
-                            <h3>Template Library</h3>
-                            <p>Access all your saved templates in one place</p>
-                        </TemplateCard>
-                        <TemplateCard>
-                            <h3>Categories</h3>
-                            <p>Organize templates by type or purpose</p>
-                        </TemplateCard>
-                        <TemplateCard>
-                            <h3>Search & Filter</h3>
-                            <p>Quickly find the template you need</p>
-                        </TemplateCard>
-                    </TemplateGrid>
-                    <TipBox>
-                        <h3>Pro Tip</h3>
-                        <p>Use descriptive names and tags to make your templates easy to find later.</p>
-                    </TipBox>
-                </TutorialStep>
+        <TutorialStep>
+          <h2>Template Management</h2>
+          <p>Organize and manage your templates effectively:</p>
+          <TemplateGrid>
+            <TemplateCard>
+              <h3>Template Library</h3>
+              <p>Access all your saved templates in one place</p>
+            </TemplateCard>
+            <TemplateCard>
+              <h3>Categories</h3>
+              <p>Organize templates by type or purpose</p>
+            </TemplateCard>
+            <TemplateCard>
+              <h3>Search & Filter</h3>
+              <p>Quickly find the template you need</p>
+            </TemplateCard>
+          </TemplateGrid>
+          <TipBox>
+            <h3>Pro Tip</h3>
+            <p>Use descriptive names and tags to make your templates easy to find later.</p>
+          </TipBox>
+        </TutorialStep>
 
-                <TutorialStep>
-                    <h2>Using Templates</h2>
-                    <p>Apply templates to your PDFs:</p>
-                    <ul>
-                        <li>Select a template from your library</li>
-                        <li>Apply it to your current PDF</li>
-                        <li>Make adjustments if needed</li>
-                        <li>Save the modified template if desired</li>
-                    </ul>
-                    <img src="/tutorials/apply-template.jpg" alt="Applying Templates" />
-                </TutorialStep>
+        <TutorialStep>
+          <h2>Using Templates</h2>
+          <p>Apply templates to your PDFs:</p>
+          <ul>
+            <li>Select a template from your library</li>
+            <li>Apply it to your current PDF</li>
+            <li>Make adjustments if needed</li>
+            <li>Save the modified template if desired</li>
+          </ul>
+          <img src="/tutorials/apply-template.jpg" alt="Applying Templates" />
+        </TutorialStep>
 
-                <TutorialStep>
-                    <h2>Advanced Template Features</h2>
-                    <p>Take advantage of these advanced template capabilities:</p>
-                    <TemplateGrid>
-                        <TemplateCard>
-                            <h3>Template Variables</h3>
-                            <p>Create dynamic templates with adjustable parameters</p>
-                        </TemplateCard>
-                        <TemplateCard>
-                            <h3>Template Sharing</h3>
-                            <p>Share your templates with team members</p>
-                        </TemplateCard>
-                        <TemplateCard>
-                            <h3>Template Import/Export</h3>
-                            <p>Transfer templates between devices or users</p>
-                        </TemplateCard>
-                    </TemplateGrid>
-                </TutorialStep>
+        <TutorialStep>
+          <h2>Advanced Template Features</h2>
+          <p>Take advantage of these advanced template capabilities:</p>
+          <TemplateGrid>
+            <TemplateCard>
+              <h3>Template Variables</h3>
+              <p>Create dynamic templates with adjustable parameters</p>
+            </TemplateCard>
+            <TemplateCard>
+              <h3>Template Sharing</h3>
+              <p>Share your templates with team members</p>
+            </TemplateCard>
+            <TemplateCard>
+              <h3>Template Import/Export</h3>
+              <p>Transfer templates between devices or users</p>
+            </TemplateCard>
+          </TemplateGrid>
+        </TutorialStep>
 
-                <NavigationLinks>
-                    <Link href="/tutorials/batch-processing">← Previous: Batch Processing</Link>
-                    <Link href="/tutorials/quality-settings">Next: Quality Settings →</Link>
-                </NavigationLinks>
-            </ContentSection>
-        </Container>
-    )
+        <NavigationLinks>
+          <Link href="/tutorials/batch-processing">← Previous: Batch Processing</Link>
+          <Link href="/tutorials/quality-settings">Next: Quality Settings →</Link>
+        </NavigationLinks>
+      </ContentSection>
+    </Container>
+  )
 } 

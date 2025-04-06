@@ -1,3 +1,5 @@
+'use client'
+
 import styled from 'styled-components';
 
 const LoadingContainer = styled.div`
@@ -39,18 +41,18 @@ const LoadingText = styled.p`
 `;
 
 interface LoadingProps {
-    text?: string;
+  text?: string;
 }
 
 export default function Loading({ text = "Generating cropped PDF..." }: LoadingProps) {
-    return (
-        <LoadingContainer>
-            <LoadingBalls>
-                <Ball delay={0} />
-                <Ball delay={0.2} />
-                <Ball delay={0.4} />
-            </LoadingBalls>
-            <LoadingText>{text}</LoadingText>
-        </LoadingContainer>
-    );
+  return (
+    <LoadingContainer>
+      <LoadingBalls>
+        <Ball delay={0} />
+        <Ball delay={0.2} />
+        <Ball delay={0.4} />
+      </LoadingBalls>
+      <LoadingText>{text}</LoadingText>
+    </LoadingContainer>
+  );
 } 

@@ -150,76 +150,76 @@ const SupportList = styled.ul`
 `
 
 export default function SupportPage() {
-    return (
-        <Container>
-            <HeroSection>
-                <Title>Support Center</Title>
-                <Description>
-                    We're here to help! Choose from our support options or contact us directly.
-                </Description>
-            </HeroSection>
+  return (
+    <Container>
+      <HeroSection>
+        <Title>Support Center</Title>
+        <Description>
+          We&apos;re here to help! Choose from our support options or contact us directly.
+        </Description>
+      </HeroSection>
 
-            <SupportGrid>
-                <SupportCard>
-                    <h2>Help Center</h2>
-                    <p>Find answers to common questions and learn how to use PDF Cropper effectively.</p>
-                    <SupportList>
-                        <li><SupportLink href="/faq">FAQ</SupportLink></li>
-                        <li><SupportLink href="/tutorials">Video Tutorials</SupportLink></li>
-                        <li><SupportLink href="/documentation">User Guides</SupportLink></li>
-                        <li><SupportLink href="/tips">Tips & Tricks</SupportLink></li>
-                    </SupportList>
-                </SupportCard>
+      <SupportGrid>
+        <SupportCard>
+          <h2>Help Center</h2>
+          <p>Find answers to common questions and learn how to use PDF Cropper effectively.</p>
+          <SupportList>
+            <li><SupportLink href="/faq">FAQ</SupportLink></li>
+            <li><SupportLink href="/tutorials">Video Tutorials</SupportLink></li>
+            <li><SupportLink href="/documentation">User Guides</SupportLink></li>
+            <li><SupportLink href="/tips">Tips & Tricks</SupportLink></li>
+          </SupportList>
+        </SupportCard>
 
-                <SupportCard>
-                    <h2>Contact Support</h2>
-                    <p>Get in touch with our support team for personalized assistance.</p>
-                    <SupportList>
-                        <li>Email: support@pdfcropper.com</li>
-                        <li>Phone: +1 (555) 123-4567</li>
-                        <li>Business Hours: Mon-Fri, 9AM-5PM EST</li>
-                        <li>Live Chat: Available during business hours</li>
-                    </SupportList>
-                </SupportCard>
+        <SupportCard>
+          <h2>Contact Support</h2>
+          <p>Get in touch with our support team for personalized assistance.</p>
+          <SupportList>
+            <li>Email: support@pdfcropper.com</li>
+            <li>Phone: +1 (555) 123-4567</li>
+            <li>Business Hours: Mon-Fri, 9AM-5PM EST</li>
+            <li>Live Chat: Available during business hours</li>
+          </SupportList>
+        </SupportCard>
 
-                <SupportCard>
-                    <h2>Community</h2>
-                    <p>Join our community of users and share your experiences.</p>
-                    <SupportList>
-                        <li><SupportLink href="/forum">User Forum</SupportLink></li>
-                        <li><SupportLink href="/blog">Blog</SupportLink></li>
-                        <li><SupportLink href="/social">Social Media</SupportLink></li>
-                        <li><SupportLink href="/feedback">Submit Feedback</SupportLink></li>
-                    </SupportList>
-                </SupportCard>
-            </SupportGrid>
+        <SupportCard>
+          <h2>Community</h2>
+          <p>Join our community of users and share your experiences.</p>
+          <SupportList>
+            <li><SupportLink href="/forum">User Forum</SupportLink></li>
+            <li><SupportLink href="/blog">Blog</SupportLink></li>
+            <li><SupportLink href="/social">Social Media</SupportLink></li>
+            <li><SupportLink href="/feedback">Submit Feedback</SupportLink></li>
+          </SupportList>
+        </SupportCard>
+      </SupportGrid>
 
-            <ContactForm>
-                <h2>Contact Us</h2>
-                <FormGroup>
-                    <label htmlFor="name">Name</label>
-                    <input type="text" id="name" name="name" required />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" name="email" required />
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="subject">Subject</label>
-                    <select id="subject" name="subject" required>
-                        <option value="">Select a subject</option>
-                        <option value="technical">Technical Support</option>
-                        <option value="billing">Billing Questions</option>
-                        <option value="feature">Feature Request</option>
-                        <option value="other">Other</option>
-                    </select>
-                </FormGroup>
-                <FormGroup>
-                    <label htmlFor="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </FormGroup>
-                <SubmitButton type="submit">Send Message</SubmitButton>
-            </ContactForm>
-        </Container>
-    )
+      <ContactForm>
+        <h2>Contact Us</h2>
+        <FormGroup>
+          <label htmlFor="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="subject">Subject</label>
+          <select id="subject" name="subject" required>
+            <option value="">Select a subject</option>
+            <option value="technical">Technical Support</option>
+            <option value="billing">Billing Questions</option>
+            <option value="feature">Feature Request</option>
+            <option value="other">Other</option>
+          </select>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </FormGroup>
+        <SubmitButton type="submit">Send Message</SubmitButton>
+      </ContactForm>
+    </Container>
+  )
 } 

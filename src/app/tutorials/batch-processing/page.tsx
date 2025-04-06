@@ -136,87 +136,87 @@ const NavigationLinks = styled.div`
 `
 
 export default function BatchProcessingPage() {
-    return (
-        <Container>
-            <HeroSection>
-                <Title>Batch Processing</Title>
-                <Description>
-                    Learn how to efficiently process multiple PDFs at once with PDF Cropper.
-                </Description>
-            </HeroSection>
+  return (
+    <Container>
+      <HeroSection>
+        <Title>Batch Processing</Title>
+        <Description>
+          Learn how to efficiently process multiple PDFs at once with PDF Cropper.
+        </Description>
+      </HeroSection>
 
-            <ContentSection>
-                <TutorialStep>
-                    <h2>Getting Started with Batch Processing</h2>
-                    <p>To process multiple PDFs simultaneously:</p>
-                    <ul>
-                        <li>Click the "Batch Process" button in the toolbar</li>
-                        <li>Select multiple PDFs from your computer</li>
-                        <li>Choose your desired output format and settings</li>
-                        <li>Apply the same crop settings to all files or customize individually</li>
-                    </ul>
-                    <img src="/tutorials/batch-start.jpg" alt="Starting Batch Process" />
-                </TutorialStep>
+      <ContentSection>
+        <TutorialStep>
+          <h2>Getting Started with Batch Processing</h2>
+          <p>To process multiple PDFs simultaneously:</p>
+          <ul>
+            <li>Click the &quot;Add Files&quot; button</li>
+            <li>Select multiple PDFs</li>
+            <li>Choose your desired output format and settings</li>
+            <li>Apply the same crop settings to all files or customize individually</li>
+          </ul>
+          <img src="/tutorials/batch-start.jpg" alt="Starting Batch Process" />
+        </TutorialStep>
 
-                <TutorialStep>
-                    <h2>Batch Processing Features</h2>
-                    <p>Take advantage of these batch processing capabilities:</p>
-                    <FeatureGrid>
-                        <FeatureCard>
-                            <h3>Template Application</h3>
-                            <p>Apply saved crop templates to multiple files</p>
-                        </FeatureCard>
-                        <FeatureCard>
-                            <h3>Custom Settings</h3>
-                            <p>Set different options for each file in the batch</p>
-                        </FeatureCard>
-                        <FeatureCard>
-                            <h3>Progress Tracking</h3>
-                            <p>Monitor the progress of your batch processing</p>
-                        </FeatureCard>
-                    </FeatureGrid>
-                    <TipBox>
-                        <h3>Pro Tip</h3>
-                        <p>Save your batch settings as a preset to reuse them for future processing.</p>
-                    </TipBox>
-                </TutorialStep>
+        <TutorialStep>
+          <h2>Batch Processing Features</h2>
+          <p>Take advantage of these batch processing capabilities:</p>
+          <FeatureGrid>
+            <FeatureCard>
+              <h3>Template Application</h3>
+              <p>Apply saved crop templates to multiple files</p>
+            </FeatureCard>
+            <FeatureCard>
+              <h3>Custom Settings</h3>
+              <p>Set different options for each file in the batch</p>
+            </FeatureCard>
+            <FeatureCard>
+              <h3>Progress Tracking</h3>
+              <p>Monitor the progress of your batch processing</p>
+            </FeatureCard>
+          </FeatureGrid>
+          <TipBox>
+            <h3>Pro Tip</h3>
+            <p>Save your batch settings as a preset to reuse them for future processing.</p>
+          </TipBox>
+        </TutorialStep>
 
-                <TutorialStep>
-                    <h2>Organizing Output Files</h2>
-                    <p>Manage your processed files efficiently:</p>
-                    <ul>
-                        <li>Choose output directory for processed files</li>
-                        <li>Use custom naming conventions</li>
-                        <li>Create subfolders based on file types</li>
-                        <li>Generate processing reports</li>
-                    </ul>
-                    <img src="/tutorials/output-organization.jpg" alt="Output Organization" />
-                </TutorialStep>
+        <TutorialStep>
+          <h2>Organizing Output Files</h2>
+          <p>Manage your processed files efficiently:</p>
+          <ul>
+            <li>Choose output directory for processed files</li>
+            <li>Use custom naming conventions</li>
+            <li>Create subfolders based on file types</li>
+            <li>Generate processing reports</li>
+          </ul>
+          <img src="/tutorials/output-organization.jpg" alt="Output Organization" />
+        </TutorialStep>
 
-                <TutorialStep>
-                    <h2>Advanced Batch Options</h2>
-                    <p>Explore these advanced batch processing features:</p>
-                    <FeatureGrid>
-                        <FeatureCard>
-                            <h3>Conditional Processing</h3>
-                            <p>Apply different settings based on file properties</p>
-                        </FeatureCard>
-                        <FeatureCard>
-                            <h3>Automated Workflows</h3>
-                            <p>Create and save complex processing workflows</p>
-                        </FeatureCard>
-                        <FeatureCard>
-                            <h3>Error Handling</h3>
-                            <p>Configure how to handle processing errors</p>
-                        </FeatureCard>
-                    </FeatureGrid>
-                </TutorialStep>
+        <TutorialStep>
+          <h2>Advanced Batch Options</h2>
+          <p>Explore these advanced batch processing features:</p>
+          <FeatureGrid>
+            <FeatureCard>
+              <h3>Conditional Processing</h3>
+              <p>Apply different settings based on file properties</p>
+            </FeatureCard>
+            <FeatureCard>
+              <h3>Automated Workflows</h3>
+              <p>Create and save complex processing workflows</p>
+            </FeatureCard>
+            <FeatureCard>
+              <h3>Error Handling</h3>
+              <p>Configure how to handle processing errors</p>
+            </FeatureCard>
+          </FeatureGrid>
+        </TutorialStep>
 
-                <NavigationLinks>
-                    <Link href="/tutorials/advanced-cropping">← Previous: Advanced Cropping</Link>
-                    <Link href="/tutorials/custom-templates">Next: Custom Templates →</Link>
-                </NavigationLinks>
-            </ContentSection>
-        </Container>
-    )
+        <NavigationLinks>
+          <Link href="/tutorials/advanced-cropping">← Previous: Advanced Cropping</Link>
+          <Link href="/tutorials/custom-templates">Next: Custom Templates →</Link>
+        </NavigationLinks>
+      </ContentSection>
+    </Container>
+  )
 } 
