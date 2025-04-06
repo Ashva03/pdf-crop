@@ -7,6 +7,8 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import CustomCrop from '@/components/CustomCrop'
 import * as PDFLib from 'pdf-lib'
 import Loading from '@/components/Loading'
+import { PDFDocument } from 'pdf-lib'
+import { saveAs } from 'file-saver'
 
 const Container = styled.div`
   min-height: 100vh;

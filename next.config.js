@@ -6,6 +6,8 @@ const nextConfig = {
                 ...config.resolve.fallback,
                 fs: false,
                 canvas: false,
+                path: false,
+                crypto: false,
             };
         }
         return config;

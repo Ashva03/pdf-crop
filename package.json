@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/file-saver": "^2.0.7",
     "@types/styled-components": "^5.1.34",
+    "file-saver": "^2.0.5",
     "next": "15.2.4",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^3.11.174",
