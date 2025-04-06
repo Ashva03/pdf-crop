@@ -31,6 +31,13 @@ const Logo = styled.div`
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+
+  img {
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    object-fit: contain;
+  }
 `
 
 const NavLinks = styled.div`
@@ -76,7 +83,7 @@ export default function Navigation() {
       <NavContent>
         <Link href="/" style={{ textDecoration: 'none' }}>
           <Logo>
-            <span>📄</span>
+            <img src="/favicon-32x32.png" alt="PDF Cropper Logo" />
             PDF Cropper
           </Logo>
         </Link>

@@ -645,32 +645,32 @@ export default function Home() {
           <PDFViewer>
             <PDFContainer>
               <PDFContent>
-                <Document
-                  file={file}
-                  onLoadSuccess={onDocumentLoadSuccess}
-                  onLoadError={onDocumentLoadError}
-                  loading={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading PDF...</div>}
-                  error={
-                    <div style={{ color: 'red', padding: '2rem', textAlign: 'center' }}>
-                      {error || 'Failed to load PDF file. Please try again.'}
-                    </div>
-                  }
-                  options={pdfOptions}
-                >
-                  <div style={{ position: 'relative' }}>
+                <div style={{ position: 'relative' }}>
+                  <Document
+                    file={file}
+                    onLoadSuccess={onDocumentLoadSuccess}
+                    onLoadError={onDocumentLoadError}
+                    loading={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading PDF...</div>}
+                    error={
+                      <div style={{ color: 'red', padding: '2rem', textAlign: 'center' }}>
+                        {error || 'Failed to load PDF file. Please try again.'}
+                      </div>
+                    }
+                    options={pdfOptions}
+                  >
                     <Page
                       pageNumber={pageNumber}
                       width={600}
                       renderTextLayer={false}
                     />
-                    {isCustomCropping && (
-                      <CustomCrop
-                        onCrop={handleCustomCrop}
-                        onCancel={() => setIsCustomCropping(false)}
-                      />
-                    )}
-                  </div>
-                </Document>
+                  </Document>
+                  {isCustomCropping && (
+                    <CustomCrop
+                      onCrop={handleCustomCrop}
+                      onCancel={() => setIsCustomCropping(false)}
+                    />
+                  )}
+                </div>
               </PDFContent>
               {numPages && numPages > 1 && (
                 <PageControls>

@@ -59,52 +59,58 @@ const Copyright = styled.div`
   margin-top: 3rem;
   border-top: 1px solid #374151;
   color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
 `
 
 export default function FooterComponent() {
-    return (
-        <Footer>
-            <FooterContent>
-                <FooterSection>
-                    <h3>About PDF Cropper</h3>
-                    <p>PDF Cropper is a professional-grade tool designed for businesses and individuals who need precise document editing capabilities.</p>
-                </FooterSection>
-                <FooterSection>
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><Link href="/features">Features</Link></li>
-                        <li><Link href="/how-it-works">How It Works</Link></li>
-                        <li><Link href="/pricing">Pricing</Link></li>
-                        <li><Link href="/blog">Blog</Link></li>
-                        <li><Link href="/contact">Contact</Link></li>
-                    </ul>
-                </FooterSection>
-                <FooterSection>
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><Link href="/tutorials">Tutorials</Link></li>
-                        <li><Link href="/documentation">Documentation</Link></li>
-                        <li><Link href="/faq">FAQ</Link></li>
-                        <li><Link href="/support">Support</Link></li>
-                    </ul>
-                </FooterSection>
-                <FooterSection>
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li>Email: support@pdfcropper.com</li>
-                        <li>Phone: +1 (555) 123-4567</li>
-                        <li>Address: 123 Business St, Suite 100</li>
-                    </ul>
-                </FooterSection>
-            </FooterContent>
-            <Copyright>
-                <p>&copy; {new Date().getFullYear()} PDF Cropper. All rights reserved.</p>
-                <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
-                    <Link href="/privacy" style={{ color: '#9ca3af', marginRight: '1rem' }}>Privacy Policy</Link>
-                    <Link href="/terms" style={{ color: '#9ca3af', marginRight: '1rem' }}>Terms of Service</Link>
-                    <Link href="/cookies" style={{ color: '#9ca3af' }}>Cookie Policy</Link>
-                </p>
-            </Copyright>
-        </Footer>
-    )
+  return (
+    <Footer>
+      <FooterContent>
+        <FooterSection>
+          <h3>About PDF Cropper</h3>
+          <p>PDF Cropper is a professional-grade tool designed for businesses and individuals who need precise document editing capabilities.</p>
+        </FooterSection>
+        <FooterSection>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><Link href="/features">Features</Link></li>
+            <li><Link href="/how-it-works">How It Works</Link></li>
+            <li><Link href="/pricing">Pricing</Link></li>
+            <li><Link href="/blog">Blog</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
+          </ul>
+        </FooterSection>
+        <FooterSection>
+          <h3>Resources</h3>
+          <ul>
+            <li><Link href="/tutorials">Tutorials</Link></li>
+            <li><Link href="/documentation">Documentation</Link></li>
+            <li><Link href="/faq">FAQ</Link></li>
+            <li><Link href="/support">Support</Link></li>
+          </ul>
+        </FooterSection>
+        <FooterSection>
+          <h3>Contact Us</h3>
+          <ul>
+            <li>Email: support@pdfcropper.com</li>
+            <li>Phone: +1 (555) 123-4567</li>
+            <li>Address: 123 Business St, Suite 100</li>
+          </ul>
+        </FooterSection>
+      </FooterContent>
+      <Copyright>
+        <img src="/favicon-16x16.png" alt="PDF Cropper Logo" />
+        © {new Date().getFullYear()} PDF Cropper. All rights reserved.
+      </Copyright>
+    </Footer>
+  )
 } 
