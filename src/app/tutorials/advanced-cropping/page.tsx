@@ -2,7 +2,6 @@
 
 import styled from 'styled-components'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const Container = styled.div`
   max-width: 1200px;
@@ -137,94 +136,88 @@ const NavigationLinks = styled.div`
 `
 
 export default function AdvancedCroppingPage() {
-  return (
-    <Container>
-      <HeroSection>
-        <Title>Advanced Cropping</Title>
-        <Description>
-          Master advanced cropping techniques and features in PDF Cropper.
-        </Description>
-      </HeroSection>
+    return (
+        <Container>
+            <HeroSection>
+                <Title>Advanced Cropping</Title>
+                <Description>
+                    Master advanced cropping techniques and features in PDF Cropper.
+                </Description>
+            </HeroSection>
 
-      <ContentSection>
-        <TutorialStep>
-          <h2>Advanced Selection Tools</h2>
-          <p>Take advantage of these powerful selection features:</p>
-          <FeatureGrid>
-            <FeatureCard>
-              <h3>Smart Selection</h3>
-              <p>Automatically detect and select document boundaries</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Custom Shapes</h3>
-              <p>Create non-rectangular crop areas with custom shapes</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Multiple Selections</h3>
-              <p>Select and crop multiple areas simultaneously</p>
-            </FeatureCard>
-          </FeatureGrid>
-          <Image
-            src="/tutorials/advanced-selection.jpg"
-            alt="Advanced Selection Tools"
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-          />
-        </TutorialStep>
+            <ContentSection>
+                <TutorialStep>
+                    <h2>Advanced Selection Tools</h2>
+                    <p>Take advantage of these powerful selection features:</p>
+                    <FeatureGrid>
+                        <FeatureCard>
+                            <h3>Smart Selection</h3>
+                            <p>Automatically detect and select document boundaries</p>
+                        </FeatureCard>
+                        <FeatureCard>
+                            <h3>Custom Shapes</h3>
+                            <p>Create non-rectangular crop areas with custom shapes</p>
+                        </FeatureCard>
+                        <FeatureCard>
+                            <h3>Multiple Selections</h3>
+                            <p>Select and crop multiple areas simultaneously</p>
+                        </FeatureCard>
+                    </FeatureGrid>
+                    <img src="/tutorials/advanced-selection.jpg" alt="Advanced Selection Tools" />
+                </TutorialStep>
 
-        <TutorialStep>
-          <h2>Precision Controls</h2>
-          <p>Fine-tune your crops with precision controls:</p>
-          <ul>
-            <li>Use the grid overlay for perfect alignment</li>
-            <li>Enable snap-to-grid for precise positioning</li>
-            <li>Set exact dimensions in pixels or inches</li>
-            <li>Use keyboard shortcuts for quick adjustments</li>
-          </ul>
-          <Image src="/tutorials/precision-controls.jpg" alt="Precision Controls" />
-          <TipBox>
-            <h3>Pro Tip</h3>
-            <p>Use the Alt key while dragging to temporarily disable snap-to-grid for fine adjustments.</p>
-          </TipBox>
-        </TutorialStep>
+                <TutorialStep>
+                    <h2>Precision Controls</h2>
+                    <p>Fine-tune your crops with precision controls:</p>
+                    <ul>
+                        <li>Use the grid overlay for perfect alignment</li>
+                        <li>Enable snap-to-grid for precise positioning</li>
+                        <li>Set exact dimensions in pixels or inches</li>
+                        <li>Use keyboard shortcuts for quick adjustments</li>
+                    </ul>
+                    <img src="/tutorials/precision-controls.jpg" alt="Precision Controls" />
+                    <TipBox>
+                        <h3>Pro Tip</h3>
+                        <p>Use the Alt key while dragging to temporarily disable snap-to-grid for fine adjustments.</p>
+                    </TipBox>
+                </TutorialStep>
 
-        <TutorialStep>
-          <h2>Multi-Page Cropping</h2>
-          <p>Handle multi-page documents efficiently:</p>
-          <ul>
-            <li>Apply the same crop to all pages</li>
-            <li>Set different crops for different pages</li>
-            <li>Use page ranges for selective cropping</li>
-            <li>Preview changes across multiple pages</li>
-          </ul>
-          <Image src="/tutorials/multi-page-cropping.jpg" alt="Multi-Page Cropping" />
-        </TutorialStep>
+                <TutorialStep>
+                    <h2>Multi-Page Cropping</h2>
+                    <p>Handle multi-page documents efficiently:</p>
+                    <ul>
+                        <li>Apply the same crop to all pages</li>
+                        <li>Set different crops for different pages</li>
+                        <li>Use page ranges for selective cropping</li>
+                        <li>Preview changes across multiple pages</li>
+                    </ul>
+                    <img src="/tutorials/multi-page-cropping.jpg" alt="Multi-Page Cropping" />
+                </TutorialStep>
 
-        <TutorialStep>
-          <h2>Advanced Features</h2>
-          <p>Explore these advanced cropping capabilities:</p>
-          <FeatureGrid>
-            <FeatureCard>
-              <h3>Content-Aware Cropping</h3>
-              <p>Automatically adjust crop to preserve important content</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Batch Processing</h3>
-              <p>Apply the same crop settings to multiple documents</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Custom Templates</h3>
-              <p>Save and reuse your favorite crop settings</p>
-            </FeatureCard>
-          </FeatureGrid>
-        </TutorialStep>
+                <TutorialStep>
+                    <h2>Advanced Features</h2>
+                    <p>Explore these advanced cropping capabilities:</p>
+                    <FeatureGrid>
+                        <FeatureCard>
+                            <h3>Content-Aware Cropping</h3>
+                            <p>Automatically adjust crop to preserve important content</p>
+                        </FeatureCard>
+                        <FeatureCard>
+                            <h3>Batch Processing</h3>
+                            <p>Apply the same crop settings to multiple documents</p>
+                        </FeatureCard>
+                        <FeatureCard>
+                            <h3>Custom Templates</h3>
+                            <p>Save and reuse your favorite crop settings</p>
+                        </FeatureCard>
+                    </FeatureGrid>
+                </TutorialStep>
 
-        <NavigationLinks>
-          <Link href="/tutorials/saving-exporting">← Previous: Saving & Exporting</Link>
-          <Link href="/tutorials/batch-processing">Next: Batch Processing →</Link>
-        </NavigationLinks>
-      </ContentSection>
-    </Container>
-  )
+                <NavigationLinks>
+                    <Link href="/tutorials/saving-exporting">← Previous: Saving & Exporting</Link>
+                    <Link href="/tutorials/batch-processing">Next: Batch Processing →</Link>
+                </NavigationLinks>
+            </ContentSection>
+        </Container>
+    )
 } 

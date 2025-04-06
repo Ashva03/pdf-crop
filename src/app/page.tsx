@@ -6,6 +6,7 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import CustomCrop from '@/components/CustomCrop'
 import * as PDFLib from 'pdf-lib'
 import Loading from '@/components/Loading'
+import FooterComponent from '@/components/Footer'
 
 const Container = styled.div`
   min-height: 100vh;
@@ -764,6 +765,8 @@ export default function Home() {
         </TestimonialsSection>
 
       </MainContent>
+
+      {/* <FooterComponent /> */}
     </Container>
   )
 }

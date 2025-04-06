@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import styled from 'styled-components'
 import { usePathname } from 'next/navigation'
-import Image from 'next/image'
 
 const Nav = styled.nav`
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
@@ -84,15 +83,8 @@ export default function Navigation() {
       <NavContent>
         <Link href="/" style={{ textDecoration: 'none' }}>
           <Logo>
-            <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="PDF Cropper Logo"
-                width={40}
-                height={40}
-                priority
-              />
-            </Link>
+            <img src="/favicon-32x32.png" alt="PDF Cropper Logo" />
+            PDF Cropper
           </Logo>
         </Link>
         <NavLinks>

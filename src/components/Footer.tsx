@@ -1,121 +1,115 @@
 'use client'
 
-import styled from 'styled-components'
 import Link from 'next/link'
-import Image from 'next/image'
+import styled from 'styled-components'
 
-const FooterContainer = styled.footer`
+const Footer = styled.footer`
   background: #1f2937;
   color: white;
-  padding: 4rem 2rem;
+  padding: 3rem 0;
   margin-top: 4rem;
 `
 
 const FooterContent = styled.div`
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
 `
 
 const FooterSection = styled.div`
   h3 {
-    color: white;
-    margin-bottom: 1rem;
+    color: #4f46e5;
+    margin-bottom: 1.5rem;
     font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+    color: #e5e7eb;
+  }
+
+  a {
+    color: #e5e7eb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #4f46e5;
+    }
   }
 
   p {
-    color: #9ca3af;
+    color: #e5e7eb;
     line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-`
-
-const FooterLogo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-`
-
-const FooterLinks = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  a {
-    color: #9ca3af;
-    text-decoration: none;
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: white;
-    }
   }
 `
 
 const Copyright = styled.div`
   text-align: center;
   padding-top: 2rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
   border-top: 1px solid #374151;
   color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
 `
 
-export default function Footer() {
+export default function FooterComponent() {
   return (
-    <FooterContainer>
+    <Footer>
       <FooterContent>
         <FooterSection>
-          <FooterLogo>
-            <Image
-              src="/logo.png"
-              alt="PDF Cropper Logo"
-              width={40}
-              height={40}
-              priority
-            />
-          </FooterLogo>
           <h3>About PDF Cropper</h3>
           <p>PDF Cropper is a professional-grade tool designed for businesses and individuals who need precise document editing capabilities.</p>
         </FooterSection>
-
         <FooterSection>
           <h3>Quick Links</h3>
-          <FooterLinks>
-            <Link href="/features">Features</Link>
-            <Link href="/pricing">Pricing</Link>
-            <Link href="/tutorials">Tutorials</Link>
-            <Link href="/blog">Blog</Link>
-          </FooterLinks>
+          <ul>
+            <li><Link href="/features">Features</Link></li>
+            <li><Link href="/how-it-works">How It Works</Link></li>
+            <li><Link href="/pricing">Pricing</Link></li>
+            <li><Link href="/blog">Blog</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
+          </ul>
         </FooterSection>
-
         <FooterSection>
-          <h3>Support</h3>
-          <FooterLinks>
-            <Link href="/faq">FAQ</Link>
-            <Link href="/contact">Contact</Link>
-            <Link href="/documentation">Documentation</Link>
-            <Link href="/support">Support Center</Link>
-          </FooterLinks>
+          <h3>Resources</h3>
+          <ul>
+            <li><Link href="/tutorials">Tutorials</Link></li>
+            <li><Link href="/documentation">Documentation</Link></li>
+            <li><Link href="/faq">FAQ</Link></li>
+            <li><Link href="/support">Support</Link></li>
+          </ul>
         </FooterSection>
-
         <FooterSection>
-          <h3>Legal</h3>
-          <FooterLinks>
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/terms">Terms of Service</Link>
-            <Link href="/cookies">Cookie Policy</Link>
-            <Link href="/security">Security</Link>
-          </FooterLinks>
+          <h3>Contact Us</h3>
+          <ul>
+            <li>Email: ashvainfotech3@gmail.com</li>
+            <li>Address: Surat Gujarat</li>
+          </ul>
         </FooterSection>
       </FooterContent>
-
       <Copyright>
-        <p>&copy; {new Date().getFullYear()} PDF Cropper. All rights reserved.</p>
+        <img src="/favicon-16x16.png" alt="PDF Cropper Logo" />
+        © {new Date().getFullYear()} PDF Cropper. All rights reserved.
       </Copyright>
-    </FooterContainer>
+    </Footer>
   )
 } 

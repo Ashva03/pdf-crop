@@ -2,7 +2,6 @@
 
 import styled from 'styled-components'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const Container = styled.div`
   max-width: 1200px;
@@ -40,7 +39,7 @@ const ContentSection = styled.section`
   margin-bottom: 2rem;
 `
 
-const TutorialStep = styled.div`
+const Step = styled.div`
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid #e5e7eb;
@@ -61,6 +60,12 @@ const TutorialStep = styled.div`
     color: #4b5563;
     line-height: 1.6;
     margin-bottom: 1rem;
+  }
+
+  img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
   }
 `
 
@@ -86,72 +91,45 @@ const NavigationLinks = styled.div`
 `
 
 export default function GettingStartedPage() {
-  return (
-    <Container>
-      <HeroSection>
-        <Title>Getting Started</Title>
-        <Description>
-          Learn how to use PDF Cropper effectively with our step-by-step guide.
-        </Description>
-      </HeroSection>
+    return (
+        <Container>
+            <HeroSection>
+                <Title>Getting Started with PDF Cropper</Title>
+                <Description>
+                    Learn how to use PDF Cropper effectively with this step-by-step guide.
+                </Description>
+            </HeroSection>
 
-      <ContentSection>
-        <TutorialStep>
-          <h2>Upload Your PDF</h2>
-          <p>Start by uploading your PDF file:</p>
-          <ul>
-            <li>Click the &quot;Upload PDF&quot; button</li>
-            <li>Select your PDF file from your device</li>
-            <li>Wait for the file to load</li>
-          </ul>
-          <Image
-            src="/tutorials/upload-pdf.jpg"
-            alt="Upload PDF"
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-          />
-        </TutorialStep>
+            <ContentSection>
+                <Step>
+                    <h2>Step 1: Upload Your PDF</h2>
+                    <p>Start by uploading your PDF file. You can either drag and drop your file into the upload area or click to browse your files.</p>
+                    <img src="/tutorials/upload-step.jpg" alt="Upload PDF" />
+                </Step>
 
-        <TutorialStep>
-          <h2>View Your PDF</h2>
-          <p>Once uploaded, you&apos;ll see your PDF displayed:</p>
-          <ul>
-            <li>Use the page controls to navigate</li>
-            <li>Zoom in/out as needed</li>
-            <li>Pan around the document</li>
-          </ul>
-          <Image
-            src="/tutorials/view-pdf.jpg"
-            alt="View PDF"
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-          />
-        </TutorialStep>
+                <Step>
+                    <h2>Step 2: Select Crop Area</h2>
+                    <p>Use the crop tool to select the area you want to keep. You can adjust the size and position of the crop area by dragging the corners or edges.</p>
+                    <img src="/tutorials/crop-step.jpg" alt="Select Crop Area" />
+                </Step>
 
-        <TutorialStep>
-          <h2>Start Cropping</h2>
-          <p>Begin the cropping process:</p>
-          <ul>
-            <li>Click &quot;Select Area to Crop&quot;</li>
-            <li>Draw your crop area</li>
-            <li>Adjust the selection as needed</li>
-          </ul>
-          <Image
-            src="/tutorials/start-cropping.jpg"
-            alt="Start Cropping"
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-          />
-        </TutorialStep>
+                <Step>
+                    <h2>Step 3: Preview and Adjust</h2>
+                    <p>Preview your cropped PDF and make any necessary adjustments. You can zoom in/out and pan around to ensure you've selected the perfect area.</p>
+                    <img src="/tutorials/preview-step.jpg" alt="Preview and Adjust" />
+                </Step>
 
-        <NavigationLinks>
-          <Link href="/tutorials/interface-overview">← Previous: Interface Overview</Link>
-          <Link href="/tutorials/basic-cropping">Next: Basic Cropping →</Link>
-        </NavigationLinks>
-      </ContentSection>
-    </Container>
-  )
+                <Step>
+                    <h2>Step 4: Download Your Cropped PDF</h2>
+                    <p>Once you're satisfied with the crop, click the download button to save your cropped PDF. You can choose to download as PDF or other supported formats.</p>
+                    <img src="/tutorials/download-step.jpg" alt="Download PDF" />
+                </Step>
+
+                <NavigationLinks>
+                    <Link href="/tutorials">← Back to Tutorials</Link>
+                    <Link href="/tutorials/interface-overview">Next: Interface Overview →</Link>
+                </NavigationLinks>
+            </ContentSection>
+        </Container>
+    )
 } 

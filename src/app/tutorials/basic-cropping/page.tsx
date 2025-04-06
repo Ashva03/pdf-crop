@@ -2,7 +2,6 @@
 
 import styled from 'styled-components'
 import Link from 'next/link'
-import Image from 'next/image'
 
 const Container = styled.div`
   max-width: 1200px;
@@ -111,79 +110,70 @@ const NavigationLinks = styled.div`
 `
 
 export default function BasicCroppingPage() {
-  return (
-    <Container>
-      <HeroSection>
-        <Title>Basic Cropping</Title>
-        <Description>
-          Learn the fundamentals of PDF cropping with our easy-to-use tools.
-        </Description>
-      </HeroSection>
+    return (
+        <Container>
+            <HeroSection>
+                <Title>Basic Cropping</Title>
+                <Description>
+                    Learn the fundamentals of cropping PDFs with PDF Cropper.
+                </Description>
+            </HeroSection>
 
-      <ContentSection>
-        <TutorialStep>
-          <h2>Getting Started</h2>
-          <p>Follow these simple steps to crop your PDF:</p>
-          <ul>
-            <li>Upload your PDF file</li>
-            <li>Select the area you want to crop</li>
-            <li>Preview your selection</li>
-            <li>Download your cropped PDF</li>
-          </ul>
-          <Image
-            src="/tutorials/basic-steps.jpg"
-            alt="Basic Cropping Steps"
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-          />
-        </TutorialStep>
+            <ContentSection>
+                <TutorialStep>
+                    <h2>Selecting the Crop Area</h2>
+                    <p>To start cropping your PDF, click and drag on the preview area to create a crop rectangle. You can adjust the size and position of the crop area by:</p>
+                    <ul>
+                        <li>Dragging the corners to resize proportionally</li>
+                        <li>Dragging the edges to resize in one direction</li>
+                        <li>Clicking and dragging inside the crop area to move it</li>
+                    </ul>
+                    <img src="/tutorials/select-crop-area.jpg" alt="Selecting Crop Area" />
+                </TutorialStep>
 
-        <TutorialStep>
-          <h2>Selection Tools</h2>
-          <p>Use these basic selection tools:</p>
-          <ul>
-            <li>Rectangle selection for standard crops</li>
-            <li>Drag to adjust selection size</li>
-            <li>Click and drag to move selection</li>
-            <li>Use corner handles to resize</li>
-          </ul>
-          <Image
-            src="/tutorials/selection-tools.jpg"
-            alt="Selection Tools"
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-          />
-        </TutorialStep>
+                <TutorialStep>
+                    <h2>Fine-Tuning the Crop</h2>
+                    <p>Use the following tools to precisely adjust your crop:</p>
+                    <ul>
+                        <li>Zoom in/out to get a closer look at the edges</li>
+                        <li>Use the arrow keys for pixel-perfect adjustments</li>
+                        <li>Enable the grid overlay for better alignment</li>
+                    </ul>
+                    <img src="/tutorials/fine-tune-crop.jpg" alt="Fine-Tuning Crop" />
+                    <TipBox>
+                        <h3>Pro Tip</h3>
+                        <p>Hold the Shift key while dragging to maintain the aspect ratio of your crop area.</p>
+                    </TipBox>
+                </TutorialStep>
 
-        <TutorialStep>
-          <h2>Tips & Tricks</h2>
-          <p>Make the most of basic cropping:</p>
-          <ul>
-            <li>Hold Shift while dragging for perfect squares</li>
-            <li>Use arrow keys for precise adjustments</li>
-            <li>Double-click to reset selection</li>
-            <li>Use the preview window to check your crop</li>
-          </ul>
-          <Image
-            src="/tutorials/basic-tips.jpg"
-            alt="Basic Cropping Tips"
-            width={800}
-            height={400}
-            style={{ width: '100%', height: 'auto' }}
-          />
-          <TipBox>
-            <h3>Pro Tip</h3>
-            <p>Start with a larger selection and refine it gradually for better results.</p>
-          </TipBox>
-        </TutorialStep>
+                <TutorialStep>
+                    <h2>Previewing Your Crop</h2>
+                    <p>Before finalizing your crop, you can:</p>
+                    <ul>
+                        <li>Toggle between the original and cropped view</li>
+                        <li>Check how the crop looks on different pages</li>
+                        <li>Use the preview mode to see the final result</li>
+                    </ul>
+                    <img src="/tutorials/preview-crop.jpg" alt="Previewing Crop" />
+                </TutorialStep>
 
-        <NavigationLinks>
-          <Link href="/tutorials/getting-started">← Previous: Getting Started</Link>
-          <Link href="/tutorials/advanced-cropping">Next: Advanced Cropping →</Link>
-        </NavigationLinks>
-      </ContentSection>
-    </Container>
-  )
+                <TutorialStep>
+                    <h2>Saving Your Crop</h2>
+                    <p>When you're satisfied with your crop:</p>
+                    <ul>
+                        <li>Click the "Apply Crop" button to confirm</li>
+                        <li>Choose your desired output format (PDF, PNG, JPEG)</li>
+                        <li>Set the quality and resolution settings</li>
+                        <li>Click "Download" to save your cropped file</li>
+                    </ul>
+                    <img src="/tutorials/save-crop.jpg" alt="Saving Crop" />
+                </TutorialStep>
+
+                <NavigationLinks>
+                    <Link href="/tutorials/interface-overview">← Previous: Interface Overview</Link>
+                    <Link href="/tutorials/saving-exporting">Next: Saving & Exporting →</Link>
+                </NavigationLinks>
+            </ContentSection>
+        </Container>
+    )
 } 
