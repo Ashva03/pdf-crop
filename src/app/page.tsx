@@ -470,6 +470,11 @@ const FeatureDescription = styled.p`
   line-height: 1.6;
 `
 
+// Initialize PDF.js worker
+if (typeof window !== 'undefined') {
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+}
+
 export default function Home() {
   const [file, setFile] = useState<File | null>(null)
   const [numPages, setNumPages] = useState<number | null>(null)
@@ -487,8 +492,8 @@ export default function Home() {
 
   useEffect(() => {
     // Set up PDF.js worker
-    pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js`
-  }, [])
+    pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+  }, []);
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
