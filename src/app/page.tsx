@@ -3,13 +3,9 @@
 import { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { Document, Page, pdfjs } from 'react-pdf'
-// import { PDFDocument } from 'pdf-lib'
 import CustomCrop from '@/components/CustomCrop'
 import * as PDFLib from 'pdf-lib'
 import Loading from '@/components/Loading'
-import { PDFDocument } from 'pdf-lib'
-import { saveAs } from 'file-saver'
-import { initializePDFWorker } from '@/lib/pdf-worker'
 
 const Container = styled.div`
   min-height: 100vh;

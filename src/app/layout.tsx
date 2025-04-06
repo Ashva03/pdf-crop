@@ -6,7 +6,6 @@ import StyledComponentsRegistry from '@/lib/registry'
 import Navigation from '@/components/Navigation'
 import "./globals.css";
 import LayoutWrapper from '@/components/LayoutWrapper'
-import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 
