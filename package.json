@@ -14,10 +14,10 @@
     "file-saver": "^2.0.5",
     "next": "15.2.4",
     "pdf-lib": "^1.17.1",
-    "pdfjs-dist": "^3.11.174",
+    "pdfjs-dist": "3.11.174",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-pdf": "^7.5.1",
+    "react-pdf": "7.5.1",
     "styled-components": "^6.1.8"
   },
   "devDependencies": {

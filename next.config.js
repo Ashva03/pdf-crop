@@ -8,6 +8,8 @@ const nextConfig = {
                 canvas: false,
                 path: false,
                 crypto: false,
+                stream: false,
+                zlib: false,
             };
         }
         return config;
@@ -15,6 +17,7 @@ const nextConfig = {
     images: {
         domains: ['cdn.jsdelivr.net', 'cdnjs.cloudflare.com'],
     },
+    transpilePackages: ['pdfjs-dist'],
 };
 
 module.exports = nextConfig; 
