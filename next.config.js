@@ -17,9 +17,8 @@ const nextConfig = {
     images: {
         domains: ['cdn.jsdelivr.net', 'cdnjs.cloudflare.com'],
     },
-    transpilePackages: ['pdfjs-dist'],
     experimental: {
-        serverComponentsExternalPackages: ['pdfjs-dist'],
+        serverComponentsExternalPackages: ['pdfjs-dist', 'canvas'],
     },
     externals: {
         canvas: 'canvas',
