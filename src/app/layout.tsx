@@ -10,9 +10,28 @@ export const metadata: Metadata = {
   description: 'Free online PDF tools for cropping, compressing, merging, splitting, rotating, converting, and optimizing PDF documents. Perfect for businesses, students, and professionals.',
   keywords: 'PDF cropper, PDF tools, PDF editor, PDF compressor, PDF merger, PDF splitter, PDF converter, PDF optimizer, PDF watermark, PDF sign, PDF OCR, document management, online PDF tools, free PDF tools, PDF manipulation, PDF processing, PDF editing software, PDF utilities, PDF workflow, PDF automation, PDF business tools, PDF student tools, PDF professional tools',
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      {
+        rel: 'android-chrome-192x192',
+        url: '/android-chrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        rel: 'android-chrome-512x512',
+        url: '/android-chrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+    ],
   },
   manifest: '/site.webmanifest',
   themeColor: '#4f46e5',
