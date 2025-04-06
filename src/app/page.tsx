@@ -6,6 +6,7 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import CustomCrop from '@/components/CustomCrop'
 import * as PDFLib from 'pdf-lib'
 import Loading from '@/components/Loading'
+import PDFUpload from '@/components/PDFUpload'
 
 const Container = styled.div`
   min-height: 100vh;
@@ -147,23 +148,6 @@ const Description = styled.p`
   margin: 0 auto 2rem;
   opacity: 0.9;
   line-height: 1.6;
-`
-
-const UploadSection = styled.div`
-  background: white;
-  border: 2px dashed #4f46e5;
-  padding: 3rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: #7c3aed;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateY(-2px);
-  }
 `
 
 const Button = styled.button`
@@ -363,37 +347,6 @@ const LoadingOverlay = styled.div`
   z-index: 1000;
 `;
 
-const UploadButton = styled(Button)`
-  min-width: 250px;
-  font-size: 1.2rem;
-  padding: 1.2rem 2.5rem;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-
-  &:disabled {
-    background: #f3f4f6;
-    color: #9ca3af;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-    border: 1px solid #e5e7eb;
-  }
-`
-
 const ErrorMessage = styled.div`
   color: red;
   padding: 2rem;
@@ -436,14 +389,11 @@ export default function Home() {
     pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
   }, []);
 
-  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file && file.type === 'application/pdf') {
-      setFile(file)
-      setCustomCropBox(null)
-      setIsCustomCropping(true)
-      setError(null)
-    }
+  const onFileChange = (file: File) => {
+    setFile(file)
+    setCustomCropBox(null)
+    setIsCustomCropping(true)
+    setError(null)
   }
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
@@ -574,18 +524,7 @@ export default function Home() {
       </Header>
 
       <MainContent>
-        <UploadSection>
-          <input
-            type="file"
-            accept=".pdf"
-            onChange={onFileChange}
-            style={{ display: 'none' }}
-            id="pdf-upload"
-          />
-          <UploadButton onClick={() => document.getElementById('pdf-upload')?.click()}>
-            Upload PDF
-          </UploadButton>
-        </UploadSection>
+        <PDFUpload onFileSelect={onFileChange} maxFileSize={100} />
 
         {file && (
           <PDFViewer>
