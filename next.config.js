@@ -21,6 +21,9 @@ const nextConfig = {
     experimental: {
         serverComponentsExternalPackages: ['pdfjs-dist'],
     },
+    externals: {
+        canvas: 'canvas',
+    },
 };
 
 module.exports = nextConfig; 

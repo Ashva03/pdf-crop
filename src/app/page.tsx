@@ -474,7 +474,9 @@ const FeatureDescription = styled.p`
 `
 
 // Initialize PDF.js worker
-initializePDFWorker();
+if (typeof window !== 'undefined') {
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+}
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null)

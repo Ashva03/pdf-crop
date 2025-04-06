@@ -30,5 +30,8 @@
     "eslint-config-next": "15.2.4",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "pdfjs-dist": "3.11.174"
   }
 }
