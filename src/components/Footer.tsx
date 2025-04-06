@@ -101,9 +101,8 @@ export default function FooterComponent() {
         <FooterSection>
           <h3>Contact Us</h3>
           <ul>
-            <li>Email: support@pdfcropper.com</li>
-            <li>Phone: +1 (555) 123-4567</li>
-            <li>Address: 123 Business St, Suite 100</li>
+            <li>Email: ashvainfotech3@gmail.com</li>
+            <li>Address: Surat Gujarat</li>
           </ul>
         </FooterSection>
       </FooterContent>

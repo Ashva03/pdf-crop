@@ -6,6 +6,7 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import CustomCrop from '@/components/CustomCrop'
 import * as PDFLib from 'pdf-lib'
 import Loading from '@/components/Loading'
+import FooterComponent from '@/components/Footer'
 
 const Container = styled.div`
   min-height: 100vh;
@@ -348,64 +349,6 @@ const TestimonialCard = styled.div`
     font-weight: 600;
     color: #1f2937;
   }
-`
-
-const Footer = styled.footer`
-  background: #1f2937;
-  color: white;
-  padding: 4rem 0;
-  margin-top: 4rem;
-`
-
-const FooterContent = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 3rem;
-`
-
-const FooterSection = styled.div`
-  h3 {
-    color: #4f46e5;
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  li {
-    margin-bottom: 0.75rem;
-    color: #e5e7eb;
-  }
-
-  a {
-    color: #e5e7eb;
-    text-decoration: none;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #4f46e5;
-    }
-  }
-
-  p {
-    color: #e5e7eb;
-    line-height: 1.6;
-  }
-`
-
-const Copyright = styled.div`
-  text-align: center;
-  padding-top: 2rem;
-  margin-top: 3rem;
-  border-top: 1px solid #374151;
-  color: #9ca3af;
 `
 
 const LoadingOverlay = styled.div`
@@ -823,59 +766,7 @@ export default function Home() {
 
       </MainContent>
 
-      <Footer id="contact">
-        <FooterContent>
-          <FooterSection>
-            <h3>About PDF Cropper</h3>
-            <p>PDF Cropper is a professional-grade tool designed for businesses and individuals who need precise document editing capabilities. Our mission is to simplify PDF document management while maintaining the highest quality standards.</p>
-            <p>Founded in 2024, we&apos;ve helped thousands of users streamline their document processing workflow with our easy-to-use, powerful PDF cropping solution.</p>
-          </FooterSection>
-          <FooterSection>
-            <h3>Quick Links</h3>
-            <ul>
-              <li><a href="#features">Features</a></li>
-              <li><a href="#how-it-works">How It Works</a></li>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </FooterSection>
-          <FooterSection>
-            <h3>Resources</h3>
-            <ul>
-              <li><a href="/blog">PDF Editing Tips</a></li>
-              <li><a href="/tutorials">Video Tutorials</a></li>
-              <li><a href="/documentation">User Guide</a></li>
-              <li><a href="/updates">Latest Updates</a></li>
-            </ul>
-          </FooterSection>
-          <FooterSection>
-            <h3>Contact Us</h3>
-            <ul>
-              <li>Email: support@pdfcropper.com</li>
-              <li>Phone: +1 (555) 123-4567</li>
-              <li>Address: 123 Business St, Suite 100</li>
-              <li>Hours: Mon-Fri, 9AM-5PM EST</li>
-            </ul>
-            <div style={{ marginTop: '1rem' }}>
-              <h3>Follow Us</h3>
-              <ul>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">LinkedIn</a></li>
-                <li><a href="#">Facebook</a></li>
-              </ul>
-            </div>
-          </FooterSection>
-        </FooterContent>
-        <Copyright>
-          <p>&copy; {new Date().getFullYear()} PDF Cropper. All rights reserved.</p>
-          <p style={{ marginTop: '1rem', fontSize: '0.9rem' }}>
-            <a href="/privacy" style={{ color: '#9ca3af', marginRight: '1rem' }}>Privacy Policy</a>
-            <a href="/terms" style={{ color: '#9ca3af', marginRight: '1rem' }}>Terms of Service</a>
-            <a href="/cookies" style={{ color: '#9ca3af' }}>Cookie Policy</a>
-          </p>
-        </Copyright>
-      </Footer>
+      {/* <FooterComponent /> */}
     </Container>
   )
 }
