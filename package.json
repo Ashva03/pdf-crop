@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && node -e \"require('./src/lib/sitemap').default()\"",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "generate-sitemap": "node -e \"require('./src/lib/sitemap').default()\""
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/file-saver": "^2.0.7",
