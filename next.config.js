@@ -18,6 +18,9 @@ const nextConfig = {
         domains: ['cdn.jsdelivr.net', 'cdnjs.cloudflare.com'],
     },
     transpilePackages: ['pdfjs-dist'],
+    experimental: {
+        serverComponentsExternalPackages: ['pdfjs-dist'],
+    },
 };
 
 module.exports = nextConfig; 

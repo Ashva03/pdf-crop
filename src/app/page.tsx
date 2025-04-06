@@ -9,6 +9,7 @@ import * as PDFLib from 'pdf-lib'
 import Loading from '@/components/Loading'
 import { PDFDocument } from 'pdf-lib'
 import { saveAs } from 'file-saver'
+import { initializePDFWorker } from '@/lib/pdf-worker'
 
 const Container = styled.div`
   min-height: 100vh;
@@ -473,9 +474,7 @@ const FeatureDescription = styled.p`
 `
 
 // Initialize PDF.js worker
-if (typeof window !== 'undefined') {
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
-}
+initializePDFWorker();
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null)
