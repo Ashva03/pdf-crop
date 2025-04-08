@@ -282,6 +282,7 @@ const FAQItem = styled.div`
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 
   &:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -298,7 +299,7 @@ const FAQHeader = styled.button`
   justify-content: space-between;
   cursor: pointer;
   text-align: left;
-
+  transition: background-color 0.2s ease;
   h3 {
     color: #4f46e5;
     margin: 0;
@@ -311,12 +312,14 @@ const FAQHeader = styled.button`
   }
 `;
 
-const FAQContent = styled.div<{ isOpen: boolean }>`
-  padding: ${(props) => (props.isOpen ? "0 2rem 1.5rem" : "0 2rem")};
-  max-height: ${(props) => (props.isOpen ? "1000px" : "0")};
-  opacity: ${(props) => (props.isOpen ? "1" : "0")};
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+const FAQContent = styled.div<{ $isOpen: boolean }>`
+  padding: ${(props) => (props.$isOpen ? "0 2rem 1.5rem" : "0 2rem")};
+  max-height: ${(props) => (props.$isOpen ? "1000px" : "0")};
+  opacity: ${(props) => (props.$isOpen ? "1" : "0")};
+  visibility: ${(props) => (props.$isOpen ? "visible" : "hidden")};
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.2s ease,
+    visibility 0s ${(props) => (props.$isOpen ? "0s" : "0.4s")},
+    padding 0.2s ease;
   overflow: hidden;
   transform-origin: top;
   transform: translateZ(0);
@@ -326,12 +329,15 @@ const FAQContent = styled.div<{ isOpen: boolean }>`
     color: #4b5563;
     line-height: 1.6;
     margin: 0;
-    transition: transform 0.3s ease;
-    transform: translateY(${(props) => (props.isOpen ? "0" : "-10px")});
+    transition: transform 0.2s ease;
+    transform: ${(props) =>
+      props.$isOpen
+        ? "translateY(0) scale(1)"
+        : "translateY(-8px) scale(0.98)"};
   }
 `;
 
-const FAQIcon = styled.span<{ isOpen: boolean }>`
+const FAQIcon = styled.span<{ $isOpen: boolean }>`
   width: 24px;
   height: 24px;
   position: relative;
@@ -343,7 +349,7 @@ const FAQIcon = styled.span<{ isOpen: boolean }>`
     content: "";
     position: absolute;
     background: #4f46e5;
-    transition: all 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &::before {
@@ -361,7 +367,7 @@ const FAQIcon = styled.span<{ isOpen: boolean }>`
     height: 100%;
     transform: translateX(-50%)
       ${(props) =>
-        props.isOpen ? "rotate(-90deg) scale(0)" : "rotate(0) scale(1)"};
+        props.$isOpen ? "rotate(-90deg) scale(0)" : "rotate(0) scale(1)"};
   }
 `;
 
@@ -820,9 +826,9 @@ export default function Home() {
             <FAQItem>
               <FAQHeader onClick={() => toggleFAQ("faq1")}>
                 <h3>What types of PDFs can I crop?</h3>
-                <FAQIcon isOpen={openFAQs["faq1"]} />
+                <FAQIcon $isOpen={openFAQs["faq1"]} />
               </FAQHeader>
-              <FAQContent isOpen={openFAQs["faq1"]}>
+              <FAQContent $isOpen={openFAQs["faq1"]}>
                 <p>
                   Our PDF cropping tool supports all standard PDF formats,
                   including scanned documents, digital PDFs, and multi-page
@@ -835,9 +841,9 @@ export default function Home() {
             <FAQItem>
               <FAQHeader onClick={() => toggleFAQ("faq2")}>
                 <h3>Is my data secure?</h3>
-                <FAQIcon isOpen={openFAQs["faq2"]} />
+                <FAQIcon $isOpen={openFAQs["faq2"]} />
               </FAQHeader>
-              <FAQContent isOpen={openFAQs["faq2"]}>
+              <FAQContent $isOpen={openFAQs["faq2"]}>
                 <p>
                   Yes, your data security is our top priority. All PDF
                   processing is done locally in your browser, and we don&apos;t
@@ -849,9 +855,9 @@ export default function Home() {
             <FAQItem>
               <FAQHeader onClick={() => toggleFAQ("faq3")}>
                 <h3>Can I crop multiple pages at once?</h3>
-                <FAQIcon isOpen={openFAQs["faq3"]} />
+                <FAQIcon $isOpen={openFAQs["faq3"]} />
               </FAQHeader>
-              <FAQContent isOpen={openFAQs["faq3"]}>
+              <FAQContent $isOpen={openFAQs["faq3"]}>
                 <p>
                   Absolutely! Our tool supports multi-page PDF cropping. You can
                   apply the same crop area to multiple pages or use different
