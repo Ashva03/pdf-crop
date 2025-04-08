@@ -1,13 +1,14 @@
-'use client'
+"use client";
 
-import styled from 'styled-components'
-import Script from 'next/script'
+import styled from "styled-components";
+import Script from "next/script";
 
 const Container = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
-`
+  background: #f2f4f4;
+`;
 
 const HeroSection = styled.section`
   text-align: center;
@@ -16,27 +17,27 @@ const HeroSection = styled.section`
   color: white;
   margin-bottom: 3rem;
   border-radius: 16px;
-`
+`;
 
 const Title = styled.h1`
   font-size: 3rem;
   margin-bottom: 1.5rem;
   font-weight: 800;
-`
+`;
 
 const Description = styled.p`
   font-size: 1.25rem;
   max-width: 800px;
   margin: 0 auto;
   opacity: 0.9;
-`
+`;
 
 const StepsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-bottom: 3rem;
-`
+`;
 
 const Step = styled.div`
   display: flex;
@@ -74,7 +75,7 @@ const Step = styled.div`
       line-height: 1.6;
     }
   }
-`
+`;
 
 const AdContainer = styled.div`
   margin: 3rem 0;
@@ -82,21 +83,21 @@ const AdContainer = styled.div`
   background: #f8fafc;
   border-radius: 12px;
   text-align: center;
-`
+`;
 
 const TipsSection = styled.section`
   margin-top: 4rem;
   padding: 2rem;
   background: #f8fafc;
   border-radius: 16px;
-`
+`;
 
 const TipsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
-`
+`;
 
 const TipCard = styled.div`
   background: white;
@@ -114,7 +115,7 @@ const TipCard = styled.div`
     color: #4b5563;
     line-height: 1.6;
   }
-`
+`;
 
 export default function HowItWorksPage() {
   return (
@@ -128,7 +129,8 @@ export default function HowItWorksPage() {
       <HeroSection>
         <Title>How PDF Cropper Works</Title>
         <Description>
-          Learn how to use our powerful PDF cropping tool in just a few simple steps. Get started with your document editing today.
+          Learn how to use our powerful PDF cropping tool in just a few simple
+          steps. Get started with your document editing today.
         </Description>
       </HeroSection>
 
@@ -137,7 +139,11 @@ export default function HowItWorksPage() {
           <div className="step-number">1</div>
           <div className="step-content">
             <h3>Upload Your PDF</h3>
-            <p>Start by uploading your PDF file. Our tool supports all standard PDF formats, including scanned documents and multi-page files. Simply drag and drop your file or click to browse.</p>
+            <p>
+              Start by uploading your PDF file. Our tool supports all standard
+              PDF formats, including scanned documents and multi-page files.
+              Simply drag and drop your file or click to browse.
+            </p>
           </div>
         </Step>
 
@@ -145,7 +151,11 @@ export default function HowItWorksPage() {
           <div className="step-number">2</div>
           <div className="step-content">
             <h3>Select Crop Area</h3>
-            <p>Use our intuitive interface to draw the exact area you want to crop. The real-time preview helps you see exactly how your cropped PDF will look before processing.</p>
+            <p>
+              Use our intuitive interface to draw the exact area you want to
+              crop. The real-time preview helps you see exactly how your cropped
+              PDF will look before processing.
+            </p>
           </div>
         </Step>
 
@@ -153,7 +163,11 @@ export default function HowItWorksPage() {
           <div className="step-number">3</div>
           <div className="step-content">
             <h3>Adjust Settings</h3>
-            <p>Fine-tune your crop with our advanced settings. Choose your preferred output format, quality settings, and more to get exactly what you need.</p>
+            <p>
+              Fine-tune your crop with our advanced settings. Choose your
+              preferred output format, quality settings, and more to get exactly
+              what you need.
+            </p>
           </div>
         </Step>
 
@@ -161,41 +175,61 @@ export default function HowItWorksPage() {
           <div className="step-number">4</div>
           <div className="step-content">
             <h3>Download Your PDF</h3>
-            <p>Once you&apos;re satisfied with your crop, click the download button to get your perfectly cropped PDF. Your document is ready to use immediately.</p>
+            <p>
+              Once you&apos;re satisfied with your crop, click the download
+              button to get your perfectly cropped PDF. Your document is ready
+              to use immediately.
+            </p>
           </div>
         </Step>
       </StepsContainer>
 
-      <AdContainer>
+      {/* <AdContainer>
         <ins
           className="adsbygoogle"
-          style={{ display: 'block' }}
+          style={{ display: "block" }}
           data-ad-client="ca-pub-YOUR_ADSENSE_ID"
           data-ad-slot="YOUR_AD_SLOT_ID"
           data-ad-format="auto"
           data-full-width-responsive="true"
         />
-      </AdContainer>
+      </AdContainer> */}
 
       <TipsSection>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem', fontSize: '2rem', color: '#1f2937' }}>
+        <h2
+          style={{
+            textAlign: "center",
+            marginBottom: "2rem",
+            fontSize: "2rem",
+            color: "#1f2937",
+          }}
+        >
           Pro Tips for Better Results
         </h2>
         <TipsGrid>
           <TipCard>
             <h4>Use High-Resolution PDFs</h4>
-            <p>For the best results, start with high-quality PDFs. This ensures your cropped documents maintain their clarity and detail.</p>
+            <p>
+              For the best results, start with high-quality PDFs. This ensures
+              your cropped documents maintain their clarity and detail.
+            </p>
           </TipCard>
           <TipCard>
             <h4>Save Your Settings</h4>
-            <p>Create templates of your favorite crop settings to save time on future projects. Perfect for regular document processing tasks.</p>
+            <p>
+              Create templates of your favorite crop settings to save time on
+              future projects. Perfect for regular document processing tasks.
+            </p>
           </TipCard>
           <TipCard>
             <h4>Batch Processing</h4>
-            <p>Save time by processing multiple PDFs at once. Apply the same crop settings across multiple documents with just a few clicks.</p>
+            <p>
+              Save time by processing multiple PDFs at once. Apply the same crop
+              settings across multiple documents with just a few clicks.
+            </p>
           </TipCard>
         </TipsGrid>
       </TipsSection>
     </Container>
-  )
-} 
+  );
+}
