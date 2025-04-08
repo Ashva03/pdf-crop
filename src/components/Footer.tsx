@@ -1,14 +1,13 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import styled from 'styled-components'
+import Link from "next/link";
+import styled from "styled-components";
 
 const Footer = styled.footer`
   background: #1f2937;
   color: white;
   padding: 3rem 0;
-  margin-top: 4rem;
-`
+`;
 
 const FooterContent = styled.div`
   max-width: 1400px;
@@ -17,7 +16,7 @@ const FooterContent = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 3rem;
-`
+`;
 
 const FooterSection = styled.div`
   h3 {
@@ -51,7 +50,7 @@ const FooterSection = styled.div`
     color: #e5e7eb;
     line-height: 1.6;
   }
-`
+`;
 
 const Copyright = styled.div`
   text-align: center;
@@ -69,7 +68,7 @@ const Copyright = styled.div`
     height: 16px;
     object-fit: contain;
   }
-`
+`;
 
 export default function FooterComponent() {
   return (
@@ -77,25 +76,46 @@ export default function FooterComponent() {
       <FooterContent>
         <FooterSection>
           <h3>About PDF Cropper</h3>
-          <p>PDF Cropper is a professional-grade tool designed for businesses and individuals who need precise document editing capabilities.</p>
+          <p>
+            PDF Cropper is a professional-grade tool designed for businesses and
+            individuals who need precise document editing capabilities.
+          </p>
         </FooterSection>
         <FooterSection>
           <h3>Quick Links</h3>
           <ul>
-            <li><Link href="/features">Features</Link></li>
-            <li><Link href="/how-it-works">How It Works</Link></li>
-            <li><Link href="/pricing">Pricing</Link></li>
-            <li><Link href="/blog">Blog</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
+            <li>
+              <Link href="/features">Features</Link>
+            </li>
+            <li>
+              <Link href="/how-it-works">How It Works</Link>
+            </li>
+            <li>
+              <Link href="/pricing">Pricing</Link>
+            </li>
+            <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
           </ul>
         </FooterSection>
         <FooterSection>
           <h3>Resources</h3>
           <ul>
-            <li><Link href="/tutorials">Tutorials</Link></li>
-            <li><Link href="/documentation">Documentation</Link></li>
-            <li><Link href="/faq">FAQ</Link></li>
-            <li><Link href="/support">Support</Link></li>
+            <li>
+              <Link href="/tutorials">Tutorials</Link>
+            </li>
+            <li>
+              <Link href="/documentation">Documentation</Link>
+            </li>
+            <li>
+              <Link href="/faq">FAQ</Link>
+            </li>
+            <li>
+              <Link href="/support">Support</Link>
+            </li>
           </ul>
         </FooterSection>
         <FooterSection>
@@ -107,9 +127,9 @@ export default function FooterComponent() {
         </FooterSection>
       </FooterContent>
       <Copyright>
-        <img src="/favicon-16x16.png" alt="PDF Cropper Logo" />
-        © {new Date().getFullYear()} PDF Cropper. All rights reserved.
+        <img src="/favicon-16x16.png" alt="PDF Cropper Logo" />©{" "}
+        {new Date().getFullYear()} PDF Cropper. All rights reserved.
       </Copyright>
     </Footer>
-  )
-} 
+  );
+}

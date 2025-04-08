@@ -1,13 +1,14 @@
-'use client'
+"use client";
 
-import styled from 'styled-components'
-import Link from 'next/link'
+import styled from "styled-components";
+import Link from "next/link";
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-`
+  background: #f2f4f4;
+`;
 
 const HeroSection = styled.section`
   text-align: center;
@@ -16,20 +17,20 @@ const HeroSection = styled.section`
   color: white;
   margin-bottom: 3rem;
   border-radius: 16px;
-`
+`;
 
 const Title = styled.h1`
   font-size: 3rem;
   margin-bottom: 1.5rem;
   font-weight: 800;
-`
+`;
 
 const Description = styled.p`
   font-size: 1.25rem;
   max-width: 800px;
   margin: 0 auto;
   opacity: 0.9;
-`
+`;
 
 const SearchSection = styled.section`
   background: white;
@@ -37,7 +38,7 @@ const SearchSection = styled.section`
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   margin-bottom: 2rem;
-`
+`;
 
 const SearchInput = styled.input`
   width: 100%;
@@ -51,14 +52,14 @@ const SearchInput = styled.input`
     outline: none;
     border-color: #4f46e5;
   }
-`
+`;
 
 const DocumentationGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
-`
+`;
 
 const DocCard = styled.div`
   background: white;
@@ -83,7 +84,7 @@ const DocCard = styled.div`
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
-`
+`;
 
 const DocLink = styled(Link)`
   color: #4f46e5;
@@ -96,7 +97,7 @@ const DocLink = styled(Link)`
   &:hover {
     text-decoration: underline;
   }
-`
+`;
 
 const DocList = styled.ul`
   list-style: none;
@@ -114,7 +115,7 @@ const DocList = styled.ul`
       margin-right: 0.5rem;
     }
   }
-`
+`;
 
 export default function DocumentationPage() {
   return (
@@ -122,7 +123,8 @@ export default function DocumentationPage() {
       <HeroSection>
         <Title>Documentation</Title>
         <Description>
-          Comprehensive guides and technical documentation to help you get the most out of PDF Cropper.
+          Comprehensive guides and technical documentation to help you get the
+          most out of PDF Cropper.
         </Description>
       </HeroSection>
 
@@ -144,9 +146,7 @@ export default function DocumentationPage() {
             <li>Advanced Features</li>
             <li>Troubleshooting</li>
           </DocList>
-          <DocLink href="/documentation/user-guide">
-            View User Guide →
-          </DocLink>
+          <DocLink href="/documentation/user-guide">View User Guide →</DocLink>
         </DocCard>
 
         <DocCard>
@@ -178,5 +178,5 @@ export default function DocumentationPage() {
         </DocCard>
       </DocumentationGrid>
     </Container>
-  )
-} 
+  );
+}
