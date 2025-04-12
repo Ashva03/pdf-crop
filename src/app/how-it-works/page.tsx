@@ -77,13 +77,13 @@ const Step = styled.div`
   }
 `;
 
-const AdContainer = styled.div`
-  margin: 3rem 0;
-  padding: 2rem;
-  background: #f8fafc;
-  border-radius: 12px;
-  text-align: center;
-`;
+// const AdContainer = styled.div`
+//   margin: 3rem 0;
+//   padding: 2rem;
+//   background: #f8fafc;
+//   border-radius: 12px;
+//   text-align: center;
+// `;
 
 const TipsSection = styled.section`
   margin-top: 4rem;
