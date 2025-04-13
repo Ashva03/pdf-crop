@@ -91,6 +91,9 @@ export default function Navigation() {
           <NavLink href="/" $active={pathname === '/'}>
             Home
           </NavLink>
+          <NavLink href="/flipkart-label" $active={pathname === '/flipkart-label'}>
+            Flipkart Label
+          </NavLink>
           <NavLink href="/features" $active={pathname === '/features'}>
             Features
           </NavLink>
