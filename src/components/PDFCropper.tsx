@@ -144,6 +144,39 @@ const glowAnimation = keyframes`
   }
 `;
 
+const downloadAnimation = keyframes`
+  0% {
+    transform: translateY(-2px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-2px);
+    opacity: 0;
+  }
+`;
+
+const DownloadIcon = styled.div`
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+  svg {
+    width: 20px;
+    height: 20px;
+    animation: ${downloadAnimation} 1.5s infinite;
+  }
+`;
+
+const ActionButtonContainer = styled.div`
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 1000;
+`;
+
 const ActionButton = styled(Button)`
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   font-weight: 600;
@@ -154,12 +187,16 @@ const ActionButton = styled(Button)`
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
   &:hover {
     background: linear-gradient(135deg, #059669 0%, #047857 100%);
     transform: translateY(-2px);
     animation: none;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
   }
 
   &:active {
@@ -300,6 +337,8 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
       const newPdfDoc = await PDFLib.PDFDocument.create();
+      let processedPages = 0;
+      let skippedPages = 0;
 
       // Process each page
       for (let pageNum = 1; pageNum <= numPages; pageNum++) {
@@ -310,6 +349,17 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
         // Get crop dimensions for current page
         const cropBox =
           platformConfig.labelCropDimensions[pageNum] || platformConfig.defaultCropDimension;
+
+        // Calculate content area ratio
+        const cropArea = cropBox.width * cropBox.height;
+        const pageArea = width * height;
+        const contentRatio = cropArea / pageArea;
+
+        // Skip pages with low content ratio (less than 15% of page area)
+        if (contentRatio < 0.15) {
+          skippedPages++;
+          continue;
+        }
 
         // Copy and crop the page
         const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
@@ -325,6 +375,13 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
           width: width,
           height: height,
         });
+
+        processedPages++;
+      }
+
+      if (processedPages === 0) {
+        setError("No valid pages found with sufficient content area to process.");
+        return;
       }
 
       // Save and download the cropped PDF
@@ -339,7 +396,11 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
       a.click();
       URL.revokeObjectURL(url);
 
-      setSuccess(`${platformConfig.successMessage} ${numPages} pages!`);
+      setSuccess(
+        `Successfully processed ${processedPages} pages! ${
+          skippedPages > 0 ? `(${skippedPages} pages skipped due to insufficient content)` : ""
+        }`
+      );
     } catch (error) {
       console.error("Error cropping all pages:", error);
       setError(platformConfig.errorMessages.processingError);
@@ -436,15 +497,40 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
                   </svg>
                   Upload New File
                 </UploadButton>
-                <ActionButton onClick={handleCropAllPages} disabled={loading}>
-                  {loading ? "Processing..." : `Crop Auto All Pages`}
-                </ActionButton>
               </>
             )}
           </Controls>
         </PDFContainer>
       </MainContent>
       {loading && <Loading />}
+      {file && (
+        <ActionButtonContainer>
+          <ActionButton onClick={handleCropAllPages} disabled={loading}>
+            {loading ? (
+              "Processing..."
+            ) : (
+              <>
+                <DownloadIcon>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                </DownloadIcon>
+                Download Auto Cropped PDF
+              </>
+            )}
+          </ActionButton>
+        </ActionButtonContainer>
+      )}
     </Container>
   );
 } 
