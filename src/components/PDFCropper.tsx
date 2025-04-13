@@ -244,6 +244,17 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
     setMounted(true);
   }, []);
 
+  const validateFileName = (fileName: string): boolean => {
+    const validTerms = [
+      platformConfig.name.toLowerCase(),
+      "orders",
+      "order list",
+      "order labels",
+      "sub_order_labels"
+    ];
+    return validTerms.some(term => fileName.includes(term));
+  };
+
   const onFileSelect = (file: File) => {
     // Validate file type
     if (file.type !== "application/pdf") {
@@ -257,9 +268,8 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
       return;
     }
 
-    // Validate filename contains platform name
-    const fileName = file.name.toLowerCase();
-    if (!fileName.includes(platformConfig.name.toLowerCase()) || !fileName.includes("orders")|| !fileName.includes("order list")|| !fileName.includes("order labels")) {
+    // Validate filename
+    if (!validateFileName(file.name.toLowerCase())) {
       setError(platformConfig.errorMessages.invalidFileName);
       return;
     }
@@ -293,9 +303,8 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
         return;
       }
 
-      // Validate filename contains platform name
-      const fileName = selectedFile.name.toLowerCase();
-      if (!fileName.includes(platformConfig.name.toLowerCase())) {
+      // Validate filename
+      if (!validateFileName(selectedFile.name.toLowerCase())) {
         setError(platformConfig.errorMessages.invalidFileName);
         return;
       }
