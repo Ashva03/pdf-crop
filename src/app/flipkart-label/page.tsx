@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from "react";
+import styled, { keyframes } from "styled-components";
 import { Document, Page, pdfjs } from "react-pdf";
 import * as PDFLib from "pdf-lib";
 import Loading from "@/components/Loading";
@@ -78,6 +78,18 @@ const Button = styled.button`
   }
 `;
 
+const UploadButton = styled(Button)`
+  background: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  &:hover {
+    background: #2563eb;
+  }
+`;
+
 const PageInfo = styled.div`
   font-size: 1.1rem;
   color: #4b5563;
@@ -103,15 +115,78 @@ const CropInfoText = styled.p`
   margin: 0.25rem 0;
 `;
 
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+`;
+
+const glowAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3), 0 0 15px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.5), 0 0 30px rgba(16, 185, 129, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.5), 0 0 10px rgba(16, 185, 129, 0.3), 0 0 15px rgba(16, 185, 129, 0.2);
+  }
+`;
+
 const ActionButton = styled(Button)`
-  background: #10b981;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   font-weight: 600;
   padding: 1rem 2rem;
   font-size: 1.1rem;
+  animation: ${pulseAnimation} 2s infinite, ${glowAnimation} 3s infinite;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
   
   &:hover {
-    background: #059669;
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    animation: none;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
   }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+`;
+
+const ErrorMessage = styled.div`
+  color: #ef4444;
+  background: #fee2e2;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+`;
+
+const SuccessMessage = styled.div`
+  color: #10b981;
+  background: #d1fae5;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
 `;
 
 export default function FlipkartLabel() {
@@ -120,37 +195,98 @@ export default function FlipkartLabel() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [mounted, setMounted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const onFileSelect = (file: File) => {
+    // Validate file type
+    if (file.type !== 'application/pdf') {
+      setError('Please upload a PDF file');
+      return;
+    }
+    
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      setError('File size exceeds 10MB limit');
+      return;
+    }
+    
+    // Validate filename contains "flipkart"
+    const fileName = file.name.toLowerCase();
+    if (!fileName.includes('flipkart')) {
+      setError('This page is for Flipkart labels only. Please upload a file with "flipkart" in the filename.');
+      return;
+    }
+    
     setFile(file);
     setCurrentPage(1);
+    setError(null);
+    setSuccess(null);
+  };
+
+  const handleUploadNewFile = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      // Validate file type
+      if (selectedFile.type !== 'application/pdf') {
+        setError('Please upload a PDF file');
+        return;
+      }
+      
+      // Validate file size (max 10MB)
+      if (selectedFile.size > 10 * 1024 * 1024) {
+        setError('File size exceeds 10MB limit');
+        return;
+      }
+      
+      // Validate filename contains "flipkart"
+      const fileName = selectedFile.name.toLowerCase();
+      if (!fileName.includes('flipkart')) {
+        setError('This page is for Flipkart labels only. Please upload a file with "flipkart" in the filename.');
+        return;
+      }
+      
+      setFile(selectedFile);
+      setCurrentPage(1);
+      setError(null);
+      setSuccess(null);
+    }
   };
 
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
+    setError(null);
   };
 
   const onDocumentLoadError = (error: Error) => {
     console.error("Error loading document:", error);
+    setError('Failed to load PDF. Please try another file.');
   };
 
   const handlePageChange = (delta: number) => {
     setCurrentPage(prevPage => Math.max(1, Math.min(prevPage + delta, numPages)));
   };
 
-  const handleCropCurrentPage = async () => {
-    if (!file) return;
-    await cropPage(currentPage);
-  };
-
   const handleCropAllPages = async () => {
-    if (!file) return;
+    if (!file) {
+      setError('Please upload a PDF file first');
+      return;
+    }
     
     setLoading(true);
+    setError(null);
+    setSuccess(null);
     
     try {
       const arrayBuffer = await file.arrayBuffer();
@@ -191,53 +327,11 @@ export default function FlipkartLabel() {
       a.download = `flipkart_label_all_pages.pdf`;
       a.click();
       URL.revokeObjectURL(url);
+      
+      setSuccess(`Successfully cropped all ${numPages} pages!`);
     } catch (error) {
       console.error("Error cropping all pages:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const cropPage = async (pageNum: number) => {
-    if (!file) return;
-
-    setLoading(true);
-
-    try {
-      const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
-      const page = pdfDoc.getPages()[pageNum - 1];
-      const { width, height } = page.getSize();
-
-      // Get crop dimensions for current page
-      const cropBox = flipkartLabelCropDimensions[pageNum] || defaultCropDimension;
-
-      // Create a new PDF document
-      const newPdfDoc = await PDFLib.PDFDocument.create();
-      const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageNum - 1]);
-      const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
-
-      // Create a form XObject from the copied page
-      const formXObject = await newPdfDoc.embedPage(copiedPage);
-
-      // Draw the cropped portion
-      newPage.drawPage(formXObject, {
-        x: -cropBox.x,
-        y: -cropBox.y,
-        width: width,
-        height: height,
-      });
-
-      const pdfBytes = await newPdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `flipkart_label_page_${pageNum}.pdf`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error cropping document:", error);
+      setError('An error occurred while cropping the PDF. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -270,6 +364,9 @@ export default function FlipkartLabel() {
             )}
           </PDFViewer>
           <Controls>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {success && <SuccessMessage>{success}</SuccessMessage>}
+            
             {file && (
               <>
                 <PageInfo>
@@ -289,11 +386,23 @@ export default function FlipkartLabel() {
                     Next Page
                   </Button>
                 </ButtonGroup>
-                <Button onClick={handleCropCurrentPage} disabled={loading}>
-                  {loading ? "Processing..." : "Crop Current Page"}
-                </Button>
+                <input 
+                  type="file" 
+                  ref={fileInputRef} 
+                  onChange={handleFileInputChange} 
+                  accept="application/pdf"
+                  style={{ display: 'none' }}
+                />
+                <UploadButton onClick={handleUploadNewFile}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  Upload New File
+                </UploadButton>
                 <ActionButton onClick={handleCropAllPages} disabled={loading}>
-                  {loading ? "Processing..." : "Crop All Pages"}
+                  {loading ? "Processing..." : "Crop Auto All Pages"}
                 </ActionButton>
               </>
             )}
