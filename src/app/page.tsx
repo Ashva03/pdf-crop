@@ -7,6 +7,7 @@ import CustomCrop from "@/components/CustomCrop";
 import * as PDFLib from "pdf-lib";
 import Loading from "@/components/Loading";
 import PDFUpload from "@/components/PDFUpload";
+import MonetizationLink from "@/components/MonetizationLink";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -750,6 +751,7 @@ export default function Home() {
             platforms and business documents. Select a predefined template or
             create your own custom crop.
           </Description>
+          <MonetizationLink />
         </HeroSection>
       </Header>
 
