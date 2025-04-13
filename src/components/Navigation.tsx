@@ -94,6 +94,15 @@ export default function Navigation() {
           <NavLink href="/flipkart-label" $active={pathname === '/flipkart-label'}>
             Flipkart Label
           </NavLink>
+          {/* <NavLink href="/myntra-label" $active={pathname === '/myntra-label'}>
+            Myntra Label
+          </NavLink> */}
+          <NavLink href="/meesho-label" $active={pathname === '/meesho-label'}>
+            Meesho Label
+          </NavLink>
+          {/* <NavLink href="/amazon-label" $active={pathname === '/amazon-label'}>
+            Amazon Label
+          </NavLink> */}
           <NavLink href="/features" $active={pathname === '/features'}>
             Features
           </NavLink>
