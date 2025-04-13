@@ -259,7 +259,7 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
 
     // Validate filename contains platform name
     const fileName = file.name.toLowerCase();
-    if (!fileName.includes(platformConfig.name.toLowerCase()) || !fileName.includes("order list")) {
+    if (!fileName.includes(platformConfig.name.toLowerCase()) || !fileName.includes("orders")|| !fileName.includes("order list")|| !fileName.includes("order labels")) {
       setError(platformConfig.errorMessages.invalidFileName);
       return;
     }
