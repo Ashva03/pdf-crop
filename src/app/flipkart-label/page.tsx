@@ -6,7 +6,10 @@ import { Document, Page, pdfjs } from "react-pdf";
 import * as PDFLib from "pdf-lib";
 import Loading from "@/components/Loading";
 import PDFUpload from "@/components/PDFUpload";
-import { flipkartLabelCropDimensions, defaultCropDimension } from "@/config/staticData";
+import {
+  flipkartLabelCropDimensions,
+  defaultCropDimension,
+} from "@/config/staticData";
 
 // Initialize PDF.js worker only on client side
 if (typeof window !== "undefined") {
@@ -84,7 +87,7 @@ const UploadButton = styled(Button)`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
+
   &:hover {
     background: #2563eb;
   }
@@ -154,14 +157,14 @@ const ActionButton = styled(Button)`
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  
+
   &:hover {
     background: linear-gradient(135deg, #059669 0%, #047857 100%);
     transform: translateY(-2px);
     animation: none;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
   }
-  
+
   &:active {
     transform: translateY(1px);
   }
@@ -205,24 +208,26 @@ export default function FlipkartLabel() {
 
   const onFileSelect = (file: File) => {
     // Validate file type
-    if (file.type !== 'application/pdf') {
-      setError('Please upload a PDF file');
+    if (file.type !== "application/pdf") {
+      setError("Please upload a PDF file");
       return;
     }
-    
+
     // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
-      setError('File size exceeds 10MB limit');
+      setError("File size exceeds 10MB limit");
       return;
     }
-    
+
     // Validate filename contains "flipkart"
     const fileName = file.name.toLowerCase();
-    if (!fileName.includes('flipkart')) {
-      setError('This page is for Flipkart labels only. Please upload a file with "flipkart" in the filename.');
+    if (!fileName.includes("flipkart")) {
+      setError(
+        'This page is for Flipkart labels only. Please upload a file with "flipkart" in the filename.'
+      );
       return;
     }
-    
+
     setFile(file);
     setCurrentPage(1);
     setError(null);
@@ -235,28 +240,32 @@ export default function FlipkartLabel() {
     }
   };
 
-  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       // Validate file type
-      if (selectedFile.type !== 'application/pdf') {
-        setError('Please upload a PDF file');
+      if (selectedFile.type !== "application/pdf") {
+        setError("Please upload a PDF file");
         return;
       }
-      
+
       // Validate file size (max 10MB)
       if (selectedFile.size > 10 * 1024 * 1024) {
-        setError('File size exceeds 10MB limit');
+        setError("File size exceeds 10MB limit");
         return;
       }
-      
+
       // Validate filename contains "flipkart"
       const fileName = selectedFile.name.toLowerCase();
-      if (!fileName.includes('flipkart')) {
-        setError('This page is for Flipkart labels only. Please upload a file with "flipkart" in the filename.');
+      if (!fileName.includes("flipkart")) {
+        setError(
+          'This page is for Flipkart labels only. Please upload a file with "flipkart" in the filename.'
+        );
         return;
       }
-      
+
       setFile(selectedFile);
       setCurrentPage(1);
       setError(null);
@@ -271,44 +280,47 @@ export default function FlipkartLabel() {
 
   const onDocumentLoadError = (error: Error) => {
     console.error("Error loading document:", error);
-    setError('Failed to load PDF. Please try another file.');
+    setError("Failed to load PDF. Please try another file.");
   };
 
   const handlePageChange = (delta: number) => {
-    setCurrentPage(prevPage => Math.max(1, Math.min(prevPage + delta, numPages)));
+    setCurrentPage((prevPage) =>
+      Math.max(1, Math.min(prevPage + delta, numPages))
+    );
   };
 
   const handleCropAllPages = async () => {
     if (!file) {
-      setError('Please upload a PDF file first');
+      setError("Please upload a PDF file first");
       return;
     }
-    
+
     setLoading(true);
     setError(null);
     setSuccess(null);
-    
+
     try {
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
       const newPdfDoc = await PDFLib.PDFDocument.create();
-      
+
       // Process each page
       for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const pageIndex = pageNum - 1;
         const page = pdfDoc.getPages()[pageIndex];
         const { width, height } = page.getSize();
-        
+
         // Get crop dimensions for current page
-        const cropBox = flipkartLabelCropDimensions[pageNum] || defaultCropDimension;
-        
+        const cropBox =
+          flipkartLabelCropDimensions[pageNum] || defaultCropDimension;
+
         // Copy and crop the page
         const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
         const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
-        
+
         // Create a form XObject from the copied page
         const formXObject = await newPdfDoc.embedPage(copiedPage);
-        
+
         // Draw the cropped portion
         newPage.drawPage(formXObject, {
           x: -cropBox.x,
@@ -317,28 +329,31 @@ export default function FlipkartLabel() {
           height: height,
         });
       }
-      
+
       // Save and download the cropped PDF
       const pdfBytes = await newPdfDoc.save();
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
+      // Format the output filename
+      const originalFileName = file.name.replace(".pdf", "");
+      a.download = `${originalFileName}_pdfCropAshvainfo.pdf`;
       a.href = url;
-      a.download = `flipkart_label_all_pages.pdf`;
       a.click();
       URL.revokeObjectURL(url);
-      
+
       setSuccess(`Successfully cropped all ${numPages} pages!`);
     } catch (error) {
       console.error("Error cropping all pages:", error);
-      setError('An error occurred while cropping the PDF. Please try again.');
+      setError("An error occurred while cropping the PDF. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   // Get current crop dimensions
-  const currentCropBox = flipkartLabelCropDimensions[currentPage] || defaultCropDimension;
+  const currentCropBox =
+    flipkartLabelCropDimensions[currentPage] || defaultCropDimension;
 
   return (
     <Container>
@@ -366,7 +381,7 @@ export default function FlipkartLabel() {
           <Controls>
             {error && <ErrorMessage>{error}</ErrorMessage>}
             {success && <SuccessMessage>{success}</SuccessMessage>}
-            
+
             {file && (
               <>
                 <PageInfo>
@@ -374,27 +389,50 @@ export default function FlipkartLabel() {
                 </PageInfo>
                 <CropInfo>
                   <CropInfoTitle>Auto-Crop Settings</CropInfoTitle>
-                  <CropInfoText>Position: X: {currentCropBox.x}, Y: {currentCropBox.y}</CropInfoText>
-                  <CropInfoText>Size: Width: {currentCropBox.width}, Height: {currentCropBox.height}</CropInfoText>
-                  <CropInfoText>Note: These settings apply to all pages</CropInfoText>
+                  <CropInfoText>
+                    Position: X: {currentCropBox.x}, Y: {currentCropBox.y}
+                  </CropInfoText>
+                  <CropInfoText>
+                    Size: Width: {currentCropBox.width}, Height:{" "}
+                    {currentCropBox.height}
+                  </CropInfoText>
+                  <CropInfoText>
+                    Note: These settings apply to all pages
+                  </CropInfoText>
                 </CropInfo>
                 <ButtonGroup>
-                  <Button onClick={() => handlePageChange(-1)} disabled={currentPage <= 1}>
+                  <Button
+                    onClick={() => handlePageChange(-1)}
+                    disabled={currentPage <= 1}
+                  >
                     Previous Page
                   </Button>
-                  <Button onClick={() => handlePageChange(1)} disabled={currentPage >= numPages}>
+                  <Button
+                    onClick={() => handlePageChange(1)}
+                    disabled={currentPage >= numPages}
+                  >
                     Next Page
                   </Button>
                 </ButtonGroup>
-                <input 
-                  type="file" 
-                  ref={fileInputRef} 
-                  onChange={handleFileInputChange} 
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileInputChange}
                   accept="application/pdf"
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                 />
                 <UploadButton onClick={handleUploadNewFile}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="17 8 12 3 7 8"></polyline>
                     <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -412,4 +450,4 @@ export default function FlipkartLabel() {
       {loading && <Loading />}
     </Container>
   );
-} 
+}
