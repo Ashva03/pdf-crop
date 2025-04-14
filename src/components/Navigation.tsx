@@ -23,6 +23,9 @@ const NavContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 991px) {
+    padding: 16px 20px;
+  }
 `;
 
 const Logo = styled.div`

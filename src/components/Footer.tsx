@@ -16,6 +16,9 @@ const FooterContent = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 3rem;
+  @media (max-width: 991px) {
+    padding: 0 20px;
+  }
 `;
 
 const FooterSection = styled.div`
