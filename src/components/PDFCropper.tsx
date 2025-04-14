@@ -248,12 +248,12 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
 
   const validateFileName = (fileName: string): boolean => {
     const validTerms = [
+      "Sub_Order_Labels",
       platformConfig.name.toLowerCase(),
       "orders",
       "order list",
       "order labels",
       "sub_order_labels",
-      "Sub_Order_Labels"
     ];
     return validTerms.some(term => fileName.includes(term));
   };
