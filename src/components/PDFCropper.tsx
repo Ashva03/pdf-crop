@@ -6,7 +6,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import * as PDFLib from "pdf-lib";
 import Loading from "@/components/Loading";
 import PDFUpload from "@/components/PDFUpload";
-import { PlatformConfig } from "@/config/staticData";
+import { CropDimension, PlatformConfig } from "@/config/staticData";
 
 // Initialize PDF.js worker only on client side
 if (typeof window !== "undefined") {
@@ -228,9 +228,11 @@ const SuccessMessage = styled.div`
 
 interface PDFCropperProps {
   platformConfig: PlatformConfig;
+  cropDimensions: Record<number, CropDimension>;
+  onNumPagesChange?: (numPages: number) => void;
 }
 
-export default function PDFCropper({ platformConfig }: PDFCropperProps) {
+export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesChange }: PDFCropperProps) {
   const [file, setFile] = useState<File | null>(null);
   const [numPages, setNumPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -319,6 +321,7 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
   const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
     setNumPages(numPages);
     setError(null);
+    onNumPagesChange?.(numPages);
   };
 
   const onDocumentLoadError = (error: Error) => {
@@ -357,7 +360,7 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
 
         // Get crop dimensions for current page
         const cropBox =
-          platformConfig.labelCropDimensions[pageNum] || platformConfig.defaultCropDimension;
+          cropDimensions[pageNum] || platformConfig.defaultCropDimension;
 
         // Calculate content area ratio
         const cropArea = cropBox.width * cropBox.height;
@@ -420,7 +423,7 @@ export default function PDFCropper({ platformConfig }: PDFCropperProps) {
 
   // Get current crop dimensions
   const currentCropBox =
-    platformConfig.labelCropDimensions[currentPage] || platformConfig.defaultCropDimension;
+    cropDimensions[currentPage] || platformConfig.defaultCropDimension;
 
   return (
     <Container>

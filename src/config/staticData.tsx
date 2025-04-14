@@ -7,7 +7,6 @@ export interface CropDimension {
 
 export interface PlatformConfig {
   name: string;
-  labelCropDimensions: Record<number, CropDimension>;
   defaultCropDimension: CropDimension;
   errorMessages: {
     invalidFileType: string;
@@ -20,33 +19,22 @@ export interface PlatformConfig {
 }
 
 // Default dimensions for all pages - top-left corner at (10, 20)
-export const flipkartLabelCropDimensions: Record<number, CropDimension> = {
-  1: { x: 175, y: 450, width: 245, height: 380 },
-  2: { x: 175, y: 450, width: 245, height: 380 },
-  3: { x: 175, y: 450, width: 245, height: 380 },
-  4: { x: 175, y: 450, width: 245, height: 380 },
-  5: { x: 175, y: 450, width: 245, height: 380 },
-  6: { x: 175, y: 450, width: 245, height: 380 },
-  7: { x: 175, y: 450, width: 245, height: 380 },
-  8: { x: 175, y: 450, width: 245, height: 380 },
-  9: { x: 175, y: 450, width: 245, height: 380 },
-  10: { x: 175, y: 450, width: 245, height: 380 },
+export const flipkartLabelCropDimensions:  CropDimension =  { x: 175, y: 450, width: 245, height: 380 }
+
+export const myntraLabelCropDimensions:  CropDimension = { x: 150, y: 400, width: 300, height: 400 }
+
+
+// Function to generate Meesho label crop dimensions for n pages
+export const generateLabelCropDimensions = (numPages: number,cropDimension: CropDimension): Record<number, CropDimension> => {
+  const dimensions: Record<number, CropDimension> = {};
+  for (let i = 1; i <= numPages; i++) {
+    dimensions[i] = cropDimension;
+  }
+  return dimensions;
 };
 
-export const myntraLabelCropDimensions: Record<number, CropDimension> = {
-  1: { x: 150, y: 400, width: 300, height: 400 },
-  2: { x: 150, y: 400, width: 300, height: 400 },
-  3: { x: 150, y: 400, width: 300, height: 400 },
-  4: { x: 150, y: 400, width: 300, height: 400 },
-  5: { x: 150, y: 400, width: 300, height: 400 },
-};
-
-export const meeshoLabelCropDimensions: Record<number, CropDimension> = {
-  1: { x:0, y: 500, width: 595, height: 337 },
-  2: { x: 0, y: 500, width: 595, height: 337 },
-  3: { x: 0, y: 500, width: 595, height: 337 },
-  4: { x: 0, y: 500, width: 595, height: 337 },
-};
+// Default Meesho dimensions with 4 pages
+export const meeshoLabelCropDimensions: CropDimension = { x: 0, y: 480, width: 595, height: 365 };
 
 export const amazonLabelCropDimensions: Record<number, CropDimension> = {
   1: { x: 180, y: 420, width: 260, height: 390 },
@@ -67,7 +55,6 @@ export const defaultCropDimension: CropDimension = {
 export const platformConfigs: Record<string, PlatformConfig> = {
   flipkart: {
     name: "Flipkart",
-    labelCropDimensions: flipkartLabelCropDimensions,
     defaultCropDimension,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
@@ -80,7 +67,6 @@ export const platformConfigs: Record<string, PlatformConfig> = {
   },
   myntra: {
     name: "Myntra",
-    labelCropDimensions: myntraLabelCropDimensions,
     defaultCropDimension,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
@@ -93,7 +79,6 @@ export const platformConfigs: Record<string, PlatformConfig> = {
   },
   meesho: {
     name: "Meesho",
-    labelCropDimensions: meeshoLabelCropDimensions,
     defaultCropDimension,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
@@ -106,7 +91,6 @@ export const platformConfigs: Record<string, PlatformConfig> = {
   },
   amazon: {
     name: "Amazon",
-    labelCropDimensions: amazonLabelCropDimensions,
     defaultCropDimension,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
