@@ -246,17 +246,17 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
     setMounted(true);
   }, []);
 
-  const validateFileName = (fileName: string): boolean => {
-    const validTerms = [
-      "Sub_Order_Labels",
-      platformConfig.name.toLowerCase(),
-      "orders",
-      "order list",
-      "order labels",
-      "sub_order_labels",
-    ];
-    return validTerms.some(term => fileName.includes(term));
-  };
+  // const validateFileName = (fileName: string): boolean => {
+  //   const validTerms = [
+  //     "Sub_Order_Labels",
+  //     platformConfig.name.toLowerCase(),
+  //     "orders",
+  //     "order list",
+  //     "order labels",
+  //     "sub_order_labels",
+  //   ];
+  //   // return validTerms.some(term => fileName.includes(term));
+  // };
 
   const onFileSelect = (file: File) => {
     // Validate file type
@@ -271,11 +271,11 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       return;
     }
 
-    // Validate filename
-    if (!validateFileName(file.name.toLowerCase())) {
-      setError(platformConfig.errorMessages.invalidFileName);
-      return;
-    }
+    // // Validate filename
+    // if (!validateFileName(file.name.toLowerCase())) {
+    //   setError(platformConfig.errorMessages.invalidFileName);
+    //   return;
+    // }
 
     setFile(file);
     setCurrentPage(1);
@@ -306,11 +306,11 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
         return;
       }
 
-      // Validate filename
-      if (!validateFileName(selectedFile.name.toLowerCase())) {
-        setError(platformConfig.errorMessages.invalidFileName);
-        return;
-      }
+      // // Validate filename
+      // if (!validateFileName(selectedFile.name.toLowerCase())) {
+      //   setError(platformConfig.errorMessages.invalidFileName);
+      //   return;
+      // }
 
       setFile(selectedFile);
       setCurrentPage(1);
