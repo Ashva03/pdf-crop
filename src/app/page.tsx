@@ -19,10 +19,13 @@ const Container = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 32px 72px;
   width: 100%;
+  @media (max-width: 991px) {
+    padding: 20px;
+  }
 `;
 
 const Header = styled.header`
@@ -58,6 +61,9 @@ const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  @media (max-width: 449px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const FeatureCard = styled.div`
@@ -87,7 +93,7 @@ const FeatureCard = styled.div`
 `;
 
 const HowItWorks = styled.section`
-  padding: 4rem 2rem;
+  padding: 4rem 0;
 `;
 
 const StepsContainer = styled.div`
@@ -269,7 +275,7 @@ const PageControls = styled.div`
 `;
 
 const FAQSection = styled.section`
-  padding: 4rem 2rem;
+  padding: 4rem 0;
 `;
 
 const FAQContainer = styled.div`
@@ -332,9 +338,9 @@ const FAQContent = styled.div<{ $isOpen: boolean }>`
     margin: 0;
     transition: transform 0.2s ease;
     transform: ${(props) =>
-    props.$isOpen
-      ? "translateY(0) scale(1)"
-      : "translateY(-8px) scale(0.98)"};
+      props.$isOpen
+        ? "translateY(0) scale(1)"
+        : "translateY(-8px) scale(0.98)"};
   }
 `;
 
@@ -368,12 +374,12 @@ const FAQIcon = styled.span<{ $isOpen: boolean }>`
     height: 100%;
     transform: translateX(-50%)
       ${(props) =>
-    props.$isOpen ? "rotate(-90deg) scale(0)" : "rotate(0) scale(1)"};
+        props.$isOpen ? "rotate(-90deg) scale(0)" : "rotate(0) scale(1)"};
   }
 `;
 
 const TestimonialsSection = styled.section`
-  padding: 4rem 2rem;
+  padding: 4rem 0;
 `;
 
 const TestimonialsGrid = styled.div`
@@ -382,6 +388,9 @@ const TestimonialsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  @media (max-width: 449px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const TestimonialCard = styled.div`
@@ -510,48 +519,76 @@ export default function Home() {
       const croppedPdf = await PDFLib.PDFDocument.create();
 
       // --- Reference Page Info & Target Size/Ratios ---
-      const displayWidth = 600 // Width used in the <Page> component
-      const renderScale = 5    // Scale for high-quality rendering
+      const displayWidth = 600; // Width used in the <Page> component
+      const renderScale = 5; // Scale for high-quality rendering
 
       // Get reference page (where selection was made)
-      const refPage = await pdf.getPage(pageNumber)
-      const refNativeViewport = refPage.getViewport({ scale: 1 })
+      const refPage = await pdf.getPage(pageNumber);
+      const refNativeViewport = refPage.getViewport({ scale: 1 });
 
       // Calculate the actual scale used to display the reference page
-      const displayScale = displayWidth / refNativeViewport.width
+      const displayScale = displayWidth / refNativeViewport.width;
       // Get the viewport matching the actual display size
-      const refDisplayViewport = refPage.getViewport({ scale: displayScale })
+      const refDisplayViewport = refPage.getViewport({ scale: displayScale });
 
       // Calculate crop selection ratios relative to the DISPLAYED reference page dimensions
       // Ensure customCropBox coordinates are clamped to the display dimensions first
-      const clampedX = Math.max(0, Math.min(customCropBox.x, refDisplayViewport.width));
-      const clampedY = Math.max(0, Math.min(customCropBox.y, refDisplayViewport.height));
-      const clampedWidth = Math.max(0, Math.min(customCropBox.width, refDisplayViewport.width - clampedX));
-      const clampedHeight = Math.max(0, Math.min(customCropBox.height, refDisplayViewport.height - clampedY));
+      const clampedX = Math.max(
+        0,
+        Math.min(customCropBox.x, refDisplayViewport.width)
+      );
+      const clampedY = Math.max(
+        0,
+        Math.min(customCropBox.y, refDisplayViewport.height)
+      );
+      const clampedWidth = Math.max(
+        0,
+        Math.min(customCropBox.width, refDisplayViewport.width - clampedX)
+      );
+      const clampedHeight = Math.max(
+        0,
+        Math.min(customCropBox.height, refDisplayViewport.height - clampedY)
+      );
 
       // Calculate ratios based on clamped values and *actual* display dimensions
       // Avoid division by zero if display dimensions are zero for some reason
-      const ratioX = refDisplayViewport.width > 0 ? clampedX / refDisplayViewport.width : 0;
-      const ratioY = refDisplayViewport.height > 0 ? clampedY / refDisplayViewport.height : 0;
-      const ratioWidth = refDisplayViewport.width > 0 ? clampedWidth / refDisplayViewport.width : 0;
-      const ratioHeight = refDisplayViewport.height > 0 ? clampedHeight / refDisplayViewport.height : 0;
+      const ratioX =
+        refDisplayViewport.width > 0 ? clampedX / refDisplayViewport.width : 0;
+      const ratioY =
+        refDisplayViewport.height > 0
+          ? clampedY / refDisplayViewport.height
+          : 0;
+      const ratioWidth =
+        refDisplayViewport.width > 0
+          ? clampedWidth / refDisplayViewport.width
+          : 0;
+      const ratioHeight =
+        refDisplayViewport.height > 0
+          ? clampedHeight / refDisplayViewport.height
+          : 0;
 
       // Calculate the TARGET dimensions for the final cropped output pages (Fixed Size)
       // Based on ratios applied to the reference page's NATIVE size, scaled up
-      const targetCropWidth = Math.max(1, Math.floor(ratioWidth * refNativeViewport.width * renderScale))
-      const targetCropHeight = Math.max(1, Math.floor(ratioHeight * refNativeViewport.height * renderScale))
+      const targetCropWidth = Math.max(
+        1,
+        Math.floor(ratioWidth * refNativeViewport.width * renderScale)
+      );
+      const targetCropHeight = Math.max(
+        1,
+        Math.floor(ratioHeight * refNativeViewport.height * renderScale)
+      );
       // --- End Reference Info & Target Size/Ratios ---
 
       // Process each page
       for (let i = 1; i <= pages; i++) {
         try {
-          const page = await pdf.getPage(i)
-          const nativeViewport = page.getViewport({ scale: 1 })
+          const page = await pdf.getPage(i);
+          const nativeViewport = page.getViewport({ scale: 1 });
 
           // Calculate dimensions for this page when rendered at high quality
-          const currentRenderWidth = nativeViewport.width * renderScale
-          const currentRenderHeight = nativeViewport.height * renderScale
-          const renderViewport = page.getViewport({ scale: renderScale })
+          const currentRenderWidth = nativeViewport.width * renderScale;
+          const currentRenderHeight = nativeViewport.height * renderScale;
+          const renderViewport = page.getViewport({ scale: renderScale });
 
           // Check for invalid render dimensions
           if (currentRenderWidth <= 0 || currentRenderHeight <= 0) {
@@ -560,73 +597,96 @@ export default function Home() {
             continue;
           }
 
-          const canvas = document.createElement('canvas')
-          canvas.width = currentRenderWidth
-          canvas.height = currentRenderHeight
-          const context = canvas.getContext('2d', { alpha: false })
+          const canvas = document.createElement("canvas");
+          canvas.width = currentRenderWidth;
+          canvas.height = currentRenderHeight;
+          const context = canvas.getContext("2d", { alpha: false });
           if (!context) {
             console.warn(`Skipping page ${i}: Could not get canvas context.`);
             croppedPdf.addPage([targetCropWidth, targetCropHeight]); // Add blank page
             continue;
           }
 
-          context.imageSmoothingEnabled = true
-          context.imageSmoothingQuality = 'high'
-          context.fillStyle = 'white'
-          context.fillRect(0, 0, canvas.width, canvas.height)
+          context.imageSmoothingEnabled = true;
+          context.imageSmoothingQuality = "high";
+          context.fillStyle = "white";
+          context.fillRect(0, 0, canvas.width, canvas.height);
 
           // Render the current page at high quality
           await page.render({
             canvasContext: context,
             viewport: renderViewport,
-            background: 'white',
-            intent: 'print'
-          }).promise
+            background: "white",
+            intent: "print",
+          }).promise;
 
           // --- Calculate Source Crop for THIS page using Ratios ---
           // Apply ratios to the RENDERED dimensions of the CURRENT page
-          const sourceX = ratioX * currentRenderWidth
-          const sourceY = ratioY * currentRenderHeight
-          const sourceWidth = ratioWidth * currentRenderWidth
-          const sourceHeight = ratioHeight * currentRenderHeight
+          const sourceX = ratioX * currentRenderWidth;
+          const sourceY = ratioY * currentRenderHeight;
+          const sourceWidth = ratioWidth * currentRenderWidth;
+          const sourceHeight = ratioHeight * currentRenderHeight;
 
           // Determine the safe source rectangle bounds ON THE CURRENT RENDERED page
           // Ensure coordinates are within the canvas bounds [0, width/height]
-          const safeSourceX = Math.max(0, Math.min(sourceX, currentRenderWidth))
-          const safeSourceY = Math.max(0, Math.min(sourceY, currentRenderHeight))
+          const safeSourceX = Math.max(
+            0,
+            Math.min(sourceX, currentRenderWidth)
+          );
+          const safeSourceY = Math.max(
+            0,
+            Math.min(sourceY, currentRenderHeight)
+          );
           // Calculate end coordinates, also clamped within canvas bounds
-          const safeSourceEndX = Math.max(safeSourceX, Math.min(sourceX + sourceWidth, currentRenderWidth))
-          const safeSourceEndY = Math.max(safeSourceY, Math.min(sourceY + sourceHeight, currentRenderHeight))
+          const safeSourceEndX = Math.max(
+            safeSourceX,
+            Math.min(sourceX + sourceWidth, currentRenderWidth)
+          );
+          const safeSourceEndY = Math.max(
+            safeSourceY,
+            Math.min(sourceY + sourceHeight, currentRenderHeight)
+          );
 
           // Calculate the actual width/height we can safely copy from the source canvas
-          const safeSourceWidth = Math.max(0, safeSourceEndX - safeSourceX)
-          const safeSourceHeight = Math.max(0, safeSourceEndY - safeSourceY)
+          const safeSourceWidth = Math.max(0, safeSourceEndX - safeSourceX);
+          const safeSourceHeight = Math.max(0, safeSourceEndY - safeSourceY);
           // --- End Source Crop Calculation ---
 
           // Proceed only if there's a valid area to draw
           if (safeSourceWidth <= 0 || safeSourceHeight <= 0) {
-            console.warn(`Skipping page ${i}: Calculated crop area has no valid dimensions on this page.`);
+            console.warn(
+              `Skipping page ${i}: Calculated crop area has no valid dimensions on this page.`
+            );
             croppedPdf.addPage([targetCropWidth, targetCropHeight]); // Add blank page
             continue;
           }
 
           try {
             // Create the target canvas with the FIXED dimensions
-            const croppedCanvas = document.createElement('canvas')
-            croppedCanvas.width = targetCropWidth
-            croppedCanvas.height = targetCropHeight
+            const croppedCanvas = document.createElement("canvas");
+            croppedCanvas.width = targetCropWidth;
+            croppedCanvas.height = targetCropHeight;
 
-            const croppedContext = croppedCanvas.getContext('2d', { alpha: false })
+            const croppedContext = croppedCanvas.getContext("2d", {
+              alpha: false,
+            });
             if (!croppedContext) {
-              console.warn(`Skipping page ${i}: Could not get cropped canvas context.`);
+              console.warn(
+                `Skipping page ${i}: Could not get cropped canvas context.`
+              );
               croppedPdf.addPage([targetCropWidth, targetCropHeight]); // Add blank page
               continue;
             }
 
-            croppedContext.imageSmoothingEnabled = true
-            croppedContext.imageSmoothingQuality = 'high'
-            croppedContext.fillStyle = 'white'
-            croppedContext.fillRect(0, 0, croppedCanvas.width, croppedCanvas.height) // Fill background
+            croppedContext.imageSmoothingEnabled = true;
+            croppedContext.imageSmoothingQuality = "high";
+            croppedContext.fillStyle = "white";
+            croppedContext.fillRect(
+              0,
+              0,
+              croppedCanvas.width,
+              croppedCanvas.height
+            ); // Fill background
 
             // --- Calculate destination dimensions to preserve aspect ratio ---
             const scale = Math.min(
@@ -643,69 +703,79 @@ export default function Home() {
             // Draw the safe source portion onto the target canvas,
             // scaling it to fit while preserving aspect ratio and centering.
             croppedContext.drawImage(
-              canvas,           // Source canvas (current page render)
-              safeSourceX,      // Source rectangle X
-              safeSourceY,      // Source rectangle Y
-              safeSourceWidth,  // Source rectangle Width
+              canvas, // Source canvas (current page render)
+              safeSourceX, // Source rectangle X
+              safeSourceY, // Source rectangle Y
+              safeSourceWidth, // Source rectangle Width
               safeSourceHeight, // Source rectangle Height
-              destX,            // Destination X (centered)
-              destY,            // Destination Y (centered)
-              destWidth,        // Destination Width (scaled)
-              destHeight        // Destination Height (scaled)
-            )
+              destX, // Destination X (centered)
+              destY, // Destination Y (centered)
+              destWidth, // Destination Width (scaled)
+              destHeight // Destination Height (scaled)
+            );
 
             // Convert target canvas to PNG
             const croppedImageBlob = await new Promise<Blob>((resolve) => {
-              croppedCanvas.toBlob((blob) => {
-                resolve(blob || new Blob())
-              }, 'image/png', 1.0)
-            })
+              croppedCanvas.toBlob(
+                (blob) => {
+                  resolve(blob || new Blob());
+                },
+                "image/png",
+                1.0
+              );
+            });
 
             // Convert blob to bytes for embedding
-            const croppedImageBytes = await croppedImageBlob.arrayBuffer()
+            const croppedImageBytes = await croppedImageBlob.arrayBuffer();
 
             // Embed the image in the PDF
-            const pngImage = await croppedPdf.embedPng(new Uint8Array(croppedImageBytes))
+            const pngImage = await croppedPdf.embedPng(
+              new Uint8Array(croppedImageBytes)
+            );
 
             // Create a new page with the exact TARGET dimensions
-            const newPage = croppedPdf.addPage([targetCropWidth, targetCropHeight])
+            const newPage = croppedPdf.addPage([
+              targetCropWidth,
+              targetCropHeight,
+            ]);
 
             // Draw the image to fill the new page
             newPage.drawImage(pngImage, {
               x: 0,
               y: 0,
               width: targetCropWidth, // Use target dimensions
-              height: targetCropHeight // Use target dimensions
-            })
-
+              height: targetCropHeight, // Use target dimensions
+            });
           } catch (pageError) {
-            console.error(`Error processing page ${i}:`, pageError)
+            console.error(`Error processing page ${i}:`, pageError);
             croppedPdf.addPage([targetCropWidth, targetCropHeight]); // Add blank page
-            continue
+            continue;
           }
         } catch (pageError) {
-          console.error(`Error rendering page ${i}:`, pageError)
+          console.error(`Error rendering page ${i}:`, pageError);
           croppedPdf.addPage([targetCropWidth, targetCropHeight]); // Add blank page
-          continue
+          continue;
         }
       }
 
       // Only proceed if we have pages in the document
       if (croppedPdf.getPageCount() > 0) {
-        const croppedPdfBytes = await croppedPdf.save()
-        const blob = new Blob([croppedPdfBytes], { type: 'application/pdf' })
-        const url = URL.createObjectURL(blob)
-        const link = document.createElement('a')
-        link.href = url
-        link.download = 'cropped.pdf'
-        link.click()
-        URL.revokeObjectURL(url)
+        const croppedPdfBytes = await croppedPdf.save();
+        const blob = new Blob([croppedPdfBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "cropped.pdf";
+        link.click();
+        URL.revokeObjectURL(url);
       } else {
-        setError('Failed to crop any pages. Please check your selection or the PDF file.')
+        setError(
+          "Failed to crop any pages. Please check your selection or the PDF file."
+        );
       }
     } catch (error) {
-      console.error('Error cropping PDF:', error)
-      setError('Error cropping PDF. Please try again.')
+      console.error("Error cropping PDF:", error);
+      setError("Error cropping PDF. Please try again.");
     } finally {
       setIsLoading(false);
     }
