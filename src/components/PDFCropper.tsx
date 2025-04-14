@@ -252,7 +252,8 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       "orders",
       "order list",
       "order labels",
-      "sub_order_labels"
+      "sub_order_labels",
+      "Sub_Order_Labels"
     ];
     return validTerms.some(term => fileName.includes(term));
   };
