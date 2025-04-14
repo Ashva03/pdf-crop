@@ -137,6 +137,10 @@ export default function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
 
+  const handleLinkClick = () => {
+    setIsOpen(false); // Close the mobile menu
+  };
+
   return (
     <Nav>
       <NavContent>
@@ -154,61 +158,107 @@ export default function Navigation() {
           )}
         </Hamburger>
         <NavLinks>
-          <NavLink href="/" $active={pathname === "/"}>
+          <NavLink
+            href="/"
+            $active={pathname === "/"}
+            onClick={handleLinkClick}
+          >
             Home
           </NavLink>
           <NavLink
             href="/flipkart-label"
             $active={pathname === "/flipkart-label"}
+            onClick={handleLinkClick}
           >
             Flipkart Label
           </NavLink>
           {/* <NavLink href="/myntra-label" $active={pathname === '/myntra-label'}>
             Myntra Label
           </NavLink> */}
-          <NavLink href="/meesho-label" $active={pathname === "/meesho-label"}>
+          <NavLink
+            href="/meesho-label"
+            $active={pathname === "/meesho-label"}
+            onClick={handleLinkClick}
+          >
             Meesho Label
           </NavLink>
           {/* <NavLink href="/amazon-label" $active={pathname === '/amazon-label'}>
             Amazon Label
           </NavLink> */}
-          <NavLink href="/features" $active={pathname === "/features"}>
+          <NavLink
+            href="/features"
+            $active={pathname === "/features"}
+            onClick={handleLinkClick}
+          >
             Features
           </NavLink>
-          <NavLink href="/pricing" $active={pathname === "/pricing"}>
+          <NavLink
+            href="/pricing"
+            $active={pathname === "/pricing"}
+            onClick={handleLinkClick}
+          >
             Pricing
           </NavLink>
-          <NavLink href="/blog" $active={pathname === "/blog"}>
+          <NavLink
+            href="/blog"
+            $active={pathname === "/blog"}
+            onClick={handleLinkClick}
+          >
             Blog
           </NavLink>
-          <NavLink href="/contact" $active={pathname === "/contact"}>
+          <NavLink
+            href="/contact"
+            $active={pathname === "/contact"}
+            onClick={handleLinkClick}
+          >
             Contact
           </NavLink>
         </NavLinks>
       </NavContent>
       <MobileNav isOpen={isOpen}>
-        <NavLink href="/" $active={pathname === "/"}>
+        <NavLink href="/" $active={pathname === "/"} onClick={handleLinkClick}>
           Home
         </NavLink>
         <NavLink
           href="/flipkart-label"
           $active={pathname === "/flipkart-label"}
+          onClick={handleLinkClick}
         >
           Flipkart Label
         </NavLink>
-        <NavLink href="/meesho-label" $active={pathname === "/meesho-label"}>
+        <NavLink
+          href="/meesho-label"
+          $active={pathname === "/meesho-label"}
+          onClick={handleLinkClick}
+        >
           Meesho Label
         </NavLink>
-        <NavLink href="/features" $active={pathname === "/features"}>
+        <NavLink
+          href="/features"
+          $active={pathname === "/features"}
+          onClick={handleLinkClick}
+        >
           Features
         </NavLink>
-        <NavLink href="/pricing" $active={pathname === "/pricing"}>
+        <NavLink
+          href="/pricing"
+          $active={pathname === "/pricing"}
+          onClick={handleLinkClick}
+        >
           Pricing
         </NavLink>
-        <NavLink href="/blog" $active={pathname === "/blog"}>
+        <NavLink
+          href="/blog"
+          $active={pathname === "/blog"}
+          onClick={handleLinkClick}
+        >
           Blog
         </NavLink>
-        <NavLink href="/contact" $active={pathname === "/contact"}>
+        <NavLink
+          href="/contact"
+          $active={pathname === "/contact"}
+          onClick={handleLinkClick}
+        >
           Contact
         </NavLink>
       </MobileNav>
