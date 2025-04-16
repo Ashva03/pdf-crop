@@ -55,7 +55,7 @@ const NavLinks = styled.div`
   }
 `;
 
-const NavLink = styled(Link)<{ $active?: boolean }>`
+const NavLink = styled(Link) <{ $active?: boolean }>`
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -92,8 +92,8 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
     }
 
     ${(props) =>
-      props.$active &&
-      `
+    props.$active &&
+    `
       &:hover {
         opacity: 1;
         &:after {
@@ -102,12 +102,6 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
       }
     `}
   }
-`;
-
-const CloseIcon = styled.svg`
-  width: 25px;
-  height: 25px;
-  fill: white;
 `;
 
 const Hamburger = styled.div<{ isOpen: boolean }>`
