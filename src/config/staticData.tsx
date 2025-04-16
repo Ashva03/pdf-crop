@@ -19,7 +19,7 @@ export interface PlatformConfig {
 }
 
 // Default dimensions for all pages - top-left corner at (10, 20)
-export const flipkartLabelCropDimensions: CropDimension = { x: 175, y: 450, width: 245, height: 380 }
+export const flipkartLabelCropDimensions: CropDimension = { x: 185, y: 456, width: 225, height: 365 }
 
 export const myntraLabelCropDimensions: CropDimension = { x: 150, y: 400, width: 300, height: 400 }
 
