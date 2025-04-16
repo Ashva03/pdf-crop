@@ -6,7 +6,6 @@ import { meeshoLabelCropDimensions, platformConfigs, generateLabelCropDimensions
 
 export default function MeeshoLabel() {
   const [cropDimensions, setCropDimensions] = useState<Record<number, CropDimension>>({});
-
   const handleNumPagesChange = (numPages: number) => {
     // Generate crop dimensions based on the actual number of pages
     const dimensions = generateLabelCropDimensions(numPages, meeshoLabelCropDimensions);
@@ -14,8 +13,8 @@ export default function MeeshoLabel() {
   };
 
   return (
-    <PDFCropper 
-      platformConfig={platformConfigs.meesho} 
+    <PDFCropper
+      platformConfig={platformConfigs.meesho}
       cropDimensions={cropDimensions}
       onNumPagesChange={handleNumPagesChange}
     />

@@ -19,13 +19,13 @@ export interface PlatformConfig {
 }
 
 // Default dimensions for all pages - top-left corner at (10, 20)
-export const flipkartLabelCropDimensions:  CropDimension =  { x: 175, y: 450, width: 245, height: 380 }
+export const flipkartLabelCropDimensions: CropDimension = { x: 175, y: 450, width: 245, height: 380 }
 
-export const myntraLabelCropDimensions:  CropDimension = { x: 150, y: 400, width: 300, height: 400 }
+export const myntraLabelCropDimensions: CropDimension = { x: 150, y: 400, width: 300, height: 400 }
 
 
 // Function to generate Meesho label crop dimensions for n pages
-export const generateLabelCropDimensions = (numPages: number,cropDimension: CropDimension): Record<number, CropDimension> => {
+export const generateLabelCropDimensions = (numPages: number, cropDimension: CropDimension): Record<number, CropDimension> => {
   const dimensions: Record<number, CropDimension> = {};
   for (let i = 1; i <= numPages; i++) {
     dimensions[i] = cropDimension;
@@ -34,7 +34,7 @@ export const generateLabelCropDimensions = (numPages: number,cropDimension: Crop
 };
 
 // Default Meesho dimensions with 4 pages
-export const meeshoLabelCropDimensions: CropDimension = { x: 0, y: 480, width: 595, height: 365 };
+export const meeshoLabelCropDimensions: CropDimension = { x: 0, y: 495, width: 595, height: 345 };
 
 export const amazonLabelCropDimensions: Record<number, CropDimension> = {
   1: { x: 180, y: 420, width: 260, height: 390 },
