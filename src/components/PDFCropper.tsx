@@ -7,6 +7,7 @@ import * as PDFLib from "pdf-lib";
 import Loading from "@/components/Loading";
 import PDFUpload from "@/components/PDFUpload";
 import { CropDimension, PlatformConfig } from "@/config/staticData";
+import MonetizationLink from "./MonetizationLink";
 
 // Initialize PDF.js worker only on client side
 if (typeof window !== "undefined") {
@@ -410,8 +411,7 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       URL.revokeObjectURL(url);
 
       setSuccess(
-        `Successfully processed ${processedPages} pages! ${
-          skippedPages > 0 ? `(${skippedPages} pages skipped due to insufficient content)` : ""
+        `Successfully processed ${processedPages} pages! ${skippedPages > 0 ? `(${skippedPages} pages skipped due to insufficient content)` : ""
         }`
       );
     } catch (error) {
@@ -510,6 +510,8 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
                   </svg>
                   Upload New File
                 </UploadButton>
+                <UploadButton onClick={handleCropAllPages}>Download Auto Cropped PDF</UploadButton>
+                <MonetizationLink />
               </>
             )}
           </Controls>

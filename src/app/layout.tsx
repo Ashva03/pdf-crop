@@ -7,6 +7,7 @@ import Navigation from '@/components/Navigation'
 import "./globals.css";
 import LayoutWrapper from '@/components/LayoutWrapper'
 import Script from 'next/script'
+import MonetizationLink from '@/components/MonetizationLink'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -59,6 +60,9 @@ export default function RootLayout({
           <Navigation />
           <LayoutWrapper>
             {children}
+            <div className="fixed bottom-4 right-4 z-50"> {/* Positioned the link at the bottom right */}
+              <MonetizationLink />
+            </div>
           </LayoutWrapper>
         </StyledComponentsRegistry>
       </body>
