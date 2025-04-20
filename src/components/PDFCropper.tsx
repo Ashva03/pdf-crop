@@ -79,6 +79,18 @@ const Button = styled.button`
   }
 `;
 
+const PrintCroppedButton = styled(Button)`
+  background: #29b44b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background: #41c33d;
+  }
+`;
+
 const UploadButton = styled(Button)`
   background: #3b82f6;
   display: flex;
@@ -399,10 +411,9 @@ export default function PDFCropper({
       URL.revokeObjectURL(url);
 
       setSuccess(
-        `Successfully processed ${processedPages} pages! ${
-          skippedPages > 0
-            ? `(${skippedPages} pages skipped due to insufficient content)`
-            : ""
+        `Successfully processed ${processedPages} pages! ${skippedPages > 0
+          ? `(${skippedPages} pages skipped due to insufficient content)`
+          : ""
         }`
       );
     } catch (error) {
@@ -553,6 +564,7 @@ export default function PDFCropper({
                   </svg>
                   Upload New File
                 </UploadButton>
+                <PrintCroppedButton onClick={handlePrintPDF}>Print Cropped PDF</PrintCroppedButton>
                 <UploadButton onClick={handleCropAllPages}>
                   Download Auto Cropped PDF
                 </UploadButton>
