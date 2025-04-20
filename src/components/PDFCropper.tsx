@@ -168,7 +168,7 @@ const DownloadIcon = styled.div`
     width: 20px;
     height: 20px;
     animation: ${downloadAnimation} 1.5s infinite;
-    stroke: #ef4444; /* Red color for the icon */
+    stroke: rgb(245, 245, 245); /* Red color for the icon */
   }
 `;
 
@@ -182,7 +182,7 @@ const ActionButtonContainer = styled.div`
 `;
 
 const ActionButton = styled(Button)`
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #f13535 0%, hsl(0, 100.00%, 0.20%) 100%);
   font-weight: 600;
   padding: 0.5rem 1rem; /* Reduced size */
   font-size: 0.9rem; /* Reduced font size */
@@ -197,10 +197,10 @@ const ActionButton = styled(Button)`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
   &:hover {
-    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    background: linear-gradient(135deg, rgb(6, 6, 6) 0%, #047857 100%);
     transform: translateY(-2px);
     animation: none;
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
   }
 
   &:active {
@@ -209,11 +209,15 @@ const ActionButton = styled(Button)`
 `;
 
 const PrintButton = styled(ActionButton)`
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); /* Green color */
+  background: linear-gradient(
+    135deg,
+rgb(61, 34, 197) 0%,
+rgb(0, 0, 0) 100%
+  ); /* Green color */
   animation: ${pulseAnimation} 2s infinite, ${glowAnimation} 3s infinite;
 
   &:hover {
-    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    background: linear-gradient(135deg, rgb(6, 6, 6) 0%, #047857 100%);
     transform: translateY(-2px);
     animation: none;
     box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
@@ -248,7 +252,11 @@ interface PDFCropperProps {
   onNumPagesChange?: (numPages: number) => void;
 }
 
-export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesChange }: PDFCropperProps) {
+export default function PDFCropper({
+  platformConfig,
+  cropDimensions,
+  onNumPagesChange,
+}: PDFCropperProps) {
   const [file, setFile] = useState<File | null>(null);
   const [numPages, setNumPages] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -374,7 +382,9 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       }
 
       if (processedPages === 0) {
-        setError("No valid pages found with sufficient content area to process.");
+        setError(
+          "No valid pages found with sufficient content area to process."
+        );
         return;
       }
 
@@ -389,7 +399,10 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       URL.revokeObjectURL(url);
 
       setSuccess(
-        `Successfully processed ${processedPages} pages! ${skippedPages > 0 ? `(${skippedPages} pages skipped due to insufficient content)` : ""
+        `Successfully processed ${processedPages} pages! ${
+          skippedPages > 0
+            ? `(${skippedPages} pages skipped due to insufficient content)`
+            : ""
         }`
       );
     } catch (error) {
@@ -540,7 +553,9 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
                   </svg>
                   Upload New File
                 </UploadButton>
-                <UploadButton onClick={handleCropAllPages}>Download Auto Cropped PDF</UploadButton>
+                <UploadButton onClick={handleCropAllPages}>
+                  Download Auto Cropped PDF
+                </UploadButton>
                 <MonetizationLink />
               </>
             )}
