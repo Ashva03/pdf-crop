@@ -168,6 +168,7 @@ const DownloadIcon = styled.div`
     width: 20px;
     height: 20px;
     animation: ${downloadAnimation} 1.5s infinite;
+    stroke: #ef4444; /* Red color for the icon */
   }
 `;
 
@@ -176,13 +177,15 @@ const ActionButtonContainer = styled.div`
   right: 30px;
   bottom: 30px;
   z-index: 1000;
+  display: flex;
+  gap: 1rem; /* Add spacing between buttons */
 `;
 
 const ActionButton = styled(Button)`
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   font-weight: 600;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+  padding: 0.5rem 1rem; /* Reduced size */
+  font-size: 0.9rem; /* Reduced font size */
   animation: ${pulseAnimation} 2s infinite, ${glowAnimation} 3s infinite;
   border-radius: 8px;
   text-transform: uppercase;
@@ -202,6 +205,18 @@ const ActionButton = styled(Button)`
 
   &:active {
     transform: translateY(1px);
+  }
+`;
+
+const PrintButton = styled(ActionButton)`
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); /* Green color */
+  animation: ${pulseAnimation} 2s infinite, ${glowAnimation} 3s infinite;
+
+  &:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    transform: translateY(-2px);
+    animation: none;
+    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
   }
 `;
 
@@ -247,36 +262,16 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
     setMounted(true);
   }, []);
 
-  // const validateFileName = (fileName: string): boolean => {
-  //   const validTerms = [
-  //     "Sub_Order_Labels",
-  //     platformConfig.name.toLowerCase(),
-  //     "orders",
-  //     "order list",
-  //     "order labels",
-  //     "sub_order_labels",
-  //   ];
-  //   // return validTerms.some(term => fileName.includes(term));
-  // };
-
   const onFileSelect = (file: File) => {
-    // Validate file type
     if (file.type !== "application/pdf") {
       setError(platformConfig.errorMessages.invalidFileType);
       return;
     }
 
-    // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
       setError(platformConfig.errorMessages.fileSizeExceeded);
       return;
     }
-
-    // // Validate filename
-    // if (!validateFileName(file.name.toLowerCase())) {
-    //   setError(platformConfig.errorMessages.invalidFileName);
-    //   return;
-    // }
 
     setFile(file);
     setCurrentPage(1);
@@ -295,23 +290,15 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
   ) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
-      // Validate file type
       if (selectedFile.type !== "application/pdf") {
         setError(platformConfig.errorMessages.invalidFileType);
         return;
       }
 
-      // Validate file size (max 10MB)
       if (selectedFile.size > 10 * 1024 * 1024) {
         setError(platformConfig.errorMessages.fileSizeExceeded);
         return;
       }
-
-      // // Validate filename
-      // if (!validateFileName(selectedFile.name.toLowerCase())) {
-      //   setError(platformConfig.errorMessages.invalidFileName);
-      //   return;
-      // }
 
       setFile(selectedFile);
       setCurrentPage(1);
@@ -354,35 +341,28 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       let processedPages = 0;
       let skippedPages = 0;
 
-      // Process each page
       for (let pageNum = 1; pageNum <= numPages; pageNum++) {
         const pageIndex = pageNum - 1;
         const page = pdfDoc.getPages()[pageIndex];
         const { width, height } = page.getSize();
 
-        // Get crop dimensions for current page
         const cropBox =
           cropDimensions[pageNum] || platformConfig.defaultCropDimension;
 
-        // Calculate content area ratio
         const cropArea = cropBox.width * cropBox.height;
         const pageArea = width * height;
         const contentRatio = cropArea / pageArea;
 
-        // Skip pages with low content ratio (less than 15% of page area)
         if (contentRatio < 0.15) {
           skippedPages++;
           continue;
         }
 
-        // Copy and crop the page
         const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
         const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
 
-        // Create a form XObject from the copied page
         const formXObject = await newPdfDoc.embedPage(copiedPage);
 
-        // Draw the cropped portion
         newPage.drawPage(formXObject, {
           x: -cropBox.x,
           y: -cropBox.y,
@@ -398,12 +378,10 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
         return;
       }
 
-      // Save and download the cropped PDF
       const pdfBytes = await newPdfDoc.save();
       const blob = new Blob([pdfBytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
-      // Format the output filename
       const originalFileName = file.name.replace(".pdf", "");
       a.download = `${originalFileName}_pdfCropAshvainfo.pdf`;
       a.href = url;
@@ -422,7 +400,59 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
     }
   };
 
-  // Get current crop dimensions
+  const handlePrintPDF = async () => {
+    if (!file) {
+      setError("Please upload a PDF file before printing.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+      const newPdfDoc = await PDFLib.PDFDocument.create();
+
+      for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+        const pageIndex = pageNum - 1;
+        const page = pdfDoc.getPages()[pageIndex];
+        const { width, height } = page.getSize();
+
+        const cropBox =
+          cropDimensions[pageNum] || platformConfig.defaultCropDimension;
+
+        const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
+        const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
+
+        const formXObject = await newPdfDoc.embedPage(copiedPage);
+
+        newPage.drawPage(formXObject, {
+          x: -cropBox.x,
+          y: -cropBox.y,
+          width: width,
+          height: height,
+        });
+      }
+
+      const pdfBytes = await newPdfDoc.save();
+      const blob = new Blob([pdfBytes], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
+
+      const printWindow = window.open(url, "_blank");
+      if (printWindow) {
+        printWindow.print();
+      }
+
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error printing cropped PDF:", error);
+      setError("Failed to print cropped PDF. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const currentCropBox =
     cropDimensions[currentPage] || platformConfig.defaultCropDimension;
 
@@ -520,6 +550,23 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       {loading && <Loading />}
       {file && (
         <ActionButtonContainer>
+          <PrintButton onClick={handlePrintPDF}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ marginRight: "8px" }}
+            >
+              <path d="M6 9v6h12V9" />
+              <path d="M6 15v4h12v-4" />
+              <path d="M8 3h8v4H8z" />
+            </svg>
+            Print PDF
+          </PrintButton>
           <ActionButton onClick={handleCropAllPages} disabled={loading}>
             {loading ? (
               "Processing..."
@@ -540,7 +587,7 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
                     <line x1="12" y1="15" x2="12" y2="3" />
                   </svg>
                 </DownloadIcon>
-                Download Auto Cropped PDF
+                Download PDF
               </>
             )}
           </ActionButton>
@@ -548,4 +595,4 @@ export default function PDFCropper({ platformConfig, cropDimensions, onNumPagesC
       )}
     </Container>
   );
-} 
+}
