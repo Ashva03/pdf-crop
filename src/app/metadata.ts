@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "Crop shipping labels from PDF files in seconds. Perfect for online sellers using Flipkart, Amazon, Meesho, Myntra, and more.",
     type: "website",
     locale: "en_US",
-    url: "https://yourwebsite.com", // replace with your actual URL
+    url: "https://pdfcrop.co.in/",
     siteName: "PDF Label Cropper",
   },
   robots: {
