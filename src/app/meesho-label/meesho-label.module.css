@@ -1,0 +1,58 @@
+/* src/app/meesho-label/meesho-label.module.css */
+
+.descriptionContainer {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.descriptionContainer h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.descriptionContainer p,
+.descriptionContainer ol {
+  color: #555;
+  line-height: 1.6;
+}
+
+.stepsList {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: step-counter;
+}
+
+.stepsList li {
+  counter-increment: step-counter;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 2.5rem; /* Space for the number */
+}
+
+.stepsList li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: #f05d7f; /* Example Meesho-like color */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.stepsList li strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
