@@ -47,7 +47,10 @@ const SiteDescription = () => {
                         </div>
                     </div>
                     <div className={styles.blogCard}>
-                        <div className={styles.cardImagePlaceholder}></div> {/* Image Placeholder */}
+                        {/* Icon Placeholder */}
+                        <div className={styles.cardIconPlaceholder}>
+                            <span role="img" aria-label="Rocket Icon">🚀</span>
+                        </div>
                         <div className={styles.cardContent}>
                             <h3>Streamlining Your E-commerce Packing Workflow</h3>
                             <p>Discover ways to save time and reduce errors when preparing your orders for shipment.</p>
