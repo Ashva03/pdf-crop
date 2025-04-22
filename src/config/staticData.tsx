@@ -52,6 +52,15 @@ export const defaultCropDimension: CropDimension = {
   height: 380,
 };
 
+// Placeholder for Snapdeal dimensions - using default for now
+// Update with more accurate dimensions based on Snapdeal label layout
+export const snapdealLabelCropDimensions: CropDimension = {
+  x: 2,    // Adjusted X (closer to left)
+  y: 122,   // Adjusted Y (closer to top)
+  width: 270, // Increased width
+  height: 295 // Adjusted height
+};
+
 export const platformConfigs: Record<string, PlatformConfig> = {
   flipkart: {
     name: "Flipkart",
@@ -96,6 +105,19 @@ export const platformConfigs: Record<string, PlatformConfig> = {
       invalidFileType: "Please upload a PDF file",
       fileSizeExceeded: "File size exceeds 10MB limit",
       invalidFileName: 'This page is for Amazon labels only. Please upload a file with "amazon" in the filename.',
+      uploadFirst: "Please upload a PDF file first",
+      processingError: "An error occurred while cropping the PDF. Please try again."
+    },
+    successMessage: "Successfully cropped all pages!"
+  },
+  // Add Snapdeal configuration
+  snapdeal: {
+    name: "Snapdeal",
+    defaultCropDimension: snapdealLabelCropDimensions, // Use the defined snapdeal dimensions
+    errorMessages: {
+      invalidFileType: "Please upload a PDF file",
+      fileSizeExceeded: "File size exceeds 10MB limit",
+      invalidFileName: 'This page is for Snapdeal labels only. Please upload a file with "snapdeal" in the filename.',
       uploadFirst: "Please upload a PDF file first",
       processingError: "An error occurred while cropping the PDF. Please try again."
     },

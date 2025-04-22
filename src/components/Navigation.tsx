@@ -177,6 +177,13 @@ export default function Navigation() {
             Meesho Label
           </NavLink>
           <NavLink
+            href="/snapdeal-label"
+            $active={pathname === "/snapdeal-label"}
+            onClick={handleLinkClick}
+          >
+            Snapdeal Label
+          </NavLink>
+          <NavLink
             href="/features"
             $active={pathname === "/features"}
             onClick={handleLinkClick}
@@ -209,6 +216,13 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           Meesho Label
+        </NavLink>
+        <NavLink
+          href="/snapdeal-label"
+          $active={pathname === "/snapdeal-label"}
+          onClick={handleLinkClick}
+        >
+          Snapdeal Label
         </NavLink>
         <NavLink
           href="/features"
