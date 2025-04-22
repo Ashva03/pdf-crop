@@ -373,24 +373,29 @@ export default function PDFCropper({
         const pageArea = width * height;
         const contentRatio = cropArea / pageArea;
 
-        if (contentRatio < 0.15) {
-          skippedPages++;
-          continue;
+        const isSnapdeal = platformConfig.name === 'Snapdeal';
+        const isOddPageNumber = (pageIndex + 1) % 2 !== 0; // Check for odd page number (even index)
+
+        if (!isSnapdeal || isOddPageNumber) {
+          if (contentRatio < 0.15) {
+            skippedPages++;
+            continue;
+          }
+
+          const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
+          const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
+
+          const formXObject = await newPdfDoc.embedPage(copiedPage);
+
+          newPage.drawPage(formXObject, {
+            x: -cropBox.x,
+            y: -cropBox.y,
+            width: width,
+            height: height,
+          });
+
+          processedPages++;
         }
-
-        const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
-        const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
-
-        const formXObject = await newPdfDoc.embedPage(copiedPage);
-
-        newPage.drawPage(formXObject, {
-          x: -cropBox.x,
-          y: -cropBox.y,
-          width: width,
-          height: height,
-        });
-
-        processedPages++;
       }
 
       if (processedPages === 0) {
