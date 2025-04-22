@@ -99,6 +99,9 @@ export default function FooterComponent() {
             <li>
               <Link href="/contact">Contact</Link>
             </li>
+            <li>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+            </li>
           </ul>
         </FooterSection>
         <FooterSection>
