@@ -94,9 +94,6 @@ export default function FooterComponent() {
               <Link href="/how-it-works">How It Works</Link>
             </li>
             <li>
-              <Link href="/pricing">Pricing</Link>
-            </li>
-            <li>
               <Link href="/blog">Blog</Link>
             </li>
             <li>
