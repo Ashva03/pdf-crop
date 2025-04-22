@@ -1,0 +1,58 @@
+/* src/app/privacy-policy/privacy-policy.module.css */
+
+.container {
+  max-width: 800px; /* Slightly wider for better reading */
+  margin: 2rem auto; /* Center and add vertical margin */
+  padding: 2rem;
+  background-color: #ffffff; /* White background for content */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-size: 2.2rem; /* Slightly larger title */
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color, #4f46e5); /* Use theme color if available */
+  display: inline-block; /* Keep border tight */
+}
+
+.section {
+  margin-bottom: 2.5rem; /* More space between sections */
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  color: #555; /* Slightly lighter text */
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.list {
+  list-style: disc;
+  padding-left: 1.5rem; /* Standard list padding */
+  color: #555;
+  line-height: 1.7;
+}
+
+.listItem {
+  margin-bottom: 0.5rem;
+}
+
+.lastUpdated {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+  color: #777;
+  text-align: center;
+}
