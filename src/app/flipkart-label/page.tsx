@@ -1,49 +1,60 @@
-"use client";
+import type { Metadata } from 'next';
+import FlipkartLabel from "./flipkartLabel";
 
-import { useState } from "react";
-import PDFCropper from "@/components/PDFCropper";
-import { flipkartLabelCropDimensions, platformConfigs, generateLabelCropDimensions, CropDimension } from "@/config/staticData";
-import styles from './flipkart-label.module.css';
+// Define Base URL (Replace with your actual domain)
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pdf-crop.com';
+const pageUrl = `${baseUrl}/flipkart-label`;
 
-export default function FlipkartLabel() {
-  const [cropDimensions, setCropDimensions] = useState<Record<number, CropDimension>>({});
+// Optimized metadata for SEO
+export const metadata: Metadata = {
+  title: 'Flipkart PDF Label Cropper | Free Online Tool (A4 to A6)',
+  description: 'Crop Flipkart PDF shipping labels from A4 to A6 online for free. Upload, auto-crop, preview, and download perfectly sized labels instantly. Improve your Flipkart shipping process.',
+  keywords: ['Flipkart label cropper', 'PDF crop', 'A4 to A6', 'shipping label', 'Flipkart seller', 'crop PDF online', 'free tool', 'label cutter'],
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Free Flipkart PDF Label Cropper (A4 to A6)',
+    description: 'Quickly crop your Flipkart A4 shipping labels to A6 size online. Easy-to-use, free tool for all Flipkart sellers.',
+    url: pageUrl,
+    type: 'website',
+    // Add a relevant image URL if you have one
+    // images: [
+    //   {
+    //     url: `${baseUrl}/og-image-flipkart.png`, // Example image path
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'Flipkart PDF Label Cropper Tool',
+    //   },
+    // ],
+  },
+  // Basic Structured Data (JSON-LD)
+  // You can enhance this further based on Schema.org guidelines
+  // This script needs to be rendered in the component for client-side execution,
+  // or handled differently for Server Components if needed.
+  // For simplicity, we define it here but rendering requires adjustment.
+  // Let's add a placeholder comment for now, as injecting scripts via metadata object isn't standard.
+  // Consider adding JSON-LD via a script tag in the component or layout.
+};
 
-  const handleNumPagesChange = (numPages: number) => {
-    // Generate crop dimensions based on the actual number of pages
-    const dimensions = generateLabelCropDimensions(numPages, flipkartLabelCropDimensions);
-    setCropDimensions(dimensions);
-  };
-
+export default function FlipkartLabelPage() {
   return (
-    <div>
-      <PDFCropper
-        platformConfig={platformConfigs.flipkart}
-        cropDimensions={cropDimensions}
-        onNumPagesChange={handleNumPagesChange}
-      />
-      <div className={styles.descriptionContainer}>
-        <h2>How to Crop Your Flipkart Label PDF</h2>
-        <p>
-          Easily crop your Flipkart shipping labels to the required dimensions using our simple tool. Follow these steps:
-        </p>
-        <ol className={styles.stepsList}>
-          <li>
-            <strong>Upload Your PDF:</strong> Click the upload button and select the Flipkart label PDF file from your device.
-          </li>
-          <li>
-            <strong>Preview and Adjust:</strong> The tool will automatically apply the standard Flipkart crop dimensions. You can preview each page and adjust the crop box if needed by dragging its corners or edges.
-          </li>
-          <li>
-            <strong>Crop the PDF:</strong> Once you're satisfied with the preview, click the "Crop PDF" button.
-          </li>
-          <li>
-            <strong>Download:</strong> Your cropped PDF label will be generated. Click the "Download" button to save it to your device, ready for printing.
-          </li>
-        </ol>
-        <p>
-          Our tool ensures your labels are precise and ready for your Flipkart shipments, saving you time and hassle.
-        </p>
-      </div>
-    </div>
+    <>
+      {/* Example of adding JSON-LD script directly (if needed in Client Component context) */}
+      {/* <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": metadata.title,
+            "description": metadata.description,
+            "url": pageUrl,
+            "keywords": metadata.keywords?.join(', ')
+          })
+        }}
+      /> */}
+      <FlipkartLabel />
+    </>
   );
 }

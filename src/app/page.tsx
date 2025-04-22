@@ -338,9 +338,9 @@ const FAQContent = styled.div<{ $isOpen: boolean }>`
     margin: 0;
     transition: transform 0.2s ease;
     transform: ${(props) =>
-      props.$isOpen
-        ? "translateY(0) scale(1)"
-        : "translateY(-8px) scale(0.98)"};
+    props.$isOpen
+      ? "translateY(0) scale(1)"
+      : "translateY(-8px) scale(0.98)"};
   }
 `;
 
@@ -374,7 +374,7 @@ const FAQIcon = styled.span<{ $isOpen: boolean }>`
     height: 100%;
     transform: translateX(-50%)
       ${(props) =>
-        props.$isOpen ? "rotate(-90deg) scale(0)" : "rotate(0) scale(1)"};
+    props.$isOpen ? "rotate(-90deg) scale(0)" : "rotate(0) scale(1)"};
   }
 `;
 

@@ -19,7 +19,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: #f2f4f4;
-  padding-top: 64px;
+  padding-top: 10px;
 `;
 
 const MainContent = styled.main`
@@ -34,7 +34,7 @@ const PDFContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 0rem;
 `;
 
 const PDFViewer = styled.div`

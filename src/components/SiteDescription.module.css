@@ -1,0 +1,122 @@
+/* src/components/SiteDescription.module.css */
+
+.container {
+  margin-top: 4rem; /* Add space above this section */
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* General About Section */
+.aboutSection {
+  margin-bottom: 3rem;
+  text-align: center;
+  padding: 0 1rem; /* Add some horizontal padding */
+}
+
+.aboutSection h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.aboutSection p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  max-width: 700px; /* Limit width for readability */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+/* Blog Section */
+.blogSection {
+  background-color: #f9f9f9; /* Slight background difference */
+  padding: 2rem 1rem;
+  border-radius: 8px;
+}
+
+.blogSection h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.blogIntro {
+  text-align: center;
+  color: #555;
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.blogCard {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Styles for the Icon Placeholder */
+.cardIconPlaceholder {
+  height: 120px; /* Adjusted height for icon */
+  background-color: #f0f4f8; /* Lighter, neutral background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardIconPlaceholder span {
+  font-size: 3.5rem; /* Make icon larger */
+  line-height: 1;
+}
+
+.cardContent {
+  padding: 1.5rem;
+}
+
+.blogCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blogCard h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.blogCard p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.readMore {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}

@@ -1,5 +1,27 @@
 /* src/app/flipkart-label/flipkart-label.module.css */
 
+/* Add styles for the page header */
+.pageHeader_flipkart {
+  padding: 2rem 1.5rem; /* Increased top/bottom padding */
+  margin-bottom: 2rem;
+  background-color: #e6f2ff; /* Light blue background */
+  border-left: 5px solid #007bff; /* Blue accent border */
+  border-radius: 4px;
+}
+
+.pageHeader_flipkart h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #0056b3; /* Darker blue text */
+  font-size: 2rem; /* Increased font size */
+}
+
+.pageHeader_flipkart p {
+  margin-bottom: 0;
+  color: #0056b3;
+  font-size: 1.1rem; /* Slightly increased font size */
+}
+
 .descriptionContainer {
   margin-top: 2rem;
   padding: 1.5rem;
