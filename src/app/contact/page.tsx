@@ -1,104 +1,37 @@
 "use client";
+import React from 'react';
+import { Mail } from 'lucide-react';
 
-import styled from "styled-components";
-
-const Container = styled.div`
-  min-height: 100vh;
-  background: #f2f4f4;
-  padding-top: 64px; // Height of the navigation bar
-`;
-
-const Header = styled.header`
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  padding: 4rem 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
-const Title = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 800;
-`;
-
-const Description = styled.p`
-  font-size: 1.25rem;
-  max-width: 700px;
-  margin: 0 auto;
-  opacity: 0.9;
-`;
-
-const MainContent = styled.main`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-  position: relative;
-  z-index: 10;
-`;
-
-const ContactCard = styled.div`
-  background: white;
-  border-radius: 12px;
-  padding: 3rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  text-align: center;
-`;
-
-const EmailDisplay = styled.div`
-  font-size: 1.5rem;
-  color: #4f46e5;
-  margin: 2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  span {
-    font-weight: 600;
-  }
-`;
-
-const EmailButton = styled.a`
-  display: inline-block;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-export default function Contact() {
-  const email = "ashvainfotech3@gmail.com";
-
-  return (
-    <Container>
-      <Header>
-        <Title>Contact Us</Title>
-        <Description>
-          Have questions? We&apos;d love to hear from you. Send us an email and
-          we&apos;ll respond as soon as possible.
-        </Description>
-      </Header>
-
-      <MainContent>
-        <ContactCard>
-          <EmailDisplay>
-            <span>📧</span>
-            <span>{email}</span>
-          </EmailDisplay>
-          <EmailButton href={`mailto:${email}`}>Send Email</EmailButton>
-        </ContactCard>
-      </MainContent>
-    </Container>
-  );
+function ContactPage() {
+    return (
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
+                <div className="text-center">
+                    <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+                        Contact Us
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-600">
+                        Have questions? We'd love to hear from you.
+                    </p>
+                </div>
+                <div className="mt-8 space-y-6">
+                    <div className="flex items-center justify-center space-x-3">
+                        <Mail className="h-5 w-5 text-indigo-600" />
+                        <span className="text-lg text-gray-700">ashvainfotech3@gmail.com</span>
+                    </div>
+                    <div className="flex justify-center">
+                        <button
+                            onClick={() => window.location.href = 'mailto:ashvainfotech3@gmail.com'}
+                            className="group relative flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            <Mail className="mr-2 h-4 w-4" />
+                            Send Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
+
+export default ContactPage;

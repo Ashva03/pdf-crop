@@ -169,9 +169,6 @@ export default function Navigation() {
           >
             Flipkart Label
           </NavLink>
-          {/* <NavLink href="/myntra-label" $active={pathname === '/myntra-label'}>
-            Myntra Label
-          </NavLink> */}
           <NavLink
             href="/meesho-label"
             $active={pathname === "/meesho-label"}
@@ -179,9 +176,6 @@ export default function Navigation() {
           >
             Meesho Label
           </NavLink>
-          {/* <NavLink href="/amazon-label" $active={pathname === '/amazon-label'}>
-            Amazon Label
-          </NavLink> */}
           <NavLink
             href="/features"
             $active={pathname === "/features"}
@@ -190,25 +184,11 @@ export default function Navigation() {
             Features
           </NavLink>
           <NavLink
-            href="/pricing"
-            $active={pathname === "/pricing"}
-            onClick={handleLinkClick}
-          >
-            Pricing
-          </NavLink>
-          <NavLink
             href="/blog"
             $active={pathname === "/blog"}
             onClick={handleLinkClick}
           >
             Blog
-          </NavLink>
-          <NavLink
-            href="/contact"
-            $active={pathname === "/contact"}
-            onClick={handleLinkClick}
-          >
-            Contact
           </NavLink>
         </NavLinks>
       </NavContent>
@@ -238,25 +218,11 @@ export default function Navigation() {
           Features
         </NavLink>
         <NavLink
-          href="/pricing"
-          $active={pathname === "/pricing"}
-          onClick={handleLinkClick}
-        >
-          Pricing
-        </NavLink>
-        <NavLink
           href="/blog"
           $active={pathname === "/blog"}
           onClick={handleLinkClick}
         >
           Blog
-        </NavLink>
-        <NavLink
-          href="/contact"
-          $active={pathname === "/contact"}
-          onClick={handleLinkClick}
-        >
-          Contact
         </NavLink>
       </MobileNav>
     </Nav>
