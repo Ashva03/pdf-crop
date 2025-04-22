@@ -376,26 +376,32 @@ export default function PDFCropper({
         const isSnapdeal = platformConfig.name === 'Snapdeal';
         const isOddPageNumber = (pageIndex + 1) % 2 !== 0; // Check for odd page number (even index)
 
-        if (!isSnapdeal || isOddPageNumber) {
-          if (contentRatio < 0.15) {
-            skippedPages++;
-            continue;
-          }
-
-          const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
-          const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
-
-          const formXObject = await newPdfDoc.embedPage(copiedPage);
-
-          newPage.drawPage(formXObject, {
-            x: -cropBox.x,
-            y: -cropBox.y,
-            width: width,
-            height: height,
-          });
-
-          processedPages++;
+        // Skip pages with insufficient content regardless of platform
+        if (contentRatio < 0.15) {
+          skippedPages++;
+          continue;
         }
+
+        // For Snapdeal, skip adding even pages to the final doc, but count them as skipped
+        if (isSnapdeal && !isOddPageNumber) {
+          skippedPages++;
+          continue; // Move to the next page without adding this one
+        }
+
+        // If it's not Snapdeal, or if it is Snapdeal and an odd page, proceed to add it
+        const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
+        const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
+
+        const formXObject = await newPdfDoc.embedPage(copiedPage);
+
+        newPage.drawPage(formXObject, {
+          x: -cropBox.x,
+          y: -cropBox.y,
+          width: width,
+          height: height,
+        });
+
+        processedPages++; // Only increment if the page was actually added
       }
 
       if (processedPages === 0) {
@@ -451,6 +457,15 @@ export default function PDFCropper({
         const cropBox =
           cropDimensions[pageNum] || platformConfig.defaultCropDimension;
 
+        const isSnapdeal = platformConfig.name === 'Snapdeal';
+        const isOddPageNumber = (pageIndex + 1) % 2 !== 0; // Check for odd page number (even index)
+
+        // For Snapdeal, skip processing even pages
+        if (isSnapdeal && !isOddPageNumber) {
+          continue; // Move to the next page without processing this one
+        }
+
+        // If it's not Snapdeal, or if it is Snapdeal and an odd page, proceed
         const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [pageIndex]);
         const newPage = newPdfDoc.addPage([cropBox.width, cropBox.height]);
 

@@ -55,10 +55,10 @@ export const defaultCropDimension: CropDimension = {
 // Placeholder for Snapdeal dimensions - using default for now
 // Update with more accurate dimensions based on Snapdeal label layout
 export const snapdealLabelCropDimensions: CropDimension = {
-  x: 8,    // Adjusted X (closer to left)
-  y: 125,   // Adjusted Y (closer to top)
-  width: 260, // Increased width
-  height: 283 // Adjusted height
+  x: 2,    // Adjusted X (closer to left)
+  y: 122,   // Adjusted Y (closer to top)
+  width: 270, // Increased width
+  height: 295 // Adjusted height
 };
 
 export const platformConfigs: Record<string, PlatformConfig> = {
