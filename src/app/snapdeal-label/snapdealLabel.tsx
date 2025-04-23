@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import PDFCropper from "@/components/PDFCropper";
 import { CropDimension, snapdealLabelCropDimensions, platformConfigs, generateLabelCropDimensions } from "@/config/staticData";
 import styles from './snapdeal-label.module.css';
@@ -22,7 +22,16 @@ export default function SnapdealLabel() {
                 <h1>Snapdeal Shipping Label Cropper</h1>
                 <p>Quickly crop your Snapdeal PDF labels to the standard size.</p>
             </div>
-
+            {React.createElement('amp-ad', {
+                width: "100vw",
+                height: "320",
+                type: "adsense",
+                layout: "fixed-height",
+                "data-ad-client": "ca-pub-6259586123575519",
+                "data-ad-slot": "7712907827",
+                "data-auto-format": "rspv",
+                "data-full-width": ""
+            }, React.createElement('div', { placeholder: '' }))}
             <PDFCropper
                 platformConfig={platformConfigs.snapdeal} // Use snapdeal config
                 cropDimensions={cropDimensions}

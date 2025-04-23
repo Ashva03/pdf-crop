@@ -5,6 +5,7 @@ import PDFCropper from "@/components/PDFCropper";
 import { flipkartLabelCropDimensions, platformConfigs, generateLabelCropDimensions, CropDimension } from "@/config/staticData";
 import styles from './flipkart-label.module.css';
 import SiteDescription from "@/components/SiteDescription";
+import React from 'react';
 
 export default function FlipkartLabel() {
     const [cropDimensions, setCropDimensions] = useState<Record<number, CropDimension>>({});
@@ -22,6 +23,17 @@ export default function FlipkartLabel() {
                 <h1>Flipkart PDF Label Cropper</h1>
                 <p>Quickly crop your Flipkart shipping labels to the perfect size.</p>
             </div>
+            {/* Using React.createElement to bypass TSX type checking for AMP tags */}
+            {React.createElement('amp-ad', {
+                width: "100vw",
+                height: "320",
+                type: "adsense",
+                layout: "fixed-height",
+                "data-ad-client": "ca-pub-6259586123575519",
+                "data-ad-slot": "7712907827",
+                "data-auto-format": "rspv",
+                "data-full-width": ""
+            }, React.createElement('div', { placeholder: '' }))}
 
             <PDFCropper
                 platformConfig={platformConfigs.flipkart}

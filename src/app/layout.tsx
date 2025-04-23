@@ -72,7 +72,7 @@ export default function RootLayout({
             `,
           }}
         />
-
+        <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
       </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
