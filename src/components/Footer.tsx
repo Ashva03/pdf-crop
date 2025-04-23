@@ -102,6 +102,12 @@ export default function FooterComponent() {
             <li>
               <Link href="/privacy-policy">Privacy Policy</Link>
             </li>
+            <li>
+              <Link href="/about">About Us</Link>
+            </li>
+            <li>
+              <Link href="/terms">Terms & Conditions</Link>
+            </li>
           </ul>
         </FooterSection>
         <FooterSection>
