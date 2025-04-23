@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Crop Flipkart PDF shipping labels from A4 to A6 online for free. Upload, auto-crop, preview, and download perfectly sized labels instantly. Improve your Flipkart shipping process.',
   keywords: ['Flipkart label cropper', 'PDF crop', 'A4 to A6', 'shipping label', 'Flipkart seller', 'crop PDF online', 'free tool', 'label cutter'],
   alternates: {
-    canonical: pageUrl,
+    canonical: '/flipkart-label',
   },
   openGraph: {
     title: 'Free Flipkart PDF Label Cropper (A4 to A6)',
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     //   },
     // ],
   },
+  metadataBase: new URL('https://pdfcrop.co.in'),
   // Basic Structured Data (JSON-LD)
   // You can enhance this further based on Schema.org guidelines
   // This script needs to be rendered in the component for client-side execution,

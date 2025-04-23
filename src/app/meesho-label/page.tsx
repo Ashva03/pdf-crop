@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Crop Meesho PDF shipping labels online for free. Simple tool to resize your labels accurately. Upload, auto-crop, preview, and download instantly. Perfect for Meesho sellers.',
   keywords: ['Meesho label cropper', 'PDF crop tool', 'shipping label', 'Meesho seller', 'crop PDF online', 'free label tool', 'resize PDF label'],
   alternates: {
-    canonical: pageUrl,
+    canonical: '/meesho-label',
   },
   openGraph: {
     title: 'Free Online Meesho PDF Label Cropper',
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     //   },
     // ],
   },
+  metadataBase: new URL('https://pdfcrop.co.in'),
   // Basic Structured Data (JSON-LD) - Placeholder
   // Consider adding JSON-LD via a script tag in the component or layout.
 };

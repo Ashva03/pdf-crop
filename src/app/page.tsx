@@ -8,6 +8,7 @@ import * as PDFLib from "pdf-lib";
 import Loading from "@/components/Loading";
 import PDFUpload from "@/components/PDFUpload";
 import MonetizationLink from "@/components/MonetizationLink";
+import { type Metadata } from 'next';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -451,6 +452,14 @@ const FeatureDescription = styled.p`
 if (typeof window !== "undefined") {
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 }
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://pdfcrop.co.in'),
+  alternates: {
+    canonical: '/',
+  },
+  // ... other metadata if exists ...
+};
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
