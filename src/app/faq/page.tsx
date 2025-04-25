@@ -7,7 +7,6 @@ const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background: #f2f4f4;
 `;
 
 const HeroSection = styled.section`
@@ -54,52 +53,6 @@ const SearchInput = styled.input`
   }
 `;
 
-const FAQSection = styled.section`
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-`;
-
-const FAQItem = styled.div`
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e5e7eb;
-
-  &:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-`;
-
-const Question = styled.button`
-  width: 100%;
-  text-align: left;
-  padding: 1rem;
-  background: #f8fafc;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1f2937;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background: #f1f5f9;
-  }
-`;
-
-const Answer = styled.div`
-  padding: 1rem;
-  color: #4b5563;
-  line-height: 1.6;
-  background: #f8fafc;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-`;
-
 const CategorySection = styled.div`
   margin-bottom: 2rem;
 `;
@@ -108,6 +61,111 @@ const CategoryTitle = styled.h2`
   color: #4f46e5;
   margin-bottom: 1rem;
   font-size: 1.5rem;
+`;
+
+const FAQSection = styled.section`
+  padding: 4rem 0;
+`;
+
+const FAQContainer = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+`;
+
+const FAQItem = styled.div`
+  margin-bottom: 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const FAQHeader = styled.button`
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+
+  h3 {
+    color: #4f46e5;
+    margin: 0;
+    font-size: 1.25rem;
+    transition: color 0.2s ease;
+  }
+
+  &:hover h3 {
+    color: #7c3aed;
+  }
+`;
+
+const FAQContent = styled.div<{ $isOpen: boolean }>`
+  padding: ${(props) => (props.$isOpen ? "0 2rem 1.5rem" : "0 2rem")};
+  max-height: ${(props) => (props.$isOpen ? "1000px" : "0")};
+  opacity: ${(props) => (props.$isOpen ? "1" : "0")};
+  visibility: ${(props) => (props.$isOpen ? "visible" : "hidden")};
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), opacity 0.2s ease,
+    visibility 0s ${(props) => (props.$isOpen ? "0s" : "0.4s")},
+    padding 0.2s ease;
+  overflow: hidden;
+  transform-origin: top;
+  transform: translateZ(0);
+  will-change: max-height, opacity, padding;
+
+  p {
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+    transition: transform 0.2s ease;
+    transform: ${(props) =>
+      props.$isOpen
+        ? "translateY(0) scale(1)"
+        : "translateY(-8px) scale(0.98)"};
+  }
+`;
+
+const FAQIcon = styled.span<{ $isOpen: boolean }>`
+  width: 24px;
+  height: 24px;
+  position: relative;
+  margin-left: 1rem;
+  flex-shrink: 0;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background: #4f46e5;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+
+  &::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%)
+      ${(props) =>
+        props.$isOpen ? "rotate(-90deg) scale(0)" : "rotate(0) scale(1)"};
+  }
 `;
 
 const faqs = [
@@ -175,15 +233,10 @@ const faqs = [
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [openQuestions, setOpenQuestions] = useState<{
-    [key: string]: boolean;
-  }>({});
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
   const toggleQuestion = (questionId: string) => {
-    setOpenQuestions((prev) => ({
-      ...prev,
-      [questionId]: !prev[questionId],
-    }));
+    setOpenQuestion((prev) => (prev === questionId ? null : questionId));
   };
 
   const filteredFAQs = faqs
@@ -198,42 +251,47 @@ export default function FAQPage() {
     .filter((category) => category.questions.length > 0);
 
   return (
-    <Container>
-      <HeroSection>
-        <Title>Frequently Asked Questions</Title>
-        <Description>
-          Find answers to common questions about PDF Cropper and its features.
-        </Description>
-      </HeroSection>
-
-      <SearchSection>
-        <SearchInput
-          type="text"
-          placeholder="Search FAQs..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          aria-label="Search FAQs"
-        />
-      </SearchSection>
-
-      <FAQSection>
-        {filteredFAQs.map((category, categoryIndex) => (
-          <CategorySection key={categoryIndex}>
-            <CategoryTitle>{category.category}</CategoryTitle>
-            {category.questions.map((faq, index) => {
-              const questionId = `${categoryIndex}-${index}`;
-              return (
-                <FAQItem key={questionId}>
-                  <Question onClick={() => toggleQuestion(questionId)}>
-                    {faq.question}
-                  </Question>
-                  {openQuestions[questionId] && <Answer>{faq.answer}</Answer>}
-                </FAQItem>
-              );
-            })}
-          </CategorySection>
-        ))}
-      </FAQSection>
-    </Container>
+    <div style={{ background: "#f2f4f4" }}>
+      <Container>
+        <HeroSection>
+          <Title>Frequently Asked Questions</Title>
+          <Description>
+            Find answers to common questions about PDF Cropper and its features.
+          </Description>
+        </HeroSection>
+        <SearchSection>
+          <SearchInput
+            type="text"
+            placeholder="Search FAQs..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            aria-label="Search FAQs"
+          />
+        </SearchSection>
+        <FAQSection>
+          <FAQContainer>
+            {filteredFAQs.map((category, categoryIndex) => (
+              <CategorySection key={categoryIndex}>
+                <CategoryTitle>{category.category}</CategoryTitle>
+                {category.questions.map((faq, index) => {
+                  const questionId = `${categoryIndex}-${index}`;
+                  return (
+                    <FAQItem key={questionId}>
+                      <FAQHeader onClick={() => toggleQuestion(questionId)}>
+                        <h3>{faq.question}</h3>
+                        <FAQIcon $isOpen={openQuestion === questionId} />
+                      </FAQHeader>
+                      <FAQContent $isOpen={openQuestion === questionId}>
+                        <p>{faq.answer}</p>
+                      </FAQContent>
+                    </FAQItem>
+                  );
+                })}
+              </CategorySection>
+            ))}
+          </FAQContainer>
+        </FAQSection>
+      </Container>
+    </div>
   );
 }
