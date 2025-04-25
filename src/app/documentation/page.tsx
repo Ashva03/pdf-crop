@@ -7,7 +7,6 @@ const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background: #f2f4f4;
 `;
 
 const HeroSection = styled.section`
@@ -119,64 +118,70 @@ const DocList = styled.ul`
 
 export default function DocumentationPage() {
   return (
-    <Container>
-      <HeroSection>
-        <Title>Documentation</Title>
-        <Description>
-          Comprehensive guides and technical documentation to help you get the
-          most out of PDF Cropper.
-        </Description>
-      </HeroSection>
+    <div style={{ background: "#f2f4f4" }}>
+      <Container>
+        <HeroSection>
+          <Title>Documentation</Title>
+          <Description>
+            Comprehensive guides and technical documentation to help you get the
+            most out of PDF Cropper.
+          </Description>
+        </HeroSection>
 
-      <SearchSection>
-        <SearchInput
-          type="text"
-          placeholder="Search documentation..."
-          aria-label="Search documentation"
-        />
-      </SearchSection>
+        <SearchSection>
+          <SearchInput
+            type="text"
+            placeholder="Search documentation..."
+            aria-label="Search documentation"
+          />
+        </SearchSection>
 
-      <DocumentationGrid>
-        <DocCard>
-          <h2>User Guide</h2>
-          <p>Step-by-step instructions for using PDF Cropper effectively:</p>
-          <DocList>
-            <li>Getting Started Guide</li>
-            <li>Basic Operations</li>
-            <li>Advanced Features</li>
-            <li>Troubleshooting</li>
-          </DocList>
-          <DocLink href="/documentation/user-guide">View User Guide →</DocLink>
-        </DocCard>
+        <DocumentationGrid>
+          <DocCard>
+            <h2>User Guide</h2>
+            <p>Step-by-step instructions for using PDF Cropper effectively:</p>
+            <DocList>
+              <li>Getting Started Guide</li>
+              <li>Basic Operations</li>
+              <li>Advanced Features</li>
+              <li>Troubleshooting</li>
+            </DocList>
+            <DocLink href="/documentation/user-guide">
+              View User Guide →
+            </DocLink>
+          </DocCard>
 
-        <DocCard>
-          <h2>Technical Documentation</h2>
-          <p>In-depth technical information for developers and power users:</p>
-          <DocList>
-            <li>API Reference</li>
-            <li>Integration Guide</li>
-            <li>Performance Optimization</li>
-            <li>Security Best Practices</li>
-          </DocList>
-          <DocLink href="/documentation/technical">
-            View Technical Docs →
-          </DocLink>
-        </DocCard>
+          <DocCard>
+            <h2>Technical Documentation</h2>
+            <p>
+              In-depth technical information for developers and power users:
+            </p>
+            <DocList>
+              <li>API Reference</li>
+              <li>Integration Guide</li>
+              <li>Performance Optimization</li>
+              <li>Security Best Practices</li>
+            </DocList>
+            <DocLink href="/documentation/technical">
+              View Technical Docs →
+            </DocLink>
+          </DocCard>
 
-        <DocCard>
-          <h2>Best Practices</h2>
-          <p>Tips and recommendations for optimal PDF cropping:</p>
-          <DocList>
-            <li>Quality Settings</li>
-            <li>Batch Processing</li>
-            <li>File Organization</li>
-            <li>Workflow Optimization</li>
-          </DocList>
-          <DocLink href="/documentation/best-practices">
-            View Best Practices →
-          </DocLink>
-        </DocCard>
-      </DocumentationGrid>
-    </Container>
+          <DocCard>
+            <h2>Best Practices</h2>
+            <p>Tips and recommendations for optimal PDF cropping:</p>
+            <DocList>
+              <li>Quality Settings</li>
+              <li>Batch Processing</li>
+              <li>File Organization</li>
+              <li>Workflow Optimization</li>
+            </DocList>
+            <DocLink href="/documentation/best-practices">
+              View Best Practices →
+            </DocLink>
+          </DocCard>
+        </DocumentationGrid>
+      </Container>
+    </div>
   );
 }

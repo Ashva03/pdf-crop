@@ -7,7 +7,6 @@ const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background: #f2f4f4;
 `;
 
 const HeroSection = styled.section`
@@ -143,138 +142,140 @@ const FeatureList = styled.ul`
 
 export default function TutorialsPage() {
   return (
-    <Container>
-      <HeroSection>
-        <Title>Video Tutorials & Guides</Title>
-        <Description>
-          Learn how to use PDF Cropper effectively with our comprehensive
-          tutorials and guides.
-        </Description>
-      </HeroSection>
+    <div style={{ backgroundColor: "#f2f4f4" }}>
+      <Container>
+        <HeroSection>
+          <Title>Video Tutorials & Guides</Title>
+          <Description>
+            Learn how to use PDF Cropper effectively with our comprehensive
+            tutorials and guides.
+          </Description>
+        </HeroSection>
 
-      <TutorialsGrid>
-        <TutorialCard>
-          <h2>Getting Started</h2>
-          <p>
-            Learn the basics of PDF Cropper and how to get started with your
-            first document.
-          </p>
-          <FeatureList>
-            <li>Uploading your first PDF</li>
-            <li>Basic cropping techniques</li>
-            <li>Saving and exporting</li>
-            <li>Understanding the interface</li>
-          </FeatureList>
-          <TutorialLink href="/tutorials/getting-started">
-            Start Learning →
-          </TutorialLink>
-        </TutorialCard>
-
-        <TutorialCard>
-          <h2>Advanced Features</h2>
-          <p>
-            Master advanced cropping techniques and features to enhance your
-            workflow.
-          </p>
-          <FeatureList>
-            <li>Batch processing</li>
-            <li>Custom templates</li>
-            <li>Quality settings</li>
-            <li>Advanced cropping tools</li>
-          </FeatureList>
-          <TutorialLink href="/tutorials/advanced-features">
-            Explore Features →
-          </TutorialLink>
-        </TutorialCard>
-
-        <TutorialCard>
-          <h2>Best Practices</h2>
-          <p>
-            Discover tips and tricks for optimal PDF cropping and workflow
-            efficiency.
-          </p>
-          <FeatureList>
-            <li>File organization</li>
-            <li>Quality optimization</li>
-            <li>Workflow automation</li>
-            <li>Common issues and solutions</li>
-          </FeatureList>
-          <TutorialLink href="/tutorials/best-practices">
-            Learn More →
-          </TutorialLink>
-        </TutorialCard>
-      </TutorialsGrid>
-
-      <CategoriesSection>
-        <CategoryTitle>Browse by Category</CategoryTitle>
-        <CategoryGrid>
-          <CategoryCard>
-            <h3>Basic Tutorials</h3>
-            <p>Essential guides for beginners and new users.</p>
+        <TutorialsGrid>
+          <TutorialCard>
+            <h2>Getting Started</h2>
+            <p>
+              Learn the basics of PDF Cropper and how to get started with your
+              first document.
+            </p>
             <FeatureList>
-              <li>
-                <TutorialLink href="/tutorials/getting-started">
-                  Getting Started
-                </TutorialLink>
-              </li>
-              <li>
-                <TutorialLink href="/tutorials/interface-overview">
-                  Interface Overview
-                </TutorialLink>
-              </li>
-              <li>
-                <TutorialLink href="/tutorials/basic-cropping">
-                  Basic Cropping
-                </TutorialLink>
-              </li>
+              <li>Uploading your first PDF</li>
+              <li>Basic cropping techniques</li>
+              <li>Saving and exporting</li>
+              <li>Understanding the interface</li>
             </FeatureList>
-          </CategoryCard>
+            <TutorialLink href="/tutorials/getting-started">
+              Start Learning →
+            </TutorialLink>
+          </TutorialCard>
 
-          <CategoryCard>
-            <h3>Advanced Features</h3>
-            <p>In-depth guides for power users.</p>
+          <TutorialCard>
+            <h2>Advanced Features</h2>
+            <p>
+              Master advanced cropping techniques and features to enhance your
+              workflow.
+            </p>
             <FeatureList>
-              <li>
-                <TutorialLink href="/tutorials/advanced-cropping">
-                  Advanced Cropping
-                </TutorialLink>
-              </li>
-              <li>
-                <TutorialLink href="/tutorials/batch-processing">
-                  Batch Processing
-                </TutorialLink>
-              </li>
-              <li>
-                <TutorialLink href="/tutorials/custom-templates">
-                  Custom Templates
-                </TutorialLink>
-              </li>
+              <li>Batch processing</li>
+              <li>Custom templates</li>
+              <li>Quality settings</li>
+              <li>Advanced cropping tools</li>
             </FeatureList>
-          </CategoryCard>
+            <TutorialLink href="/tutorials/advanced-features">
+              Explore Features →
+            </TutorialLink>
+          </TutorialCard>
 
-          <CategoryCard>
-            <h3>Quality & Output</h3>
-            <p>Guides for optimizing quality and output settings.</p>
+          <TutorialCard>
+            <h2>Best Practices</h2>
+            <p>
+              Discover tips and tricks for optimal PDF cropping and workflow
+              efficiency.
+            </p>
             <FeatureList>
-              <li>
-                <TutorialLink href="/tutorials/quality-settings">
-                  Quality Settings
-                </TutorialLink>
-              </li>
-              <li>
-                <TutorialLink href="/tutorials/output-formats">
-                  Output Formats
-                </TutorialLink>
-              </li>
-              <li>
-                <TutorialLink href="/tutorials/optimization">
-                  Optimization Tips
-                </TutorialLink>
-              </li>
+              <li>File organization</li>
+              <li>Quality optimization</li>
+              <li>Workflow automation</li>
+              <li>Common issues and solutions</li>
             </FeatureList>
-          </CategoryCard>
-        </CategoryGrid>
-      </CategoriesSection>
-    </Container>
+            <TutorialLink href="/tutorials/best-practices">
+              Learn More →
+            </TutorialLink>
+          </TutorialCard>
+        </TutorialsGrid>
+
+        <CategoriesSection>
+          <CategoryTitle>Browse by Category</CategoryTitle>
+          <CategoryGrid>
+            <CategoryCard>
+              <h3>Basic Tutorials</h3>
+              <p>Essential guides for beginners and new users.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/tutorials/getting-started">
+                    Getting Started
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/tutorials/interface-overview">
+                    Interface Overview
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/tutorials/basic-cropping">
+                    Basic Cropping
+                  </TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+
+            <CategoryCard>
+              <h3>Advanced Features</h3>
+              <p>In-depth guides for power users.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/tutorials/advanced-cropping">
+                    Advanced Cropping
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/tutorials/batch-processing">
+                    Batch Processing
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/tutorials/custom-templates">
+                    Custom Templates
+                  </TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+
+            <CategoryCard>
+              <h3>Quality & Output</h3>
+              <p>Guides for optimizing quality and output settings.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/tutorials/quality-settings">
+                    Quality Settings
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/tutorials/output-formats">
+                    Output Formats
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/tutorials/optimization">
+                    Optimization Tips
+                  </TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+          </CategoryGrid>
+        </CategoriesSection>
+      </Container>
+    </div>
   );
 }
