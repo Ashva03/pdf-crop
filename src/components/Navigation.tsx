@@ -49,9 +49,45 @@ const NavLinks = styled.div`
   display: flex;
   gap: 2rem;
   align-items: center;
+  position: relative;
 
   @media (max-width: 991px) {
     display: none;
+  }
+`;
+
+const DropdownMenu = styled.div`
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: linear-gradient(135deg, #5a52e8 0%, #8546ee 100%);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  z-index: 1001;
+  min-width: 150px;
+`;
+
+const DropdownItem = styled(Link)`
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`;
+
+const NavLinkContainer = styled.div`
+  position: relative;
+
+  &:hover ${DropdownMenu} {
+    display: block;
   }
 `;
 
@@ -78,9 +114,11 @@ const NavLink = styled(Link) <{ $active?: boolean }>`
 
   &:hover {
     opacity: 1;
-    &:after {
-      transform: scaleX(1);
-    }
+    ${(props) => !props.$active && `
+      &:after {
+        transform: scaleX(0);
+      }
+    `}
   }
 
   @media (max-width: 991px) {
@@ -104,6 +142,40 @@ const NavLink = styled(Link) <{ $active?: boolean }>`
   }
 `;
 
+const NavDropdownTrigger = styled.span <{ $active?: boolean }>`
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: ${(props) => (props.$active ? 1 : 0.8)};
+  position: relative;
+  padding: 0.5rem 0;
+  cursor: default;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+const MobileDropdownButton = styled.button<{ $active?: boolean }>`
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  text-align: left;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: ${(props) => (props.$active ? 1 : 0.8)};
+  font-size: inherit;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 const Hamburger = styled.div<{ isOpen: boolean }>`
   display: none;
   flex-direction: column;
@@ -124,6 +196,7 @@ const MobileNav = styled.div<{ isOpen: boolean }>`
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   padding: 1rem;
   gap: 1rem;
+  z-index: 999;
 
   @media (max-width: 991px) {
     display: ${(props) => (props.isOpen ? "flex" : "none")};
@@ -133,10 +206,28 @@ const MobileNav = styled.div<{ isOpen: boolean }>`
 export default function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isMobileConvertOpen, setIsMobileConvertOpen] = React.useState(false);
 
   const handleLinkClick = () => {
-    setIsOpen(false); // Close the mobile menu
+    setIsOpen(false);
+    setIsMobileConvertOpen(false);
   };
+
+  const handleMobileConvertToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsMobileConvertOpen(!isMobileConvertOpen);
+  };
+
+  const isConvertActive = [
+    "/images-to-pdf",
+    "/docs-to-pdf",
+    "/pdf-to-word",
+    "/pdf-to-jpg",
+    "/merge-pdf",
+    "/compress-pdf",
+  ].includes(pathname);
+
+  const isEditActive = pathname === "/edit-pdf";
 
   return (
     <Nav>
@@ -183,6 +274,38 @@ export default function Navigation() {
           >
             Snapdeal Label
           </NavLink>
+          <NavLinkContainer>
+            <NavDropdownTrigger $active={isConvertActive}>
+              PDF Convert
+            </NavDropdownTrigger>
+            <DropdownMenu>
+              <DropdownItem href="/images-to-pdf" onClick={handleLinkClick}>
+                Images to PDF
+              </DropdownItem>
+              <DropdownItem href="/docs-to-pdf" onClick={handleLinkClick}>
+                Docs to PDF
+              </DropdownItem>
+              <DropdownItem href="/pdf-to-word" onClick={handleLinkClick}>
+                PDF to Word
+              </DropdownItem>
+              <DropdownItem href="/pdf-to-jpg" onClick={handleLinkClick}>
+                PDF to JPG
+              </DropdownItem>
+              <DropdownItem href="/merge-pdf" onClick={handleLinkClick}>
+                Merge PDF
+              </DropdownItem>
+              <DropdownItem href="/compress-pdf" onClick={handleLinkClick}>
+                Compress PDF
+              </DropdownItem>
+            </DropdownMenu>
+          </NavLinkContainer>
+          <NavLink
+            href="/edit-pdf"
+            $active={isEditActive}
+            onClick={handleLinkClick}
+          >
+            Edit PDF
+          </NavLink>
           <NavLink
             href="/features"
             $active={pathname === "/features"}
@@ -223,6 +346,41 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           Snapdeal Label
+        </NavLink>
+        <MobileDropdownButton
+          onClick={handleMobileConvertToggle}
+          $active={isConvertActive}
+        >
+          PDF Convert {isMobileConvertOpen ? '▲' : '▼'}
+        </MobileDropdownButton>
+        {isMobileConvertOpen && (
+          <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '1.5rem', gap: '0.5rem' }}>
+            <NavLink href="/images-to-pdf" $active={pathname === "/images-to-pdf"} onClick={handleLinkClick}>
+              Images to PDF
+            </NavLink>
+            <NavLink href="/docs-to-pdf" $active={pathname === "/docs-to-pdf"} onClick={handleLinkClick}>
+              Docs to PDF
+            </NavLink>
+            <NavLink href="/pdf-to-word" $active={pathname === "/pdf-to-word"} onClick={handleLinkClick}>
+              PDF to Word
+            </NavLink>
+            <NavLink href="/pdf-to-jpg" $active={pathname === "/pdf-to-jpg"} onClick={handleLinkClick}>
+              PDF to JPG
+            </NavLink>
+            <NavLink href="/merge-pdf" $active={pathname === "/merge-pdf"} onClick={handleLinkClick}>
+              Merge PDF
+            </NavLink>
+            <NavLink href="/compress-pdf" $active={pathname === "/compress-pdf"} onClick={handleLinkClick}>
+              Compress PDF
+            </NavLink>
+          </div>
+        )}
+        <NavLink
+          href="/edit-pdf"
+          $active={isEditActive}
+          onClick={handleLinkClick}
+        >
+          Edit PDF
         </NavLink>
         <NavLink
           href="/features"
