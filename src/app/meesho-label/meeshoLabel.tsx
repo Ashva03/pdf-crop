@@ -5,6 +5,7 @@ import PDFCropper from "@/components/PDFCropper";
 import { meeshoLabelCropDimensions, platformConfigs, generateLabelCropDimensions, CropDimension } from "@/config/staticData";
 import styles from './meesho-label.module.css';
 import SiteDescription from "@/components/SiteDescription";
+import { MeeshoIcon } from "@/components/PlatformIcons";
 
 export default function MeeshoLabel() {
   const [cropDimensions, setCropDimensions] = useState<Record<number, CropDimension>>({});
@@ -17,7 +18,10 @@ export default function MeeshoLabel() {
   return (
     <div>
       <div className={styles.pageHeader_meesho}>
-        <h1>Meesho PDF Label Cropper</h1>
+        <h1>
+          <MeeshoIcon className={styles.platformIcon} width={36} height={36} />
+          Meesho PDF Label Cropper
+        </h1>
         <p>Easily crop your Meesho shipping labels online.</p>
       </div>
       {React.createElement('amp-ad', {

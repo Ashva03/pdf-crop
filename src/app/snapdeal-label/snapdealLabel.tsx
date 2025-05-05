@@ -5,6 +5,7 @@ import PDFCropper from "@/components/PDFCropper";
 import { CropDimension, snapdealLabelCropDimensions, platformConfigs, generateLabelCropDimensions } from "@/config/staticData";
 import styles from './snapdeal-label.module.css';
 import SiteDescription from "@/components/SiteDescription";
+import { SnapdealIcon } from "@/components/PlatformIcons";
 
 export default function SnapdealLabel() {
     const [cropDimensions, setCropDimensions] = useState<Record<number, CropDimension>>({});
@@ -19,7 +20,10 @@ export default function SnapdealLabel() {
         <div>
             {/* Platform-specific Header */}
             <div className={styles.pageHeader_snapdeal}>
-                <h1>Snapdeal Shipping Label Cropper</h1>
+                <h1>
+                    <SnapdealIcon className={styles.platformIcon} width={36} height={36} />
+                    Snapdeal Shipping Label Cropper
+                </h1>
                 <p>Quickly crop your Snapdeal PDF labels to the standard size.</p>
             </div>
             {React.createElement('amp-ad', {

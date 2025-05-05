@@ -5,6 +5,7 @@ import * as PDFLib from "pdf-lib";
 import styles from './amazon-label.module.css';
 import SiteDescription from "@/components/SiteDescription";
 import { Document, Page, pdfjs } from "react-pdf";
+import { AmazonIcon } from "@/components/PlatformIcons";
 
 // Initialize PDF.js worker on client side
 if (typeof window !== "undefined") {
@@ -446,8 +447,11 @@ export default function AmazonLabel() {
         <div>
             {/* Platform-specific Header */}
             <div className={styles.pageHeader_amazon}>
-                <h1>Amazon Shipping Label Cropper</h1>
-                <p>Crop your Amazon PDF labels to the correct size easily.</p>
+                <h1>
+                    <AmazonIcon className={styles.platformIcon} width={36} height={36} />
+                    Amazon Shipping Label Processor
+                </h1>
+                <p>Process your Amazon PDF labels and add SKU information easily.</p>
             </div>
 
             {/* File Selection UI */}
