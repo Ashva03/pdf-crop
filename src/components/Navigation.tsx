@@ -274,6 +274,13 @@ export default function Navigation() {
           >
             Snapdeal Label
           </NavLink>
+          <NavLink
+            href="/amazon-label"
+            $active={pathname === "/amazon-label"}
+            onClick={handleLinkClick}
+          >
+            Amazon Label
+          </NavLink>
           <NavLinkContainer>
             <NavDropdownTrigger $active={isConvertActive}>
               PDF Convert
@@ -346,6 +353,13 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           Snapdeal Label
+        </NavLink>
+        <NavLink
+          href="/amazon-label"
+          $active={pathname === "/amazon-label"}
+          onClick={handleLinkClick}
+        >
+          Amazon Label
         </NavLink>
         <MobileDropdownButton
           onClick={handleMobileConvertToggle}
