@@ -8,6 +8,10 @@ Allow: /flipkart-label
 Allow: /meesho-label
 Allow: /snapdeal-label
 Allow: /amazon-label
+Allow: /compress-pdf
+Allow: /merge-pdf
+Allow: /pdf-to-jpg
+Allow: /images-to-pdf
 Allow: /features
 Allow: /pricing
 Allow: /blog
