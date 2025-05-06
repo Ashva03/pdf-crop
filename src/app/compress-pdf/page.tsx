@@ -1,7 +1,318 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
-import { Upload, FileText, Loader2, Download, CheckCircle } from 'lucide-react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { Upload, FileText, Loader2, Download, CheckCircle, AlertTriangle } from 'lucide-react';
+import styled from 'styled-components';
+
+// Styled Components
+const Container = styled.main`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+`;
+
+const PageHeader = styled.div`
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='white' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/pattern%3E%3Cpattern id='dots' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='white' fill-opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3Crect width='100%25' height='100%25' fill='url(%23dots)'/%3E%3C/svg%3E");
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  
+  .disclaimer {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+  }
+`;
+
+const Card = styled.div`
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 2rem;
+`;
+
+const CardContent = styled.div`
+  padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+`;
+
+const DropZone = styled.div`
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+  margin-bottom: 1.5rem;
+  position: relative;
+  
+  &:hover {
+    border-color: #4f46e5;
+    background: #f5f5ff;
+  }
+  
+  .upload-icon {
+    color: #4f46e5;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+  }
+  
+  p.main-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+  }
+  
+  p.sub-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+`;
+
+const FileLabel = styled.div`
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  
+  .file-size {
+    color: #6b7280;
+    font-weight: normal;
+  }
+`;
+
+const CompressionOptions = styled.div`
+  margin-bottom: 2rem;
+  
+  h3 {
+    font-size: 1rem;
+    color: #4b5563;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .options-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+`;
+
+const OptionButton = styled.button<{ isActive: boolean }>`
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  background: ${props => props.isActive ? 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)' : '#f3f4f6'};
+  color: ${props => props.isActive ? 'white' : '#4b5563'};
+  border: ${props => props.isActive ? 'none' : '1px solid #d1d5db'};
+  box-shadow: ${props => props.isActive ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none'};
+  
+  &:hover {
+    transform: translateY(-2px);
+    background: ${props => props.isActive ? 'linear-gradient(135deg, #4338ca 0%, #6d28d9 100%)' : '#e5e7eb'};
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
+const Button = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  svg {
+    margin-right: 0.5rem;
+  }
+`;
+
+const PrimaryButton = styled(Button)`
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const ErrorAlert = styled.div`
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #ef4444;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+  
+  .error-icon {
+    margin-right: 0.75rem;
+    margin-top: 0.125rem;
+  }
+  
+  .error-content {
+    flex: 1;
+    
+    p:first-child {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+  }
+`;
+
+const ResultContainer = styled.div`
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+  
+  .success-icon {
+    color: #22c55e;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+  }
+  
+  h3 {
+    color: #166534;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .stats {
+    margin-bottom: 1.5rem;
+  }
+  
+  .stat-item {
+    margin-bottom: 0.5rem;
+    
+    span {
+      font-weight: 500;
+    }
+  }
+  
+  .reduction {
+    color: #16a34a;
+    font-weight: 600;
+  }
+  
+  .no-reduction {
+    color: #f59e0b;
+    font-style: italic;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+`;
 
 // Helper function to format bytes
 function formatBytes(bytes: number, decimals = 2): string {
@@ -94,7 +405,7 @@ export default function CompressPdfPage() {
     };
 
     // Cleanup object URL on component unmount or when result changes
-    React.useEffect(() => {
+    useEffect(() => {
         return () => {
             if (result?.downloadUrl) {
                 URL.revokeObjectURL(result.downloadUrl);
@@ -103,36 +414,38 @@ export default function CompressPdfPage() {
     }, [result]);
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-start p-4 sm:p-6 md:p-12 lg:p-24 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
-            <div className="z-10 max-w-3xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden my-8">
-                {/* Header Section */}
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 md:p-8">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white">Compress PDF</h1>
-                    <p className="text-center text-indigo-100 mt-2 text-sm md:text-base">Reduce the file size of your PDF documents.</p>
-                    <p className="text-center text-xs text-indigo-200 mt-1">(Note: Compression effectiveness varies. Advanced compression not guaranteed.)</p>
-                </div>
+        <Container>
+            <ContentWrapper>
+                <PageHeader>
+                    <h1>Compress PDF Files</h1>
+                    <p>Reduce the file size of your PDF documents for easier sharing and storage</p>
+                    <p className="disclaimer">(Compression effectiveness varies depending on the content of your PDF)</p>
+                </PageHeader>
 
-                <div className="p-6 sm:p-8 md:p-10">
-                    {/* File Input Area */}
-                    <div className="mb-6 md:mb-8">
-                        <label
-                            htmlFor="pdfInput"
-                            className="block text-lg font-semibold text-indigo-700 mb-4 text-center cursor-pointer"
-                        >
-                            {file ? `Selected: ${file.name} (${formatBytes(file.size)})` : 'Click or Drag to Upload PDF'}
-                        </label>
-                        <div
-                            className="relative border-2 border-dashed border-indigo-300 rounded-xl p-6 sm:p-8 md:p-10 text-center cursor-pointer hover:border-indigo-500 hover:bg-indigo-50 transition-all duration-300 ease-in-out group"
+                <Card>
+                    <CardContent>
+                        <h2>Upload PDF</h2>
+
+                        {file && (
+                            <FileLabel>
+                                Selected: <span>{file.name}</span> <span className="file-size">({formatBytes(file.size)})</span>
+                            </FileLabel>
+                        )}
+
+                        <DropZone
                             onDragOver={(e) => {
                                 e.preventDefault();
-                                e.currentTarget.classList.add('border-indigo-500', 'bg-indigo-50');
+                                e.currentTarget.style.borderColor = '#4f46e5';
+                                e.currentTarget.style.background = '#f5f5ff';
                             }}
                             onDragLeave={(e) => {
-                                e.currentTarget.classList.remove('border-indigo-500', 'bg-indigo-50');
+                                e.currentTarget.style.borderColor = '#d1d5db';
+                                e.currentTarget.style.background = '#f9fafb';
                             }}
                             onDrop={(e) => {
                                 e.preventDefault();
-                                e.currentTarget.classList.remove('border-indigo-500', 'bg-indigo-50');
+                                e.currentTarget.style.borderColor = '#d1d5db';
+                                e.currentTarget.style.background = '#f9fafb';
                                 if (e.dataTransfer.files && e.dataTransfer.files[0]) {
                                     handleFileChange(e.dataTransfer.files[0]);
                                 }
@@ -142,85 +455,138 @@ export default function CompressPdfPage() {
                                 type="file"
                                 id="pdfInputControl"
                                 accept="application/pdf"
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" // Input covers the area
+                                style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, cursor: 'pointer', top: 0, left: 0 }}
                                 onChange={(e) => handleFileChange(e.target.files ? e.target.files[0] : null)}
                             />
-                            <div className="flex flex-col items-center justify-center pointer-events-none">
-                                <Upload className="h-10 w-10 sm:h-12 sm:w-12 text-indigo-400 group-hover:text-indigo-600 transition-colors duration-300 mb-3 sm:mb-4" />
-                                <p className="text-sm text-gray-500">Drop your PDF here or click</p>
+                            <Upload className="upload-icon" />
+                            <p className="main-text">Drag & drop PDF file here</p>
+                            <p className="sub-text">or click to select file</p>
+                        </DropZone>
+
+                        <CompressionOptions>
+                            <h3>Compression Level</h3>
+                            <div className="options-container">
+                                {(['low', 'medium', 'high'] as CompressionLevel[]).map((level) => (
+                                    <OptionButton
+                                        key={level}
+                                        isActive={compressionLevel === level}
+                                        onClick={() => setCompressionLevel(level)}
+                                    >
+                                        {level.charAt(0).toUpperCase() + level.slice(1)}
+                                    </OptionButton>
+                                ))}
                             </div>
-                        </div>
-                    </div>
+                        </CompressionOptions>
 
-                    {/* Compression Level Options - Mostly illustrative for now */}
-                    <div className="mb-6 md:mb-8">
-                        <label className="block text-sm font-medium text-gray-700 mb-3 text-center sm:text-left">Compression Level (Illustrative)</label>
-                        <div className="flex flex-wrap justify-center gap-3">
-                            {(['low', 'medium', 'high'] as CompressionLevel[]).map((level) => (
-                                <button
-                                    key={level}
-                                    type="button"
-                                    onClick={() => setCompressionLevel(level)}
-                                    className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ease-in-out transform hover:scale-105 active:scale-95 shadow-sm ${compressionLevel === level ? 'bg-indigo-600 text-white ring-2 ring-offset-2 ring-indigo-500' : 'bg-gray-100 text-gray-800 hover:bg-gray-200 ring-1 ring-gray-300 hover:ring-gray-400'}`}
-                                >
-                                    {level.charAt(0).toUpperCase() + level.slice(1)}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
+                        {error && (
+                            <ErrorAlert>
+                                <AlertTriangle className="error-icon" size={20} />
+                                <div className="error-content">
+                                    <p>Error</p>
+                                    <p>{error}</p>
+                                </div>
+                            </ErrorAlert>
+                        )}
 
-
-                    {/* Error Message */}
-                    {error && (
-                        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md mb-6 shadow-sm" role="alert">
-                            <p className="font-bold">Error</p>
-                            <p>{error}</p>
-                        </div>
-                    )}
-
-                    {/* Compress Button / Loading Indicator */}
-                    <div className="text-center mt-8 sm:mt-10">
-                        <button
-                            onClick={handleCompressPdf}
-                            disabled={isLoading || !file}
-                            className="inline-flex items-center justify-center px-8 sm:px-10 py-3 sm:py-4 border border-transparent text-sm sm:text-base font-semibold rounded-lg shadow-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 disabled:transform-none"
-                        >
-                            {isLoading ? (
-                                <>
-                                    <Loader2 className="animate-spin -ml-1 mr-2 sm:mr-3 h-5 w-5" />
-                                    Compressing...
-                                </>
-                            ) : (
-                                <>
-                                    <FileText className="-ml-1 mr-1.5 sm:mr-2 h-5 w-5" />
-                                    Compress PDF
-                                </>
-                            )}
-                        </button>
-                    </div>
-
-                    {/* Result Display */}
-                    {result && (
-                        <div className="mt-10 p-6 bg-green-50 border border-green-200 rounded-lg shadow-sm text-center">
-                            <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                            <h3 className="text-lg font-semibold text-green-800 mb-3">Compression Complete!</h3>
-                            <p className="text-sm text-gray-700">Original Size: <span className="font-medium">{formatBytes(result.originalSize)}</span></p>
-                            <p className="text-sm text-gray-700 mb-4">Compressed Size: <span className="font-medium text-green-700">{formatBytes(result.compressedSize)}</span></p>
-                            <p className="text-xs text-gray-500 mb-5">({((1 - result.compressedSize / result.originalSize) * 100).toFixed(1)}% reduction)</p>
-                            {result.compressedSize >= result.originalSize && <p className="text-xs text-orange-600 mb-5">(Note: File size did not decrease. This can happen with already optimized PDFs.)</p>}
-                            <a
-                                href={result.downloadUrl}
-                                download={result.fileName}
-                                className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 border border-transparent text-base font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                        <ButtonGroup>
+                            <PrimaryButton
+                                onClick={handleCompressPdf}
+                                disabled={isLoading || !file}
                             >
-                                <Download className="-ml-1 mr-2 h-5 w-5" />
-                                Download Compressed PDF
-                            </a>
-                        </div>
-                    )}
+                                {isLoading ? (
+                                    <>
+                                        <Loader2 className="animate-spin" size={18} />
+                                        Compressing PDF...
+                                    </>
+                                ) : (
+                                    <>
+                                        <FileText size={18} />
+                                        Compress PDF
+                                    </>
+                                )}
+                            </PrimaryButton>
+                        </ButtonGroup>
 
-                </div>
-            </div>
-        </main>
+                        {result && (
+                            <ResultContainer>
+                                <CheckCircle className="success-icon" />
+                                <h3>Compression Complete!</h3>
+                                <div className="stats">
+                                    <div className="stat-item">Original Size: <span>{formatBytes(result.originalSize)}</span></div>
+                                    <div className="stat-item">Compressed Size: <span>{formatBytes(result.compressedSize)}</span></div>
+                                    <div className="reduction">
+                                        {((1 - result.compressedSize / result.originalSize) * 100).toFixed(1)}% reduction
+                                    </div>
+                                    {result.compressedSize >= result.originalSize && (
+                                        <div className="no-reduction">
+                                            Note: File size did not decrease. This can happen with already optimized PDFs.
+                                        </div>
+                                    )}
+                                </div>
+                                <PrimaryButton as="a" href={result.downloadUrl} download={result.fileName}>
+                                    <Download size={18} />
+                                    Download Compressed PDF
+                                </PrimaryButton>
+                            </ResultContainer>
+                        )}
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardContent>
+                        <h2>Why Compress PDF Files?</h2>
+                        <div style={{ color: '#4b5563', lineHeight: 1.6 }}>
+                            <p style={{ marginBottom: '1rem' }}>
+                                PDF compression reduces file size while maintaining document quality, offering numerous benefits:
+                            </p>
+                            <ul style={{ paddingLeft: '1.5rem', marginBottom: '1.5rem', listStyleType: 'disc' }}>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Easier Sharing</strong> - Send PDFs via email without hitting attachment size limits
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Faster Uploads/Downloads</strong> - Save time when transferring files online
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Reduced Storage</strong> - Save space on your device or cloud storage
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Improved Website Performance</strong> - Smaller PDFs load faster on websites
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Better User Experience</strong> - Faster loading and viewing on any device
+                                </li>
+                            </ul>
+
+                            <h3 style={{ fontSize: '1.25rem', marginTop: '2rem', marginBottom: '1rem', color: '#1f2937' }}>
+                                How Our PDF Compression Works
+                            </h3>
+                            <p style={{ marginBottom: '1rem' }}>
+                                Our compression tool uses advanced algorithms to reduce PDF file size while preserving the quality of your document:
+                            </p>
+                            <ol style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Upload Your PDF</strong> - Securely upload your PDF file through your browser
+                                </li>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Select Compression Level</strong> - Choose between low, medium, or high compression based on your needs
+                                </li>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Process the File</strong> - Our tool analyzes and compresses the PDF content and structure
+                                </li>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Download Result</strong> - Get your compressed PDF file with reduced size
+                                </li>
+                            </ol>
+                            <p style={{ marginBottom: '1rem' }}>
+                                This tool processes your files securely in your browser - your PDFs are never uploaded to our servers, ensuring complete privacy and security.
+                            </p>
+                            <p>
+                                <strong>Note:</strong> The effectiveness of compression depends on the content of your PDF. Files with many images or already optimized PDFs may see less reduction in size.
+                            </p>
+                        </div>
+                    </CardContent>
+                </Card>
+            </ContentWrapper>
+        </Container>
     );
 } 

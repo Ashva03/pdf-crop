@@ -4,279 +4,828 @@
 import React, { useState, useEffect } from 'react';
 // We need to load PDF.js in the client component
 import * as pdfjsLib from 'pdfjs-dist';
+import {
+  Upload,
+  FileText,
+  Download,
+  Loader,
+  Archive as ZipIcon,
+  ImageIcon,
+  AlertTriangle,
+  CheckCircle,
+  Info
+} from 'lucide-react';
+import styled from 'styled-components';
+
+// Styled Components
+const Container = styled.main`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+`;
+
+const PageHeader = styled.div`
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='white' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/pattern%3E%3Cpattern id='dots' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='white' fill-opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3Crect width='100%25' height='100%25' fill='url(%23dots)'/%3E%3C/svg%3E");
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const Card = styled.div`
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 2rem;
+`;
+
+const CardContent = styled.div`
+  padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+`;
+
+const DropZone = styled.label<{ $hasFile?: boolean }>`
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  
+  &:hover {
+    border-color: #4f46e5;
+    background: #f5f5ff;
+  }
+  
+  ${props => props.$hasFile && `
+    border-color: #10b981;
+    background: #ecfdf5;
+  `}
+  
+  .upload-icon {
+    color: #4f46e5;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    
+    ${props => props.$hasFile && `
+      color: #10b981;
+    `}
+  }
+  
+  p.main-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+    
+    ${props => props.$hasFile && `
+      color: #10b981;
+    `}
+  }
+  
+  p.file-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #10b981;
+    margin-bottom: 0.5rem;
+  }
+  
+  p.sub-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+`;
+
+const ProgressBar = styled.div`
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+  }
+`;
+
+const ProgressText = styled.p`
+  text-align: center;
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  
+  span {
+    font-weight: 600;
+    color: #4f46e5;
+  }
+`;
+
+const Button = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  svg {
+    margin-right: 0.5rem;
+  }
+`;
+
+const PrimaryButton = styled(Button)`
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+  }
+`;
+
+const SecondaryButton = styled(Button)`
+  background: white;
+  color: #4f46e5;
+  border: 1px solid #e5e7eb;
+  
+  &:hover:not(:disabled) {
+    border-color: #4f46e5;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const ImagesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+`;
+
+const ImageCard = styled.div`
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: white;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-wrapper {
+    width: 100%;
+    padding-top: 75%; /* 4:3 aspect ratio */
+    position: relative;
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+    
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 0.5rem;
+    }
+  }
+  
+  .image-info {
+    padding: 0.75rem;
+    
+    .page-number {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #4b5563;
+      margin-bottom: 0.25rem;
+    }
+    
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #4f46e5;
+      font-weight: 500;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+      
+      svg {
+        width: 14px;
+        height: 14px;
+        margin-right: 0.25rem;
+      }
+    }
+  }
+`;
+
+const InfoAlert = styled.div`
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  margin-bottom: 1.5rem;
+  
+  .info-icon {
+    color: #0ea5e9;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+  
+  .info-content {
+    flex: 1;
+    
+    p:first-child {
+      font-weight: 600;
+      color: #0369a1;
+      margin-bottom: 0.25rem;
+    }
+    
+    p:last-child {
+      color: #0c4a6e;
+      font-size: 0.875rem;
+    }
+  }
+`;
+
+const ErrorAlert = styled.div`
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  margin-bottom: 1.5rem;
+  
+  .error-icon {
+    color: #ef4444;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+  
+  .error-content {
+    flex: 1;
+    
+    p:first-child {
+      font-weight: 600;
+      color: #b91c1c;
+      margin-bottom: 0.25rem;
+    }
+    
+    p:last-child {
+      color: #7f1d1d;
+      font-size: 0.875rem;
+    }
+  }
+`;
+
+const SuccessAlert = styled.div`
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  margin-bottom: 1.5rem;
+  
+  .success-icon {
+    color: #10b981;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+  
+  .success-content {
+    flex: 1;
+    
+    p:first-child {
+      font-weight: 600;
+      color: #047857;
+      margin-bottom: 0.25rem;
+    }
+    
+    p:last-child {
+      color: #065f46;
+      font-size: 0.875rem;
+    }
+  }
+`;
 
 export default function PdfToJpgPage() {
-    const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [isConverting, setIsConverting] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
-    const [jpgUrls, setJpgUrls] = useState<string[]>([]);
-    const [progress, setProgress] = useState<{ current: number, total: number } | null>(null);
+  // Set worker path for pdf.js
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
-    // Set up the PDF.js worker
-    useEffect(() => {
-        // This only runs in the browser, not during SSR
-        if (typeof window !== 'undefined') {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
-        }
-    }, []);
+  const [file, setFile] = useState<File | null>(null);
+  const [converting, setConverting] = useState(false);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [zipUrl, setZipUrl] = useState<string | null>(null);
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setError(null);
-        setJpgUrls([]);
-        setProgress(null);
-
-        const file = event.target.files?.[0];
-        if (file && file.type === 'application/pdf') {
-            setSelectedFile(file);
-        } else {
-            setSelectedFile(null);
-            setError('Please select a valid PDF file.');
-        }
+  // Cleanup URLs when component unmounts
+  useEffect(() => {
+    return () => {
+      // Revoke URLs to prevent memory leaks
+      imageUrls.forEach(url => URL.revokeObjectURL(url));
+      if (zipUrl) URL.revokeObjectURL(zipUrl);
     };
+  }, [imageUrls, zipUrl]);
 
-    // Function to convert PDF to JPG on the client side
-    const convertPdfToJpg = async (file: File): Promise<string[]> => {
-        const urls: string[] = [];
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    setErrorMessage(null);
 
-        try {
-            // Read the file as an ArrayBuffer
-            const arrayBuffer = await file.arrayBuffer();
+    if (files && files.length > 0) {
+      const selectedFile = files[0];
 
-            // Load the PDF document
-            const pdf = await pdfjsLib.getDocument(new Uint8Array(arrayBuffer)).promise;
+      if (selectedFile.type !== 'application/pdf') {
+        setErrorMessage('Please select a valid PDF file.');
+        return;
+      }
 
-            // Get the total number of pages
-            const totalPages = pdf.numPages;
-            setProgress({ current: 0, total: totalPages });
+      // Clear previous results
+      imageUrls.forEach(url => URL.revokeObjectURL(url));
+      if (zipUrl) URL.revokeObjectURL(zipUrl);
 
-            // Process each page
-            for (let i = 1; i <= totalPages; i++) {
-                setProgress({ current: i, total: totalPages });
+      setFile(selectedFile);
+      setImageUrls([]);
+      setZipUrl(null);
+    }
+  };
 
-                // Get the page
-                const page = await pdf.getPage(i);
+  const convertPdfToJpg = async (file: File): Promise<string[]> => {
+    try {
+      const fileArrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: fileArrayBuffer }).promise;
 
-                // Set scale for better resolution
-                const viewport = page.getViewport({ scale: 1.5 });
+      setPageCount(pdf.numPages);
+      const urls: string[] = [];
 
-                // Create a canvas for rendering
-                const canvas = document.createElement('canvas');
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
+      for (let i = 1; i <= pdf.numPages; i++) {
+        setCurrentPage(i);
 
-                // Get the rendering context
-                const context = canvas.getContext('2d');
-                if (!context) throw new Error('Could not get canvas context');
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale: 1.5 });
 
-                // Render the page
-                await page.render({
-                    canvasContext: context,
-                    viewport: viewport
-                }).promise;
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d')!;
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
 
-                // Convert canvas to JPG URL
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-                urls.push(dataUrl);
-            }
+        await page.render({
+          canvasContext: context,
+          viewport: viewport
+        }).promise;
 
-            return urls;
-        } catch (error) {
-            console.error('Error converting PDF to JPG:', error);
-            throw error;
+        // Convert to jpg
+        const imageUrl = canvas.toDataURL('image/jpeg', 0.8);
+
+        // Convert data URL to blob for better memory management
+        const blob = await (await fetch(imageUrl)).blob();
+        const objectUrl = URL.createObjectURL(blob);
+        urls.push(objectUrl);
+      }
+
+      return urls;
+    } catch (error) {
+      console.error('Error converting PDF to JPG:', error);
+      throw new Error('Failed to convert PDF to JPG. Please try a different PDF file.');
+    }
+  };
+
+  const handleConvert = async () => {
+    if (!file) return;
+
+    setConverting(true);
+    setErrorMessage(null);
+    setCurrentPage(0);
+    setImageUrls([]);
+    setZipUrl(null);
+
+    try {
+      const urls = await convertPdfToJpg(file);
+      setImageUrls(urls);
+
+      // Create zip file for bulk download
+      if (urls.length > 1) {
+        const JSZip = (await import('jszip')).default;
+        const zip = new JSZip();
+
+        // Fetch each image and add to zip
+        for (let i = 0; i < urls.length; i++) {
+          const blob = await fetch(urls[i]).then(r => r.blob());
+          zip.file(`page_${i + 1}.jpg`, blob);
         }
-    };
 
-    const handleConvert = async () => {
-        if (!selectedFile) {
-            setError('Please select a PDF file first.');
-            return;
-        }
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        const zipUrl = URL.createObjectURL(zipBlob);
+        setZipUrl(zipUrl);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage('An unexpected error occurred during conversion.');
+      }
+    } finally {
+      setConverting(false);
+    }
+  };
 
-        setIsConverting(true);
-        setError(null);
-        setJpgUrls([]);
-        setProgress(null);
+  const handleDownloadAll = async () => {
+    if (zipUrl) {
+      const link = document.createElement('a');
+      link.href = zipUrl;
+      link.download = `${file?.name.replace('.pdf', '') || 'pdf'}_images.zip`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else if (imageUrls.length === 1) {
+      // If there's only one image, download it directly
+      const link = document.createElement('a');
+      link.href = imageUrls[0];
+      link.download = `${file?.name.replace('.pdf', '') || 'pdf'}_page_1.jpg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
 
-        try {
-            // Let the server know we're processing a file (optional, can be removed)
-            const formData = new FormData();
-            formData.append('pdfFile', selectedFile);
+  return (
+    <Container>
+      <ContentWrapper>
+        <PageHeader>
+          <h1>PDF to JPG Converter</h1>
+          <p>Convert PDF documents to high-quality JPG images</p>
+        </PageHeader>
 
-            await fetch('/api/pdf-to-jpg', {
-                method: 'POST',
-                body: formData,
-            });
+        <Card>
+          <CardContent>
+            <h2>Upload PDF</h2>
 
-            // Process the PDF on the client side
-            const urls = await convertPdfToJpg(selectedFile);
-            setJpgUrls(urls);
+            <DropZone $hasFile={!!file}>
+              <input
+                type="file"
+                accept=".pdf,application/pdf"
+                onChange={handleFileChange}
+              />
+              {file ? (
+                <>
+                  <FileText className="upload-icon" />
+                  <p className="file-name">{file.name}</p>
+                  <p className="sub-text">Click to change file</p>
+                </>
+              ) : (
+                <>
+                  <Upload className="upload-icon" />
+                  <p className="main-text">Drag & drop your PDF here</p>
+                  <p className="sub-text">or click to select a file</p>
+                </>
+              )}
+            </DropZone>
 
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'An unknown error occurred.');
-            console.error('Conversion error:', err);
-        } finally {
-            setIsConverting(false);
-            setProgress(null);
-        }
-    };
-
-    // Function to download all images as ZIP
-    const handleDownloadAll = async () => {
-        if (jpgUrls.length === 0) return;
-
-        try {
-            setIsConverting(true);
-
-            // We need to install jszip: yarn add jszip
-            // Dynamic import JSZip (only loaded when needed)
-            const JSZip = (await import('jszip')).default;
-            const zip = new JSZip();
-
-            // Add each image to the ZIP
-            jpgUrls.forEach((url, index) => {
-                // Convert data URL to blob
-                const dataUrlParts = url.split(',');
-                const contentType = dataUrlParts[0].split(':')[1].split(';')[0];
-                const byteString = atob(dataUrlParts[1]);
-
-                const arrayBuffer = new ArrayBuffer(byteString.length);
-                const uint8Array = new Uint8Array(arrayBuffer);
-
-                for (let i = 0; i < byteString.length; i++) {
-                    uint8Array[i] = byteString.charCodeAt(i);
-                }
-
-                const blob = new Blob([arrayBuffer], { type: contentType });
-                zip.file(`page_${index + 1}.jpg`, blob);
-            });
-
-            // Generate ZIP file
-            const zipBlob = await zip.generateAsync({ type: 'blob' });
-
-            // Create download link
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(zipBlob);
-            link.download = 'converted_images.zip';
-            link.click();
-
-        } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to create ZIP file.');
-            console.error('ZIP creation error:', err);
-        } finally {
-            setIsConverting(false);
-        }
-    };
-
-    return (
-        <main className="flex min-h-screen flex-col items-center p-8 md:p-24 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex mb-8">
-                {/* Optional: Keep or remove header elements */}
-            </div>
-
-            <div className="w-full max-w-2xl bg-white p-8 rounded-xl shadow-lg">
-                <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">PDF to JPG Converter</h1>
-                <p className="text-center text-gray-600 mb-8">Upload your PDF file and convert it into JPG images quickly and easily.</p>
-
-                <div className="mb-6">
-                    <label
-                        htmlFor="pdf-upload"
-                        className={`flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${selectedFile ? 'border-green-400 bg-green-50' : 'border-gray-300 hover:border-indigo-400 hover:bg-indigo-50'
-                            }`}
-                    >
-                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                            <svg className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                            <p className="mb-2 text-sm text-gray-500">
-                                {selectedFile ? (
-                                    <span className="font-semibold text-green-600">{selectedFile.name}</span>
-                                ) : (
-                                    <>
-                                        <span className="font-semibold">Click to upload</span> or drag and drop
-                                    </>
-                                )}
-                            </p>
-                            <p className="text-xs text-gray-500">PDF only (MAX. 50MB)</p>
-                        </div>
-                        <input
-                            id="pdf-upload"
-                            type="file"
-                            className="hidden"
-                            accept="application/pdf"
-                            onChange={handleFileChange}
-                        />
-                    </label>
+            {errorMessage && (
+              <ErrorAlert>
+                <AlertTriangle className="error-icon" size={20} />
+                <div className="error-content">
+                  <p>Error</p>
+                  <p>{errorMessage}</p>
                 </div>
+              </ErrorAlert>
+            )}
 
-                {error && (
-                    <div className="mb-6 p-3 bg-red-100 border border-red-400 text-red-700 rounded text-center">
-                        {error}
-                    </div>
-                )}
+            <InfoAlert>
+              <Info className="info-icon" size={20} />
+              <div className="info-content">
+                <p>Secure Conversion</p>
+                <p>Your PDF is processed entirely in your browser. Files are never uploaded to our servers, ensuring complete privacy.</p>
+              </div>
+            </InfoAlert>
 
-                {progress && progress.current > 0 && (
-                    <div className="mb-6">
-                        <div className="w-full bg-gray-200 rounded-full h-2.5">
-                            <div
-                                className="bg-indigo-600 h-2.5 rounded-full"
-                                style={{ width: `${(progress.current / progress.total) * 100}%` }}
-                            ></div>
-                        </div>
-                        <p className="text-center text-sm text-gray-600 mt-2">
-                            Converting page {progress.current} of {progress.total}
-                        </p>
-                    </div>
-                )}
+            {converting && (
+              <>
+                <ProgressBar>
+                  <div
+                    className="progress-fill"
+                    style={{
+                      width: `${pageCount ? (currentPage / pageCount) * 100 : 0}%`
+                    }}
+                  />
+                </ProgressBar>
+                <ProgressText>
+                  Converting page <span>{currentPage}</span> of <span>{pageCount || '...'}</span>
+                </ProgressText>
+              </>
+            )}
 
-                <button
-                    onClick={handleConvert}
-                    disabled={!selectedFile || isConverting}
-                    className={`w-full py-3 px-4 text-lg font-semibold rounded-lg text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${!selectedFile || isConverting
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500'
-                        }`}
+            <PrimaryButton
+              disabled={!file || converting}
+              onClick={handleConvert}
+            >
+              {converting ? (
+                <>
+                  <Loader className="animate-spin" />
+                  Converting...
+                </>
+              ) : (
+                <>
+                  <ImageIcon />
+                  Convert to JPG
+                </>
+              )}
+            </PrimaryButton>
+          </CardContent>
+        </Card>
+
+        {imageUrls.length > 0 && (
+          <Card>
+            <CardContent>
+              <h2>Converted Images</h2>
+
+              <SuccessAlert>
+                <CheckCircle className="success-icon" size={20} />
+                <div className="success-content">
+                  <p>Conversion Complete</p>
+                  <p>Successfully converted {imageUrls.length} page{imageUrls.length !== 1 ? 's' : ''} to JPG format.</p>
+                </div>
+              </SuccessAlert>
+
+              <ButtonGroup style={{ marginBottom: '2rem' }}>
+                <PrimaryButton onClick={handleDownloadAll}>
+                  {imageUrls.length > 1 ? (
+                    <>
+                      <ZipIcon />
+                      Download All as ZIP
+                    </>
+                  ) : (
+                    <>
+                      <Download />
+                      Download JPG
+                    </>
+                  )}
+                </PrimaryButton>
+                <SecondaryButton
+                  onClick={() => {
+                    // Reset for a new conversion
+                    setFile(null);
+                    setImageUrls([]);
+                    setZipUrl(null);
+
+                    // Clear file input
+                    const input = document.querySelector('input[type="file"]') as HTMLInputElement;
+                    if (input) input.value = '';
+                  }}
                 >
-                    {isConverting ? (
-                        <div className="flex items-center justify-center">
-                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            Converting...
-                        </div>
-                    ) : (
-                        'Convert to JPG'
-                    )}
-                </button>
+                  <Upload />
+                  Convert Another PDF
+                </SecondaryButton>
+              </ButtonGroup>
 
-                {/* Results Area */}
-                {jpgUrls.length > 0 && (
-                    <div className="mt-10">
-                        <h2 className="text-2xl font-semibold text-center mb-6 text-gray-700">Conversion Results</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {jpgUrls.map((url, index) => (
-                                <div key={index} className="border rounded-lg overflow-hidden shadow-sm">
-                                    <img src={url} alt={`Page ${index + 1}`} className="w-full h-auto object-contain" />
-                                    <a
-                                        href={url}
-                                        download={`page_${index + 1}.jpg`}
-                                        className="block text-center py-2 bg-gray-100 hover:bg-gray-200 text-sm text-indigo-700 font-medium transition-colors"
-                                    >
-                                        Download Page {index + 1}
-                                    </a>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="mt-6 text-center">
-                            <button
-                                onClick={handleDownloadAll}
-                                disabled={isConverting}
-                                className={`py-2 px-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${isConverting ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            >
-                                Download All as ZIP
-                            </button>
-                        </div>
+              <ImagesGrid>
+                {imageUrls.map((url, index) => (
+                  <ImageCard key={index}>
+                    <div className="image-wrapper">
+                      <img src={url} alt={`Page ${index + 1}`} />
                     </div>
-                )}
+                    <div className="image-info">
+                      <p className="page-number">Page {index + 1}</p>
+                      <a
+                        href={url}
+                        download={`${file?.name.replace('.pdf', '') || 'pdf'}_page_${index + 1}.jpg`}
+                        className="download-link"
+                      >
+                        <Download size={14} />
+                        Download
+                      </a>
+                    </div>
+                  </ImageCard>
+                ))}
+              </ImagesGrid>
+            </CardContent>
+          </Card>
+        )}
+
+        <Card>
+          <CardContent>
+            <h2>How to Convert PDF to JPG</h2>
+            <div style={{ color: '#4b5563', lineHeight: 1.6 }}>
+              <p style={{ marginBottom: '1rem' }}>
+                Converting PDF documents to JPG images makes them easier to share, embed, and use in various applications. Follow these simple steps:
+              </p>
+              <ol style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <strong>Upload Your PDF</strong> - Drag and drop or click to select the PDF file you want to convert.
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <strong>Convert to JPG</strong> - Click the "Convert to JPG" button and wait while each page is processed.
+                </li>
+                <li style={{ marginBottom: '0.75rem' }}>
+                  <strong>Download Images</strong> - Download all pages as a ZIP file or individual pages as needed.
+                </li>
+              </ol>
+              <p style={{ marginBottom: '1rem' }}>
+                This tool processes your files securely in your browser - your PDF is never uploaded to our servers, ensuring complete privacy.
+              </p>
+
+              <h3 style={{ fontSize: '1.25rem', marginTop: '2rem', marginBottom: '1rem', color: '#1f2937' }}>
+                Why Convert PDF to JPG?
+              </h3>
+              <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem', listStyleType: 'disc' }}>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Universal Compatibility</strong> - JPG files are viewable on virtually all devices and platforms without special software
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Easier Sharing</strong> - JPG images are easier to share on social media, messaging apps, and email
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Web Publishing</strong> - Use in websites, blogs, and online platforms that may not support PDF embedding
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Printing Options</strong> - Some printing services prefer JPG files over PDF format
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Image Editing</strong> - Extract and edit specific pages or elements from PDF documents
+                </li>
+              </ul>
+
+              <h3 style={{ fontSize: '1.25rem', marginTop: '2rem', marginBottom: '1rem', color: '#1f2937' }}>
+                Common Use Cases
+              </h3>
+              <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem', listStyleType: 'disc' }}>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Document Sharing</strong> - Convert reports, presentations, and documents for easier sharing
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Image Extraction</strong> - Extract images, diagrams, and charts from PDF documents
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Digital Marketing</strong> - Create visual content for social media from PDF resources
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>E-commerce</strong> - Convert product catalogs to images for online stores
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  <strong>Archiving</strong> - Create image backups of important PDF documents
+                </li>
+              </ul>
+
+              <h3 style={{ fontSize: '1.25rem', marginTop: '2rem', marginBottom: '1rem', color: '#1f2937' }}>
+                Technical Information
+              </h3>
+              <p style={{ marginBottom: '1rem' }}>
+                Our PDF to JPG converter maintains high image quality while optimizing file size. The conversion process:
+              </p>
+              <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem', listStyleType: 'disc' }}>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  Renders each PDF page with 1.5x scale for crisp image quality
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  Converts to JPG format with 80% quality setting for optimal file size
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  Preserves colors, text sharpness, and image details from the original document
+                </li>
+                <li style={{ marginBottom: '0.5rem' }}>
+                  Processes multi-page PDFs with accurate page order preservation
+                </li>
+              </ul>
+              <p>
+                For documents with many pages, the ZIP download option provides a convenient way to manage all the converted images in a single file.
+              </p>
             </div>
-        </main>
-    );
+          </CardContent>
+        </Card>
+      </ContentWrapper>
+    </Container>
+  );
 } 

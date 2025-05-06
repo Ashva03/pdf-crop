@@ -8,9 +8,9 @@ import {
     Loader2,
     Download,
     FileText,
-    Layers, // Icon for Merge
+    Layers,
     AlertTriangle,
-    Printer // Added Printer icon
+    Printer
 } from 'lucide-react';
 import {
     DndContext,
@@ -25,10 +25,344 @@ import {
     arrayMove,
     SortableContext,
     sortableKeyboardCoordinates,
-    verticalListSortingStrategy, // Use vertical strategy for list
+    verticalListSortingStrategy,
     useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import styled from 'styled-components';
+
+// Styled Components
+const Container = styled.main`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+`;
+
+const PageHeader = styled.div`
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='white' stroke-width='0.5' stroke-opacity='0.2'/%3E%3C/pattern%3E%3Cpattern id='dots' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1.5' fill='white' fill-opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3Crect width='100%25' height='100%25' fill='url(%23dots)'/%3E%3C/svg%3E");
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+  
+  p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+`;
+
+const Card = styled.div`
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 2rem;
+`;
+
+const CardContent = styled.div`
+  padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+`;
+
+const DropZone = styled.div`
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+  margin-bottom: 1.5rem;
+  position: relative;
+  
+  &:hover {
+    border-color: #4f46e5;
+    background: #f5f5ff;
+  }
+  
+  .upload-icon {
+    color: #4f46e5;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+  }
+  
+  p.main-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+  }
+  
+  p.sub-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+`;
+
+const FileListContainer = styled.div`
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: #f9fafb;
+  margin-bottom: 2rem;
+  
+  h3 {
+    font-size: 1.2rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .files-container {
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+`;
+
+const SortableItemWrapper = styled.div<{ isDragging: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: white;
+  margin-bottom: 0.5rem;
+  box-shadow: ${props => props.isDragging ? '0 4px 6px rgba(0, 0, 0, 0.1)' : '0 1px 3px rgba(0, 0, 0, 0.05)'};
+  border: 1px solid ${props => props.isDragging ? '#4f46e5' : '#e5e7eb'};
+  transform: ${props => props.isDragging ? 'scale(1.02)' : 'scale(1)'};
+  z-index: ${props => props.isDragging ? '10' : 'auto'};
+  opacity: ${props => props.isDragging ? '0.8' : '1'};
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .drag-handle {
+    padding: 0.375rem;
+    color: #6b7280;
+    cursor: grab;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+    
+    &:active {
+      cursor: grabbing;
+    }
+  }
+  
+  .file-icon {
+    color: #ef4444;
+    margin-right: 0.75rem;
+  }
+  
+  .file-info {
+    flex: 1;
+    min-width: 0;
+    
+    .file-name {
+      font-weight: 500;
+      color: #1f2937;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .file-size {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+  }
+  
+  .remove-button {
+    margin-left: 0.5rem;
+    padding: 0.375rem;
+    color: #9ca3af;
+    border-radius: 50%;
+    
+    &:hover {
+      background: #fee2e2;
+      color: #ef4444;
+    }
+  }
+`;
+
+const Button = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  svg {
+    margin-right: 0.5rem;
+  }
+`;
+
+const PrimaryButton = styled(Button)`
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+  }
+`;
+
+const SecondaryButton = styled(Button)`
+  background: white;
+  color: #4f46e5;
+  border: 1px solid #4f46e5;
+  
+  &:hover:not(:disabled) {
+    background: #f5f5ff;
+  }
+`;
+
+const TertiaryButton = styled(Button)`
+  background: white;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  
+  &:hover:not(:disabled) {
+    background: #f9fafb;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const ErrorAlert = styled.div`
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #ef4444;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+  
+  .error-icon {
+    margin-right: 0.75rem;
+    margin-top: 0.125rem;
+  }
+  
+  .error-content {
+    flex: 1;
+    
+    p:first-child {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+  }
+`;
+
+const PDFPreviewContainer = styled.div`
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f3f4f6;
+  height: 70vh;
+  margin-bottom: 2rem;
+  
+  iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 // Helper function to format bytes (can be moved to a utils file)
 function formatBytes(bytes: number, decimals = 2): string {
@@ -57,35 +391,29 @@ function SortableFileItem({ id, pdfFile, onDelete }: { id: string; pdfFile: PdfF
 
     const style = {
         transform: CSS.Transform.toString(transform),
-        transition: transition || 'transform 0.2s ease', // Add a default transition
-        zIndex: isDragging ? 10 : 'auto',
-        opacity: isDragging ? 0.7 : 1,
+        transition: transition || 'transform 0.2s ease',
     };
 
     return (
-        <div
-            ref={setNodeRef}
-            style={style}
-            className={`flex items-center justify-between p-3 pl-2 border rounded-lg shadow-sm bg-white mb-2 transition-shadow duration-200 ${isDragging ? 'ring-2 ring-indigo-400 shadow-md' : 'border-gray-200 hover:shadow-md hover:border-gray-300'}`}
-        >
-            <div className="flex items-center flex-grow min-w-0"> {/* Allow text to truncate */}
-                <div {...attributes} {...listeners} className="p-1.5 text-gray-500 hover:text-gray-800 cursor-grab mr-2 touch-none rounded-md hover:bg-gray-100">
-                    <GripVertical size={20} />
+        <SortableItemWrapper ref={setNodeRef} style={style} isDragging={isDragging}>
+            <div className="flex items-center flex-grow min-w-0">
+                <div {...attributes} {...listeners} className="drag-handle">
+                    <GripVertical size={18} />
                 </div>
-                <FileText className="h-6 w-6 text-red-500 mr-3 flex-shrink-0" />
-                <div className="flex-grow min-w-0"> {/* Allow text to truncate */}
-                    <p className="text-sm font-medium text-gray-900 truncate" title={pdfFile.file.name}>{pdfFile.file.name}</p>
-                    <p className="text-xs text-gray-500">{formatBytes(pdfFile.file.size)}</p>
+                <FileText className="file-icon" size={20} />
+                <div className="file-info">
+                    <div className="file-name" title={pdfFile.file.name}>{pdfFile.file.name}</div>
+                    <div className="file-size">{formatBytes(pdfFile.file.size)}</div>
                 </div>
             </div>
             <button
                 onClick={() => onDelete(id)}
-                className="ml-4 p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-full flex-shrink-0"
+                className="remove-button"
                 aria-label="Remove file"
             >
                 <X size={18} />
             </button>
-        </div>
+        </SortableItemWrapper>
     );
 }
 // --- End Sortable Item ---
@@ -131,9 +459,7 @@ export default function MergePdfPage() {
     );
 
     // Define handleMergePdfs *before* handleDragEnd which depends on it
-    const handleMergePdfs = useCallback(async (/* currentFiles?: PdfFile[] */) => {
-        // Note: Removing direct file list passing for simplicity with state closure
-        // const filesToMerge = currentFiles || files;
+    const handleMergePdfs = useCallback(async () => {
         const filesToMerge = files; // Rely on the current `files` state
 
         if (filesToMerge.length < 2) {
@@ -201,7 +527,7 @@ export default function MergePdfPage() {
         }
     }, [files, mergedPdfResult]); // Remove handleMergePdfs from here
 
-    // --- Page Deletion (Keep existing) ---
+    // --- Page Deletion ---
     const handleDeleteFile = useCallback((idToRemove: string) => {
         setFiles(prevFiles => {
             const updatedFiles = prevFiles.filter(f => f.id !== idToRemove);
@@ -264,26 +590,32 @@ export default function MergePdfPage() {
         };
     }, [mergedPdfResult]);
 
-
     return (
-        <main className="flex min-h-screen flex-col items-center justify-start p-4 sm:p-6 md:p-12 lg:p-24 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
-            <div className="z-10 max-w-4xl w-full bg-white rounded-2xl shadow-2xl overflow-hidden my-8">
-                {/* Header */}
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 md:p-8">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-white">Merge PDF Files</h1>
-                    <p className="text-center text-indigo-100 mt-2 text-sm md:text-base">Combine multiple PDFs into one single document. Drag to reorder.</p>
-                </div>
+        <Container>
+            <ContentWrapper>
+                <PageHeader>
+                    <h1>Merge PDF Files</h1>
+                    <p>Combine multiple PDF documents into a single file</p>
+                </PageHeader>
 
-                <div className="p-6 sm:p-8 md:p-10">
-                    {/* Upload Area */}
-                    <div className="mb-8">
-                        <div
-                            className="relative border-2 border-dashed border-indigo-300 rounded-xl p-10 sm:p-12 text-center cursor-pointer hover:border-indigo-500 hover:bg-indigo-50 transition-all duration-300 ease-in-out group"
-                            onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add('border-indigo-500', 'bg-indigo-50'); }}
-                            onDragLeave={(e) => { e.currentTarget.classList.remove('border-indigo-500', 'bg-indigo-50'); }}
+                <Card>
+                    <CardContent>
+                        <h2>Upload PDFs</h2>
+
+                        <DropZone
+                            onDragOver={(e) => {
+                                e.preventDefault();
+                                e.currentTarget.style.borderColor = '#4f46e5';
+                                e.currentTarget.style.background = '#f5f5ff';
+                            }}
+                            onDragLeave={(e) => {
+                                e.currentTarget.style.borderColor = '#d1d5db';
+                                e.currentTarget.style.background = '#f9fafb';
+                            }}
                             onDrop={(e) => {
                                 e.preventDefault();
-                                e.currentTarget.classList.remove('border-indigo-500', 'bg-indigo-50');
+                                e.currentTarget.style.borderColor = '#d1d5db';
+                                e.currentTarget.style.background = '#f9fafb';
                                 handleFileChange(e.dataTransfer.files);
                             }}
                         >
@@ -291,118 +623,166 @@ export default function MergePdfPage() {
                                 type="file"
                                 id="pdfMergeInputControl"
                                 accept="application/pdf"
-                                multiple // Allow multiple file selection
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                multiple
+                                style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0, cursor: 'pointer', top: 0, left: 0 }}
                                 onChange={(e) => handleFileChange(e.target.files)}
                             />
-                            <div className="flex flex-col items-center justify-center pointer-events-none">
-                                <Upload className="h-10 w-10 sm:h-12 sm:w-12 text-indigo-400 group-hover:text-indigo-600 transition-colors duration-300 mb-3 sm:mb-4" />
-                                <p className="text-base sm:text-lg font-semibold text-indigo-700 group-hover:text-indigo-800 transition-colors duration-300">Drag & drop PDF files here</p>
-                                <p className="text-xs sm:text-sm text-gray-500 mt-1">or click to select files</p>
-                            </div>
-                        </div>
-                    </div>
+                            <Upload className="upload-icon" />
+                            <p className="main-text">Drag & drop PDF files here</p>
+                            <p className="sub-text">or click to select files</p>
+                        </DropZone>
 
-                    {/* File List & Reorder Area */}
-                    {files.length > 0 && (
-                        <div className="mb-8 border border-gray-200 rounded-lg p-4 bg-gray-50/50">
-                            <h2 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800 px-1">Files to Merge ({files.length}):</h2>
-                            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                                <SortableContext items={files} strategy={verticalListSortingStrategy}>
-                                    <div className="space-y-2 max-h-80 overflow-y-auto pr-2">
-                                        {files.map((pdfFile) => (
-                                            <SortableFileItem key={pdfFile.id} id={pdfFile.id} pdfFile={pdfFile} onDelete={handleDeleteFile} />
-                                        ))}
-                                    </div>
-                                </SortableContext>
-                            </DndContext>
-                        </div>
-                    )}
+                        {error && !mergedPdfResult && (
+                            <ErrorAlert>
+                                <AlertTriangle className="error-icon" size={20} />
+                                <div className="error-content">
+                                    <p>Error</p>
+                                    <p>{error}</p>
+                                </div>
+                            </ErrorAlert>
+                        )}
 
-                    {/* Error Display */}
-                    {error && !mergedPdfResult && ( // Show general errors only before result
-                        <div className="mt-6 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md shadow-sm mx-auto max-w-2xl mb-6" role="alert">
-                            <div className="flex items-center">
-                                <AlertTriangle className="h-5 w-5 text-red-600 mr-3" />
-                                <p className="font-bold">Error</p>
-                            </div>
-                            <p className="ml-8 text-sm">{error}</p>
-                        </div>
-                    )}
+                        {files.length > 0 && (
+                            <FileListContainer>
+                                <h3>Files to Merge ({files.length})</h3>
+                                <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                                    <SortableContext items={files} strategy={verticalListSortingStrategy}>
+                                        <div className="files-container">
+                                            {files.map((pdfFile) => (
+                                                <SortableFileItem
+                                                    key={pdfFile.id}
+                                                    id={pdfFile.id}
+                                                    pdfFile={pdfFile}
+                                                    onDelete={handleDeleteFile}
+                                                />
+                                            ))}
+                                        </div>
+                                    </SortableContext>
+                                </DndContext>
+                            </FileListContainer>
+                        )}
 
-                    {/* Merge Button / Loading / Result */}
-                    <div className="text-center mt-8 sm:mt-10">
                         {!mergedPdfResult ? (
-                            <button
-                                onClick={() => handleMergePdfs()}
-                                disabled={isLoading || files.length < 2}
-                                className="inline-flex items-center justify-center px-8 sm:px-10 py-3 sm:py-4 border border-transparent text-sm sm:text-base font-semibold rounded-lg shadow-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 disabled:transform-none"
-                            >
-                                {isLoading ? (
-                                    <>
-                                        <Loader2 className="animate-spin -ml-1 mr-2 sm:mr-3 h-5 w-5" />
-                                        Merging...
-                                    </>
-                                ) : (
-                                    <>
-                                        <Layers className="-ml-1 mr-1.5 sm:mr-2 h-5 w-5" />
-                                        Merge {files.length || 0} PDF{(!files || files.length !== 1) ? 's' : ''}
-                                    </>
-                                )}
-                            </button>
+                            <ButtonGroup>
+                                <PrimaryButton
+                                    onClick={() => handleMergePdfs()}
+                                    disabled={isLoading || files.length < 2}
+                                >
+                                    {isLoading ? (
+                                        <>
+                                            <Loader2 className="animate-spin" size={18} />
+                                            Merging PDFs...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Layers size={18} />
+                                            Merge {files.length || 0} PDF{files.length !== 1 ? 's' : ''}
+                                        </>
+                                    )}
+                                </PrimaryButton>
+                            </ButtonGroup>
                         ) : (
-                            <p className="text-gray-600 italic">PDF merged. Preview below or reorder files to merge again.</p>
+                            <p style={{ textAlign: 'center', color: '#4b5563', fontStyle: 'italic' }}>
+                                PDF merged successfully. Reorder files to merge again if needed.
+                            </p>
                         )}
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
 
-                {/* --- Conditional Preview UI (remains the same) --- */}
                 {mergedPdfResult && (
-                    <div className="mt-12 pt-8 border-t border-gray-200">
-                        <h2 className="text-xl sm:text-2xl font-semibold mb-5 text-center text-gray-700">Merged PDF Preview</h2>
+                    <Card>
+                        <CardContent>
+                            <h2>Merged PDF Preview</h2>
 
-                        {error && mergedPdfResult && (
-                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-md mb-6 shadow-sm max-w-2xl mx-auto" role="alert">
-                            </div>
-                        )}
+                            {error && mergedPdfResult && (
+                                <ErrorAlert>
+                                    <AlertTriangle className="error-icon" size={20} />
+                                    <div className="error-content">
+                                        <p>Preview Error</p>
+                                        <p>{error}</p>
+                                    </div>
+                                </ErrorAlert>
+                            )}
 
-                        <div className="mb-6 md:mb-8 border border-gray-300 rounded-lg overflow-hidden shadow-inner bg-gray-100" style={{ height: '70vh' }}>
-                            <iframe
-                                ref={iframeRef}
-                                src={mergedPdfResult.downloadUrl}
-                                title="Merged PDF Preview"
-                                width="100%"
-                                height="100%"
-                                style={{ border: 'none' }}
-                            ></iframe>
-                        </div>
+                            <PDFPreviewContainer>
+                                <iframe
+                                    ref={iframeRef}
+                                    src={mergedPdfResult.downloadUrl}
+                                    title="Merged PDF Preview"
+                                    width="100%"
+                                    height="100%"
+                                />
+                            </PDFPreviewContainer>
 
-                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 pt-4">
-                            <button
-                                onClick={handleDownload}
-                                className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-md text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95"
-                            >
-                                <Download className="-ml-1 mr-2 h-5 w-5" />
-                                Download PDF
-                            </button>
-                            <button
-                                onClick={handlePrint}
-                                className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 border border-indigo-600 text-base font-medium rounded-lg shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95"
-                            >
-                                <Printer className="-ml-1 mr-2 h-5 w-5" />
-                                Print PDF
-                            </button>
-                            <button
-                                onClick={handleReset}
-                                className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 border border-gray-300 text-base font-medium rounded-lg shadow-sm text-gray-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95"
-                            >
-                                <Upload className="-ml-1 mr-2 h-5 w-5" />
-                                Merge More PDFs
-                            </button>
-                        </div>
-                    </div>
+                            <ButtonGroup>
+                                <PrimaryButton onClick={handleDownload}>
+                                    <Download size={18} />
+                                    Download PDF
+                                </PrimaryButton>
+                                <SecondaryButton onClick={handlePrint}>
+                                    <Printer size={18} />
+                                    Print PDF
+                                </SecondaryButton>
+                                <TertiaryButton onClick={handleReset}>
+                                    <Upload size={18} />
+                                    Merge More PDFs
+                                </TertiaryButton>
+                            </ButtonGroup>
+                        </CardContent>
+                    </Card>
                 )}
-            </div>
-        </main>
+
+                <Card>
+                    <CardContent>
+                        <h2>How to Merge PDF Files</h2>
+                        <div style={{ color: '#4b5563', lineHeight: 1.6 }}>
+                            <p style={{ marginBottom: '1rem' }}>
+                                Merging multiple PDF files into a single document helps you organize your documents, reduce clutter, and create comprehensive reports. Follow these simple steps:
+                            </p>
+                            <ol style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Upload PDFs</strong> - Drag and drop your PDF files into the upload area, or click to select files from your device.
+                                </li>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Arrange Order</strong> - Drag and drop the files in the list to reorder them as needed. The PDFs will be merged in the order shown.
+                                </li>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Merge Files</strong> - Click the "Merge PDFs" button to combine your files into a single PDF document.
+                                </li>
+                                <li style={{ marginBottom: '0.75rem' }}>
+                                    <strong>Download or Print</strong> - After preview, you can download the merged PDF to your device or print it directly.
+                                </li>
+                            </ol>
+                            <p style={{ marginBottom: '1rem' }}>
+                                This tool processes your files securely in your browser - your PDFs are never uploaded to our servers, ensuring complete privacy and security.
+                            </p>
+                            <h3 style={{ fontSize: '1.25rem', marginTop: '2rem', marginBottom: '1rem', color: '#1f2937' }}>
+                                Common PDF Merging Use Cases
+                            </h3>
+                            <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem', listStyleType: 'disc' }}>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Business Documents</strong> - Combine contracts, invoices, and agreements into a single file
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Academic Papers</strong> - Merge research papers, notes, and reference materials
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Financial Reports</strong> - Consolidate statements, tax forms, and financial documents
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Application Materials</strong> - Combine resumes, cover letters, and certificates into a comprehensive application
+                                </li>
+                                <li style={{ marginBottom: '0.5rem' }}>
+                                    <strong>Digital Portfolios</strong> - Create portfolios by merging multiple work samples and projects
+                                </li>
+                            </ul>
+                            <p>
+                                Our PDF merger maintains the quality and formatting of your original documents while creating a seamless, professional-looking combined file.
+                            </p>
+                        </div>
+                    </CardContent>
+                </Card>
+            </ContentWrapper>
+        </Container>
     );
 } 
