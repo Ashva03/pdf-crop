@@ -1,0 +1,20 @@
+# robots.txt for pdfcrop.co.in
+User-agent: *
+Allow: /
+
+# Allow all crawlers to access important pages
+Allow: /index
+Allow: /flipkart-label
+Allow: /meesho-label
+Allow: /snapdeal-label
+Allow: /amazon-label
+Allow: /features
+Allow: /pricing
+Allow: /blog
+Allow: /contact
+Allow: /about
+Allow: /privacy-policy
+Allow: /terms
+
+# Sitemap location
+Sitemap: https://pdfcrop.co.in/sitemap.xml 

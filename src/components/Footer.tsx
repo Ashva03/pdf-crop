@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
@@ -83,6 +84,23 @@ export default function FooterComponent() {
             PDF Cropper is a professional-grade tool designed for businesses and
             individuals who need precise document editing capabilities.
           </p>
+        </FooterSection>
+        <FooterSection>
+          <h3>Platform Tools</h3>
+          <ul>
+            <li>
+              <Link href="/flipkart-label">Flipkart Label</Link>
+            </li>
+            <li>
+              <Link href="/meesho-label">Meesho Label</Link>
+            </li>
+            <li>
+              <Link href="/snapdeal-label">Snapdeal Label</Link>
+            </li>
+            <li>
+              <Link href="/amazon-label">Amazon Label</Link>
+            </li>
+          </ul>
         </FooterSection>
         <FooterSection>
           <h3>Quick Links</h3>
