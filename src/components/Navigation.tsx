@@ -289,12 +289,12 @@ export default function Navigation() {
               <DropdownItem href="/images-to-pdf" onClick={handleLinkClick}>
                 Images to PDF
               </DropdownItem>
-              <DropdownItem href="/docs-to-pdf" onClick={handleLinkClick}>
+              {/* <DropdownItem href="/docs-to-pdf" onClick={handleLinkClick}>
                 Docs to PDF
-              </DropdownItem>
-              <DropdownItem href="/pdf-to-word" onClick={handleLinkClick}>
+              </DropdownItem> */}
+              {/* <DropdownItem href="/pdf-to-word" onClick={handleLinkClick}>
                 PDF to Word
-              </DropdownItem>
+              </DropdownItem> */}
               <DropdownItem href="/pdf-to-jpg" onClick={handleLinkClick}>
                 PDF to JPG
               </DropdownItem>
@@ -372,12 +372,12 @@ export default function Navigation() {
             <NavLink href="/images-to-pdf" $active={pathname === "/images-to-pdf"} onClick={handleLinkClick}>
               Images to PDF
             </NavLink>
-            <NavLink href="/docs-to-pdf" $active={pathname === "/docs-to-pdf"} onClick={handleLinkClick}>
+            {/* <NavLink href="/docs-to-pdf" $active={pathname === "/docs-to-pdf"} onClick={handleLinkClick}>
               Docs to PDF
-            </NavLink>
-            <NavLink href="/pdf-to-word" $active={pathname === "/pdf-to-word"} onClick={handleLinkClick}>
+            </NavLink> */}
+            {/* <NavLink href="/pdf-to-word" $active={pathname === "/pdf-to-word"} onClick={handleLinkClick}>
               PDF to Word
-            </NavLink>
+            </NavLink> */}
             <NavLink href="/pdf-to-jpg" $active={pathname === "/pdf-to-jpg"} onClick={handleLinkClick}>
               PDF to JPG
             </NavLink>
