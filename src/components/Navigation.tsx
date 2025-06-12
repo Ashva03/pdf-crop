@@ -203,6 +203,44 @@ const MobileNav = styled.div<{ isOpen: boolean }>`
   }
 `;
 
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Flipkart Label', href: '/flipkart-label' },
+  { name: 'Meesho Label', href: '/meesho-label' },
+  { name: 'Snapdeal Label', href: '/snapdeal-label' },
+  { name: 'Amazon Label', href: '/amazon-label' },
+  { name: 'Myntra Label', href: '/myntra-label' },
+  {
+    name: 'PDF Convert',
+    href: '#',
+    dropdown: [
+      { name: 'Images to PDF', href: '/images-to-pdf' },
+      { name: 'PDF to JPG', href: '/pdf-to-jpg' },
+      { name: 'Merge PDF', href: '/merge-pdf' },
+      { name: 'Compress PDF', href: '/compress-pdf' },
+      { name: 'Edit PDF', href: '/edit-pdf' },
+    ],
+  },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
+];
+
+const mobileNavItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Flipkart Label', href: '/flipkart-label' },
+  { name: 'Meesho Label', href: '/meesho-label' },
+  { name: 'Snapdeal Label', href: '/snapdeal-label' },
+  { name: 'Amazon Label', href: '/amazon-label' },
+  { name: 'Myntra Label', href: '/myntra-label' },
+  { name: 'Images to PDF', href: '/images-to-pdf' },
+  { name: 'PDF to JPG', href: '/pdf-to-jpg' },
+  { name: 'Merge PDF', href: '/merge-pdf' },
+  { name: 'Compress PDF', href: '/compress-pdf' },
+  { name: 'Edit PDF', href: '/edit-pdf' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
+];
+
 export default function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
@@ -361,6 +399,13 @@ export default function Navigation() {
         >
           Amazon Label
         </NavLink>
+        <NavLink
+          href="/myntra-label"
+          $active={pathname === "/myntra-label"}
+          onClick={handleLinkClick}
+        >
+          Myntra Label
+        </NavLink>
         <MobileDropdownButton
           onClick={handleMobileConvertToggle}
           $active={isConvertActive}
@@ -387,6 +432,9 @@ export default function Navigation() {
             <NavLink href="/compress-pdf" $active={pathname === "/compress-pdf"} onClick={handleLinkClick}>
               Compress PDF
             </NavLink>
+            <NavLink href="/edit-pdf" $active={pathname === "/edit-pdf"} onClick={handleLinkClick}>
+              Edit PDF
+            </NavLink>
           </div>
         )}
         {/* <NavLink
@@ -409,6 +457,13 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           Blog
+        </NavLink>
+        <NavLink
+          href="/contact"
+          $active={pathname === "/contact"}
+          onClick={handleLinkClick}
+        >
+          Contact
         </NavLink>
       </MobileNav>
     </Nav>

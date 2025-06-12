@@ -1,24 +1,39 @@
 # robots.txt for pdfcrop.co.in
+# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Allow all crawlers to access important pages
-Allow: /index
-Allow: /flipkart-label
-Allow: /meesho-label
-Allow: /snapdeal-label
-Allow: /amazon-label
-Allow: /compress-pdf
-Allow: /merge-pdf
-Allow: /pdf-to-jpg
-Allow: /images-to-pdf
-Allow: /features
-Allow: /pricing
-Allow: /blog
-Allow: /contact
-Allow: /about
-Allow: /privacy-policy
-Allow: /terms
-
 # Sitemap location
-Sitemap: https://pdfcrop.co.in/sitemap.xml 
+Sitemap: https://pdfcrop.co.in/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+
+# Allow important pages
+Allow: /blog/
+Allow: /privacy-policy/
+Allow: /terms/
+Allow: /cookie-policy/
+Allow: /contact/
+Allow: /about/
+Allow: /faq/
+Allow: /features/
+Allow: /how-it-works/
+Allow: /tutorials/
+Allow: /documentation/
+Allow: /support/
+
+# Allow all tool pages
+Allow: /flipkart-label/
+Allow: /amazon-label/
+Allow: /meesho-label/
+Allow: /snapdeal-label/
+Allow: /myntra-label/
+Allow: /images-to-pdf/
+Allow: /pdf-to-jpg/
+Allow: /merge-pdf/
+Allow: /compress-pdf/
+Allow: /edit-pdf/ 
