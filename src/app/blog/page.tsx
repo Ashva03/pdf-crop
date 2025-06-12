@@ -101,53 +101,47 @@ const BlogMeta = styled.div`
 export default function Blog() {
   const blogPosts = [
     {
-      title: "Advanced PDF Cropping Techniques",
-      excerpt:
-        "Learn how to use advanced features for precise PDF cropping in various business scenarios.",
+      title: "Understanding E-commerce Shipping Label Standards",
+      excerpt: "Learn about the different shipping label formats used by major e-commerce platforms and how to ensure compliance with their requirements.",
       date: "March 15, 2024",
-      readTime: "5 min read",
-      icon: "✂️",
-    },
-    {
-      title: "Optimizing PDFs for E-commerce",
-      excerpt:
-        "Best practices for preparing product documentation and catalogs using our PDF tools.",
-      date: "March 12, 2024",
-      readTime: "4 min read",
-      icon: "🛍️",
-    },
-    {
-      title: "Batch Processing Guide",
-      excerpt:
-        "A comprehensive guide to processing multiple PDFs efficiently using our batch tools.",
-      date: "March 10, 2024",
-      readTime: "6 min read",
-      icon: "📚",
-    },
-    {
-      title: "PDF Security Best Practices",
-      excerpt:
-        "Essential tips for maintaining document security while using PDF processing tools.",
-      date: "March 8, 2024",
-      readTime: "7 min read",
-      icon: "🔒",
-    },
-    {
-      title: "Document Automation Tips",
-      excerpt:
-        "Streamline your workflow with these document automation strategies and tools.",
-      date: "March 5, 2024",
-      readTime: "5 min read",
-      icon: "⚡",
-    },
-    {
-      title: "PDF Accessibility Guide",
-      excerpt:
-        "Making your PDFs accessible to everyone with our comprehensive tools and tips.",
-      date: "March 1, 2024",
       readTime: "8 min read",
-      icon: "♿",
+      icon: "📦"
     },
+    {
+      title: "Optimizing Your Shipping Workflow: A Complete Guide",
+      excerpt: "Discover proven strategies to streamline your order fulfillment process, from label printing to package preparation.",
+      date: "March 10, 2024",
+      readTime: "10 min read",
+      icon: "⚡"
+    },
+    {
+      title: "PDF Management Best Practices for E-commerce Sellers",
+      excerpt: "Essential tips for organizing and managing shipping documents, invoices, and labels efficiently.",
+      date: "March 5, 2024",
+      readTime: "6 min read",
+      icon: "📄"
+    },
+    {
+      title: "Common Shipping Label Mistakes and How to Avoid Them",
+      excerpt: "Learn about frequent errors in shipping label preparation and how to prevent them to ensure smooth delivery.",
+      date: "February 28, 2024",
+      readTime: "7 min read",
+      icon: "⚠️"
+    },
+    {
+      title: "The Impact of Proper Label Formatting on Delivery Success",
+      excerpt: "How correctly formatted shipping labels can improve delivery rates and reduce shipping-related issues.",
+      date: "February 20, 2024",
+      readTime: "5 min read",
+      icon: "📈"
+    },
+    {
+      title: "E-commerce Shipping: A Platform-by-Platform Guide",
+      excerpt: "Detailed comparison of shipping requirements across major e-commerce platforms in India.",
+      date: "February 15, 2024",
+      readTime: "12 min read",
+      icon: "🛍️"
+    }
   ];
 
   return (

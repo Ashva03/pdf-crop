@@ -42,27 +42,57 @@ export default function MeeshoLabel() {
       />
 
       <div className={styles.descriptionContainer}>
-        <h2>How to Crop Your Meesho Label PDF</h2>
+        <h2>Meesho Shipping Label Requirements & Best Practices</h2>
         <p>
-          Optimize your Meesho shipping labels effortlessly with our dedicated PDF cropping tool. Follow these simple steps to get started:
+          Understanding Meesho's shipping label specifications is crucial for successful order fulfillment. Our tool helps you meet these requirements while optimizing your shipping process.
         </p>
+        
+        <h3>Meesho Label Specifications</h3>
+        <ul className={styles.specsList}>
+          <li><strong>Label Size:</strong> A6 (105mm × 148mm) is the standard format</li>
+          <li><strong>Print Quality:</strong> Minimum 300 DPI for clear barcode scanning</li>
+          <li><strong>Paper Type:</strong> Thermal paper or regular A4 paper</li>
+          <li><strong>Required Elements:</strong> Meesho barcode, tracking number, delivery address, and seller details</li>
+        </ul>
+
+        <h3>How to Process Your Meesho Labels</h3>
         <ol className={styles.stepsList}>
           <li>
-            <strong>Upload PDF Label:</strong> Click the upload area or button to select the Meesho label PDF file from your computer or mobile device.
+            <strong>Download from Seller Panel:</strong> Access your Meesho Seller Panel and download the shipping label PDF for your order.
           </li>
           <li>
-            <strong>Automatic Cropping & Preview:</strong> Our tool automatically detects and applies the standard cropping dimensions for Meesho labels. Preview the result for each page.
+            <strong>Upload to Our Tool:</strong> Click the upload button and select your Meesho label PDF file.
           </li>
           <li>
-            <strong>Adjust if Necessary:</strong> If needed, you can manually adjust the crop area by dragging the corners or sides of the selection box on the preview.
+            <strong>Automatic Optimization:</strong> Our tool automatically applies Meesho's standard dimensions and optimizes the label for printing.
           </li>
           <li>
-            <strong>Crop and Download:</strong> Once you are happy with the preview, click the "Crop PDF" button. Then, click "Download" to save the perfectly cropped Meesho label PDF to your device.
+            <strong>Preview & Adjust:</strong> Review the preview and make any necessary adjustments to ensure all elements are clearly visible.
+          </li>
+          <li>
+            <strong>Download & Print:</strong> Generate your optimized label and print it using a thermal printer or regular printer.
           </li>
         </ol>
-        <p>
-          Using our tool ensures your Meesho labels meet the required specifications, helping streamline your packing and shipping process.
-        </p>
+
+        <h3>Best Practices for Meesho Shipping</h3>
+        <ul className={styles.bestPracticesList}>
+          <li>Always verify the delivery address before printing</li>
+          <li>Ensure the Meesho barcode is clear and scannable</li>
+          <li>Use high-quality paper to prevent smudging</li>
+          <li>Keep a digital copy of the label for reference</li>
+          <li>Print labels in batches to save time</li>
+        </ul>
+
+        <div className={styles.tipsBox}>
+          <h4>Pro Tips</h4>
+          <ul>
+            <li>Regularly check Meesho's seller guidelines for any updates to label requirements</li>
+            <li>Consider using a thermal printer for faster, more efficient label printing</li>
+            <li>Keep your printer's firmware updated for optimal performance</li>
+            <li>Maintain a backup of all shipping labels for at least 90 days</li>
+            <li>Use the batch printing feature for handling multiple orders efficiently</li>
+          </ul>
+        </div>
       </div>
 
       <SiteDescription />

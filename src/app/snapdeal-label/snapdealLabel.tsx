@@ -43,27 +43,57 @@ export default function SnapdealLabel() {
             />
 
             <div className={styles.descriptionContainer}>
-                <h2>How to Crop Your Snapdeal Label PDF</h2>
+                <h2>Snapdeal Shipping Label Requirements & Best Practices</h2>
                 <p>
-                    Easily format your Snapdeal shipping labels using our online tool. Just follow these steps:
+                    Understanding Snapdeal's shipping label specifications is crucial for successful order fulfillment. Our tool helps you meet these requirements while optimizing your shipping process.
                 </p>
+                
+                <h3>Snapdeal Label Specifications</h3>
+                <ul className={styles.specsList}>
+                    <li><strong>Label Size:</strong> A6 (105mm × 148mm) is the standard format</li>
+                    <li><strong>Print Quality:</strong> Minimum 300 DPI for clear barcode scanning</li>
+                    <li><strong>Paper Type:</strong> Thermal paper or regular A4 paper</li>
+                    <li><strong>Required Elements:</strong> Snapdeal barcode, tracking number, delivery address, and seller details</li>
+                </ul>
+
+                <h3>How to Process Your Snapdeal Labels</h3>
                 <ol className={styles.stepsList}>
                     <li>
-                        <strong>Upload PDF:</strong> Select the Snapdeal label PDF file you wish to crop.
+                        <strong>Download from Seller Panel:</strong> Access your Snapdeal Seller Panel and download the shipping label PDF for your order.
                     </li>
                     <li>
-                        <strong>Preview Crop:</strong> Our tool applies standard Snapdeal dimensions. Check the preview for accuracy.
+                        <strong>Upload to Our Tool:</strong> Click the upload button and select your Snapdeal label PDF file.
                     </li>
                     <li>
-                        <strong>Adjust (Optional):</strong> If needed, drag the crop box corners to fine-tune the cropping area.
+                        <strong>Automatic Optimization:</strong> Our tool automatically applies Snapdeal's standard dimensions and optimizes the label for printing.
                     </li>
                     <li>
-                        <strong>Crop & Download:</strong> Click "Crop PDF", then click "Download" to save the formatted Snapdeal labels.
+                        <strong>Preview & Adjust:</strong> Review the preview and make any necessary adjustments to ensure all elements are clearly visible.
+                    </li>
+                    <li>
+                        <strong>Download & Print:</strong> Generate your optimized label and print it using a thermal printer or regular printer.
                     </li>
                 </ol>
-                <p>
-                    Get perfectly sized Snapdeal labels ready for printing and shipping your orders efficiently.
-                </p>
+
+                <h3>Best Practices for Snapdeal Shipping</h3>
+                <ul className={styles.bestPracticesList}>
+                    <li>Always verify the delivery address before printing</li>
+                    <li>Ensure the Snapdeal barcode is clear and scannable</li>
+                    <li>Use high-quality paper to prevent smudging</li>
+                    <li>Keep a digital copy of the label for reference</li>
+                    <li>Print labels in batches to save time</li>
+                </ul>
+
+                <div className={styles.tipsBox}>
+                    <h4>Pro Tips</h4>
+                    <ul>
+                        <li>Regularly check Snapdeal's seller guidelines for any updates to label requirements</li>
+                        <li>Consider using a thermal printer for faster, more efficient label printing</li>
+                        <li>Keep your printer's firmware updated for optimal performance</li>
+                        <li>Maintain a backup of all shipping labels for at least 90 days</li>
+                        <li>Use the batch printing feature for handling multiple orders efficiently</li>
+                    </ul>
+                </div>
             </div>
 
             {/* Add the Site Description and Blog Section */}
