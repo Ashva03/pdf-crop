@@ -81,25 +81,72 @@ export default function CookiePolicyContent() {
         </ul>
 
         <h2>Types of Cookies We Use</h2>
+        <p>
+          We use the following types of cookies:
+        </p>
         <ul>
-          <li><strong>Session Cookies:</strong> These are temporary cookies that expire when you close your browser.</li>
-          <li><strong>Persistent Cookies:</strong> These cookies remain on your device until they expire or you delete them.</li>
-          <li><strong>Third-Party Cookies:</strong> These are cookies set by third-party services we use, such as Google Analytics and Google AdSense.</li>
-        </ul>
-
-        <h2>Your Cookie Choices</h2>
-        <ul>
-          <li>Browser Settings: Most web browsers allow you to control cookies through their settings preferences.</li>
-          <li>Opt-Out Tools: You can opt out of Google Analytics and Google AdSense cookies using their respective opt-out tools.</li>
-          <li>Cookie Consent: When you first visit our website, you can choose which cookies to accept or reject.</li>
+          <li>
+            <strong>Essential Cookies:</strong> These cookies are necessary for the website to function properly. They enable basic functions like page navigation and access to secure areas of the website. The website cannot function properly without these cookies.
+          </li>
+          <li>
+            <strong>Analytics Cookies:</strong> These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They help us improve our website's performance and user experience.
+          </li>
+          <li>
+            <strong>Advertising Cookies:</strong> These cookies are used to make advertising messages more relevant to you. They perform functions like preventing the same ad from continuously reappearing, ensuring that ads are properly displayed, and in some cases selecting advertisements that are based on your interests.
+          </li>
+          <li>
+            <strong>Functionality Cookies:</strong> These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third-party providers whose services we have added to our pages.
+          </li>
         </ul>
 
         <h2>Third-Party Cookies</h2>
-        <p>We use the following third-party services that may set cookies:</p>
+        <p>
+          Some cookies are placed by third-party services that appear on our pages:
+        </p>
         <ul>
-          <li>Google Analytics</li>
-          <li>Google AdSense</li>
-          <li>Cloudflare</li>
+          <li>
+            <strong>Google AdSense:</strong> We use Google AdSense to display advertisements. AdSense uses cookies to:
+            <ul>
+              <li>Serve ads based on your prior visits to our website and other sites</li>
+              <li>Limit the number of times you see a particular ad</li>
+              <li>Measure the effectiveness of advertising campaigns</li>
+              <li>Prevent fraud and abuse</li>
+            </ul>
+            You can opt out of personalized advertising by visiting Google's Ads Settings page.
+          </li>
+          <li>
+            <strong>Google Analytics:</strong> We use Google Analytics to understand how visitors interact with our website. Google Analytics uses cookies to:
+            <ul>
+              <li>Distinguish unique users</li>
+              <li>Remember the number and time of previous visits</li>
+              <li>Remember traffic source information</li>
+              <li>Determine the start and end of a session</li>
+            </ul>
+            You can opt out of Google Analytics by installing the Google Analytics Opt-out Browser Add-on.
+          </li>
+        </ul>
+
+        <h2>Cookie Duration</h2>
+        <p>
+          Cookies can remain on your computer or mobile device for different periods of time:
+        </p>
+        <ul>
+          <li><strong>Session Cookies:</strong> These cookies exist only while your browser is open. They are automatically deleted when you close your browser.</li>
+          <li><strong>Persistent Cookies:</strong> These cookies survive after your browser is closed. They can remain on your device for a period of time specified in the cookie.</li>
+        </ul>
+
+        <h2>Managing Cookies</h2>
+        <p>
+          You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed. However, if you do this, you may have to manually adjust some preferences every time you visit our website and some services and functionalities may not work.
+        </p>
+        <p>
+          To manage cookies, you can:
+        </p>
+        <ul>
+          <li>Use your browser settings to control cookie preferences</li>
+          <li>Use Google's Ads Settings to manage personalized ads</li>
+          <li>Install the Google Analytics Opt-out Browser Add-on</li>
+          <li>Use the "Do Not Track" feature in your browser</li>
         </ul>
 
         <h2>Updates to This Policy</h2>

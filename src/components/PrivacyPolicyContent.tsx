@@ -110,9 +110,48 @@ export default function PrivacyPolicyContent() {
           We use third-party services that may collect information:
         </p>
         <ul>
-          <li>Google Analytics for website analytics</li>
-          <li>Google AdSense for advertising</li>
-          <li>Cloudflare for security and performance</li>
+          <li><strong>Google Analytics:</strong> We use Google Analytics to understand how visitors interact with our website. This service may collect information such as your IP address, browser type, pages visited, and time spent on pages. You can opt out of Google Analytics by installing the Google Analytics Opt-out Browser Add-on.</li>
+          <li><strong>Google AdSense:</strong> We use Google AdSense to display advertisements. AdSense uses cookies to serve ads based on your prior visits to our website and other sites. You can opt out of personalized advertising by visiting Google's Ads Settings page.</li>
+          <li><strong>Cloudflare:</strong> We use Cloudflare for security and performance optimization. Cloudflare may collect technical information about your visit to help protect our website from malicious activity.</li>
+        </ul>
+
+        <h2>Advertising and Marketing</h2>
+        <p>
+          We use Google AdSense to display advertisements on our website. These advertisements may be:
+        </p>
+        <ul>
+          <li>Contextual advertisements based on the content of our pages</li>
+          <li>Personalized advertisements based on your browsing history</li>
+          <li>Non-personalized advertisements that don't use cookies or personal data</li>
+        </ul>
+        <p>
+          You can control how Google uses your information for advertising by:
+        </p>
+        <ul>
+          <li>Visiting Google's Ads Settings page</li>
+          <li>Using the Google Analytics Opt-out Browser Add-on</li>
+          <li>Managing your cookie preferences through your browser settings</li>
+        </ul>
+
+        <h2>Data Collection for Advertising</h2>
+        <p>
+          When you visit our website, we and our advertising partners may collect and process the following information for advertising purposes:
+        </p>
+        <ul>
+          <li>Pages you visit and content you interact with</li>
+          <li>Device information (browser type, operating system)</li>
+          <li>IP address (anonymized)</li>
+          <li>Time and date of your visit</li>
+          <li>Referral source</li>
+        </ul>
+        <p>
+          This information is used to:
+        </p>
+        <ul>
+          <li>Display relevant advertisements</li>
+          <li>Measure the effectiveness of advertising campaigns</li>
+          <li>Prevent fraud and abuse</li>
+          <li>Improve our services</li>
         </ul>
 
         <h2>Cookies and Tracking</h2>
