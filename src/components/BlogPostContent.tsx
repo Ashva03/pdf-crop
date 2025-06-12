@@ -1,7 +1,6 @@
 "use client";
 
 import styled from 'styled-components';
-import Link from 'next/link';
 
 const ArticleContainer = styled.div`
   max-width: 800px;

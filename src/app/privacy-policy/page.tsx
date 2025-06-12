@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import PrivacyPolicyContent from '@/components/PrivacyPolicyContent';
 
 // Define Base URL (Replace with your actual domain)
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pdf-crop.com';
-const pageUrl = `${baseUrl}/privacy-policy`;
+// const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pdf-crop.com';
+// const pageUrl = `${baseUrl}/privacy-policy`;
 
 // Optimized metadata for SEO
 export const metadata: Metadata = {

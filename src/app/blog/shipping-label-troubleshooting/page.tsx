@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import ShippingLabelStandardsContent from '@/components/ShippingLabelStandardsContent';
 import styled from 'styled-components';
 
 export const metadata: Metadata = {

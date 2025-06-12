@@ -203,60 +203,6 @@ const MobileNav = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Flipkart Label', href: '/flipkart-label' },
-  { name: 'Meesho Label', href: '/meesho-label' },
-  { name: 'Snapdeal Label', href: '/snapdeal-label' },
-  { name: 'Amazon Label', href: '/amazon-label' },
-  { name: 'Myntra Label', href: '/myntra-label' },
-  {
-    name: 'PDF Convert',
-    href: '#',
-    dropdown: [
-      { name: 'Images to PDF', href: '/images-to-pdf' },
-      { name: 'PDF to JPG', href: '/pdf-to-jpg' },
-      { name: 'Merge PDF', href: '/merge-pdf' },
-      { name: 'Compress PDF', href: '/compress-pdf' },
-      { name: 'Edit PDF', href: '/edit-pdf' },
-    ],
-  },
-  {
-    name: 'Legal',
-    href: '#',
-    dropdown: [
-      { name: 'Privacy Policy', href: '/privacy-policy' },
-      { name: 'Cookie Policy', href: '/cookie-policy' },
-      { name: 'Terms & Conditions', href: '/terms' },
-    ],
-  },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Contact', href: '/contact' },
-  { name: 'About Us', href: '/about' },
-  { name: 'FAQ', href: '/faq' },
-];
-
-const mobileNavItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Flipkart Label', href: '/flipkart-label' },
-  { name: 'Meesho Label', href: '/meesho-label' },
-  { name: 'Snapdeal Label', href: '/snapdeal-label' },
-  { name: 'Amazon Label', href: '/amazon-label' },
-  { name: 'Myntra Label', href: '/myntra-label' },
-  { name: 'Images to PDF', href: '/images-to-pdf' },
-  { name: 'PDF to JPG', href: '/pdf-to-jpg' },
-  { name: 'Merge PDF', href: '/merge-pdf' },
-  { name: 'Compress PDF', href: '/compress-pdf' },
-  { name: 'Edit PDF', href: '/edit-pdf' },
-  { name: 'Privacy Policy', href: '/privacy-policy' },
-  { name: 'Cookie Policy', href: '/cookie-policy' },
-  { name: 'Terms & Conditions', href: '/terms' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Contact', href: '/contact' },
-  { name: 'About Us', href: '/about' },
-  { name: 'FAQ', href: '/faq' },
-];
-
 export default function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);

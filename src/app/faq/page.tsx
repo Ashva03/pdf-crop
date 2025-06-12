@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -29,38 +28,6 @@ const Description = styled.p`
   max-width: 800px;
   margin: 0 auto;
   opacity: 0.9;
-`;
-
-const SearchSection = styled.section`
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 2rem;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease;
-
-  &:focus {
-    outline: none;
-    border-color: #4f46e5;
-  }
-`;
-
-const CategorySection = styled.div`
-  margin-bottom: 2rem;
-`;
-
-const CategoryTitle = styled.h2`
-  color: #4f46e5;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
 `;
 
 const FAQSection = styled.section`

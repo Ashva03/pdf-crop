@@ -8,46 +8,6 @@ import styled from "styled-components";
 //   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 // }
 
-const Container = styled.div`
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: #f8fafc;
-  padding-top: 64px; // Height of the navigation bar
-`;
-
-const MainContent = styled.main`
-  flex: 1;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 32px 72px;
-  width: 100%;
-  @media (max-width: 991px) {
-    padding: 20px;
-  }
-`;
-
-const Header = styled.header`
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('/pattern-bg.svg'); 
-    background-size: cover;
-    opacity: 0.1;
-    z-index: 0;
-  }
-`;
-
 const HeroSection = styled.section`
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: white;
