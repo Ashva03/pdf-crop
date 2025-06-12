@@ -117,14 +117,25 @@ export default function FooterComponent() {
             <li>
               <Link href="/contact">Contact</Link>
             </li>
+          </ul>
+        </FooterSection>
+        <FooterSection>
+          <h3>Legal</h3>
+          <ul>
             <li>
               <Link href="/privacy-policy">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link href="/cookie-policy">Cookie Policy</Link>
+            </li>
+            <li>
+              <Link href="/terms">Terms & Conditions</Link>
             </li>
             <li>
               <Link href="/about">About Us</Link>
             </li>
             <li>
-              <Link href="/terms">Terms & Conditions</Link>
+              <Link href="/faq">FAQ</Link>
             </li>
           </ul>
         </FooterSection>
@@ -132,13 +143,13 @@ export default function FooterComponent() {
           <h3>Resources</h3>
           <ul>
             <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
               <Link href="/tutorials">Tutorials</Link>
             </li>
             <li>
               <Link href="/documentation">Documentation</Link>
-            </li>
-            <li>
-              <Link href="/faq">FAQ</Link>
             </li>
             <li>
               <Link href="/support">Support</Link>
