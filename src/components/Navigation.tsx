@@ -232,6 +232,8 @@ const navItems = [
   },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
+  { name: 'About Us', href: '/about' },
+  { name: 'FAQ', href: '/faq' },
 ];
 
 const mobileNavItems = [
@@ -251,6 +253,8 @@ const mobileNavItems = [
   { name: 'Terms & Conditions', href: '/terms' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
+  { name: 'About Us', href: '/about' },
+  { name: 'FAQ', href: '/faq' },
 ];
 
 export default function Navigation() {

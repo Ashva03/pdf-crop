@@ -263,6 +263,47 @@ const StepDescription = styled.p`
   line-height: 1.6;
 `;
 
+const TestimonialSection = styled.section`
+  background: white;
+  padding: 4rem 2rem;
+  text-align: center;
+`;
+
+const TestimonialGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const TestimonialCard = styled.div`
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-align: left;
+`;
+
+const Quote = styled.p`
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+`;
+
+const Author = styled.p`
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+`;
+
+const Role = styled.p`
+  font-size: 0.9rem;
+  color: #6b7280;
+`;
+
 export default function HomePage() {
   return (
     <>
@@ -367,6 +408,27 @@ export default function HomePage() {
           </FeatureCard>
         </FeaturesGrid>
       </FeaturesSection>
+
+      <TestimonialSection>
+        <SectionTitle>What Our Users Say</SectionTitle>
+        <TestimonialGrid>
+          <TestimonialCard>
+            <Quote>"PDF Cropper has revolutionized our shipping process. It's incredibly fast and ensures all our labels meet platform requirements. A must-have tool for any e-commerce business!"</Quote>
+            <Author>Priya Sharma</Author>
+            <Role>E-commerce Manager, Delhi</Role>
+          </TestimonialCard>
+          <TestimonialCard>
+            <Quote>"I used to spend hours manually adjusting labels. Now, with PDF Cropper, it takes minutes. The batch processing feature is a lifesaver! Highly recommended."</Quote>
+            <Author>Rajesh Kumar</Author>
+            <Role>Online Seller, Mumbai</Role>
+          </TestimonialCard>
+          <TestimonialCard>
+            <Quote>"The platform-specific tools are fantastic! We no longer worry about Flipkart or Amazon label rejections. The privacy-first approach is also a huge plus."</Quote>
+            <Author>Anjali Singh</Author>
+            <Role>Logistics Coordinator, Bengaluru</Role>
+          </TestimonialCard>
+        </TestimonialGrid>
+      </TestimonialSection>
 
       <HowItWorksSection>
         <SectionTitle>How It Works</SectionTitle>

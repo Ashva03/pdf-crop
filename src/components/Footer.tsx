@@ -134,19 +134,22 @@ export default function FooterComponent() {
             <li>
               <Link href="/about">About Us</Link>
             </li>
+            <li>
+              <Link href="/faq">FAQ</Link>
+            </li>
           </ul>
         </FooterSection>
         <FooterSection>
           <h3>Resources</h3>
           <ul>
             <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+            <li>
               <Link href="/tutorials">Tutorials</Link>
             </li>
             <li>
               <Link href="/documentation">Documentation</Link>
-            </li>
-            <li>
-              <Link href="/faq">FAQ</Link>
             </li>
             <li>
               <Link href="/support">Support</Link>
