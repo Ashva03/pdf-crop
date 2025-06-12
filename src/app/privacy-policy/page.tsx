@@ -1,6 +1,6 @@
 import React from 'react';
-import type { Metadata } from 'next';
-import styles from './privacy-policy.module.css'; // Import the CSS module
+import { Metadata } from 'next';
+import styled from 'styled-components';
 
 // Define Base URL (Replace with your actual domain)
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pdf-crop.com';
@@ -8,8 +8,8 @@ const pageUrl = `${baseUrl}/privacy-policy`;
 
 // Optimized metadata for SEO
 export const metadata: Metadata = {
-  title: 'Privacy Policy | PDF Crop',
-  description: 'Read the Privacy Policy for pdf-crop.com to understand how we collect, use, and protect your data when you use our online PDF cropping tools.',
+  title: 'Privacy Policy | PDF Cropper',
+  description: 'Our privacy policy explains how we collect, use, and protect your personal information when using our PDF cropping services.',
   alternates: {
     canonical: pageUrl,
   },
@@ -21,90 +21,164 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PrivacyPolicyPage() {
-  // Generate the date string server-side or keep client-side if interaction needed
-  const lastUpdatedDate = new Date().toLocaleDateString('en-US', {
-    year: 'numeric', month: 'long', day: 'numeric'
-  });
+const PolicyContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+`;
 
+const PolicyHeader = styled.header`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const PolicyTitle = styled.h1`
+  font-size: 2.5rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+`;
+
+const PolicyContent = styled.div`
+  color: #374151;
+  line-height: 1.8;
+  font-size: 1.1rem;
+
+  h2 {
+    color: #1f2937;
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.5rem;
+  }
+
+  h3 {
+    color: #1f2937;
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  ul {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.75rem;
+  }
+`;
+
+const LastUpdated = styled.div`
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  text-align: center;
+`;
+
+export default function PrivacyPolicy() {
   return (
-    // Apply container style
-    <div className={styles.container}>
-      <h1 className={styles.title}>Privacy Policy</h1>
+    <PolicyContainer>
+      <PolicyHeader>
+        <PolicyTitle>Privacy Policy</PolicyTitle>
+        <LastUpdated>Last Updated: March 15, 2024</LastUpdated>
+      </PolicyHeader>
 
-      <div className="space-y-6"> {/* Keeping Tailwind spacing for simplicity or replace with module styles */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Introduction</h2>
-          <p className={styles.paragraph}>
-            Welcome to pdf-crop.com. This Privacy Policy describes how we collect, use, and handle your personal information when you use our online PDF cropping service and related tools.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Information We Collect</h2>
-          <p className={styles.paragraph}>When you use our service, we may collect the following types of information:</p>
-          <ul className={styles.list}>
-            <li className={styles.listItem}><strong>Usage Data:</strong> Information about how you interact with our service, such as features used and session duration.</li>
-            <li className={styles.listItem}><strong>Device Information:</strong> Browser type, operating system, and other technical details about the device you use to access our service.</li>
-            <li className={styles.listItem}><strong>IP Address and Location Data:</strong> Your IP address may be logged for security and analytical purposes, providing general location information.</li>
-            <li className={styles.listItem}><strong>Cookies:</strong> We use cookies and similar tracking technologies to enhance user experience and enable certain functionalities, including advertising.</li>
-          </ul>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>How We Use Your Information</h2>
-          <p className={styles.paragraph}>The information we collect is used for the following purposes:</p>
-          <ul className={styles.list}>
-            <li className={styles.listItem}>To provide, maintain, and improve our PDF cropping service and other tools.</li>
-            <li className={styles.listItem}>To analyze usage patterns and understand how users interact with our website to optimize performance and user experience.</li>
-            <li className={styles.listItem}>To display relevant advertisements through third-party partners like Google AdSense.</li>
-            <li className={styles.listItem}>To monitor for and prevent fraudulent activities, security breaches, or technical issues.</li>
-          </ul>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Advertising and Third-Party Services</h2>
-          <p className={styles.paragraph}>
-            We partner with third-party advertising networks, such as Google AdSense, to display advertisements on our website. These partners may use cookies and similar technologies to collect information about your visits to this and other websites to provide personalized advertisements.
-          </p>
-          <p className={styles.paragraph}>
-            Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our sites and/or other sites on the Internet. You may opt out of personalized advertising by visiting Google's <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ads Settings</a>.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Data Security</h2>
-          <p className={styles.paragraph}>
-            We implement reasonable security measures designed to protect your personal information from unauthorized access, disclosure, alteration, or destruction. However, please be aware that no method of transmission over the internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee its absolute security.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>User Rights</h2>
-          <p className={styles.paragraph}>
-            Depending on your location, you may have certain rights regarding your personal information, such as the right to access, correct, or request deletion of your data. Please contact us if you wish to exercise these rights.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Contact Us</h2>
-          <p className={styles.paragraph}>
-            If you have any questions, concerns, or comments about this Privacy Policy or our data practices, please contact us via our <a href="/contact" className="text-blue-600 hover:underline">Contact Page</a>.
-          </p>
-        </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Updates to This Policy</h2>
-          <p className={styles.paragraph}>
-            We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We encourage you to review this Privacy Policy periodically. We will notify you of any significant changes by posting the new Privacy Policy on this page and updating the "last updated" date.
-          </p>
-        </section>
-
-        {/* Apply last updated style */}
-        <p className={styles.lastUpdated}>
-          Last updated: {lastUpdatedDate}
+      <PolicyContent>
+        <p>
+          At PDF Cropper, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our PDF cropping services.
         </p>
-      </div>
-    </div>
+
+        <h2>Information We Collect</h2>
+        <p>
+          We collect information that you provide directly to us when using our services:
+        </p>
+        <ul>
+          <li>PDF files you upload for processing</li>
+          <li>Contact information when you reach out to us</li>
+          <li>Usage data and preferences</li>
+          <li>Device and browser information</li>
+        </ul>
+
+        <h2>How We Use Your Information</h2>
+        <p>
+          We use the collected information for various purposes:
+        </p>
+        <ul>
+          <li>To provide and maintain our services</li>
+          <li>To improve user experience</li>
+          <li>To communicate with you about our services</li>
+          <li>To detect and prevent technical issues</li>
+          <li>To comply with legal obligations</li>
+        </ul>
+
+        <h2>Data Security</h2>
+        <p>
+          We implement appropriate security measures to protect your information:
+        </p>
+        <ul>
+          <li>All file processing is done locally in your browser</li>
+          <li>We use secure HTTPS connections</li>
+          <li>Regular security assessments</li>
+          <li>Limited access to personal information</li>
+        </ul>
+
+        <h2>Third-Party Services</h2>
+        <p>
+          We use third-party services that may collect information:
+        </p>
+        <ul>
+          <li>Google Analytics for website analytics</li>
+          <li>Google AdSense for advertising</li>
+          <li>Cloudflare for security and performance</li>
+        </ul>
+
+        <h2>Cookies and Tracking</h2>
+        <p>
+          We use cookies and similar tracking technologies:
+        </p>
+        <ul>
+          <li>Essential cookies for website functionality</li>
+          <li>Analytics cookies to understand user behavior</li>
+          <li>Advertising cookies for personalized ads</li>
+        </ul>
+
+        <h2>Your Rights</h2>
+        <p>
+          You have certain rights regarding your personal information:
+        </p>
+        <ul>
+          <li>Access your personal information</li>
+          <li>Correct inaccurate information</li>
+          <li>Request deletion of your information</li>
+          <li>Opt-out of marketing communications</li>
+          <li>Object to processing of your information</li>
+        </ul>
+
+        <h2>Children's Privacy</h2>
+        <p>
+          Our services are not intended for children under 13. We do not knowingly collect personal information from children under 13.
+        </p>
+
+        <h2>Changes to This Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
+        </p>
+
+        <h2>Contact Us</h2>
+        <p>
+          If you have any questions about this Privacy Policy, please contact us:
+        </p>
+        <ul>
+          <li>Email: privacy@pdfcrop.co.in</li>
+          <li>Contact Form: /contact</li>
+        </ul>
+
+        <h2>Consent</h2>
+        <p>
+          By using our services, you consent to our Privacy Policy and agree to its terms. If you do not agree with this policy, please do not use our services.
+        </p>
+      </PolicyContent>
+    </PolicyContainer>
   );
 } 

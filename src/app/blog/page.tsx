@@ -1,6 +1,13 @@
 "use client";
 
+import { Metadata } from 'next';
+import Link from 'next/link';
 import styled from "styled-components";
+
+export const metadata: Metadata = {
+  title: 'Blog - PDF Cropper | E-commerce Shipping Label Management',
+  description: 'Expert insights, guides, and best practices for e-commerce shipping label management across multiple platforms.',
+};
 
 const Container = styled.div`
   min-height: 100vh;
@@ -37,47 +44,62 @@ const MainContent = styled.main`
   z-index: 10;
 `;
 
+const BlogContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+`;
+
+const BlogHeader = styled.div`
+  text-align: center;
+  margin-bottom: 3rem;
+`;
+
+const BlogTitle = styled.h1`
+  font-size: 2.5rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+`;
+
+const BlogDescription = styled.p`
+  font-size: 1.1rem;
+  color: #4b5563;
+  max-width: 800px;
+  margin: 0 auto;
+`;
+
 const BlogGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
 `;
 
 const BlogCard = styled.article`
   background: white;
   border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 `;
 
 const BlogImage = styled.div`
   height: 200px;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  position: relative;
+  background: #f3f4f6;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 2.5rem;
+  font-size: 3rem;
 `;
 
 const BlogContent = styled.div`
   padding: 1.5rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 `;
 
-const BlogTitle = styled.h2`
+const BlogCardTitle = styled.h2`
   font-size: 1.5rem;
   color: #1f2937;
   margin-bottom: 1rem;
@@ -85,65 +107,69 @@ const BlogTitle = styled.h2`
 
 const BlogExcerpt = styled.p`
   color: #4b5563;
+  margin-bottom: 1.5rem;
   line-height: 1.6;
-  margin-bottom: 1rem;
-  flex: 1;
 `;
 
-const BlogMeta = styled.div`
-  display: flex;
-  justify-content: space-between;
-  color: #6b7280;
-  font-size: 0.875rem;
-  margin-top: auto;
+const ReadMore = styled(Link)`
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
-export default function Blog() {
-  const blogPosts = [
-    {
-      title: "Understanding E-commerce Shipping Label Standards",
-      excerpt: "Learn about the different shipping label formats used by major e-commerce platforms and how to ensure compliance with their requirements.",
-      date: "March 15, 2024",
-      readTime: "8 min read",
-      icon: "📦"
-    },
-    {
-      title: "Optimizing Your Shipping Workflow: A Complete Guide",
-      excerpt: "Discover proven strategies to streamline your order fulfillment process, from label printing to package preparation.",
-      date: "March 10, 2024",
-      readTime: "10 min read",
-      icon: "⚡"
-    },
-    {
-      title: "PDF Management Best Practices for E-commerce Sellers",
-      excerpt: "Essential tips for organizing and managing shipping documents, invoices, and labels efficiently.",
-      date: "March 5, 2024",
-      readTime: "6 min read",
-      icon: "📄"
-    },
-    {
-      title: "Common Shipping Label Mistakes and How to Avoid Them",
-      excerpt: "Learn about frequent errors in shipping label preparation and how to prevent them to ensure smooth delivery.",
-      date: "February 28, 2024",
-      readTime: "7 min read",
-      icon: "⚠️"
-    },
-    {
-      title: "The Impact of Proper Label Formatting on Delivery Success",
-      excerpt: "How correctly formatted shipping labels can improve delivery rates and reduce shipping-related issues.",
-      date: "February 20, 2024",
-      readTime: "5 min read",
-      icon: "📈"
-    },
-    {
-      title: "E-commerce Shipping: A Platform-by-Platform Guide",
-      excerpt: "Detailed comparison of shipping requirements across major e-commerce platforms in India.",
-      date: "February 15, 2024",
-      readTime: "12 min read",
-      icon: "🛍️"
-    }
-  ];
+const blogPosts = [
+  {
+    id: 1,
+    title: 'Complete Guide to E-commerce Shipping Label Standards',
+    excerpt: 'Learn about the specific requirements and best practices for shipping labels across major e-commerce platforms including Flipkart, Amazon, Meesho, and Snapdeal.',
+    icon: '📦',
+    slug: 'shipping-label-standards'
+  },
+  {
+    id: 2,
+    title: 'How to Optimize Your Shipping Workflow',
+    excerpt: 'Discover proven strategies to streamline your order fulfillment process, reduce errors, and improve shipping efficiency.',
+    icon: '⚡',
+    slug: 'shipping-workflow-optimization'
+  },
+  {
+    id: 3,
+    title: 'E-commerce Shipping Best Practices 2024',
+    excerpt: 'Stay updated with the latest shipping label management techniques and industry standards for successful e-commerce operations.',
+    icon: '🚀',
+    slug: 'shipping-best-practices-2024'
+  },
+  {
+    id: 4,
+    title: 'Understanding Different Shipping Label Formats',
+    excerpt: 'A comprehensive guide to various shipping label formats and how to handle them effectively for different e-commerce platforms.',
+    icon: '📄',
+    slug: 'shipping-label-formats'
+  },
+  {
+    id: 5,
+    title: 'Common Shipping Label Mistakes to Avoid',
+    excerpt: 'Learn about the most common shipping label errors and how to prevent them to ensure smooth order fulfillment.',
+    icon: '⚠️',
+    slug: 'shipping-label-mistakes'
+  },
+  {
+    id: 6,
+    title: 'Automating Your Shipping Label Process',
+    excerpt: 'Explore how automation can help you save time and reduce errors in your shipping label management process.',
+    icon: '🤖',
+    slug: 'automating-shipping-labels'
+  }
+];
 
+export default function BlogPage() {
   return (
     <Container>
       <Header>
@@ -155,21 +181,30 @@ export default function Blog() {
       </Header>
 
       <MainContent>
-        <BlogGrid>
-          {blogPosts.map((post, index) => (
-            <BlogCard key={index}>
-              <BlogImage>{post.icon}</BlogImage>
-              <BlogContent>
-                <BlogTitle>{post.title}</BlogTitle>
-                <BlogExcerpt>{post.excerpt}</BlogExcerpt>
-                <BlogMeta>
-                  <span>{post.date}</span>
-                  <span>{post.readTime}</span>
-                </BlogMeta>
-              </BlogContent>
-            </BlogCard>
-          ))}
-        </BlogGrid>
+        <BlogContainer>
+          <BlogHeader>
+            <BlogTitle>E-commerce Shipping Insights</BlogTitle>
+            <BlogDescription>
+              Expert guides, tips, and best practices for efficient shipping label management
+              across multiple e-commerce platforms.
+            </BlogDescription>
+          </BlogHeader>
+
+          <BlogGrid>
+            {blogPosts.map((post) => (
+              <BlogCard key={post.id}>
+                <BlogImage>{post.icon}</BlogImage>
+                <BlogContent>
+                  <BlogCardTitle>{post.title}</BlogCardTitle>
+                  <BlogExcerpt>{post.excerpt}</BlogExcerpt>
+                  <ReadMore href={`/blog/${post.slug}`}>
+                    Read More →
+                  </ReadMore>
+                </BlogContent>
+              </BlogCard>
+            ))}
+          </BlogGrid>
+        </BlogContainer>
       </MainContent>
     </Container>
   );

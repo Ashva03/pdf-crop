@@ -227,7 +227,7 @@ export default function Navigation() {
     "/compress-pdf",
   ].includes(pathname);
 
-  const isEditActive = pathname === "/edit-pdf";
+  // const isEditActive = pathname === "/edit-pdf";
 
   return (
     <Nav>
@@ -306,13 +306,13 @@ export default function Navigation() {
               </DropdownItem>
             </DropdownMenu>
           </NavLinkContainer>
-          <NavLink
+          {/* <NavLink
             href="/edit-pdf"
             $active={isEditActive}
             onClick={handleLinkClick}
           >
             Edit PDF
-          </NavLink>
+          </NavLink> */}
           <NavLink
             href="/features"
             $active={pathname === "/features"}
@@ -389,13 +389,13 @@ export default function Navigation() {
             </NavLink>
           </div>
         )}
-        <NavLink
+        {/* <NavLink
           href="/edit-pdf"
           $active={isEditActive}
           onClick={handleLinkClick}
         >
           Edit PDF
-        </NavLink>
+        </NavLink> */}
         <NavLink
           href="/features"
           $active={pathname === "/features"}
