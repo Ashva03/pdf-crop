@@ -221,6 +221,15 @@ const navItems = [
       { name: 'Edit PDF', href: '/edit-pdf' },
     ],
   },
+  {
+    name: 'Legal',
+    href: '#',
+    dropdown: [
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Cookie Policy', href: '/cookie-policy' },
+      { name: 'Terms & Conditions', href: '/terms' },
+    ],
+  },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -237,6 +246,9 @@ const mobileNavItems = [
   { name: 'Merge PDF', href: '/merge-pdf' },
   { name: 'Compress PDF', href: '/compress-pdf' },
   { name: 'Edit PDF', href: '/edit-pdf' },
+  { name: 'Privacy Policy', href: '/privacy-policy' },
+  { name: 'Cookie Policy', href: '/cookie-policy' },
+  { name: 'Terms & Conditions', href: '/terms' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ];
