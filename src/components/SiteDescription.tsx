@@ -6,59 +6,90 @@ const SiteDescription = () => {
         <div className={styles.container}>
             {/* General Website Description */}
             <section className={styles.aboutSection}>
-                <h2>More Than Just Label Cropping</h2>
+                <h2>Your Complete E-commerce Shipping Solution</h2>
                 <p>
-                    Welcome to <strong>pdf-crop.com</strong>, your go-to destination for simple and efficient PDF manipulation tools. While you're here perfecting your shipping labels, discover our growing suite of tools designed to make working with PDFs easier than ever.
+                    Welcome to <strong>pdf-crop.com</strong>, your comprehensive solution for e-commerce shipping label management. We understand the challenges faced by online sellers in managing shipping labels across multiple platforms, and we're here to simplify your workflow.
                 </p>
                 <p>
-                    Our mission is to provide free, accessible, and user-friendly online utilities for everyday PDF tasks. No installations, no sign-ups required – just straightforward tools that work directly in your browser.
+                    Our mission is to provide efficient, accurate, and user-friendly tools that help you streamline your shipping process, reduce errors, and save valuable time in your order fulfillment operations.
                 </p>
-                {/* Add more benefits or features here */}
+            </section>
+
+            {/* Features Section */}
+            <section className={styles.featuresSection}>
+                <h2>Key Features</h2>
+                <div className={styles.featuresGrid}>
+                    <div className={styles.featureCard}>
+                        <div className={styles.featureIcon}>🎯</div>
+                        <h3>Platform-Specific Optimization</h3>
+                        <p>Automatically applies the correct dimensions and formatting for each e-commerce platform's shipping labels.</p>
+                    </div>
+                    <div className={styles.featureCard}>
+                        <div className={styles.featureIcon}>⚡</div>
+                        <h3>Batch Processing</h3>
+                        <p>Process multiple labels at once to save time and improve efficiency in your shipping workflow.</p>
+                    </div>
+                    <div className={styles.featureCard}>
+                        <div className={styles.featureIcon}>🔍</div>
+                        <h3>Quality Control</h3>
+                        <p>Preview and adjust labels before printing to ensure all elements are clearly visible and properly formatted.</p>
+                    </div>
+                    <div className={styles.featureCard}>
+                        <div className={styles.featureIcon}>📱</div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Access and process your shipping labels from any device, whether you're in the office or on the go.</p>
+                    </div>
+                </div>
             </section>
 
             {/* Blog/Content Section */}
             <section className={styles.blogSection}>
-                <h2>Tips & Insights</h2>
+                <h2>Latest Insights & Resources</h2>
                 <p className={styles.blogIntro}>
-                    Explore our articles for helpful tips on managing PDFs, optimizing your shipping process, and getting the most out of online tools.
+                    Stay updated with the latest trends, best practices, and tips for efficient e-commerce shipping and label management.
                 </p>
                 <div className={styles.blogGrid}>
-                    {/* Updated Blog Cards with Icons */}
                     <div className={styles.blogCard}>
-                        {/* Icon Placeholder */}
                         <div className={styles.cardIconPlaceholder}>
                             <span role="img" aria-label="Label Icon">🏷️</span>
                         </div>
                         <div className={styles.cardContent}>
-                            <h3>Why A6 is the Standard for Shipping Labels</h3>
-                            <p>Understand the benefits of the A6 format and why platforms like Flipkart and Meesho prefer it.</p>
-                            <a href="#" className={styles.readMore}>Read More &raquo;</a>
+                            <h3>E-commerce Shipping Label Standards Guide</h3>
+                            <p>Comprehensive overview of shipping label requirements across major e-commerce platforms.</p>
+                            <a href="/blog/shipping-label-standards" className={styles.readMore}>Read More &raquo;</a>
                         </div>
                     </div>
                     <div className={styles.blogCard}>
-                        {/* Icon Placeholder */}
                         <div className={styles.cardIconPlaceholder}>
                             <span role="img" aria-label="Magic Wand Icon">🪄</span>
                         </div>
                         <div className={styles.cardContent}>
-                            <h3>5 Quick PDF Tricks Every Seller Should Know</h3>
-                            <p>Boost your productivity with simple PDF tips for merging, splitting, and compressing documents.</p>
-                            <a href="#" className={styles.readMore}>Read More &raquo;</a>
+                            <h3>Shipping Workflow Optimization</h3>
+                            <p>Learn how to streamline your order fulfillment process and reduce shipping errors.</p>
+                            <a href="/blog/workflow-optimization" className={styles.readMore}>Read More &raquo;</a>
                         </div>
                     </div>
                     <div className={styles.blogCard}>
-                        {/* Icon Placeholder */}
                         <div className={styles.cardIconPlaceholder}>
                             <span role="img" aria-label="Rocket Icon">🚀</span>
                         </div>
                         <div className={styles.cardContent}>
-                            <h3>Streamlining Your E-commerce Packing Workflow</h3>
-                            <p>Discover ways to save time and reduce errors when preparing your orders for shipment.</p>
-                            <a href="#" className={styles.readMore}>Read More &raquo;</a>
+                            <h3>E-commerce Shipping Best Practices</h3>
+                            <p>Essential tips and strategies for efficient shipping label management and order fulfillment.</p>
+                            <a href="/blog/shipping-best-practices" className={styles.readMore}>Read More &raquo;</a>
                         </div>
                     </div>
-                    {/* Add more cards or dynamic loading logic */}
                 </div>
+            </section>
+
+            {/* Newsletter Section */}
+            <section className={styles.newsletterSection}>
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest updates, tips, and best practices in e-commerce shipping.</p>
+                <form className={styles.newsletterForm}>
+                    <input type="email" placeholder="Enter your email address" required />
+                    <button type="submit">Subscribe</button>
+                </form>
             </section>
         </div>
     );

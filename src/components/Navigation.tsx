@@ -227,7 +227,7 @@ export default function Navigation() {
     "/compress-pdf",
   ].includes(pathname);
 
-  const isEditActive = pathname === "/edit-pdf";
+  // const isEditActive = pathname === "/edit-pdf";
 
   return (
     <Nav>
@@ -306,13 +306,13 @@ export default function Navigation() {
               </DropdownItem>
             </DropdownMenu>
           </NavLinkContainer>
-          <NavLink
+          {/* <NavLink
             href="/edit-pdf"
             $active={isEditActive}
             onClick={handleLinkClick}
           >
             Edit PDF
-          </NavLink>
+          </NavLink> */}
           <NavLink
             href="/features"
             $active={pathname === "/features"}
@@ -361,6 +361,13 @@ export default function Navigation() {
         >
           Amazon Label
         </NavLink>
+        <NavLink
+          href="/myntra-label"
+          $active={pathname === "/myntra-label"}
+          onClick={handleLinkClick}
+        >
+          Myntra Label
+        </NavLink>
         <MobileDropdownButton
           onClick={handleMobileConvertToggle}
           $active={isConvertActive}
@@ -387,15 +394,18 @@ export default function Navigation() {
             <NavLink href="/compress-pdf" $active={pathname === "/compress-pdf"} onClick={handleLinkClick}>
               Compress PDF
             </NavLink>
+            <NavLink href="/edit-pdf" $active={pathname === "/edit-pdf"} onClick={handleLinkClick}>
+              Edit PDF
+            </NavLink>
           </div>
         )}
-        <NavLink
+        {/* <NavLink
           href="/edit-pdf"
           $active={isEditActive}
           onClick={handleLinkClick}
         >
           Edit PDF
-        </NavLink>
+        </NavLink> */}
         <NavLink
           href="/features"
           $active={pathname === "/features"}
@@ -409,6 +419,13 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           Blog
+        </NavLink>
+        <NavLink
+          href="/contact"
+          $active={pathname === "/contact"}
+          onClick={handleLinkClick}
+        >
+          Contact
         </NavLink>
       </MobileNav>
     </Nav>

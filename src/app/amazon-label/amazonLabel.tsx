@@ -610,33 +610,63 @@ export default function AmazonLabel() {
             )}
 
             <div className={styles.descriptionContainer}>
-                <h2>How to Process Amazon Labels</h2>
+                <h2>Amazon Shipping Label Requirements & Best Practices</h2>
                 <p>
-                    Format your Amazon shipping labels with easy options:
+                    Understanding Amazon's shipping label specifications is crucial for successful order fulfillment. Our tool helps you meet these requirements while optimizing your shipping process.
                 </p>
+                
+                <h3>Amazon Label Specifications</h3>
+                <ul className={styles.specsList}>
+                    <li><strong>Label Size:</strong> 4" x 6" (101.6mm × 152.4mm) is the standard format</li>
+                    <li><strong>Print Quality:</strong> Minimum 300 DPI for clear barcode scanning</li>
+                    <li><strong>Paper Type:</strong> Thermal paper or regular A4 paper</li>
+                    <li><strong>Required Elements:</strong> Amazon barcode, tracking number, delivery address, and seller details</li>
+                </ul>
+
+                <h3>How to Process Your Amazon Labels</h3>
                 <ol className={styles.stepsList}>
                     <li>
-                        <strong>Upload Label PDF:</strong> Select the Amazon label PDF file you downloaded from Seller Central.
+                        <strong>Download from Seller Central:</strong> Access your Amazon Seller Central account and download the shipping label PDF for your order.
                     </li>
                     <li>
-                        <strong>Choose Options:</strong>
+                        <strong>Upload to Our Tool:</strong> Click the upload button and select your Amazon label PDF file.
+                    </li>
+                    <li>
+                        <strong>Choose Processing Options:</strong>
                         <ul>
-                            <li>"Print SKU Id" - Adds the SKU information to labels</li>
-                            <li>"Print SKU with Description" - Adds SKU and product description</li>
-                            <li>"Remove Invoice" - Keeps only shipping label pages</li>
-                            <li>"Keep Invoice" - Keeps both shipping labels and invoice pages</li>
+                            <li>Add SKU information to labels</li>
+                            <li>Include product descriptions</li>
+                            <li>Remove invoice pages</li>
+                            <li>Keep invoice pages for reference</li>
                         </ul>
                     </li>
                     <li>
-                        <strong>Generate Labels:</strong> Click the button to process your file with the selected options.
+                        <strong>Preview & Adjust:</strong> Review the preview and make any necessary adjustments to ensure all elements are clearly visible.
                     </li>
                     <li>
-                        <strong>Print or Download:</strong> Preview the result and print or download as needed.
+                        <strong>Download & Print:</strong> Generate your optimized label and print it using a thermal printer or regular printer.
                     </li>
                 </ol>
-                <p>
-                    Save time and ensure your Amazon shipping labels include all the information you need.
-                </p>
+
+                <h3>Best Practices for Amazon Shipping</h3>
+                <ul className={styles.bestPracticesList}>
+                    <li>Always verify the delivery address before printing</li>
+                    <li>Ensure the Amazon barcode is clear and scannable</li>
+                    <li>Use high-quality paper to prevent smudging</li>
+                    <li>Keep a digital copy of the label for reference</li>
+                    <li>Print labels in batches to save time</li>
+                </ul>
+
+                <div className={styles.tipsBox}>
+                    <h4>Pro Tips</h4>
+                    <ul>
+                        <li>Regularly check Amazon's seller guidelines for any updates to label requirements</li>
+                        <li>Consider using a thermal printer for faster, more efficient label printing</li>
+                        <li>Keep your printer's firmware updated for optimal performance</li>
+                        <li>Maintain a backup of all shipping labels for at least 90 days</li>
+                        <li>Use the SKU information feature to help with inventory management</li>
+                    </ul>
+                </div>
             </div>
 
             {/* Add the Site Description and Blog Section */}

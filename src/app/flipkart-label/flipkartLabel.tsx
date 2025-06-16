@@ -45,27 +45,56 @@ export default function FlipkartLabel() {
                 onNumPagesChange={handleNumPagesChange}
             />
             <div className={styles.descriptionContainer}>
-                <h2>How to Crop Your Flipkart Label PDF</h2>
+                <h2>Flipkart Shipping Label Requirements & Best Practices</h2>
                 <p>
-                    Easily crop your Flipkart shipping labels to the required dimensions using our simple tool. Follow these steps:
+                    Understanding Flipkart's shipping label specifications is crucial for successful order fulfillment. Our tool helps you meet these requirements while optimizing your shipping process.
                 </p>
+                
+                <h3>Flipkart Label Specifications</h3>
+                <ul className={styles.specsList}>
+                    <li><strong>Label Size:</strong> A6 (105mm × 148mm) is the standard format</li>
+                    <li><strong>Print Quality:</strong> Minimum 300 DPI for clear barcode scanning</li>
+                    <li><strong>Paper Type:</strong> Thermal paper or regular A4 paper</li>
+                    <li><strong>Required Elements:</strong> Barcode, tracking number, delivery address, and seller details</li>
+                </ul>
+
+                <h3>How to Process Your Flipkart Labels</h3>
                 <ol className={styles.stepsList}>
                     <li>
-                        <strong>Upload Your PDF:</strong> Click the upload button and select the Flipkart label PDF file from your device.
+                        <strong>Download from Seller Hub:</strong> Access your Flipkart Seller Hub and download the shipping label PDF for your order.
                     </li>
                     <li>
-                        <strong>Preview and Adjust:</strong> The tool will automatically apply the standard Flipkart crop dimensions. You can preview each page and adjust the crop box if needed by dragging its corners or edges.
+                        <strong>Upload to Our Tool:</strong> Click the upload button and select your Flipkart label PDF file.
                     </li>
                     <li>
-                        <strong>Crop the PDF:</strong> Once you're satisfied with the preview, click the "Crop PDF" button.
+                        <strong>Automatic Optimization:</strong> Our tool automatically applies Flipkart's standard dimensions and optimizes the label for printing.
                     </li>
                     <li>
-                        <strong>Download:</strong> Your cropped PDF label will be generated. Click the "Download" button to save it to your device, ready for printing.
+                        <strong>Preview & Adjust:</strong> Review the preview and make any necessary adjustments to ensure all elements are clearly visible.
+                    </li>
+                    <li>
+                        <strong>Download & Print:</strong> Generate your optimized label and print it using a thermal printer or regular printer.
                     </li>
                 </ol>
-                <p>
-                    Our tool ensures your labels are precise and ready for your Flipkart shipments, saving you time and hassle.
-                </p>
+
+                <h3>Best Practices for Flipkart Shipping</h3>
+                <ul className={styles.bestPracticesList}>
+                    <li>Always verify the delivery address before printing</li>
+                    <li>Ensure the barcode is clear and scannable</li>
+                    <li>Use high-quality paper to prevent smudging</li>
+                    <li>Keep a digital copy of the label for reference</li>
+                    <li>Print labels in batches to save time</li>
+                </ul>
+
+                <div className={styles.tipsBox}>
+                    <h4>Pro Tips</h4>
+                    <ul>
+                        <li>Regularly check Flipkart's seller guidelines for any updates to label requirements</li>
+                        <li>Consider using a thermal printer for faster, more efficient label printing</li>
+                        <li>Keep your printer's firmware updated for optimal performance</li>
+                        <li>Maintain a backup of all shipping labels for at least 90 days</li>
+                    </ul>
+                </div>
             </div>
 
             <SiteDescription />
