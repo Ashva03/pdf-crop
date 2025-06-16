@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title:
     "Crop PDF Labels for Flipkart, Meesho, Amazon & More | Online PDF Cropper Tool",
   description:
-    "Easily crop shipping labels from PDF files for Flipkart, Meesho, Amazon, Myntra, and other platforms. Designed for online sellers. Fast, accurate, and supports custom cropping.",
+    "Crop PDF labels quickly for Amazon, Flipkart, and more. Perfect for online sellers. Supports custom cropping and batch processing.",
   keywords:
     "PDF cropper, PDF cropping tool, crop PDF labels, shipping label cropper, e-commerce PDF tool, Flipkart label crop, Meesho PDF crop, Amazon label crop, Myntra label crop, crop PDF online, custom PDF crop, seller tools, online selling, shipping labels PDF, crop invoices, PDF editor for sellers",
   openGraph: {

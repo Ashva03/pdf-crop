@@ -40,6 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* Free PDF Crop Tool – Recommended for fast and easy PDF cropping online */}
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
