@@ -1,187 +1,109 @@
-"use client";
+import { Metadata } from 'next';
+import DocumentationClient from './DocumentationClient';
 
-import styled from "styled-components";
-import Link from "next/link";
-
-const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-`;
-
-const HeroSection = styled.section`
-  text-align: center;
-  padding: 4rem 0;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  margin-bottom: 3rem;
-  border-radius: 16px;
-`;
-
-const Title = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-  font-weight: 800;
-`;
-
-const Description = styled.p`
-  font-size: 1.25rem;
-  max-width: 800px;
-  margin: 0 auto;
-  opacity: 0.9;
-`;
-
-const SearchSection = styled.section`
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 2rem;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease;
-
-  &:focus {
-    outline: none;
-    border-color: #4f46e5;
-  }
-`;
-
-const DocumentationGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-`;
-
-const DocCard = styled.div`
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  h2 {
-    color: #4f46e5;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-
-  p {
-    color: #4b5563;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-`;
-
-const DocLink = styled(Link)`
-  color: #4f46e5;
-  text-decoration: none;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const DocList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-
-  li {
-    margin-bottom: 0.75rem;
-    color: #4b5563;
-
-    &::before {
-      content: "•";
-      color: #4f46e5;
-      font-weight: bold;
-      margin-right: 0.5rem;
-    }
-  }
-`;
+export const metadata: Metadata = {
+  title: 'Documentation | PDF Cropper - User Guide & Technical Docs',
+  description: 'Comprehensive guides and technical documentation to help you get the most out of PDF Cropper. User guides, API reference, and best practices for PDF editing.',
+  keywords: 'PDF cropper documentation, user guide, technical documentation, API reference, PDF editing guide, tutorial',
+  alternates: {
+    canonical: 'https://pdfcrop.co.in/documentation',
+  },
+  openGraph: {
+    title: 'Documentation | PDF Cropper - User Guide & Technical Docs',
+    description: 'Comprehensive guides and technical documentation to help you get the most out of PDF Cropper.',
+    url: 'https://pdfcrop.co.in/documentation',
+    type: 'website',
+    siteName: 'PDF Crop Tool',
+    locale: 'en_US',
+    images: [
+      {
+        url: 'https://pdfcrop.co.in/images/documentation-guide.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'PDF Cropper Documentation and User Guide',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Documentation | PDF Cropper',
+    description: 'Comprehensive guides and technical documentation for PDF Cropper.',
+    images: ['https://pdfcrop.co.in/images/documentation-guide.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
 export default function DocumentationPage() {
   return (
-    <div style={{ background: "#f2f4f4" }}>
-      <Container>
-        <HeroSection>
-          <Title>Documentation</Title>
-          <Description>
-            Comprehensive guides and technical documentation to help you get the
-            most out of PDF Cropper.
-          </Description>
-        </HeroSection>
-
-        <SearchSection>
-          <SearchInput
-            type="text"
-            placeholder="Search documentation..."
-            aria-label="Search documentation"
-          />
-        </SearchSection>
-
-        <DocumentationGrid>
-          <DocCard>
-            <h2>User Guide</h2>
-            <p>Step-by-step instructions for using PDF Cropper effectively:</p>
-            <DocList>
-              <li>Getting Started Guide</li>
-              <li>Basic Operations</li>
-              <li>Advanced Features</li>
-              <li>Troubleshooting</li>
-            </DocList>
-            <DocLink href="/documentation/user-guide">
-              View User Guide →
-            </DocLink>
-          </DocCard>
-
-          <DocCard>
-            <h2>Technical Documentation</h2>
-            <p>
-              In-depth technical information for developers and power users:
-            </p>
-            <DocList>
-              <li>API Reference</li>
-              <li>Integration Guide</li>
-              <li>Performance Optimization</li>
-              <li>Security Best Practices</li>
-            </DocList>
-            <DocLink href="/documentation/technical">
-              View Technical Docs →
-            </DocLink>
-          </DocCard>
-
-          <DocCard>
-            <h2>Best Practices</h2>
-            <p>Tips and recommendations for optimal PDF cropping:</p>
-            <DocList>
-              <li>Quality Settings</li>
-              <li>Batch Processing</li>
-              <li>File Organization</li>
-              <li>Workflow Optimization</li>
-            </DocList>
-            <DocLink href="/documentation/best-practices">
-              View Best Practices →
-            </DocLink>
-          </DocCard>
-        </DocumentationGrid>
-      </Container>
-    </div>
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Documentation",
+            "description": "Comprehensive guides and technical documentation to help you get the most out of PDF Cropper.",
+            "url": "https://pdfcrop.co.in/documentation",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "PDF Crop Tool",
+              "url": "https://pdfcrop.co.in"
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pdfcrop.co.in"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Documentation",
+                  "item": "https://pdfcrop.co.in/documentation"
+                }
+              ]
+            },
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "PDF Crop Tool",
+              "url": "https://pdfcrop.co.in"
+            },
+            "hasPart": [
+              {
+                "@type": "WebPage",
+                "name": "User Guide",
+                "url": "https://pdfcrop.co.in/documentation/user-guide"
+              },
+              {
+                "@type": "WebPage",
+                "name": "Technical Documentation",
+                "url": "https://pdfcrop.co.in/documentation/technical"
+              },
+              {
+                "@type": "WebPage",
+                "name": "Best Practices",
+                "url": "https://pdfcrop.co.in/documentation/best-practices"
+              }
+            ]
+          })
+        }}
+      />
+      <DocumentationClient />
+    </>
   );
 }

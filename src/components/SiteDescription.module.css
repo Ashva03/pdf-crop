@@ -160,6 +160,79 @@
   color: #7c3aed;
 }
 
+/* Tools Section */
+.toolsSection {
+  padding: 3rem 1rem;
+  background-color: #f8fafc;
+  margin: 2rem 0;
+}
+
+.toolsSection h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.toolsSection p {
+  text-align: center;
+  color: #4a5568;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.toolCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.toolCard:hover {
+  transform: translateY(-5px);
+}
+
+.toolIcon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.toolCard h3 {
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.toolCard p {
+  color: #4a5568;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.toolLink {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.toolLink:hover {
+  color: #7c3aed;
+}
+
 /* Newsletter Section */
 .newsletterSection {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
@@ -217,6 +290,10 @@
   }
 
   .blogGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolsGrid {
     grid-template-columns: 1fr;
   }
 

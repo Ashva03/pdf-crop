@@ -82,6 +82,38 @@ const SiteDescription = () => {
                 </div>
             </section>
 
+            {/* Tools Section */}
+            <section className={styles.toolsSection}>
+                <h2>Our PDF Tools</h2>
+                <p>Explore our comprehensive suite of PDF tools designed to make your document management easier and more efficient.</p>
+                <div className={styles.toolsGrid}>
+                    <div className={styles.toolCard}>
+                        <div className={styles.toolIcon}>✂️</div>
+                        <h3>PDF Cropper</h3>
+                        <p>Crop PDF files to the perfect size for your shipping labels and documents.</p>
+                        <a href="/" className={styles.toolLink}>Try PDF Cropper →</a>
+                    </div>
+                    <div className={styles.toolCard}>
+                        <div className={styles.toolIcon}>📝</div>
+                        <h3>Edit PDF</h3>
+                        <p>Rearrange and delete pages in your PDF documents with our intuitive drag-and-drop interface.</p>
+                        <a href="/edit-pdf" className={styles.toolLink}>Edit PDF →</a>
+                    </div>
+                    <div className={styles.toolCard}>
+                        <div className={styles.toolIcon}>🗜️</div>
+                        <h3>Compress PDF</h3>
+                        <p>Reduce PDF file sizes while maintaining quality for easier sharing and storage.</p>
+                        <a href="/compress-pdf" className={styles.toolLink}>Compress PDF →</a>
+                    </div>
+                    <div className={styles.toolCard}>
+                        <div className={styles.toolIcon}>🔄</div>
+                        <h3>Merge PDF</h3>
+                        <p>Combine multiple PDF files into a single document quickly and easily.</p>
+                        <a href="/merge-pdf" className={styles.toolLink}>Merge PDF →</a>
+                    </div>
+                </div>
+            </section>
+
             {/* Newsletter Section */}
             <section className={styles.newsletterSection}>
                 <h2>Stay Updated</h2>
