@@ -4,7 +4,44 @@ import BlogPostContent from '@/components/BlogPostContent';
 
 export const metadata: Metadata = {
   title: 'E-commerce Shipping Label Best Practices | PDF Cropper',
-  description: 'Learn the best practices for creating and managing shipping labels for e-commerce platforms like Flipkart, Amazon, Meesho, and Snapdeal. Improve your shipping efficiency and customer satisfaction.',
+  description: 'Learn the best practices for creating and managing shipping labels for e-commerce platforms. Improve shipping efficiency and customer satisfaction.',
+  keywords: 'shipping label best practices, e-commerce shipping, label management, Flipkart labels, Amazon labels, Meesho labels, Snapdeal labels',
+  alternates: {
+    canonical: 'https://pdfcrop.co.in/blog/shipping-label-best-practices',
+  },
+  openGraph: {
+    title: 'E-commerce Shipping Label Best Practices | PDF Cropper',
+    description: 'Learn the best practices for creating and managing shipping labels for e-commerce platforms. Improve shipping efficiency and customer satisfaction.',
+    url: 'https://pdfcrop.co.in/blog/shipping-label-best-practices',
+    type: 'article',
+    siteName: 'PDF Crop Tool',
+    locale: 'en_US',
+    images: [
+      {
+        url: 'https://pdfcrop.co.in/images/shipping-best-practices.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'E-commerce Shipping Label Best Practices Guide',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'E-commerce Shipping Label Best Practices',
+    description: 'Learn the best practices for creating and managing shipping labels for e-commerce platforms.',
+    images: ['https://pdfcrop.co.in/images/shipping-best-practices.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function ShippingLabelBestPractices() {
@@ -113,9 +150,70 @@ export default function ShippingLabelBestPractices() {
   );
 
   return (
-    <BlogPostContent 
-      title="E-commerce Shipping Label Best Practices"
-      content={content}
-    />
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "E-commerce Shipping Label Best Practices",
+            "description": "Learn the best practices for creating and managing shipping labels for e-commerce platforms. Improve shipping efficiency and customer satisfaction.",
+            "url": "https://pdfcrop.co.in/blog/shipping-label-best-practices",
+            "datePublished": "2024-01-01",
+            "dateModified": "2024-01-01",
+            "author": {
+              "@type": "Organization",
+              "name": "PDF Crop Tool"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "PDF Crop Tool",
+              "url": "https://pdfcrop.co.in"
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "https://pdfcrop.co.in/blog/shipping-label-best-practices"
+            },
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://pdfcrop.co.in/images/shipping-best-practices.jpg",
+              "width": 1200,
+              "height": 630
+            },
+            "articleSection": "E-commerce Shipping",
+            "keywords": "shipping label best practices, e-commerce shipping, label management",
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pdfcrop.co.in"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://pdfcrop.co.in/blog"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Shipping Label Best Practices",
+                  "item": "https://pdfcrop.co.in/blog/shipping-label-best-practices"
+                }
+              ]
+            }
+          })
+        }}
+      />
+      <BlogPostContent 
+        title="E-commerce Shipping Label Best Practices"
+        content={content}
+      />
+    </>
   );
 } 

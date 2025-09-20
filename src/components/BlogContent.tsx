@@ -100,31 +100,10 @@ const blogPosts = [
   },
   {
     id: 3,
-    title: 'How to Optimize Your PDF Shipping Labels',
-    excerpt: 'Learn how to optimize your PDF shipping labels for better print quality and faster processing.',
-    icon: '🔄',
-    slug: 'optimize-pdf-labels',
-  },
-  {
-    id: 4,
     title: 'How to Troubleshoot Common Shipping Label Issues for E-commerce',
     excerpt: 'A practical guide to identifying and fixing common shipping label problems for e-commerce sellers to improve delivery rates and customer satisfaction.',
     icon: '🔧',
     slug: 'shipping-label-troubleshooting',
-  },
-  {
-    id: 5,
-    title: 'The Impact of Shipping Label Accuracy on Customer Satisfaction',
-    excerpt: 'Understanding how precise shipping labels contribute to faster deliveries and a better customer experience.',
-    icon: '📈',
-    slug: 'shipping-label-accuracy',
-  },
-  {
-    id: 6,
-    title: 'Step-by-Step: Automating Shipping Label Creation for Your Store',
-    excerpt: 'A guide to integrating automated label solutions into your e-commerce workflow for efficiency.',
-    icon: '🤖',
-    slug: 'automating-label-creation',
   },
 ];
 
