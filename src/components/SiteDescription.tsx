@@ -66,7 +66,7 @@ const SiteDescription = () => {
                         <div className={styles.cardContent}>
                             <h3>Shipping Workflow Optimization</h3>
                             <p>Learn how to streamline your order fulfillment process and reduce shipping errors.</p>
-                            <a href="/blog/workflow-optimization" className={styles.readMore}>Read More &raquo;</a>
+                            <a href="/blog/shipping-label-troubleshooting" className={styles.readMore}>Read More &raquo;</a>
                         </div>
                     </div>
                     <div className={styles.blogCard}>
@@ -76,7 +76,7 @@ const SiteDescription = () => {
                         <div className={styles.cardContent}>
                             <h3>E-commerce Shipping Best Practices</h3>
                             <p>Essential tips and strategies for efficient shipping label management and order fulfillment.</p>
-                            <a href="/blog/shipping-best-practices" className={styles.readMore}>Read More &raquo;</a>
+                            <a href="/blog/shipping-label-best-practices" className={styles.readMore}>Read More &raquo;</a>
                         </div>
                     </div>
                 </div>

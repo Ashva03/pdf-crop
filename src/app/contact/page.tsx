@@ -1,97 +1,93 @@
-"use client";
-import React from "react";
-import styled from "styled-components";
-import { Mail } from "lucide-react";
+import type { Metadata } from 'next';
+import ContactClient from './ContactClient';
 
-const Container = styled.div`
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f2f4f4;
-  padding: 3rem 1rem;
-`;
+export const metadata: Metadata = {
+  title: 'Contact Us - PDF Crop Tool Support | Get Help & Support',
+  description: 'Get in touch with PDF Crop Tool support team. Contact us for help with PDF cropping, shipping labels, and technical assistance. We\'re here to help!',
+  keywords: 'contact PDF crop tool, support help, technical assistance, PDF cropping help, shipping label support, customer service',
+  openGraph: {
+    title: 'Contact Us - PDF Crop Tool Support',
+    description: 'Get in touch with PDF Crop Tool support team. Contact us for help with PDF cropping, shipping labels, and technical assistance.',
+    type: 'website',
+    url: 'https://pdfcrop.co.in/contact',
+    siteName: 'PDF Crop Tool',
+    locale: 'en_US',
+    images: [
+      {
+        url: 'https://pdfcrop.co.in/images/contact-support.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Contact PDF Crop Tool Support Team',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Us - PDF Crop Tool Support',
+    description: 'Get in touch with PDF Crop Tool support team for help with PDF cropping and shipping labels.',
+    images: ['https://pdfcrop.co.in/images/contact-support.jpg'],
+  },
+  alternates: {
+    canonical: 'https://pdfcrop.co.in/contact',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
 
-const Card = styled.div`
-  max-width: 28rem;
-  width: 100%;
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-`;
-
-const Title = styled.h2`
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: #4f46e5;
-  text-align: center;
-`;
-
-const Subtitle = styled.p`
-  font-size: 0.875rem;
-  color: #4b5563;
-  text-align: center;
-`;
-
-const EmailContainer = styled.div`
-  margin-top: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-`;
-
-const EmailButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.375rem;
-  background-color: #4f46e5;
-  color: white;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.3s;
-  gap: 8px;
-  margin-top: 24px;
-
-  &:hover {
-    background-color: #4338ca;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5);
-  }
-`;
-
-function ContactPage() {
+export default function ContactPage() {
   return (
-    <Container>
-      <Card>
-        <Title>Get in Touch</Title>
-        <Subtitle>We're here to help you. Reach out to us!</Subtitle>
-        <EmailContainer>
-          <Mail className="h-5 w-5 text-indigo-600" />
-          <span className="text-lg text-gray-700">
-            ashvainfotech3@gmail.com
-          </span>
-        </EmailContainer>
-        <div className="flex justify-center">
-          <EmailButton
-            onClick={() =>
-              (window.location.href = "mailto:ashvainfotech3@gmail.com")
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact PDF Crop Tool",
+            "description": "Get in touch with PDF Crop Tool support team for help with PDF cropping, shipping labels, and technical assistance.",
+            "url": "https://pdfcrop.co.in/contact",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "PDF Crop Tool",
+              "url": "https://pdfcrop.co.in",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "ashvainfotech3@gmail.com",
+                "contactType": "customer service",
+                "availableLanguage": "English"
+              }
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://pdfcrop.co.in"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Contact",
+                  "item": "https://pdfcrop.co.in/contact"
+                }
+              ]
             }
-          >
-            <Mail className="mr-2 h-4 w-4" />
-            Send Email
-          </EmailButton>
-        </div>
-      </Card>
-    </Container>
+          })
+        }}
+      />
+      <ContactClient />
+    </>
   );
 }
-
-export default ContactPage;
