@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import dynamic from "next/dynamic";
-
-// Import the client component that handles the dynamic import with ssr: false
-const CompressPdfClient = dynamic(() => import("./CompressPdfClient"), {
-  ssr: false,
-});
+import CompressPdfWrapper from "./CompressPdfWrapper";
 
 export const metadata: Metadata = {
   title: "Compress PDF Files Online - Reduce PDF File Size | PDF Crop Tool",
@@ -54,48 +49,41 @@ export const metadata: Metadata = {
 };
 
 export default function CompressPdfPage() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "PDF Compressor",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web Browser",
+    description:
+      "Compress PDF files online to reduce file size while maintaining quality.",
+    price: "0",
+    priceCurrency: "USD",
+    creator: {
+      "@type": "Organization",
+      name: "PDF Crop Tool",
+      url: "https://pdfcrop.co.in",
+    },
+    featureList: [
+      "Compress PDF files",
+      "Reduce file size",
+      "Maintain quality",
+      "Multiple compression levels",
+      "Free to use",
+      "No registration required",
+      "Secure processing",
+    ],
+    screenshot: "https://pdfcrop.co.in/images/pdf-compression-tool.jpg",
+  };
+
   return (
     <>
-      {/* Structured Data */}
+      <CompressPdfWrapper />
       <Script
-        id="compress-pdf-jsonld"
+        id="compress-pdf-structured-data"
         type="application/ld+json"
-        strategy="worker"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: "PDF Compression Tool",
-            description:
-              "Compress PDF files online to reduce file size while maintaining quality. Free PDF compression tool with multiple compression levels.",
-            url: "https://pdfcrop.co.in/compress-pdf",
-            applicationCategory: "UtilityApplication",
-            operatingSystem: "Any",
-            browserRequirements: "Requires JavaScript. Requires HTML5.",
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "USD",
-            },
-            creator: {
-              "@type": "Organization",
-              name: "PDF Crop Tool",
-              url: "https://pdfcrop.co.in",
-            },
-            featureList: [
-              "Compress PDF files",
-              "Reduce file size",
-              "Maintain quality",
-              "Multiple compression levels",
-              "Free to use",
-              "No registration required",
-              "Secure processing",
-            ],
-            screenshot: "https://pdfcrop.co.in/images/pdf-compression-tool.jpg",
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <CompressPdfClient />
     </>
   );
 }

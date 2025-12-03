@@ -1,3 +1,5 @@
+"use client";
+
 // Move metadata to a separate file to avoid client/server component conflict
 import Script from "next/script";
 import styled from "styled-components";
@@ -188,10 +190,6 @@ const fixedTutorialLinks = {
   optimization: "/tutorials#optimization",
   outputFormats: "/tutorials#output-formats",
 };
-
-// Mark the component as a client component
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-("use client");
 
 export default function TutorialsPage() {
   const structuredData = generateStructuredData();
