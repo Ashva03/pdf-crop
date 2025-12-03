@@ -66,6 +66,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pdfcrop.co.in/blog/shipping-label-best-practices</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/blog/shipping-label-troubleshooting</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pdfcrop.co.in/features</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
