@@ -1,7 +1,53 @@
 "use client";
 
+import { Metadata } from "next";
 import styled from "styled-components";
 import Link from "next/link";
+import Script from "next/script";
+
+export const metadata: Metadata = {
+  title: "Support Center | PDF Cropper - Get Help & Contact Us",
+  description:
+    "Get help with PDF Cropper. Contact our support team, browse our help center, or join our community for assistance with all your PDF cropping needs.",
+  alternates: {
+    canonical: "https://pdfcrop.co.in/support",
+  },
+  openGraph: {
+    title: "Support Center | PDF Cropper - Get Help & Contact Us",
+    description:
+      "Get help with PDF Cropper. Contact our support team, browse our help center, or join our community for assistance with all your PDF cropping needs.",
+    url: "https://pdfcrop.co.in/support",
+    type: "website",
+    siteName: "PDF Cropper",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://pdfcrop.co.in/images/support-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PDF Cropper Support Center",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Support Center | PDF Cropper - Get Help & Contact Us",
+    description:
+      "Get help with PDF Cropper. Contact our support team or browse our help center for assistance.",
+    images: ["https://pdfcrop.co.in/images/support-og.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 const Container = styled.div`
   max-width: 1200px;
@@ -152,9 +198,50 @@ const SupportList = styled.ul`
   }
 `;
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Support Center | PDF Cropper",
+  description:
+    "Get help with PDF Cropper. Contact our support team, browse our help center, or join our community for assistance with all your PDF cropping needs.",
+  url: "https://pdfcrop.co.in/support",
+  publisher: {
+    "@type": "Organization",
+    name: "PDF Cropper",
+    url: "https://pdfcrop.co.in",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://pdfcrop.co.in/logo.png",
+      width: 250,
+      height: 60,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://pdfcrop.co.in/support",
+  },
+  image: {
+    "@type": "ImageObject",
+    url: "https://pdfcrop.co.in/images/support-og.jpg",
+    width: 1200,
+    height: 630,
+  },
+  potentialAction: {
+    "@type": "ContactPage",
+    url: "https://pdfcrop.co.in/support",
+    contactType: "customer service",
+    availableLanguage: "English",
+  },
+};
+
 export default function SupportPage() {
   return (
     <div style={{ background: "#f2f4f4" }}>
+      <Script
+        id="support-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Container>
         <HeroSection>
           <Title>Support Center</Title>
@@ -182,7 +269,7 @@ export default function SupportPage() {
                 <SupportLink href="/documentation">User Guides</SupportLink>
               </li>
               <li>
-                <SupportLink href="/tips">Tips & Tricks</SupportLink>
+                <SupportLink href="/blog/tips">Tips & Tricks</SupportLink>
               </li>
             </SupportList>
           </SupportCard>
@@ -205,16 +292,22 @@ export default function SupportPage() {
             <p>Join our community of users and share your experiences.</p>
             <SupportList>
               <li>
-                <SupportLink href="/forum">User Forum</SupportLink>
+                <SupportLink href="/blog">Blog</SupportLink>
               </li>
               <li>
                 <SupportLink href="/blog">Blog</SupportLink>
               </li>
               <li>
-                <SupportLink href="/social">Social Media</SupportLink>
+                <SupportLink
+                  href="https://twitter.com/pdfcropper"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Twitter
+                </SupportLink>
               </li>
               <li>
-                <SupportLink href="/feedback">Submit Feedback</SupportLink>
+                <SupportLink href="/contact">Contact Us</SupportLink>
               </li>
             </SupportList>
           </SupportCard>
