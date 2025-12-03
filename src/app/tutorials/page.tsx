@@ -1,12 +1,10 @@
 // Move metadata to a separate file to avoid client/server component conflict
-import { Metadata } from "next";
 import Script from "next/script";
 import styled from "styled-components";
 import Link from "next/link";
 
 const baseUrl = "https://pdfcrop.co.in";
 const pageUrl = `${baseUrl}/tutorials`;
-const pageTitle = "PDF Cropper Tutorials & Guides | Learn How to Use";
 const pageDescription =
   "Master PDF Cropper with our step-by-step video tutorials and guides. Learn basic to advanced techniques for cropping, editing, and optimizing your PDF documents.";
 
@@ -192,6 +190,7 @@ const fixedTutorialLinks = {
 };
 
 // Mark the component as a client component
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 ("use client");
 
 export default function TutorialsPage() {
