@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Script from "next/script";
 
@@ -117,9 +119,62 @@ const TipCard = styled.div`
   }
 `;
 
+const generateStructuredData = () => ({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Use PDF Cropper",
+  description:
+    "Step-by-step guide on how to crop and edit PDF documents using PDF Cropper",
+  totalTime: "PT5M",
+  step: [
+    {
+      "@type": "HowToStep",
+      name: "Upload Your PDF",
+      text: "Start by uploading your PDF file. Our tool supports all standard PDF formats, including scanned documents and multi-page files.",
+      image: "https://pdfcrop.co.in/images/step-upload.jpg",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Select Crop Area",
+      text: "Use our intuitive interface to draw the exact area you want to crop with real-time preview.",
+      image: "https://pdfcrop.co.in/images/step-crop.jpg",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Adjust Settings",
+      text: "Fine-tune your crop with advanced settings for output format and quality.",
+      image: "https://pdfcrop.co.in/images/step-adjust.jpg",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Download Your PDF",
+      text: "Download your perfectly cropped PDF, ready to use immediately.",
+      image: "https://pdfcrop.co.in/images/step-download.jpg",
+    },
+  ],
+});
+
 export default function HowItWorksPage() {
+  const [structuredData, setStructuredData] = useState<any>(null);
+
+  useEffect(() => {
+    setStructuredData(generateStructuredData());
+  }, []);
+
   return (
-    <div style={{ background: "#f2f4f4" }}>
+    <div
+      style={{ background: "#f2f4f4" }}
+      itemScope
+      itemType="https://schema.org/HowTo"
+    >
+      {structuredData && (
+        <Script
+          id="how-it-works-structured-data"
+          type="application/ld+json"
+          strategy="worker"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
       <Container>
         <Script
           async
@@ -127,60 +182,100 @@ export default function HowItWorksPage() {
           crossOrigin="anonymous"
         />
 
-        <HeroSection>
+        <HeroSection itemScope itemProp="name">
           <Title>How PDF Cropper Works</Title>
-          <Description>
+          <Description itemProp="description">
             Learn how to use our powerful PDF cropping tool in just a few simple
             steps. Get started with your document editing today.
           </Description>
         </HeroSection>
 
         <StepsContainer>
-          <Step>
-            <div className="step-number">1</div>
+          <Step
+            itemScope
+            itemProp="step"
+            itemType="https://schema.org/HowToStep"
+          >
+            <div className="step-number" itemProp="position" content="1">
+              1
+            </div>
             <div className="step-content">
-              <h3>Upload Your PDF</h3>
-              <p>
+              <h3 itemProp="name">Upload Your PDF</h3>
+              <p itemProp="text">
                 Start by uploading your PDF file. Our tool supports all standard
                 PDF formats, including scanned documents and multi-page files.
                 Simply drag and drop your file or click to browse.
               </p>
+              <meta
+                itemProp="image"
+                content="https://pdfcrop.co.in/images/step-upload.jpg"
+              />
             </div>
           </Step>
 
-          <Step>
-            <div className="step-number">2</div>
+          <Step
+            itemScope
+            itemProp="step"
+            itemType="https://schema.org/HowToStep"
+          >
+            <div className="step-number" itemProp="position" content="2">
+              2
+            </div>
             <div className="step-content">
-              <h3>Select Crop Area</h3>
-              <p>
+              <h3 itemProp="name">Select Crop Area</h3>
+              <p itemProp="text">
                 Use our intuitive interface to draw the exact area you want to
                 crop. The real-time preview helps you see exactly how your
                 cropped PDF will look before processing.
               </p>
+              <meta
+                itemProp="image"
+                content="https://pdfcrop.co.in/images/step-crop.jpg"
+              />
             </div>
           </Step>
 
-          <Step>
-            <div className="step-number">3</div>
+          <Step
+            itemScope
+            itemProp="step"
+            itemType="https://schema.org/HowToStep"
+          >
+            <div className="step-number" itemProp="position" content="3">
+              3
+            </div>
             <div className="step-content">
-              <h3>Adjust Settings</h3>
-              <p>
+              <h3 itemProp="name">Adjust Settings</h3>
+              <p itemProp="text">
                 Fine-tune your crop with our advanced settings. Choose your
                 preferred output format, quality settings, and more to get
                 exactly what you need.
               </p>
+              <meta
+                itemProp="image"
+                content="https://pdfcrop.co.in/images/step-adjust.jpg"
+              />
             </div>
           </Step>
 
-          <Step>
-            <div className="step-number">4</div>
+          <Step
+            itemScope
+            itemProp="step"
+            itemType="https://schema.org/HowToStep"
+          >
+            <div className="step-number" itemProp="position" content="4">
+              4
+            </div>
             <div className="step-content">
-              <h3>Download Your PDF</h3>
-              <p>
+              <h3 itemProp="name">Download Your PDF</h3>
+              <p itemProp="text">
                 Once you&apos;re satisfied with your crop, click the download
                 button to get your perfectly cropped PDF. Your document is ready
                 to use immediately.
               </p>
+              <meta
+                itemProp="image"
+                content="https://pdfcrop.co.in/images/step-download.jpg"
+              />
             </div>
           </Step>
         </StepsContainer>

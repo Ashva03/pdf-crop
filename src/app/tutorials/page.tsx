@@ -1,7 +1,79 @@
 "use client";
 
+import { Metadata } from "next";
+import Script from "next/script";
 import styled from "styled-components";
 import Link from "next/link";
+
+const baseUrl = "https://pdfcrop.co.in";
+const pageUrl = `${baseUrl}/tutorials`;
+const pageTitle = "PDF Cropper Tutorials & Guides | Learn How to Use";
+const pageDescription =
+  "Master PDF Cropper with our step-by-step video tutorials and guides. Learn basic to advanced techniques for cropping, editing, and optimizing your PDF documents.";
+
+// Generate structured data for the tutorials page
+function generateStructuredData() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "PDF Cropper Tutorials",
+    description: pageDescription,
+    url: pageUrl,
+    itemListElement: [
+      {
+        "@type": "HowTo",
+        name: "Getting Started with PDF Cropper",
+        description:
+          "Learn the basics of PDF Cropper and how to get started with your first document.",
+        url: `${baseUrl}/tutorials/getting-started`,
+      },
+      {
+        "@type": "HowTo",
+        name: "Advanced PDF Cropping Techniques",
+        description:
+          "Master advanced cropping techniques and features to enhance your workflow.",
+        url: `${baseUrl}/tutorials/advanced-features`,
+      },
+      {
+        "@type": "HowTo",
+        name: "PDF Cropping Best Practices",
+        description:
+          "Discover tips and tricks for optimal PDF cropping and workflow efficiency.",
+        url: `${baseUrl}/tutorials/best-practices`,
+      },
+    ],
+  };
+}
+
+export const metadata: Metadata = {
+  title: pageTitle,
+  description: pageDescription,
+  metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    type: "website",
+    siteName: "PDF Cropper",
+    images: [
+      {
+        url: `${baseUrl}/images/og-tutorials.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "PDF Cropper Tutorials & Guides",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: pageDescription,
+    images: [`${baseUrl}/images/og-tutorials.jpg`],
+  },
+};
 
 const Container = styled.div`
   max-width: 1200px;
@@ -140,9 +212,26 @@ const FeatureList = styled.ul`
   }
 `;
 
+// Fix broken links by implementing these pages or updating the links
+const fixedTutorialLinks = {
+  advancedFeatures: "/tutorials#advanced-features",
+  bestPractices: "/tutorials#best-practices",
+  optimization: "/tutorials#optimization",
+  outputFormats: "/tutorials#output-formats",
+};
+
 export default function TutorialsPage() {
+  const structuredData = generateStructuredData();
+
   return (
     <div style={{ backgroundColor: "#f2f4f4" }}>
+      <Script
+        id="tutorials-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        strategy="worker"
+      />
+      <h1 className="sr-only">PDF Cropper Tutorials & Guides</h1>
       <Container>
         <HeroSection>
           <Title>Video Tutorials & Guides</Title>
@@ -182,7 +271,7 @@ export default function TutorialsPage() {
               <li>Quality settings</li>
               <li>Advanced cropping tools</li>
             </FeatureList>
-            <TutorialLink href="/tutorials/advanced-features">
+            <TutorialLink href={fixedTutorialLinks.advancedFeatures}>
               Explore Features →
             </TutorialLink>
           </TutorialCard>
@@ -199,7 +288,7 @@ export default function TutorialsPage() {
               <li>Workflow automation</li>
               <li>Common issues and solutions</li>
             </FeatureList>
-            <TutorialLink href="/tutorials/best-practices">
+            <TutorialLink href={fixedTutorialLinks.bestPractices}>
               Learn More →
             </TutorialLink>
           </TutorialCard>
@@ -257,17 +346,17 @@ export default function TutorialsPage() {
               <p>Guides for optimizing quality and output settings.</p>
               <FeatureList>
                 <li>
-                  <TutorialLink href="/tutorials/quality-settings">
+                  <TutorialLink href="/tutorials#quality-settings">
                     Quality Settings
                   </TutorialLink>
                 </li>
                 <li>
-                  <TutorialLink href="/tutorials/output-formats">
+                  <TutorialLink href={fixedTutorialLinks.outputFormats}>
                     Output Formats
                   </TutorialLink>
                 </li>
                 <li>
-                  <TutorialLink href="/tutorials/optimization">
+                  <TutorialLink href={fixedTutorialLinks.optimization}>
                     Optimization Tips
                   </TutorialLink>
                 </li>
