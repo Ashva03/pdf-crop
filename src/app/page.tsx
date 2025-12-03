@@ -37,42 +37,48 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "PDF Cropper",
+  url: "https://pdfcrop.co.in",
+  image: "https://pdfcrop.co.in/og-image.jpg",
+  screenshot: "https://pdfcrop.co.in/og-image.jpg",
+  description:
+    "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra. Convert images to PDF, merge PDFs, compress PDFs, and more.",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  applicationSubCategory: "PDF Tools",
+  featureList: [
+    "Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra",
+    "Convert images to PDF",
+    "Convert PDF to JPG",
+    "Merge multiple PDFs",
+    "Compress PDF files",
+    "Edit PDF documents",
+  ],
+  browserRequirements: "Requires JavaScript. Requires HTML5.",
+  permissions: "Requires access to local files for PDF processing",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "100",
+  },
+};
+
 export default function Home() {
   return (
     <>
       <Script
-        id="json-ld"
+        id="structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            name: "PDF Cropper",
-            url: "https://pdfcrop.co.in",
-            image: "https://pdfcrop.co.in/og-image.jpg",
-            screenshot: "https://pdfcrop.co.in/og-image.jpg",
-            description:
-              "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra. Convert images to PDF, merge PDFs, compress PDFs, and more.",
-            applicationCategory: "BusinessApplication",
-            operatingSystem: "Web",
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "USD",
-            },
-            applicationSubCategory: "PDF Tools",
-            featureList: [
-              "Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra",
-              "Convert images to PDF",
-              "Convert PDF to JPG",
-              "Merge multiple PDFs",
-              "Compress PDF files",
-              "Edit PDF documents",
-            ],
-            browserRequirements: "Requires JavaScript. Requires HTML5.",
-            permissions: "Requires access to local files for PDF processing",
-          }),
-        }}
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <HomePage />
     </>

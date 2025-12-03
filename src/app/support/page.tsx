@@ -153,39 +153,68 @@ const SupportList = styled.ul`
   }
 `;
 
-const jsonLd = {
+const generateStructuredData = () => ({
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "Support Center | PDF Cropper",
-  description:
-    "Get help with PDF Cropper. Contact our support team, browse our help center, or join our community for assistance with all your PDF cropping needs.",
-  url: "https://pdfcrop.co.in/support",
-  publisher: {
-    "@type": "Organization",
-    name: "PDF Cropper",
-    url: "https://pdfcrop.co.in",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://pdfcrop.co.in/logo.png",
-      width: 250,
-      height: 60,
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How do I contact support?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "You can contact our support team via email at support@pdfcropper.com, phone at +1 (555) 123-4567, or use our live chat during business hours (Mon-Fri, 9AM-5PM EST).",
+      },
     },
+    {
+      "@type": "Question",
+      name: "Where can I find tutorials?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Visit our Tutorials section for step-by-step guides and video tutorials on using PDF Cropper effectively.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What are your business hours?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our support team is available Monday through Friday, from 9:00 AM to 5:00 PM EST.",
+      },
+    },
+  ],
+});
+
+const pageTitle = "Support Center | PDF Cropper";
+const pageDescription =
+  "Get expert assistance with PDF Cropper. Access our help center, contact support, or join our community for all your PDF editing and cropping needs. We're here to help!";
+const pageUrl = "https://pdfcrop.co.in/support";
+
+export const metadata = {
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: pageUrl,
   },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": "https://pdfcrop.co.in/support",
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    type: "website",
+    siteName: "PDF Cropper",
+    images: [
+      {
+        url: "https://pdfcrop.co.in/images/og-support.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PDF Cropper Support Center",
+      },
+    ],
   },
-  image: {
-    "@type": "ImageObject",
-    url: "https://pdfcrop.co.in/images/support-og.jpg",
-    width: 1200,
-    height: 630,
-  },
-  potentialAction: {
-    "@type": "ContactPage",
-    url: "https://pdfcrop.co.in/support",
-    contactType: "customer service",
-    availableLanguage: "English",
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: pageDescription,
+    images: ["https://pdfcrop.co.in/images/og-support.jpg"],
   },
 };
 
@@ -194,9 +223,12 @@ const SupportPage = () => {
   return (
     <div style={{ background: "#f2f4f4" }}>
       <Script
-        id="support-schema"
+        id="faq-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(generateStructuredData()),
+        }}
+        strategy="worker"
       />
       <Container>
         <HeroSection>

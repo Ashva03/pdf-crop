@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Script from "next/script";
 import AboutContent from "@/components/AboutContent";
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://pdfcrop.co.in/images/about-og.jpg",
+        url: "https://pdfcrop.co.in/images/about-og.webp",
         width: 1200,
         height: 630,
         alt: "About PDF Cropper - E-commerce Shipping Label Solutions",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
     title: "About Us | PDF Cropper",
     description:
       "Learn about the mission, team, and story behind PDF Cropper. Discover what makes us unique in e-commerce shipping label management.",
-    images: ["https://pdfcrop.co.in/images/about-og.jpg"],
+    images: ["https://pdfcrop.co.in/images/about-og.webp"],
   },
   robots: {
     index: true,
@@ -84,8 +85,10 @@ export default function AboutPage() {
 
   return (
     <>
-      <script
+      <Script
+        id="about-jsonld"
         type="application/ld+json"
+        strategy="worker"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <AboutContent />

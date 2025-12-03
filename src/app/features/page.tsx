@@ -1,6 +1,42 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useEffect, useState } from "react";
+import Script from "next/script";
 import styled from "styled-components";
+
+export const metadata = {
+  title: "Features | PDF Cropper - Advanced PDF Processing Tools",
+  description:
+    "Discover powerful PDF processing features including precise cropping, batch processing, and secure document handling. All tools work directly in your browser.",
+  alternates: {
+    canonical: "https://pdfcrop.co.in/features",
+  },
+  openGraph: {
+    title: "Advanced PDF Processing Features | PDF Cropper",
+    description:
+      "Explore powerful tools for PDF cropping, batch processing, and secure document handling. All processing happens in your browser for maximum privacy.",
+    url: "https://pdfcrop.co.in/features",
+    type: "website",
+    siteName: "PDF Cropper",
+    images: [
+      {
+        url: "https://pdfcrop.co.in/images/og-features.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PDF Cropper - Advanced PDF Processing Tools",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Advanced PDF Processing Features",
+    description:
+      "Discover powerful PDF processing tools including batch processing and secure document handling.",
+    images: ["https://pdfcrop.co.in/images/og-features.jpg"],
+  },
+};
 
 const Container = styled.div`
   min-height: 100vh;
@@ -145,6 +181,24 @@ const FeatureImageContainer = styled.div<{ $reverse?: boolean }>`
   }
 `;
 
+const generateStructuredData = (features: any[]) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: features.map((feature, index) => ({
+    "@type": "SoftwareApplication",
+    position: index + 1,
+    name: feature.title,
+    description: feature.description,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  })),
+});
+
 export default function Features() {
   const features = [
     {
@@ -251,23 +305,44 @@ export default function Features() {
     },
   ];
 
+  const [structuredData, setStructuredData] = useState<any>(null);
+
+  useEffect(() => {
+    setStructuredData(generateStructuredData(features));
+  }, [features]);
+
   return (
     <Container>
-      <Header>
-        <Title>Powerful Features</Title>
-        <Description>
+      {structuredData && (
+        <Script
+          id="features-structured-data"
+          type="application/ld+json"
+          strategy="worker"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      <Header itemScope itemType="https://schema.org/WebApplication">
+        <Title itemProp="name">Powerful Features</Title>
+        <Description itemProp="description">
           Discover all the professional tools and features that make PDF Cropper
           the perfect solution for your document processing needs.
         </Description>
       </Header>
 
-      <MainContent>
+      <MainContent itemScope itemType="https://schema.org/ItemList">
         <FeaturesGrid>
           {features.map((feature, index) => (
-            <FeatureCard key={index}>
+            <FeatureCard
+              key={index}
+              itemScope
+              itemType="https://schema.org/SoftwareApplication"
+              itemProp="itemListElement"
+            >
               <FeatureIcon>{feature.icon}</FeatureIcon>
-              <FeatureTitle>{feature.title}</FeatureTitle>
-              <FeatureDescription>{feature.description}</FeatureDescription>
+              <FeatureTitle itemProp="name">{feature.title}</FeatureTitle>
+              <FeatureDescription itemProp="description">
+                {feature.description}
+              </FeatureDescription>
             </FeatureCard>
           ))}
         </FeaturesGrid>
