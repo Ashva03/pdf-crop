@@ -189,35 +189,6 @@ const pageDescription =
   "Get expert assistance with PDF Cropper. Access our help center, contact support, or join our community for all your PDF editing and cropping needs. We're here to help!";
 const pageUrl = "https://pdfcrop.co.in/support";
 
-export const metadata = {
-  title: pageTitle,
-  description: pageDescription,
-  alternates: {
-    canonical: pageUrl,
-  },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: pageUrl,
-    type: "website",
-    siteName: "PDF Cropper",
-    images: [
-      {
-        url: "https://pdfcrop.co.in/images/og-support.jpg",
-        width: 1200,
-        height: 630,
-        alt: "PDF Cropper Support Center",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: pageTitle,
-    description: pageDescription,
-    images: ["https://pdfcrop.co.in/images/og-support.jpg"],
-  },
-};
-
 // This is a Client Component
 const SupportPage = () => {
   return (
