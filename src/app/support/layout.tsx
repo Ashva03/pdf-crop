@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Support Center | PDF Cropper - Get Help & Contact Us",
