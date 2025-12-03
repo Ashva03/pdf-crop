@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 
-// Dynamically import the client component with no SSR
+// Import the client component that handles the dynamic import with ssr: false
 const CompressPdfClient = dynamic(() => import("./CompressPdfClient"), {
   ssr: false,
-  loading: () => <div>Loading PDF compressor...</div>,
 });
 
 export const metadata: Metadata = {

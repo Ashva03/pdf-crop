@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import dynamic from "next/dynamic";
-
-// Dynamically import the AmazonLabel component with no SSR
-const AmazonLabel = dynamic(() => import("./amazonLabel"), {
-  ssr: false,
-  loading: () => <div>Loading Amazon Label Tool...</div>,
-});
+import AmazonLabelClient from "./AmazonLabelClient";
 
 // Define Base URL (Replace with your actual domain)
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://pdfcrop.co.in";
@@ -106,7 +100,7 @@ export default function AmazonLabelPage() {
         strategy="worker"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <AmazonLabel />
+      <AmazonLabelClient />
     </>
   );
 }

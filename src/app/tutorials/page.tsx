@@ -1,5 +1,4 @@
-"use client";
-
+// Move metadata to a separate file to avoid client/server component conflict
 import { Metadata } from "next";
 import Script from "next/script";
 import styled from "styled-components";
@@ -45,35 +44,7 @@ function generateStructuredData() {
   };
 }
 
-export const metadata: Metadata = {
-  title: pageTitle,
-  description: pageDescription,
-  metadataBase: new URL(baseUrl),
-  alternates: {
-    canonical: pageUrl,
-  },
-  openGraph: {
-    title: pageTitle,
-    description: pageDescription,
-    url: pageUrl,
-    type: "website",
-    siteName: "PDF Cropper",
-    images: [
-      {
-        url: `${baseUrl}/images/og-tutorials.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "PDF Cropper Tutorials & Guides",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: pageTitle,
-    description: pageDescription,
-    images: [`${baseUrl}/images/og-tutorials.jpg`],
-  },
-};
+// Metadata is now in a separate file
 
 const Container = styled.div`
   max-width: 1200px;
@@ -219,6 +190,9 @@ const fixedTutorialLinks = {
   optimization: "/tutorials#optimization",
   outputFormats: "/tutorials#output-formats",
 };
+
+// Mark the component as a client component
+("use client");
 
 export default function TutorialsPage() {
   const structuredData = generateStructuredData();
