@@ -184,11 +184,6 @@ const generateStructuredData = () => ({
   ],
 });
 
-const pageTitle = "Support Center | PDF Cropper";
-const pageDescription =
-  "Get expert assistance with PDF Cropper. Access our help center, contact support, or join our community for all your PDF editing and cropping needs. We're here to help!";
-const pageUrl = "https://pdfcrop.co.in/support";
-
 // This is a Client Component
 const SupportPage = () => {
   return (
