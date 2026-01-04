@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable Turbopack with default configuration
+  experimental: {
+    turbo: {},
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -18,6 +22,8 @@ const nextConfig = {
     domains: ["cdn.jsdelivr.net", "cdnjs.cloudflare.com"],
   },
   serverExternalPackages: ["pdfjs-dist", "canvas"],
+  // Explicitly set the webpack configuration
+  webpack5: true,
 };
 
 module.exports = nextConfig;
