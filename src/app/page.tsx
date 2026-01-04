@@ -7,15 +7,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  title: "PDF Cropper - Free Online PDF Tools for E-commerce Sellers",
+  title:
+    "PDF Cropper - Free Online PDF Tools for E-commerce Sellers | Shipping Label Management",
   description:
-    "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra. Convert, merge, and compress PDFs.",
+    "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra. Convert images to PDF, merge PDFs, compress PDFs, and edit PDF documents. 100% free, no registration required, secure browser-based processing.",
   keywords:
     "PDF cropper, shipping label, e-commerce tools, Flipkart label, Amazon label, Meesho label, Snapdeal label, Myntra label, PDF tools",
   openGraph: {
     title: "PDF Cropper - Free Online PDF Tools for E-commerce Sellers",
     description:
-      "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra. Convert, merge, and compress PDFs.",
+      "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra. Convert images to PDF, merge PDFs, compress PDFs, and edit PDF documents. 100% free, secure, browser-based processing.",
     url: "https://pdfcrop.co.in",
     siteName: "PDF Cropper",
     locale: "en_US",
@@ -35,6 +36,20 @@ export const metadata: Metadata = {
     description:
       "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra.",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  authors: [{ name: "PDF Cropper" }],
+  creator: "PDF Cropper",
+  publisher: "PDF Cropper",
 };
 
 const structuredData = {
@@ -64,11 +79,40 @@ const structuredData = {
   ],
   browserRequirements: "Requires JavaScript. Requires HTML5.",
   permissions: "Requires access to local files for PDF processing",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    reviewCount: "100",
+  creator: {
+    "@type": "Organization",
+    name: "PDF Cropper",
+    url: "https://pdfcrop.co.in",
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "Customer Service",
+      email: "ashvainfotech3@gmail.com",
+    },
   },
+  publisher: {
+    "@type": "Organization",
+    name: "PDF Cropper",
+    url: "https://pdfcrop.co.in",
+  },
+};
+
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "PDF Cropper",
+  url: "https://pdfcrop.co.in",
+  logo: "https://pdfcrop.co.in/og-image.jpg",
+  description:
+    "Free online PDF tools for e-commerce sellers. Specialized in shipping label management for Flipkart, Amazon, Meesho, Snapdeal, and Myntra platforms.",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Customer Service",
+    email: "ashvainfotech3@gmail.com",
+    availableLanguage: "English",
+  },
+  sameAs: [],
+  foundingDate: "2024",
+  areaServed: "Worldwide",
 };
 
 export default function Home() {
@@ -79,6 +123,12 @@ export default function Home() {
         type="application/ld+json"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="organization-data"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
       <HomePage />
     </>

@@ -17,13 +17,13 @@ const HeroSection = styled.section`
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/hero-pattern.svg') center/cover;
+    background: url("/hero-pattern.svg") center/cover;
     opacity: 0.1;
   }
 `;
@@ -264,13 +264,66 @@ const Role = styled.p`
   color: #6b7280;
 `;
 
+const AboutSection = styled.section`
+  padding: 4rem 2rem;
+  background: white;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const AboutContent = styled.div`
+  text-align: center;
+`;
+
+const AboutText = styled.p`
+  font-size: 1.1rem;
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+const AboutLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+`;
+
+const AboutLink = styled(Link)`
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #4f46e5;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #4f46e5;
+    color: white;
+    transform: translateY(-2px);
+  }
+`;
+
 export default function HomePage() {
   return (
     <>
       <HeroSection>
         <HeroTitle>E-commerce Shipping Label Management Made Easy</HeroTitle>
         <HeroSubtitle>
-          Optimize your shipping labels for Flipkart, Amazon, Meesho, and Snapdeal with our powerful PDF cropping tool. Save time and ensure compliance with platform requirements.
+          Optimize your shipping labels for Flipkart, Amazon, Meesho, Snapdeal,
+          and Myntra with our powerful PDF cropping tool. Save time and ensure
+          compliance with platform requirements. Process labels in seconds, not
+          hours.
         </HeroSubtitle>
         <CTAButton href="/flipkart-label">Get Started</CTAButton>
       </HeroSection>
@@ -282,7 +335,9 @@ export default function HomePage() {
             <PlatformIcon>🛍️</PlatformIcon>
             <PlatformTitle>Flipkart Labels</PlatformTitle>
             <PlatformDescription>
-              Optimize your Flipkart shipping labels with our specialized cropping tool. Ensure perfect A6 size and clear barcode visibility.
+              Optimize your Flipkart shipping labels with our specialized
+              cropping tool. Ensure perfect A6 size and clear barcode
+              visibility.
             </PlatformDescription>
             <CTAButton href="/flipkart-label">Process Flipkart Label</CTAButton>
           </PlatformCard>
@@ -291,7 +346,8 @@ export default function HomePage() {
             <PlatformIcon>📦</PlatformIcon>
             <PlatformTitle>Amazon Labels</PlatformTitle>
             <PlatformDescription>
-              Format your Amazon FBA and FBM labels correctly. Meet all Amazon's shipping label requirements with ease.
+              Format your Amazon FBA and FBM labels correctly. Meet all Amazon's
+              shipping label requirements with ease.
             </PlatformDescription>
             <CTAButton href="/amazon-label">Process Amazon Label</CTAButton>
           </PlatformCard>
@@ -300,7 +356,8 @@ export default function HomePage() {
             <PlatformIcon>🚚</PlatformIcon>
             <PlatformTitle>Meesho Labels</PlatformTitle>
             <PlatformDescription>
-              Streamline your Meesho shipping label management. Ensure all required information is clearly visible.
+              Streamline your Meesho shipping label management. Ensure all
+              required information is clearly visible.
             </PlatformDescription>
             <CTAButton href="/meesho-label">Process Meesho Label</CTAButton>
           </PlatformCard>
@@ -309,9 +366,20 @@ export default function HomePage() {
             <PlatformIcon>📨</PlatformIcon>
             <PlatformTitle>Snapdeal Labels</PlatformTitle>
             <PlatformDescription>
-              Optimize your Snapdeal shipping labels for efficient processing and delivery tracking.
+              Optimize your Snapdeal shipping labels for efficient processing
+              and delivery tracking.
             </PlatformDescription>
             <CTAButton href="/snapdeal-label">Process Snapdeal Label</CTAButton>
+          </PlatformCard>
+
+          <PlatformCard>
+            <PlatformIcon>👕</PlatformIcon>
+            <PlatformTitle>Myntra Labels</PlatformTitle>
+            <PlatformDescription>
+              Format your Myntra shipping labels correctly. Ensure all required
+              information is clearly visible and meets platform specifications.
+            </PlatformDescription>
+            <CTAButton href="/myntra-label">Process Myntra Label</CTAButton>
           </PlatformCard>
         </PlatformGrid>
       </PlatformSection>
@@ -323,7 +391,8 @@ export default function HomePage() {
             <FeatureIcon>⚡</FeatureIcon>
             <FeatureTitle>Fast Processing</FeatureTitle>
             <FeatureDescription>
-              Process multiple labels in seconds with our optimized cropping algorithm.
+              Process multiple labels in seconds with our optimized cropping
+              algorithm.
             </FeatureDescription>
           </FeatureCard>
 
@@ -331,7 +400,8 @@ export default function HomePage() {
             <FeatureIcon>🎯</FeatureIcon>
             <FeatureTitle>Platform-Specific</FeatureTitle>
             <FeatureDescription>
-              Tailored solutions for each e-commerce platform's unique requirements.
+              Tailored solutions for each e-commerce platform's unique
+              requirements.
             </FeatureDescription>
           </FeatureCard>
 
@@ -339,7 +409,8 @@ export default function HomePage() {
             <FeatureIcon>🔒</FeatureIcon>
             <FeatureTitle>Secure Processing</FeatureTitle>
             <FeatureDescription>
-              All processing is done locally in your browser. Your data never leaves your device.
+              All processing is done locally in your browser. Your data never
+              leaves your device.
             </FeatureDescription>
           </FeatureCard>
 
@@ -373,17 +444,29 @@ export default function HomePage() {
         <SectionTitle>What Our Users Say</SectionTitle>
         <TestimonialGrid>
           <TestimonialCard>
-            <Quote>"PDF Cropper has revolutionized our shipping process. It's incredibly fast and ensures all our labels meet platform requirements. A must-have tool for any e-commerce business!"</Quote>
+            <Quote>
+              "PDF Cropper has revolutionized our shipping process. It's
+              incredibly fast and ensures all our labels meet platform
+              requirements. A must-have tool for any e-commerce business!"
+            </Quote>
             <Author>Priya Sharma</Author>
             <Role>E-commerce Manager, Delhi</Role>
           </TestimonialCard>
           <TestimonialCard>
-            <Quote>"I used to spend hours manually adjusting labels. Now, with PDF Cropper, it takes minutes. The batch processing feature is a lifesaver! Highly recommended."</Quote>
+            <Quote>
+              "I used to spend hours manually adjusting labels. Now, with PDF
+              Cropper, it takes minutes. The batch processing feature is a
+              lifesaver! Highly recommended."
+            </Quote>
             <Author>Rajesh Kumar</Author>
             <Role>Online Seller, Mumbai</Role>
           </TestimonialCard>
           <TestimonialCard>
-            <Quote>"The platform-specific tools are fantastic! We no longer worry about Flipkart or Amazon label rejections. The privacy-first approach is also a huge plus."</Quote>
+            <Quote>
+              "The platform-specific tools are fantastic! We no longer worry
+              about Flipkart or Amazon label rejections. The privacy-first
+              approach is also a huge plus."
+            </Quote>
             <Author>Anjali Singh</Author>
             <Role>Logistics Coordinator, Bengaluru</Role>
           </TestimonialCard>
@@ -398,7 +481,8 @@ export default function HomePage() {
             <StepContent>
               <StepTitle>Upload Your Label</StepTitle>
               <StepDescription>
-                Simply drag and drop your shipping label PDF or click to upload. Our tool supports all common PDF formats.
+                Simply drag and drop your shipping label PDF or click to upload.
+                Our tool supports all common PDF formats.
               </StepDescription>
             </StepContent>
           </Step>
@@ -408,7 +492,8 @@ export default function HomePage() {
             <StepContent>
               <StepTitle>Select Platform</StepTitle>
               <StepDescription>
-                Choose your e-commerce platform (Flipkart, Amazon, Meesho, or Snapdeal) for platform-specific optimization.
+                Choose your e-commerce platform (Flipkart, Amazon, Meesho,
+                Snapdeal, or Myntra) for platform-specific optimization.
               </StepDescription>
             </StepContent>
           </Step>
@@ -418,7 +503,8 @@ export default function HomePage() {
             <StepContent>
               <StepTitle>Automatic Processing</StepTitle>
               <StepDescription>
-                Our tool automatically crops and formats your label according to platform requirements.
+                Our tool automatically crops and formats your label according to
+                platform requirements.
               </StepDescription>
             </StepContent>
           </Step>
@@ -428,7 +514,8 @@ export default function HomePage() {
             <StepContent>
               <StepTitle>Download & Print</StepTitle>
               <StepDescription>
-                Download your optimized label and print it directly. Ready for shipping!
+                Download your optimized label and print it directly. Ready for
+                shipping!
               </StepDescription>
             </StepContent>
           </Step>
@@ -438,10 +525,44 @@ export default function HomePage() {
       <CTASection>
         <CTATitle>Ready to Optimize Your Shipping Labels?</CTATitle>
         <CTADescription>
-          Join thousands of e-commerce sellers who trust our tool for their shipping label management.
+          Join thousands of e-commerce sellers who trust our tool for their
+          shipping label management.
         </CTADescription>
         <CTAButton href="/flipkart-label">Start Processing Labels</CTAButton>
       </CTASection>
+
+      <AboutSection>
+        <SectionTitle>About PDF Cropper</SectionTitle>
+        <AboutContent>
+          <AboutText>
+            PDF Cropper is a free, comprehensive online tool designed
+            specifically for e-commerce sellers who need to manage shipping
+            labels efficiently. Our platform offers specialized solutions for
+            major e-commerce platforms including Flipkart, Amazon, Meesho,
+            Snapdeal, and Myntra.
+          </AboutText>
+          <AboutText>
+            We understand the challenges e-commerce sellers face with shipping
+            label management. That's why we've created a suite of tools that
+            process your documents locally in your browser, ensuring complete
+            privacy and security. All our tools are 100% free to use with no
+            registration required, no hidden fees, and no file size limits.
+          </AboutText>
+          <AboutText>
+            In addition to platform-specific label cropping, we offer a complete
+            set of PDF tools including image to PDF conversion, PDF to JPG
+            conversion, PDF merging, PDF compression, and PDF editing. Whether
+            you're processing a single label or hundreds of documents, our tools
+            are designed to save you time and ensure compliance with platform
+            requirements.
+          </AboutText>
+          <AboutLinks>
+            <AboutLink href="/about">Learn More About Us</AboutLink>
+            <AboutLink href="/contact">Contact Our Team</AboutLink>
+            <AboutLink href="/faq">Frequently Asked Questions</AboutLink>
+          </AboutLinks>
+        </AboutContent>
+      </AboutSection>
     </>
   );
 }

@@ -139,12 +139,20 @@ export default function DocumentationClient() {
         <DocumentationGrid>
           <DocCard>
             <h2>User Guide</h2>
-            <p>Step-by-step instructions for using PDF Cropper effectively:</p>
+            <p>
+              Step-by-step instructions for using PDF Cropper effectively. Learn
+              how to crop shipping labels, convert PDFs, merge documents, and
+              more with our comprehensive user guides.
+            </p>
             <DocList>
-              <li>Getting Started Guide</li>
-              <li>Basic Operations</li>
-              <li>Advanced Features</li>
-              <li>Troubleshooting</li>
+              <li>Getting Started Guide - Learn the basics of PDF cropping</li>
+              <li>Basic Operations - Upload, crop, and download PDFs</li>
+              <li>Advanced Features - Batch processing and custom templates</li>
+              <li>Troubleshooting - Common issues and solutions</li>
+              <li>
+                Platform-Specific Guides - Flipkart, Amazon, Meesho, Snapdeal,
+                Myntra
+              </li>
             </DocList>
             <DocLink href="/tutorials/getting-started">
               View User Guide →
@@ -154,13 +162,21 @@ export default function DocumentationClient() {
           <DocCard>
             <h2>Technical Documentation</h2>
             <p>
-              In-depth technical information for developers and power users:
+              In-depth technical information for developers and power users.
+              Understand how our tools work, integration options, and technical
+              specifications for optimal usage.
             </p>
             <DocList>
-              <li>API Reference</li>
-              <li>Integration Guide</li>
-              <li>Performance Optimization</li>
-              <li>Security Best Practices</li>
+              <li>API Reference - Technical specifications and endpoints</li>
+              <li>
+                Integration Guide - How to integrate PDF tools into your
+                workflow
+              </li>
+              <li>Performance Optimization - Tips for faster processing</li>
+              <li>Security Best Practices - Privacy and data handling</li>
+              <li>
+                Browser Compatibility - Supported browsers and requirements
+              </li>
             </DocList>
             <DocLink href="/tutorials/interface-overview">
               View Technical Docs →
@@ -169,18 +185,69 @@ export default function DocumentationClient() {
 
           <DocCard>
             <h2>Best Practices</h2>
-            <p>Tips and recommendations for optimal PDF cropping:</p>
+            <p>
+              Tips and recommendations for optimal PDF cropping and document
+              management. Learn from our experience to improve your workflow
+              efficiency and output quality.
+            </p>
             <DocList>
-              <li>Quality Settings</li>
-              <li>Batch Processing</li>
-              <li>File Organization</li>
-              <li>Workflow Optimization</li>
+              <li>Quality Settings - Optimize output quality and file size</li>
+              <li>Batch Processing - Process multiple files efficiently</li>
+              <li>File Organization - Best practices for managing documents</li>
+              <li>
+                Workflow Optimization - Streamline your document processing
+              </li>
+              <li>
+                Label Formatting - Platform-specific formatting guidelines
+              </li>
             </DocList>
             <DocLink href="/tutorials/quality-settings">
               View Best Practices →
             </DocLink>
           </DocCard>
         </DocumentationGrid>
+
+        <DocCard style={{ marginTop: "2rem" }}>
+          <h2>Quick Start Guide</h2>
+          <p>New to PDF Cropper? Follow these steps to get started:</p>
+          <ol
+            style={{
+              paddingLeft: "1.5rem",
+              marginBottom: "1rem",
+              color: "#4b5563",
+              lineHeight: 1.8,
+            }}
+          >
+            <li style={{ marginBottom: "0.75rem" }}>
+              <strong>Choose Your Tool</strong> - Select the appropriate tool
+              from our platform-specific label croppers (Flipkart, Amazon,
+              Meesho, Snapdeal, Myntra) or use our general PDF tools (convert,
+              merge, compress, edit).
+            </li>
+            <li style={{ marginBottom: "0.75rem" }}>
+              <strong>Upload Your File</strong> - Drag and drop your PDF file or
+              click to browse and select from your device.
+            </li>
+            <li style={{ marginBottom: "0.75rem" }}>
+              <strong>Process Your Document</strong> - Our tool will
+              automatically process your file according to the selected platform
+              requirements or your chosen settings.
+            </li>
+            <li style={{ marginBottom: "0.75rem" }}>
+              <strong>Download Result</strong> - Preview your processed document
+              and download it when ready. All processing happens in your browser
+              for complete privacy.
+            </li>
+          </ol>
+          <p style={{ color: "#4b5563", lineHeight: 1.8 }}>
+            For detailed instructions, visit our{" "}
+            <DocLink href="/tutorials/getting-started">
+              Getting Started Tutorial
+            </DocLink>{" "}
+            or check out our <DocLink href="/faq">FAQ section</DocLink> for
+            common questions.
+          </p>
+        </DocCard>
       </Container>
     </div>
   );

@@ -100,6 +100,29 @@ export default function FooterComponent() {
             <li>
               <Link href="/amazon-label">Amazon Label</Link>
             </li>
+            <li>
+              <Link href="/myntra-label">Myntra Label</Link>
+            </li>
+          </ul>
+        </FooterSection>
+        <FooterSection>
+          <h3>PDF Tools</h3>
+          <ul>
+            <li>
+              <Link href="/images-to-pdf">Images to PDF</Link>
+            </li>
+            <li>
+              <Link href="/pdf-to-jpg">PDF to JPG</Link>
+            </li>
+            <li>
+              <Link href="/merge-pdf">Merge PDF</Link>
+            </li>
+            <li>
+              <Link href="/compress-pdf">Compress PDF</Link>
+            </li>
+            <li>
+              <Link href="/edit-pdf">Edit PDF</Link>
+            </li>
           </ul>
         </FooterSection>
         <FooterSection>

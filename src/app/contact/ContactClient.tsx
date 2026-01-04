@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
-  max-width: 28rem;
+  max-width: 42rem;
   width: 100%;
   background-color: #ffffff;
   padding: 2rem;
@@ -69,12 +69,69 @@ const EmailButton = styled.button`
   }
 `;
 
+const InfoSection = styled.div`
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+`;
+
+const InfoTitle = styled.h2`
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  text-align: center;
+`;
+
+const InfoText = styled.p`
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  text-align: center;
+`;
+
+const InfoList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+`;
+
+const InfoListItem = styled.li`
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+
+  &::before {
+    content: "•";
+    color: #4f46e5;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  a {
+    color: #4f46e5;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 function ContactClient() {
   return (
     <Container>
       <Card>
         <Title>Get in Touch</Title>
-        <Subtitle>We're here to help you. Reach out to us!</Subtitle>
+        <Subtitle>
+          We're here to help you with any questions, feedback, or support you
+          need. Reach out to us and we'll get back to you as soon as possible!
+        </Subtitle>
         <EmailContainer>
           <Mail className="h-5 w-5 text-indigo-600" />
           <span className="text-lg text-gray-700">
@@ -91,6 +148,75 @@ function ContactClient() {
             Send Email
           </EmailButton>
         </div>
+
+        <InfoSection>
+          <InfoTitle>How We Can Help</InfoTitle>
+          <InfoText>Our support team is available to assist you with:</InfoText>
+          <InfoList>
+            <InfoListItem>
+              Technical support for PDF cropping tools
+            </InfoListItem>
+            <InfoListItem>
+              Questions about platform-specific label requirements
+            </InfoListItem>
+            <InfoListItem>Feature requests and suggestions</InfoListItem>
+            <InfoListItem>Bug reports and troubleshooting</InfoListItem>
+            <InfoListItem>General inquiries about our services</InfoListItem>
+            <InfoListItem>
+              Partnership and collaboration opportunities
+            </InfoListItem>
+          </InfoList>
+        </InfoSection>
+
+        <InfoSection>
+          <InfoTitle>Response Time</InfoTitle>
+          <InfoText>
+            We typically respond to all inquiries within 24-48 hours during
+            business days. For urgent matters, please mention "URGENT" in your
+            subject line.
+          </InfoText>
+        </InfoSection>
+
+        <InfoSection>
+          <InfoTitle>Other Ways to Get Help</InfoTitle>
+          <InfoText>
+            Before contacting us, you might find answers in our:
+          </InfoText>
+          <InfoList>
+            <InfoListItem>
+              <a
+                href="/faq"
+                style={{ color: "#4f46e5", textDecoration: "none" }}
+              >
+                Frequently Asked Questions (FAQ)
+              </a>
+            </InfoListItem>
+            <InfoListItem>
+              <a
+                href="/tutorials"
+                style={{ color: "#4f46e5", textDecoration: "none" }}
+              >
+                Video Tutorials and Guides
+              </a>
+            </InfoListItem>
+            <InfoListItem>
+              <a
+                href="/documentation"
+                style={{ color: "#4f46e5", textDecoration: "none" }}
+              >
+                Documentation and User Guides
+              </a>
+            </InfoListItem>
+            <InfoListItem>
+              <a
+                href="/support"
+                style={{ color: "#4f46e5", textDecoration: "none" }}
+              >
+                Support Center
+              </a>
+            </InfoListItem>
+          </InfoList>
+        </InfoSection>
       </Card>
     </Container>
   );
