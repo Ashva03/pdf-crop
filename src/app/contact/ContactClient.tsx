@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Mail } from "lucide-react";
+import Link from "next/link";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -58,6 +59,7 @@ const EmailButton = styled.button`
   transition: background-color 0.3s;
   gap: 8px;
   margin-top: 24px;
+  cursor: pointer;
 
   &:hover {
     background-color: #4338ca;
@@ -116,6 +118,7 @@ const InfoListItem = styled.li`
   a {
     color: #4f46e5;
     text-decoration: none;
+    cursor: pointer;
 
     &:hover {
       text-decoration: underline;
@@ -184,36 +187,52 @@ function ContactClient() {
           </InfoText>
           <InfoList>
             <InfoListItem>
-              <a
+              <Link
                 href="/faq"
-                style={{ color: "#4f46e5", textDecoration: "none" }}
+                style={{
+                  color: "#4f46e5",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
               >
                 Frequently Asked Questions (FAQ)
-              </a>
+              </Link>
             </InfoListItem>
             <InfoListItem>
-              <a
+              <Link
                 href="/tutorials"
-                style={{ color: "#4f46e5", textDecoration: "none" }}
+                style={{
+                  color: "#4f46e5",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
               >
                 Video Tutorials and Guides
-              </a>
+              </Link>
             </InfoListItem>
             <InfoListItem>
-              <a
+              <Link
                 href="/documentation"
-                style={{ color: "#4f46e5", textDecoration: "none" }}
+                style={{
+                  color: "#4f46e5",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
               >
                 Documentation and User Guides
-              </a>
+              </Link>
             </InfoListItem>
             <InfoListItem>
-              <a
+              <Link
                 href="/support"
-                style={{ color: "#4f46e5", textDecoration: "none" }}
+                style={{
+                  color: "#4f46e5",
+                  textDecoration: "none",
+                  cursor: "pointer",
+                }}
               >
                 Support Center
-              </a>
+              </Link>
             </InfoListItem>
           </InfoList>
         </InfoSection>

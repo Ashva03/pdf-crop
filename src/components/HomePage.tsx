@@ -168,6 +168,9 @@ const CTAButton = styled(Link)`
   text-decoration: none;
   font-weight: 600;
   transition: transform 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
 
   &:hover {
     transform: translateY(-2px);
@@ -306,6 +309,7 @@ const AboutLink = styled(Link)`
   border: 2px solid #4f46e5;
   border-radius: 8px;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover {
     background: #4f46e5;

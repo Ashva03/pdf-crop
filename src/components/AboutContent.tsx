@@ -156,7 +156,11 @@ export default function AboutContent() {
           don't hesitate to{" "}
           <Link
             href="/contact"
-            style={{ color: "#4f46e5", textDecoration: "underline" }}
+            style={{
+              color: "#4f46e5",
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
           >
             contact us
           </Link>

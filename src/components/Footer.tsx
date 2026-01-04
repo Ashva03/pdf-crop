@@ -44,6 +44,7 @@ const FooterSection = styled.div`
     color: #e5e7eb;
     text-decoration: none;
     transition: color 0.3s ease;
+    cursor: pointer;
 
     &:hover {
       color: #4f46e5;

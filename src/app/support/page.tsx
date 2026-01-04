@@ -72,6 +72,7 @@ const SupportLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
@@ -130,6 +131,11 @@ const SubmitButton = styled.button`
 
   &:hover {
     background: #4338ca;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5);
   }
 `;
 
