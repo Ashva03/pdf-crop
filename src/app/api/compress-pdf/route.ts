@@ -38,12 +38,15 @@ export async function POST(req: NextRequest) {
       // addDefaultFont: false // Avoid adding default font if not needed (can slightly increase size)
     });
 
+    // Convert Uint8Array to Buffer for NextResponse
+    const pdfBuffer: any = Buffer.from(pdfBytes.buffer);
+
     // Return the potentially compressed PDF
-    return new NextResponse(pdfBytes, {
+    return new NextResponse(pdfBuffer, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="compressed_${file.name}"`, // Suggest filename
+        "Content-Disposition": `attachment; filename="compressed_${file.name}"`,
         "X-Original-Size": file.size.toString(),
         "X-Compressed-Size": pdfBytes.byteLength.toString(),
       },
