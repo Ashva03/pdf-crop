@@ -114,15 +114,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const pdfBytes = await pdfDoc.save();
+    const pdfBytes: any = await pdfDoc.save();
 
-    // Return the PDF as a response
-    return new NextResponse(pdfBytes, {
+    // Return the PDF as a response using Response directly
+    return new Response(pdfBytes, {
       status: 200,
-      headers: {
+      headers: new Headers({
         "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="converted_images.pdf"', // Suggests filename for download
-      },
+        "Content-Disposition": 'attachment; filename="converted_images.pdf"',
+      }),
     });
   } catch (error) {
     console.error("Error generating PDF:", error);

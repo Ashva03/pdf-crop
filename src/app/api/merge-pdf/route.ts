@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Save the merged document
-    const pdfBytes = await mergedPdf.save();
+    const pdfBytes: any = await mergedPdf.save();
 
     // Return the merged PDF
     return new NextResponse(pdfBytes, {
