@@ -194,7 +194,7 @@ const ActionButtonContainer = styled.div`
 `;
 
 const ActionButton = styled(Button)`
-  background: linear-gradient(135deg, #f13535 0%, hsl(0, 100.00%, 0.20%) 100%);
+  background: linear-gradient(135deg, #f13535 0%, hsl(0, 100%, 0.2%) 100%);
   font-weight: 600;
   padding: 0.5rem 1rem; /* Reduced size */
   font-size: 0.9rem; /* Reduced font size */
@@ -223,8 +223,8 @@ const ActionButton = styled(Button)`
 const PrintButton = styled(ActionButton)`
   background: linear-gradient(
     135deg,
-rgb(61, 34, 197) 0%,
-rgb(0, 0, 0) 100%
+    rgb(61, 34, 197) 0%,
+    rgb(0, 0, 0) 100%
   ); /* Green color */
   animation: ${pulseAnimation} 2s infinite, ${glowAnimation} 3s infinite;
 
@@ -373,7 +373,7 @@ export default function PDFCropper({
         const pageArea = width * height;
         const contentRatio = cropArea / pageArea;
 
-        const isSnapdeal = platformConfig.name === 'Snapdeal';
+        const isSnapdeal = platformConfig.name === "Snapdeal";
         const isOddPageNumber = (pageIndex + 1) % 2 !== 0; // Check for odd page number (even index)
 
         // Skip pages with insufficient content regardless of platform
@@ -412,7 +412,9 @@ export default function PDFCropper({
       }
 
       const pdfBytes = await newPdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: "application/pdf" });
+      // Convert to a standard Uint8Array by creating a new array from the bytes
+      const pdfArray = new Uint8Array(Array.from(pdfBytes));
+      const blob = new Blob([pdfArray], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       const originalFileName = file.name.replace(".pdf", "");
@@ -422,9 +424,10 @@ export default function PDFCropper({
       URL.revokeObjectURL(url);
 
       setSuccess(
-        `Successfully processed ${processedPages} pages! ${skippedPages > 0
-          ? `(${skippedPages} pages skipped due to insufficient content)`
-          : ""
+        `Successfully processed ${processedPages} pages! ${
+          skippedPages > 0
+            ? `(${skippedPages} pages skipped due to insufficient content)`
+            : ""
         }`
       );
     } catch (error) {
@@ -457,7 +460,7 @@ export default function PDFCropper({
         const cropBox =
           cropDimensions[pageNum] || platformConfig.defaultCropDimension;
 
-        const isSnapdeal = platformConfig.name === 'Snapdeal';
+        const isSnapdeal = platformConfig.name === "Snapdeal";
         const isOddPageNumber = (pageIndex + 1) % 2 !== 0; // Check for odd page number (even index)
 
         // For Snapdeal, skip processing even pages
@@ -480,7 +483,9 @@ export default function PDFCropper({
       }
 
       const pdfBytes = await newPdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: "application/pdf" });
+      // Convert to a standard Uint8Array by creating a new array from the bytes
+      const pdfArray = new Uint8Array(Array.from(pdfBytes));
+      const blob = new Blob([pdfArray], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
 
       const printWindow = window.open(url, "_blank");
@@ -584,7 +589,9 @@ export default function PDFCropper({
                   </svg>
                   Upload New File
                 </UploadButton>
-                <PrintCroppedButton onClick={handlePrintPDF}>Print Cropped PDF</PrintCroppedButton>
+                <PrintCroppedButton onClick={handlePrintPDF}>
+                  Print Cropped PDF
+                </PrintCroppedButton>
                 <UploadButton onClick={handleCropAllPages}>
                   Download Auto Cropped PDF
                 </UploadButton>

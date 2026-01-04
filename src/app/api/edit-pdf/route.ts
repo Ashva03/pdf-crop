@@ -73,12 +73,15 @@ export async function POST(req: NextRequest) {
     // Save the new document
     const pdfBytes = await newPdfDoc.save();
 
+    // Convert Uint8Array to Buffer for NextResponse
+    const pdfBuffer: any = Buffer.from(pdfBytes.buffer);
+
     // Return the modified PDF
-    return new NextResponse(pdfBytes, {
+    return new NextResponse(pdfBuffer, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="edited_${file.name}"`, // Suggest filename
+        "Content-Disposition": `attachment; filename="edited_${file.name}"`,
       },
     });
   } catch (error) {
