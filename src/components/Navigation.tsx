@@ -91,7 +91,7 @@ const NavLinkContainer = styled.div`
   }
 `;
 
-const NavLink = styled(Link) <{ $active?: boolean }>`
+const NavLink = styled(Link)<{ $active?: boolean }>`
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -114,7 +114,9 @@ const NavLink = styled(Link) <{ $active?: boolean }>`
 
   &:hover {
     opacity: 1;
-    ${(props) => !props.$active && `
+    ${(props) =>
+      !props.$active &&
+      `
       &:after {
         transform: scaleX(0);
       }
@@ -130,8 +132,8 @@ const NavLink = styled(Link) <{ $active?: boolean }>`
     }
 
     ${(props) =>
-    props.$active &&
-    `
+      props.$active &&
+      `
       &:hover {
         opacity: 1;
         &:after {
@@ -142,7 +144,7 @@ const NavLink = styled(Link) <{ $active?: boolean }>`
   }
 `;
 
-const NavDropdownTrigger = styled.span <{ $active?: boolean }>`
+const NavDropdownTrigger = styled.span<{ $active?: boolean }>`
   color: white;
   text-decoration: none;
   font-weight: 500;
@@ -225,6 +227,7 @@ export default function Navigation() {
     "/pdf-to-jpg",
     "/merge-pdf",
     "/compress-pdf",
+    "/edit-pdf",
   ].includes(pathname);
 
   // const isEditActive = pathname === "/edit-pdf";
@@ -281,6 +284,13 @@ export default function Navigation() {
           >
             Amazon Label
           </NavLink>
+          <NavLink
+            href="/myntra-label"
+            $active={pathname === "/myntra-label"}
+            onClick={handleLinkClick}
+          >
+            Myntra Label
+          </NavLink>
           <NavLinkContainer>
             <NavDropdownTrigger $active={isConvertActive}>
               PDF Convert
@@ -304,15 +314,11 @@ export default function Navigation() {
               <DropdownItem href="/compress-pdf" onClick={handleLinkClick}>
                 Compress PDF
               </DropdownItem>
+              <DropdownItem href="/edit-pdf" onClick={handleLinkClick}>
+                Edit PDF
+              </DropdownItem>
             </DropdownMenu>
           </NavLinkContainer>
-          {/* <NavLink
-            href="/edit-pdf"
-            $active={isEditActive}
-            onClick={handleLinkClick}
-          >
-            Edit PDF
-          </NavLink> */}
           <NavLink
             href="/features"
             $active={pathname === "/features"}
@@ -326,6 +332,27 @@ export default function Navigation() {
             onClick={handleLinkClick}
           >
             Blog
+          </NavLink>
+          <NavLink
+            href="/about"
+            $active={pathname === "/about"}
+            onClick={handleLinkClick}
+          >
+            About
+          </NavLink>
+          <NavLink
+            href="/faq"
+            $active={pathname === "/faq"}
+            onClick={handleLinkClick}
+          >
+            FAQ
+          </NavLink>
+          <NavLink
+            href="/contact"
+            $active={pathname === "/contact"}
+            onClick={handleLinkClick}
+          >
+            Contact
           </NavLink>
         </NavLinks>
       </NavContent>
@@ -372,11 +399,22 @@ export default function Navigation() {
           onClick={handleMobileConvertToggle}
           $active={isConvertActive}
         >
-          PDF Convert {isMobileConvertOpen ? '▲' : '▼'}
+          PDF Convert {isMobileConvertOpen ? "▲" : "▼"}
         </MobileDropdownButton>
         {isMobileConvertOpen && (
-          <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: '1.5rem', gap: '0.5rem' }}>
-            <NavLink href="/images-to-pdf" $active={pathname === "/images-to-pdf"} onClick={handleLinkClick}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "1.5rem",
+              gap: "0.5rem",
+            }}
+          >
+            <NavLink
+              href="/images-to-pdf"
+              $active={pathname === "/images-to-pdf"}
+              onClick={handleLinkClick}
+            >
               Images to PDF
             </NavLink>
             {/* <NavLink href="/docs-to-pdf" $active={pathname === "/docs-to-pdf"} onClick={handleLinkClick}>
@@ -385,27 +423,36 @@ export default function Navigation() {
             {/* <NavLink href="/pdf-to-word" $active={pathname === "/pdf-to-word"} onClick={handleLinkClick}>
               PDF to Word
             </NavLink> */}
-            <NavLink href="/pdf-to-jpg" $active={pathname === "/pdf-to-jpg"} onClick={handleLinkClick}>
+            <NavLink
+              href="/pdf-to-jpg"
+              $active={pathname === "/pdf-to-jpg"}
+              onClick={handleLinkClick}
+            >
               PDF to JPG
             </NavLink>
-            <NavLink href="/merge-pdf" $active={pathname === "/merge-pdf"} onClick={handleLinkClick}>
+            <NavLink
+              href="/merge-pdf"
+              $active={pathname === "/merge-pdf"}
+              onClick={handleLinkClick}
+            >
               Merge PDF
             </NavLink>
-            <NavLink href="/compress-pdf" $active={pathname === "/compress-pdf"} onClick={handleLinkClick}>
+            <NavLink
+              href="/compress-pdf"
+              $active={pathname === "/compress-pdf"}
+              onClick={handleLinkClick}
+            >
               Compress PDF
             </NavLink>
-            <NavLink href="/edit-pdf" $active={pathname === "/edit-pdf"} onClick={handleLinkClick}>
+            <NavLink
+              href="/edit-pdf"
+              $active={pathname === "/edit-pdf"}
+              onClick={handleLinkClick}
+            >
               Edit PDF
             </NavLink>
           </div>
         )}
-        {/* <NavLink
-          href="/edit-pdf"
-          $active={isEditActive}
-          onClick={handleLinkClick}
-        >
-          Edit PDF
-        </NavLink> */}
         <NavLink
           href="/features"
           $active={pathname === "/features"}
@@ -419,6 +466,20 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           Blog
+        </NavLink>
+        <NavLink
+          href="/about"
+          $active={pathname === "/about"}
+          onClick={handleLinkClick}
+        >
+          About
+        </NavLink>
+        <NavLink
+          href="/faq"
+          $active={pathname === "/faq"}
+          onClick={handleLinkClick}
+        >
+          FAQ
         </NavLink>
         <NavLink
           href="/contact"
