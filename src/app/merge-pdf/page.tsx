@@ -265,6 +265,7 @@ const Button = styled.button`
   border-radius: 8px;
   font-weight: 600;
   transition: all 0.3s ease;
+  cursor: pointer;
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);

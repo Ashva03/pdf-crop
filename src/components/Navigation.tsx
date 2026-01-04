@@ -77,6 +77,7 @@ const DropdownItem = styled(Link)`
   font-weight: 500;
   transition: background-color 0.2s ease;
   white-space: nowrap;
+  cursor: pointer;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
@@ -99,6 +100,7 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
   opacity: ${(props) => (props.$active ? 1 : 0.8)};
   position: relative;
   padding: 0.5rem 0;
+  cursor: pointer;
 
   &:after {
     content: "";

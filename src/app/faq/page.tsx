@@ -83,6 +83,7 @@ const FAQList = styled.div`
     color: #4f46e5;
     text-decoration: none;
     font-weight: 500;
+    cursor: pointer;
 
     &:hover {
       text-decoration: underline;
