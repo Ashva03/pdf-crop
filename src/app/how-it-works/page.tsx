@@ -176,12 +176,6 @@ export default function HowItWorksPage() {
         />
       )}
       <Container>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"
-          crossOrigin="anonymous"
-        />
-
         <HeroSection itemScope itemProp="name">
           <Title>How PDF Cropper Works</Title>
           <Description itemProp="description">
@@ -279,17 +273,6 @@ export default function HowItWorksPage() {
             </div>
           </Step>
         </StepsContainer>
-
-        {/* <AdContainer>
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-YOUR_ADSENSE_ID"
-          data-ad-slot="YOUR_AD_SLOT_ID"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
-      </AdContainer> */}
 
         <TipsSection>
           <h2
