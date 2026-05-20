@@ -81,6 +81,23 @@ export default function AboutContent() {
           formats labels correctly. Today, we serve thousands of sellers across
           India and beyond, helping them streamline their shipping operations.
         </p>
+        <p>
+          Our journey began in 2024 when our founder, an experienced e-commerce
+          seller himself, faced repeated rejections from shipping carriers due
+          to improperly formatted labels. After countless hours of manual
+          adjustments and missed delivery deadlines, he knew there had to be a
+          better way. What started as a simple script to automate Flipkart label
+          cropping has evolved into a comprehensive platform supporting multiple
+          e-commerce marketplaces.
+        </p>
+        <p>
+          We've grown from a one-person operation to a dedicated team of
+          developers, designers, and e-commerce experts who understand the
+          challenges sellers face daily. Our team brings together diverse
+          experience from leading e-commerce companies, logistics firms, and
+          software development to create tools that genuinely solve real-world
+          problems.
+        </p>
 
         <h2>What Makes Us Unique?</h2>
         <ul>
@@ -133,6 +150,63 @@ export default function AboutContent() {
           <li>
             <strong>Accessibility:</strong> Our tools work on any device -
             desktop, tablet, or mobile - so you can process labels anywhere.
+          </li>
+        </ul>
+
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to empower e-commerce sellers with tools that simplify
+          their daily operations. We believe that technology should remove
+          barriers, not create them. By automating tedious tasks like label
+          formatting, we free up your time to focus on what truly matters -
+          growing your business, serving your customers, and expanding your
+          product offerings.
+        </p>
+        <p>
+          We're committed to making professional-grade PDF tools accessible to
+          everyone, regardless of their technical expertise or budget. Every
+          seller deserves access to tools that help them compete effectively in
+          the marketplace.
+        </p>
+
+        <h2>Our Vision</h2>
+        <p>
+          We envision a future where every e-commerce seller, regardless of size
+          or location, has access to powerful, easy-to-use tools that level the
+          playing field. We aim to become the go-to platform for PDF management
+          in the e-commerce industry, continuously expanding our offerings to
+          meet the evolving needs of online sellers.
+        </p>
+        <p>
+          Our long-term vision includes supporting more e-commerce platforms
+          globally, adding advanced features like automated quality checks,
+          integration with popular shipping carriers, and providing analytics to
+          help sellers optimize their shipping operations.
+        </p>
+
+        <h2>Our Team</h2>
+        <p>
+          Our team consists of passionate individuals who bring diverse
+          expertise to the table:
+        </p>
+        <ul>
+          <li>
+            <strong>Development Team:</strong> Experienced software engineers
+            specializing in web technologies, PDF processing, and user interface
+            design.
+          </li>
+          <li>
+            <strong>E-commerce Experts:</strong> Former sellers and logistics
+            professionals who understand the real-world challenges of online
+            retail.
+          </li>
+          <li>
+            <strong>Customer Support:</strong> Dedicated support staff ready to
+            help you with any questions or issues.
+          </li>
+          <li>
+            <strong>Quality Assurance:</strong> Rigorous testing ensures our
+            tools work flawlessly across all platforms and devices.
           </li>
         </ul>
 

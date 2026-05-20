@@ -1,6 +1,6 @@
 "use client";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ArticleContainer = styled.article`
   max-width: 800px;
@@ -46,7 +46,8 @@ const ArticleContent = styled.div`
     margin-bottom: 1.5rem;
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin: 1.5rem 0;
     padding-left: 1.5rem;
   }
@@ -75,34 +76,67 @@ export default function ShippingLabelStandardsContent() {
   return (
     <ArticleContainer>
       <ArticleHeader>
-        <ArticleTitle>Complete Guide to E-commerce Shipping Label Standards</ArticleTitle>
-        <ArticleMeta>
-          Published: March 15, 2024 • 10 min read
-        </ArticleMeta>
+        <ArticleTitle>
+          Complete Guide to E-commerce Shipping Label Standards
+        </ArticleTitle>
+        <ArticleMeta>Published: March 15, 2024 • 10 min read</ArticleMeta>
       </ArticleHeader>
 
       <ArticleContent>
         <p>
-          In the fast-paced world of e-commerce, proper shipping label management is crucial for successful order fulfillment. This comprehensive guide will help you understand the specific requirements and best practices for shipping labels across major e-commerce platforms.
+          In the fast-paced world of e-commerce, proper shipping label
+          management is crucial for successful order fulfillment. This
+          comprehensive guide will help you understand the specific requirements
+          and best practices for shipping labels across major e-commerce
+          platforms.
         </p>
 
         <h2>Why Shipping Label Standards Matter</h2>
         <p>
-          Shipping labels are more than just pieces of paper attached to packages. They are critical components of your order fulfillment process that directly impact:
+          Shipping labels are more than just pieces of paper attached to
+          packages. They are critical components of your order fulfillment
+          process that directly impact:
         </p>
         <ul>
-          <li>Delivery success rates</li>
-          <li>Customer satisfaction</li>
-          <li>Operational efficiency</li>
-          <li>Return processing</li>
-          <li>Platform compliance</li>
+          <li>
+            Delivery success rates - Properly formatted labels ensure packages
+            reach their destinations without delays or returns
+          </li>
+          <li>
+            Customer satisfaction - Accurate labels lead to faster delivery and
+            fewer customer complaints
+          </li>
+          <li>
+            Operational efficiency - Standardized labels streamline warehouse
+            operations and reduce processing time
+          </li>
+          <li>
+            Return processing - Clear labels make returns easier to process and
+            track
+          </li>
+          <li>
+            Platform compliance - Meeting platform requirements prevents account
+            suspensions and penalties
+          </li>
+          <li>
+            Cost management - Correct labels avoid additional fees from carriers
+            for mislabeled packages
+          </li>
         </ul>
+        <p>
+          Non-compliance with shipping label standards can result in delayed
+          shipments, increased return rates, customer dissatisfaction, and even
+          account suspensions from e-commerce platforms. Understanding and
+          implementing proper label standards is essential for maintaining a
+          healthy e-commerce business.
+        </p>
 
         <h2>Platform-Specific Requirements</h2>
 
         <h3>Flipkart Shipping Labels</h3>
         <p>
-          Flipkart requires shipping labels to be printed in A6 size (105mm × 148mm). Key requirements include:
+          Flipkart requires shipping labels to be printed in A6 size (105mm ×
+          148mm). Key requirements include:
         </p>
         <ul>
           <li>Clear barcode visibility</li>
@@ -114,7 +148,8 @@ export default function ShippingLabelStandardsContent() {
 
         <h3>Amazon FBA/FBM Labels</h3>
         <p>
-          Amazon has specific requirements for both FBA (Fulfillment by Amazon) and FBM (Fulfillment by Merchant) labels:
+          Amazon has specific requirements for both FBA (Fulfillment by Amazon)
+          and FBM (Fulfillment by Merchant) labels:
         </p>
         <ul>
           <li>FBA labels must include ASIN and FNSKU</li>
@@ -124,9 +159,7 @@ export default function ShippingLabelStandardsContent() {
         </ul>
 
         <h3>Meesho Shipping Labels</h3>
-        <p>
-          Meesho shipping labels should be formatted to include:
-        </p>
+        <p>Meesho shipping labels should be formatted to include:</p>
         <ul>
           <li>Order details</li>
           <li>Customer information</li>
@@ -135,9 +168,7 @@ export default function ShippingLabelStandardsContent() {
         </ul>
 
         <h3>Snapdeal Label Requirements</h3>
-        <p>
-          Snapdeal labels must contain:
-        </p>
+        <p>Snapdeal labels must contain:</p>
         <ul>
           <li>Order number</li>
           <li>Delivery address</li>
@@ -145,12 +176,60 @@ export default function ShippingLabelStandardsContent() {
           <li>Shipping method</li>
         </ul>
 
+        <h3>Myntra Label Specifications</h3>
+        <p>
+          Myntra, being a fashion-focused platform, has specific label
+          requirements:
+        </p>
+        <ul>
+          <li>Size specifications: A6 or A5 depending on order size</li>
+          <li>Clear product category information</li>
+          <li>Size and color details prominently displayed</li>
+          <li>Return label integration for easy exchanges</li>
+          <li>Brand logo placement guidelines</li>
+        </ul>
+
+        <h2>Technical Specifications for Labels</h2>
+        <p>
+          Beyond platform-specific requirements, there are universal technical
+          standards that apply to all shipping labels:
+        </p>
+        <ul>
+          <li>
+            <strong>Resolution:</strong> Minimum 300 DPI for clear barcode
+            scanning
+          </li>
+          <li>
+            <strong>Barcode Type:</strong> Code 128 or QR codes depending on
+            platform
+          </li>
+          <li>
+            <strong>Font Size:</strong> Minimum 8pt for address information,
+            12pt for key details
+          </li>
+          <li>
+            <strong>Color Contrast:</strong> Black text on white background for
+            maximum readability
+          </li>
+          <li>
+            <strong>Margin Requirements:</strong> Minimum 5mm margin on all
+            edges
+          </li>
+          <li>
+            <strong>Material:</strong> Thermal or laser-printed labels for
+            durability
+          </li>
+        </ul>
+        <p>
+          These technical specifications ensure that labels can be read by
+          automated sorting equipment at carrier facilities, reducing the risk
+          of manual processing errors and delays.
+        </p>
+
         <h2>Best Practices for Label Management</h2>
 
         <h3>Label Quality</h3>
-        <p>
-          Ensure your labels are:
-        </p>
+        <p>Ensure your labels are:</p>
         <ul>
           <li>Printed clearly with no smudges</li>
           <li>Using high-quality paper</li>
@@ -160,7 +239,8 @@ export default function ShippingLabelStandardsContent() {
 
         <h3>Label Placement</h3>
         <p>
-          Proper label placement is essential for efficient scanning and processing:
+          Proper label placement is essential for efficient scanning and
+          processing:
         </p>
         <ul>
           <li>Place labels on the largest flat surface of the package</li>
@@ -182,9 +262,7 @@ export default function ShippingLabelStandardsContent() {
         </ul>
 
         <h2>Tips for Efficient Label Management</h2>
-        <p>
-          Streamline your label management process with these tips:
-        </p>
+        <p>Streamline your label management process with these tips:</p>
         <ul>
           <li>Use automated label generation tools</li>
           <li>Maintain a consistent label format</li>
@@ -194,17 +272,24 @@ export default function ShippingLabelStandardsContent() {
         </ul>
 
         <blockquote>
-          "Proper shipping label management is not just about compliance; it's about ensuring your products reach customers efficiently and professionally."
+          "Proper shipping label management is not just about compliance; it's
+          about ensuring your products reach customers efficiently and
+          professionally."
         </blockquote>
 
         <h2>Conclusion</h2>
         <p>
-          Understanding and implementing proper shipping label standards is crucial for successful e-commerce operations. By following platform-specific requirements and best practices, you can improve your order fulfillment process and enhance customer satisfaction.
+          Understanding and implementing proper shipping label standards is
+          crucial for successful e-commerce operations. By following
+          platform-specific requirements and best practices, you can improve
+          your order fulfillment process and enhance customer satisfaction.
         </p>
         <p>
-          Remember that shipping labels are often the first physical interaction customers have with your brand. Make sure they reflect your commitment to quality and professionalism.
+          Remember that shipping labels are often the first physical interaction
+          customers have with your brand. Make sure they reflect your commitment
+          to quality and professionalism.
         </p>
       </ArticleContent>
     </ArticleContainer>
   );
-} 
+}
