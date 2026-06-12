@@ -19,17 +19,17 @@ const Nav = styled.nav`
 const NavContent = styled.div`
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   @media (max-width: 991px) {
-    padding: 16px 20px;
+    padding: 1rem 1.5rem;
   }
 `;
 
 const Logo = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: white;
   display: flex;
@@ -38,8 +38,8 @@ const Logo = styled.div`
   cursor: pointer;
 
   img {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     border-radius: 5px;
     object-fit: contain;
   }
@@ -47,7 +47,7 @@ const Logo = styled.div`
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   align-items: center;
   position: relative;
 
@@ -99,37 +99,46 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
   transition: all 0.3s ease;
   opacity: ${(props) => (props.$active ? 1 : 0.8)};
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.75rem 1rem;
   cursor: pointer;
+  border-radius: 8px;
+  margin: 0 0.25rem;
 
   &:after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
     background: white;
-    transform: scaleX(${(props) => (props.$active ? 1 : 0)});
+    border-radius: 2px;
+    transform: translateX(-50%) scaleX(${(props) => (props.$active ? 1 : 0)});
     transition: transform 0.3s ease;
   }
 
   &:hover {
     opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
     ${(props) =>
       !props.$active &&
       `
       &:after {
-        transform: scaleX(0);
+        transform: translateX(-50%) scaleX(1);
       }
     `}
   }
 
   @media (max-width: 991px) {
+    padding: 1rem;
+    margin: 0;
+    border-radius: 0;
+
     &:hover {
-      opacity: 0.8;
+      background: rgba(255, 255, 255, 0.05);
       &:after {
-        transform: scaleX(0);
+        transform: translateX(-50%) scaleX(0);
       }
     }
 
@@ -139,7 +148,7 @@ const NavLink = styled(Link)<{ $active?: boolean }>`
       &:hover {
         opacity: 1;
         &:after {
-          transform: scaleX(1);
+          transform: translateX(-50%) scaleX(1);
         }
       }
     `}
@@ -153,11 +162,62 @@ const NavDropdownTrigger = styled.span<{ $active?: boolean }>`
   transition: all 0.3s ease;
   opacity: ${(props) => (props.$active ? 1 : 0.8)};
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.75rem 1rem;
   cursor: default;
+  border-radius: 8px;
+  margin: 0 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transform: translateX(-50%) scaleX(${(props) => (props.$active ? 1 : 0)});
+    transition: transform 0.3s ease;
+  }
 
   &:hover {
     opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    ${(props) =>
+      !props.$active &&
+      `
+      &:after {
+        transform: translateX(-50%) scaleX(1);
+      }
+    `}
+  }
+
+  @media (max-width: 991px) {
+    padding: 1rem;
+    margin: 0;
+    border-radius: 0;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      &:after {
+        transform: translateX(-50%) scaleX(0);
+      }
+    }
+
+    ${(props) =>
+      props.$active &&
+      `
+      &:hover {
+        opacity: 1;
+        &:after {
+          transform: translateX(-50%) scaleX(1);
+        }
+      }
+    `}
   }
 `;
 
@@ -232,6 +292,21 @@ export default function Navigation() {
     "/edit-pdf",
   ].includes(pathname);
 
+  const isLabelActive = [
+    "/flipkart-label",
+    "/amazon-label",
+    "/meesho-label",
+    "/snapdeal-label",
+    "/myntra-label",
+  ].includes(pathname);
+
+  const isInfoActive = [
+    "/case-studies",
+    "/tutorials",
+    "/about",
+    "/faq",
+  ].includes(pathname);
+
   // const isEditActive = pathname === "/edit-pdf";
 
   return (
@@ -258,55 +333,36 @@ export default function Navigation() {
           >
             Home
           </NavLink>
-          <NavLink
-            href="/flipkart-label"
-            $active={pathname === "/flipkart-label"}
-            onClick={handleLinkClick}
-          >
-            Flipkart Label
-          </NavLink>
-          <NavLink
-            href="/meesho-label"
-            $active={pathname === "/meesho-label"}
-            onClick={handleLinkClick}
-          >
-            Meesho Label
-          </NavLink>
-          <NavLink
-            href="/snapdeal-label"
-            $active={pathname === "/snapdeal-label"}
-            onClick={handleLinkClick}
-          >
-            Snapdeal Label
-          </NavLink>
-          <NavLink
-            href="/amazon-label"
-            $active={pathname === "/amazon-label"}
-            onClick={handleLinkClick}
-          >
-            Amazon Label
-          </NavLink>
-          <NavLink
-            href="/myntra-label"
-            $active={pathname === "/myntra-label"}
-            onClick={handleLinkClick}
-          >
-            Myntra Label
-          </NavLink>
+          <NavLinkContainer>
+            <NavDropdownTrigger $active={isLabelActive}>
+              Labels
+            </NavDropdownTrigger>
+            <DropdownMenu>
+              <DropdownItem href="/flipkart-label" onClick={handleLinkClick}>
+                Flipkart Label
+              </DropdownItem>
+              <DropdownItem href="/amazon-label" onClick={handleLinkClick}>
+                Amazon Label
+              </DropdownItem>
+              <DropdownItem href="/meesho-label" onClick={handleLinkClick}>
+                Meesho Label
+              </DropdownItem>
+              <DropdownItem href="/snapdeal-label" onClick={handleLinkClick}>
+                Snapdeal Label
+              </DropdownItem>
+              <DropdownItem href="/myntra-label" onClick={handleLinkClick}>
+                Myntra Label
+              </DropdownItem>
+            </DropdownMenu>
+          </NavLinkContainer>
           <NavLinkContainer>
             <NavDropdownTrigger $active={isConvertActive}>
-              PDF Convert
+              PDF Tools
             </NavDropdownTrigger>
             <DropdownMenu>
               <DropdownItem href="/images-to-pdf" onClick={handleLinkClick}>
                 Images to PDF
               </DropdownItem>
-              {/* <DropdownItem href="/docs-to-pdf" onClick={handleLinkClick}>
-                Docs to PDF
-              </DropdownItem> */}
-              {/* <DropdownItem href="/pdf-to-word" onClick={handleLinkClick}>
-                PDF to Word
-              </DropdownItem> */}
               <DropdownItem href="/pdf-to-jpg" onClick={handleLinkClick}>
                 PDF to JPG
               </DropdownItem>
@@ -322,33 +378,31 @@ export default function Navigation() {
             </DropdownMenu>
           </NavLinkContainer>
           <NavLink
-            href="/features"
-            $active={pathname === "/features"}
-            onClick={handleLinkClick}
-          >
-            Features
-          </NavLink>
-          <NavLink
             href="/blog"
             $active={pathname === "/blog"}
             onClick={handleLinkClick}
           >
             Blog
           </NavLink>
-          <NavLink
-            href="/about"
-            $active={pathname === "/about"}
-            onClick={handleLinkClick}
-          >
-            About
-          </NavLink>
-          <NavLink
-            href="/faq"
-            $active={pathname === "/faq"}
-            onClick={handleLinkClick}
-          >
-            FAQ
-          </NavLink>
+          <NavLinkContainer>
+            <NavDropdownTrigger $active={isInfoActive}>
+              Resources
+            </NavDropdownTrigger>
+            <DropdownMenu>
+              <DropdownItem href="/case-studies" onClick={handleLinkClick}>
+                Case Studies
+              </DropdownItem>
+              <DropdownItem href="/tutorials" onClick={handleLinkClick}>
+                Tutorials
+              </DropdownItem>
+              <DropdownItem href="/about" onClick={handleLinkClick}>
+                About
+              </DropdownItem>
+              <DropdownItem href="/faq" onClick={handleLinkClick}>
+                FAQ
+              </DropdownItem>
+            </DropdownMenu>
+          </NavLinkContainer>
           <NavLink
             href="/contact"
             $active={pathname === "/contact"}
@@ -482,6 +536,13 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           FAQ
+        </NavLink>
+        <NavLink
+          href="/case-studies"
+          $active={pathname === "/case-studies"}
+          onClick={handleLinkClick}
+        >
+          Case Studies
         </NavLink>
         <NavLink
           href="/contact"

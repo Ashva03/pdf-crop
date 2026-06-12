@@ -53,7 +53,7 @@ const HeroSubtitle = styled.p`
 
 const PlatformSection = styled.section`
   padding: 4rem 2rem;
-  background: #f8fafc;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
 `;
 
 const SectionTitle = styled.h2`
@@ -78,10 +78,14 @@ const PlatformCard = styled.div`
   padding: 2rem;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid #e0e7ff;
 
   &:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(79, 70, 229, 0.15);
   }
 `;
 
@@ -104,7 +108,7 @@ const PlatformDescription = styled.p`
 
 const FeaturesSection = styled.section`
   padding: 4rem 2rem;
-  background: white;
+  background: linear-gradient(180deg, #f0f9ff 0%, #fef3c7 100%);
 `;
 
 const FeaturesGrid = styled.div`
@@ -140,10 +144,13 @@ const FeatureDescription = styled.p`
 `;
 
 const CTASection = styled.section`
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   padding: 4rem 2rem;
   text-align: center;
+  border-radius: 12px;
+  margin: 4rem 2rem;
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
 `;
 
 const CTATitle = styled.h2`
@@ -179,7 +186,7 @@ const CTAButton = styled(Link)`
 
 const HowItWorksSection = styled.section`
   padding: 4rem 2rem;
-  background: #f8fafc;
+  background: linear-gradient(180deg, #dcfce7 0%, #e0e7ff 100%);
 `;
 
 const StepsContainer = styled.div`
@@ -195,6 +202,15 @@ const Step = styled.div`
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid #e0e7ff;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(79, 70, 229, 0.15);
+  }
 `;
 
 const StepNumber = styled.div`
@@ -315,6 +331,66 @@ const AboutLink = styled(Link)`
     background: #4f46e5;
     color: white;
     transform: translateY(-2px);
+  }
+`;
+
+const ResourcesSection = styled.section`
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #ffffff 0%, #fef3c7 100%);
+`;
+
+const ResourcesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const ResourceCard = styled.div`
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid #fef3c7;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(251, 191, 36, 0.15);
+  }
+`;
+
+const ResourceIcon = styled.div`
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+`;
+
+const ResourceTitle = styled.h3`
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  font-weight: 700;
+`;
+
+const ResourceDescription = styled.p`
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+`;
+
+const ResourceLink = styled(Link)`
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -567,6 +643,41 @@ export default function HomePage() {
           </AboutLinks>
         </AboutContent>
       </AboutSection>
+
+      <ResourcesSection>
+        <SectionTitle>Learning Resources</SectionTitle>
+        <ResourcesGrid>
+          <ResourceCard>
+            <ResourceIcon>📚</ResourceIcon>
+            <ResourceTitle>Comprehensive Blog</ResourceTitle>
+            <ResourceDescription>
+              In-depth articles on e-commerce shipping, inventory management,
+              customer service, and business growth strategies.
+            </ResourceDescription>
+            <ResourceLink href="/blog">Explore Blog →</ResourceLink>
+          </ResourceCard>
+          <ResourceCard>
+            <ResourceIcon>🎓</ResourceIcon>
+            <ResourceTitle>Step-by-Step Tutorials</ResourceTitle>
+            <ResourceDescription>
+              Detailed guides covering everything from basic PDF cropping to
+              advanced workflow automation techniques.
+            </ResourceDescription>
+            <ResourceLink href="/tutorials">View Tutorials →</ResourceLink>
+          </ResourceCard>
+          <ResourceCard>
+            <ResourceIcon>📊</ResourceIcon>
+            <ResourceTitle>Success Stories</ResourceTitle>
+            <ResourceDescription>
+              Real-world case studies showing how businesses have transformed
+              their operations using our tools.
+            </ResourceDescription>
+            <ResourceLink href="/case-studies">
+              Read Case Studies →
+            </ResourceLink>
+          </ResourceCard>
+        </ResourcesGrid>
+      </ResourcesSection>
     </>
   );
 }

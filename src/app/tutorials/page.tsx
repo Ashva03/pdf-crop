@@ -86,7 +86,9 @@ const TutorialCard = styled.div`
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
@@ -103,6 +105,36 @@ const TutorialCard = styled.div`
     color: #4b5563;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+  }
+
+  .difficulty {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .difficulty-beginner {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .difficulty-intermediate {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .difficulty-advanced {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .duration {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -143,7 +175,9 @@ const CategoryCard = styled.div`
   padding: 1.5rem;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);
@@ -214,16 +248,20 @@ export default function TutorialsPage() {
 
         <TutorialsGrid>
           <TutorialCard>
-            <h2>Getting Started</h2>
+            <span className="difficulty difficulty-beginner">Beginner</span>
+            <div className="duration">⏱️ 10 minutes</div>
+            <h2>Getting Started with PDF Cropper</h2>
             <p>
               Learn the basics of PDF Cropper and how to get started with your
-              first document.
+              first document. This comprehensive guide covers everything from
+              uploading to exporting.
             </p>
             <FeatureList>
-              <li>Uploading your first PDF</li>
-              <li>Basic cropping techniques</li>
-              <li>Saving and exporting</li>
-              <li>Understanding the interface</li>
+              <li>Uploading your first PDF file</li>
+              <li>Understanding the user interface</li>
+              <li>Basic cropping techniques and tools</li>
+              <li>Saving and exporting cropped PDFs</li>
+              <li>Common file formats and their uses</li>
             </FeatureList>
             <TutorialLink href="/tutorials/getting-started">
               Start Learning →
@@ -231,16 +269,21 @@ export default function TutorialsPage() {
           </TutorialCard>
 
           <TutorialCard>
-            <h2>Advanced Features</h2>
+            <span className="difficulty difficulty-intermediate">
+              Intermediate
+            </span>
+            <div className="duration">⏱️ 15 minutes</div>
+            <h2>Advanced Cropping Techniques</h2>
             <p>
               Master advanced cropping techniques and features to enhance your
-              workflow.
+              workflow and achieve professional results.
             </p>
             <FeatureList>
-              <li>Batch processing</li>
-              <li>Custom templates</li>
-              <li>Quality settings</li>
-              <li>Advanced cropping tools</li>
+              <li>Precision cropping with pixel-perfect accuracy</li>
+              <li>Batch processing multiple PDFs simultaneously</li>
+              <li>Creating and using custom templates</li>
+              <li>Quality settings and optimization</li>
+              <li>Advanced cropping tools and shortcuts</li>
             </FeatureList>
             <TutorialLink href={fixedTutorialLinks.advancedFeatures}>
               Explore Features →
@@ -248,20 +291,79 @@ export default function TutorialsPage() {
           </TutorialCard>
 
           <TutorialCard>
-            <h2>Best Practices</h2>
+            <span className="difficulty difficulty-beginner">Beginner</span>
+            <div className="duration">⏱️ 8 minutes</div>
+            <h2>Platform-Specific Label Creation</h2>
             <p>
-              Discover tips and tricks for optimal PDF cropping and workflow
-              efficiency.
+              Learn how to create compliant shipping labels for major e-commerce
+              platforms including Flipkart, Amazon, Meesho, and more.
             </p>
             <FeatureList>
-              <li>File organization</li>
-              <li>Quality optimization</li>
-              <li>Workflow automation</li>
-              <li>Common issues and solutions</li>
+              <li>Flipkart label requirements and creation</li>
+              <li>Amazon FBA and FBM label formats</li>
+              <li>Meesho and Snapdeal label specifications</li>
+              <li>Myntra fashion label guidelines</li>
+              <li>Platform compliance best practices</li>
+            </FeatureList>
+            <TutorialLink href="/flipkart-label">Create Labels →</TutorialLink>
+          </TutorialCard>
+
+          <TutorialCard>
+            <span className="difficulty difficulty-intermediate">
+              Intermediate
+            </span>
+            <div className="duration">⏱️ 12 minutes</div>
+            <h2>PDF Conversion Tools</h2>
+            <p>
+              Explore our comprehensive PDF conversion tools for transforming
+              documents between different formats.
+            </p>
+            <FeatureList>
+              <li>Converting images to PDF</li>
+              <li>PDF to JPG conversion</li>
+              <li>Merging multiple PDFs into one</li>
+              <li>Compressing PDFs for file size optimization</li>
+              <li>Editing PDF content and structure</li>
+            </FeatureList>
+            <TutorialLink href="/images-to-pdf">Convert Files →</TutorialLink>
+          </TutorialCard>
+
+          <TutorialCard>
+            <span className="difficulty difficulty-advanced">Advanced</span>
+            <div className="duration">⏱️ 20 minutes</div>
+            <h2>Workflow Automation</h2>
+            <p>
+              Discover tips and tricks for optimal PDF cropping and workflow
+              efficiency to save time and increase productivity.
+            </p>
+            <FeatureList>
+              <li>Setting up automated workflows</li>
+              <li>File organization and naming conventions</li>
+              <li>Quality optimization strategies</li>
+              <li>Integration with other tools</li>
+              <li>Common issues and troubleshooting</li>
             </FeatureList>
             <TutorialLink href={fixedTutorialLinks.bestPractices}>
               Learn More →
             </TutorialLink>
+          </TutorialCard>
+
+          <TutorialCard>
+            <span className="difficulty difficulty-beginner">Beginner</span>
+            <div className="duration">⏱️ 5 minutes</div>
+            <h2>Troubleshooting Common Issues</h2>
+            <p>
+              Learn how to resolve common PDF cropping issues and get help when
+              you need it.
+            </p>
+            <FeatureList>
+              <li>File not uploading correctly</li>
+              <li>Cropping tools not responding</li>
+              <li>Export quality problems</li>
+              <li>Browser compatibility issues</li>
+              <li>Getting support and contacting us</li>
+            </FeatureList>
+            <TutorialLink href="/contact">Get Help →</TutorialLink>
           </TutorialCard>
         </TutorialsGrid>
 
@@ -274,62 +376,163 @@ export default function TutorialsPage() {
               <FeatureList>
                 <li>
                   <TutorialLink href="/tutorials/getting-started">
-                    Getting Started
+                    Getting Started Guide
                   </TutorialLink>
                 </li>
                 <li>
-                  <TutorialLink href="/tutorials/interface-overview">
-                    Interface Overview
+                  <TutorialLink href="/how-it-works">
+                    How PDF Cropper Works
                   </TutorialLink>
                 </li>
                 <li>
-                  <TutorialLink href="/tutorials/basic-cropping">
-                    Basic Cropping
+                  <TutorialLink href="/features">Feature Overview</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/faq">
+                    Common Questions Answered
                   </TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+
+            <CategoryCard>
+              <h3>Platform Labels</h3>
+              <p>Guides for creating e-commerce shipping labels.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/flipkart-label">
+                    Flipkart Label Guide
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/amazon-label">
+                    Amazon Label Guide
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/meesho-label">
+                    Meesho Label Guide
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/snapdeal-label">
+                    Snapdeal Label Guide
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/myntra-label">
+                    Myntra Label Guide
+                  </TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+
+            <CategoryCard>
+              <h3>PDF Tools</h3>
+              <p>Guides for PDF conversion and editing tools.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/images-to-pdf">
+                    Images to PDF
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/pdf-to-jpg">PDF to JPG</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/merge-pdf">Merge PDFs</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/compress-pdf">Compress PDF</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/edit-pdf">Edit PDF</TutorialLink>
                 </li>
               </FeatureList>
             </CategoryCard>
 
             <CategoryCard>
               <h3>Advanced Features</h3>
-              <p>In-depth guides for power users.</p>
+              <p>In-depth guides for power users and automation.</p>
               <FeatureList>
                 <li>
-                  <TutorialLink href="/tutorials/advanced-cropping">
-                    Advanced Cropping
-                  </TutorialLink>
-                </li>
-                <li>
-                  <TutorialLink href="/tutorials/batch-processing">
+                  <TutorialLink href="/tutorials#batch-processing">
                     Batch Processing
                   </TutorialLink>
                 </li>
                 <li>
-                  <TutorialLink href="/tutorials/custom-templates">
+                  <TutorialLink href="/tutorials#custom-templates">
                     Custom Templates
                   </TutorialLink>
                 </li>
-              </FeatureList>
-            </CategoryCard>
-
-            <CategoryCard>
-              <h3>Quality & Output</h3>
-              <p>Guides for optimizing quality and output settings.</p>
-              <FeatureList>
                 <li>
                   <TutorialLink href="/tutorials#quality-settings">
                     Quality Settings
                   </TutorialLink>
                 </li>
                 <li>
-                  <TutorialLink href={fixedTutorialLinks.outputFormats}>
-                    Output Formats
+                  <TutorialLink href="/tutorials#workflow-automation">
+                    Workflow Automation
+                  </TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+          </CategoryGrid>
+        </CategoriesSection>
+
+        <CategoriesSection style={{ marginTop: "3rem" }}>
+          <CategoryTitle>Learning Resources</CategoryTitle>
+          <CategoryGrid>
+            <CategoryCard>
+              <h3>Blog Articles</h3>
+              <p>In-depth articles on e-commerce and PDF management.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/blog">View All Blog Posts</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/blog/shipping-label-standards">
+                    Shipping Label Standards
                   </TutorialLink>
                 </li>
                 <li>
-                  <TutorialLink href={fixedTutorialLinks.optimization}>
-                    Optimization Tips
+                  <TutorialLink href="/blog/shipping-cost-optimization">
+                    Cost Optimization Guide
                   </TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+
+            <CategoryCard>
+              <h3>Documentation</h3>
+              <p>Technical documentation and API references.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/documentation">
+                    Documentation Home
+                  </TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/support">Support Center</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/contact">Contact Support</TutorialLink>
+                </li>
+              </FeatureList>
+            </CategoryCard>
+
+            <CategoryCard>
+              <h3>Community</h3>
+              <p>Connect with other users and get help.</p>
+              <FeatureList>
+                <li>
+                  <TutorialLink href="/contact">Ask a Question</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/faq">FAQ Section</TutorialLink>
+                </li>
+                <li>
+                  <TutorialLink href="/about">About Us</TutorialLink>
                 </li>
               </FeatureList>
             </CategoryCard>
