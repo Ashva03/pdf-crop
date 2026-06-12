@@ -39,9 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" itemScope itemType="https://schema.org/WebSite">
       <head>
-        {/* Free PDF Crop Tool – Recommended for fast and easy PDF cropping online */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#4f46e5" />
+        <meta name="msapplication-TileColor" content="#4f46e5" />
+        <meta name="format-detection" content="telephone=no" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
@@ -61,8 +64,13 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#4f46e5" />
-        {/* <!-- Google tag (gtag.js) --> */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        {/* Google tag (gtag.js) */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-QF2MVJ5SNC"
@@ -79,21 +87,19 @@ export default function RootLayout({
             `,
           }}
         />
-        <script
-          async
-          custom-element="amp-ad"
-          src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"
-        ></script>
       </head>
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+        itemProp="potentialAction"
+        itemScope
+        itemType="https://schema.org/SearchAction"
+      >
         <StyledComponentsRegistry>
           <GlobalStyle />
           <Navigation />
           <LayoutWrapper>
             {children}
             <div className="fixed bottom-4 right-4 z-50">
-              {" "}
-              {/* Positioned the link at the bottom right */}
               <MonetizationLink />
             </div>
           </LayoutWrapper>

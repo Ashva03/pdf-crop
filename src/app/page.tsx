@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra. Convert images to PDF, merge PDFs, compress PDFs, and edit PDF documents. 100% free, no registration required, secure browser-based processing.",
   keywords:
-    "PDF cropper, shipping label, e-commerce tools, Flipkart label, Amazon label, Meesho label, Snapdeal label, Myntra label, PDF tools",
+    "PDF cropper, shipping label, e-commerce tools, Flipkart label, Amazon label, Meesho label, Snapdeal label, Myntra label, PDF tools, PDF converter, PDF merger, PDF compressor, online PDF editor",
   openGraph: {
     title: "PDF Cropper - Free Online PDF Tools for E-commerce Sellers",
     description:
@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     title: "PDF Cropper - Free Online PDF Tools for E-commerce Sellers",
     description:
       "Free online PDF tools for e-commerce sellers. Crop shipping labels for Flipkart, Amazon, Meesho, Snapdeal, and Myntra.",
+    images: ["https://pdfcrop.co.in/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -50,6 +51,9 @@ export const metadata: Metadata = {
   authors: [{ name: "PDF Cropper" }],
   creator: "PDF Cropper",
   publisher: "PDF Cropper",
+  verification: {
+    google: "your-google-verification-code",
+  },
 };
 
 const structuredData = {
