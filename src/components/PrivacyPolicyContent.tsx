@@ -71,38 +71,37 @@ export default function PrivacyPolicyContent() {
           At PDF Cropper, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our PDF cropping services.
         </p>
 
-        <h2>Information We Collect</h2>
+        <h2>Information We Collect & Client-Side Sandbox Processing</h2>
         <p>
-          We collect information that you provide directly to us when using our services:
+          Unlike traditional online conversion tools, <strong>PDF Cropper processes all your documents entirely on your local device.</strong>
         </p>
         <ul>
-          <li>PDF files you upload for processing</li>
-          <li>Contact information when you reach out to us</li>
-          <li>Usage data and preferences</li>
-          <li>Device and browser information</li>
+          <li><strong>No PDF Document Uploads:</strong> When you select or drag and drop a PDF file, it is processed locally in your browser's memory using JavaScript and WebAssembly. Your files are never uploaded, stored, or processed on our servers, ensuring absolute privacy for sensitive shipping labels and business invoices.</li>
+          <li><strong>Information You Provide:</strong> If you contact us directly via our support email or contact forms, we collect the details you send (such as name, email, and description of your inquiry).</li>
+          <li><strong>Anonymized Usage & Analytics:</strong> To help us optimize our layouts and features, we gather generic website usage information (such as browser type, anonymous screen clicks, and page view metrics) which does not identify you personally.</li>
         </ul>
 
         <h2>How We Use Your Information</h2>
         <p>
-          We use the collected information for various purposes:
+          We use the collected anonymous diagnostics and contact information for various purposes:
         </p>
         <ul>
-          <li>To provide and maintain our services</li>
-          <li>To improve user experience</li>
-          <li>To communicate with you about our services</li>
-          <li>To detect and prevent technical issues</li>
+          <li>To provide and maintain our local PDF tools</li>
+          <li>To improve user experience and interface responsive scaling</li>
+          <li>To respond to your support queries and feature requests</li>
+          <li>To detect and prevent technical browser performance issues</li>
           <li>To comply with legal obligations</li>
         </ul>
 
         <h2>Data Security</h2>
         <p>
-          We implement appropriate security measures to protect your information:
+          We implement appropriate security measures to protect your metadata and contact details:
         </p>
         <ul>
-          <li>All file processing is done locally in your browser</li>
-          <li>We use secure HTTPS connections</li>
+          <li>All file processing is done locally in your browser sandbox</li>
+          <li>We use secure HTTPS connections for all assets</li>
           <li>Regular security assessments</li>
-          <li>Limited access to personal information</li>
+          <li>No tracking or parsing of content within user PDF documents</li>
         </ul>
 
         <h2>Third-Party Services</h2>

@@ -78,6 +78,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pdfcrop.co.in/blog/shipping-label-standards</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/blog/shipping-cost-optimization</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/blog/scaling-shipping-operations</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/blog/shipping-carrier-options-india</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/blog/inventory-management-ecommerce</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/blog/customer-service-ecommerce</loc>
+    <lastmod>2024-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pdfcrop.co.in/features</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -91,6 +127,46 @@
     <loc>https://pdfcrop.co.in/tutorials</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/getting-started</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/interface-overview</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/basic-cropping</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/advanced-cropping</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/batch-processing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/custom-templates</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/quality-settings</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pdfcrop.co.in/tutorials/saving-exporting</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://pdfcrop.co.in/documentation</loc>

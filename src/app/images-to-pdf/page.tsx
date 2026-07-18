@@ -642,36 +642,83 @@ export default function ImagesToPdfPage() {
 
         <Card>
           <CardContent>
-            <h2>How to Convert Images to PDF</h2>
+            <h2>How to Convert Images to PDF Online</h2>
             <div style={{ color: "#4b5563", lineHeight: 1.6 }}>
               <p style={{ marginBottom: "1rem" }}>
-                Converting your image files to PDF is quick and easy with our
-                tool. Follow these simple steps:
+                Converting your image files (JPG, PNG, WebP) to PDF is quick and easy with our tool. Whether you are building a digital portfolio, scanning physical receipts with your phone, or compiling product catalog screenshots for your e-commerce storefront, our tool processes everything locally.
               </p>
-              <ol style={{ paddingLeft: "1.5rem", marginBottom: "1rem" }}>
+              <ol style={{ paddingLeft: "1.5rem", marginBottom: "1.5rem" }}>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Upload Images</strong> - Drag and drop your JPG or PNG
-                  images into the upload area, or click to select files from
-                  your device.
+                  <strong>Upload Images:</strong> Drag and drop your images into the designated area above, or click to select files from your computer or smartphone storage.
                 </li>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Arrange Order</strong> - Your images will appear in
-                  the order they were selected. To change the order, you can
-                  remove and re-add images.
+                  <strong>Arrange Order:</strong> The tool registers images in the sequence they were selected. You can remove individual images using the "X" button and re-add them to customize the sequence.
                 </li>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Generate PDF</strong> - Click the "Generate PDF"
-                  button to convert your images into a single PDF document.
+                  <strong>Generate PDF:</strong> Click the "Generate PDF" button. Our client-side script reads the dimensions of each image, creates a corresponding PDF canvas, and builds a unified PDF document.
                 </li>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Download or Print</strong> - After preview, you can
-                  download the PDF to your device or print it directly.
+                  <strong>Download or Print:</strong> Once the preview renders, download the final document to your local storage or print it directly.
                 </li>
               </ol>
-              <p>
-                This tool processes your images securely in your browser - your
-                files are never uploaded to our servers.
+
+              <h3
+                style={{
+                  fontSize: "1.25rem",
+                  marginTop: "2rem",
+                  marginBottom: "1rem",
+                  color: "#1f2937",
+                }}
+              >
+                Supported Image Formats & Layout Sizing
+              </h3>
+              <p style={{ marginBottom: "1rem" }}>
+                Our tool is optimized for typical business and e-commerce files:
               </p>
+              <ul style={{ paddingLeft: "1.5rem", marginBottom: "1.5rem", listStyleType: "disc" }}>
+                <li style={{ marginBottom: "0.5rem" }}>
+                  <strong>JPG / JPEG:</strong> The most common format for digital photos. Our tool handles compression settings to preserve detail without bloating the PDF.
+                </li>
+                <li style={{ marginBottom: "0.5rem" }}>
+                  <strong>PNG:</strong> Great for screenshots, charts, and digital designs. Alpha channels (transparency) are converted to a clean white background in the final PDF.
+                </li>
+                <li style={{ marginBottom: "0.5rem" }}>
+                  <strong>Layout Alignment:</strong> Images are compiled keeping their original aspect ratios. Each image occupies a separate page to ensure document readability.
+                </li>
+              </ul>
+
+              <h3
+                style={{
+                  fontSize: "1.25rem",
+                  marginTop: "2.5rem",
+                  marginBottom: "1rem",
+                  color: "#1f2937",
+                  borderTop: "1px solid #eee",
+                  paddingTop: "1.5rem"
+                }}
+              >
+                Frequently Asked Questions (FAQ)
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Will my images lose quality during the PDF conversion?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    No. Our script converts images without resizing their core resolutions. It places the image vectors directly on the PDF container page, ensuring details remain clear.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Is there a limit on how many images I can convert at once?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    We do not impose software limitations. Since processing runs inside your browser, the limit depends on your device's memory (RAM). You can comfortably convert dozens of photos simultaneously.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Can I convert PNGs with transparent backgrounds?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    Yes. Transparent pixels are automatically filled with white to comply with standard PDF rendering protocols.
+                  </p>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>

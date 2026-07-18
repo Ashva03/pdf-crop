@@ -2,27 +2,28 @@
 
 /* Add styles for the page header */
 .pageHeader_flipkart {
-  background: linear-gradient(135deg, #f1f6ff 0%, #dbeaff 100%);
-  color: #2874f0;
-  padding: 2rem;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #2874f0 0%, #1a56b8 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border-left: 5px solid #2874f0;
+  box-shadow: 0 4px 15px rgba(40, 116, 240, 0.15);
 }
 
 .pageHeader_flipkart h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  color: #2874f0;
-  font-size: 2rem;
+  color: white;
+  font-size: 2.25rem;
+  font-weight: 800;
   display: flex;
   align-items: center;
-  gap: 12px; /* Space between icon and text */
+  gap: 12px;
+  letter-spacing: -0.025em;
 }
 
 .platformIcon {
@@ -36,8 +37,8 @@
 
 .pageHeader_flipkart p {
   margin-bottom: 0;
-  color: #0056b3;
-  font-size: 1.1rem; /* Slightly increased font size */
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
 }
 
 .descriptionContainer {

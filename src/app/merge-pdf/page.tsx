@@ -816,38 +816,29 @@ export default function MergePdfPage() {
 
         <Card>
           <CardContent>
-            <h2>How to Merge PDF Files</h2>
+            <h2>How to Merge PDF Files Online</h2>
             <div style={{ color: "#4b5563", lineHeight: 1.6 }}>
               <p style={{ marginBottom: "1rem" }}>
-                Merging multiple PDF files into a single document helps you
-                organize your documents, reduce clutter, and create
-                comprehensive reports. Follow these simple steps:
+                Merging multiple PDF files into a single document helps you organize your files, reduce clutter, and create professional combined presentations. Follow these simple steps:
               </p>
-              <ol style={{ paddingLeft: "1.5rem", marginBottom: "1rem" }}>
+              <ol style={{ paddingLeft: "1.5rem", marginBottom: "1.5rem" }}>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Upload PDFs</strong> - Drag and drop your PDF files
-                  into the upload area, or click to select files from your
-                  device.
+                  <strong>Upload PDFs:</strong> Drag and drop your PDF files into the upload area above, or click to browse files from your computer or mobile device.
                 </li>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Arrange Order</strong> - Drag and drop the files in
-                  the list to reorder them as needed. The PDFs will be merged in
-                  the order shown.
+                  <strong>Arrange Order:</strong> Drag and drop files in the uploaded list to reorder them as needed. The final PDF will merge the pages in the precise top-to-bottom sequence shown.
                 </li>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Merge Files</strong> - Click the "Merge PDFs" button
-                  to combine your files into a single PDF document.
+                  <strong>Combine Documents:</strong> Click the "Merge PDFs" button. Our client-side WebAssembly parser reads the catalog structures of the input files, merges the page nodes, and compiles the unified output file.
                 </li>
                 <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Download or Print</strong> - After preview, you can
-                  download the merged PDF to your device or print it directly.
+                  <strong>Download or Print:</strong> Once the merged PDF is ready, view it in the preview panel, print it, or save the file to your local drive.
                 </li>
               </ol>
-              <p style={{ marginBottom: "1rem" }}>
-                This tool processes your files securely in your browser - your
-                PDFs are never uploaded to our servers, ensuring complete
-                privacy and security.
+              <p style={{ marginBottom: "1.5rem" }}>
+                This tool processes your files securely in your browser - your PDFs are never uploaded to our servers, ensuring complete privacy and security for contracts, banking statements, and invoices.
               </p>
+
               <h3
                 style={{
                   fontSize: "1.25rem",
@@ -861,37 +852,56 @@ export default function MergePdfPage() {
               <ul
                 style={{
                   paddingLeft: "1.5rem",
-                  marginBottom: "1rem",
+                  marginBottom: "1.5rem",
                   listStyleType: "disc",
                 }}
               >
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Business Documents</strong> - Combine contracts,
-                  invoices, and agreements into a single file
+                  <strong>E-Commerce Operations:</strong> Combine multiple shipping label sheets or packing slips into a single print job.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Academic Papers</strong> - Merge research papers,
-                  notes, and reference materials
+                  <strong>Legal & Business Contracts:</strong> Merge a signed terms sheet, annexures, and ID proofs into a single unified audit document.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Financial Reports</strong> - Consolidate statements,
-                  tax forms, and financial documents
+                  <strong>Academic Portfolios:</strong> Compile homework assignments, essays, and references into a final submission file.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Application Materials</strong> - Combine resumes,
-                  cover letters, and certificates into a comprehensive
-                  application
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Digital Portfolios</strong> - Create portfolios by
-                  merging multiple work samples and projects
+                  <strong>Financial & Tax Fillings:</strong> Merge multi-month bank statements and receipts to simplify accounting.
                 </li>
               </ul>
-              <p>
-                Our PDF merger maintains the quality and formatting of your
-                original documents while creating a seamless,
-                professional-looking combined file.
-              </p>
+
+              <h3
+                style={{
+                  fontSize: "1.25rem",
+                  marginTop: "2.5rem",
+                  marginBottom: "1rem",
+                  color: "#1f2937",
+                  borderTop: "1px solid #eee",
+                  paddingTop: "1.5rem"
+                }}
+              >
+                Frequently Asked Questions (FAQ)
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Can I merge PDFs that have different page layouts (A4, Letter, A6)?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    Yes. Our tool handles layout configurations seamlessly. The merged document will retain the individual page sizes and orientations (portrait/landscape) of each original file.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Does merging PDFs increase the final file size?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    The final size is roughly the sum of the input files. However, our merge engine optimizes the file by reusing font outlines and structural nodes across pages, which often keeps the final size surprisingly compact.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Is my document information stored?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    No. The merging is executed using browser-side JavaScript libraries. Your sensitive business records and client details never leave your computer.
+                  </p>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
