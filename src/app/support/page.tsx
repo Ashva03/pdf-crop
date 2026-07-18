@@ -168,7 +168,7 @@ const generateStructuredData = () => ({
       name: "How do I contact support?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "You can contact our support team via email at support@pdfcropper.com, phone at +1 (555) 123-4567, or use our live chat during business hours (Mon-Fri, 9AM-5PM EST).",
+        text: "You can contact our support team via email at ashvainfotech3@gmail.com, or use the contact form on our website. We aim to respond within 24-48 business hours.",
       },
     },
     {
@@ -176,15 +176,15 @@ const generateStructuredData = () => ({
       name: "Where can I find tutorials?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Visit our Tutorials section for step-by-step guides and video tutorials on using PDF Cropper effectively.",
+        text: "Visit our Tutorials section for step-by-step guides and visual walk-throughs on using PDF Cropper effectively.",
       },
     },
     {
       "@type": "Question",
-      name: "What are your business hours?",
+      name: "What are your support response hours?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our support team is available Monday through Friday, from 9:00 AM to 5:00 PM EST.",
+        text: "Our support team processes inquiries Monday through Friday, from 9:00 AM to 5:00 PM IST.",
       },
     },
   ],
@@ -237,13 +237,13 @@ const SupportPage = () => {
           <SupportCard>
             <h2>Contact Support</h2>
             <p>
-              Get in touch with our support team for personalized assistance.
+              Get in touch with our team for assistance or business inquiries.
             </p>
             <SupportList>
-              <li>Email: support@pdfcropper.com</li>
-              <li>Phone: +1 (555) 123-4567</li>
-              <li>Business Hours: Mon-Fri, 9AM-5PM EST</li>
-              <li>Live Chat: Available during business hours</li>
+              <li>Email: ashvainfotech3@gmail.com</li>
+              <li>Alt Email: contact@pdfcrop.co.in</li>
+              <li>Response Time: 24-48 business hours</li>
+              <li>Sandbox Processing: Fully local and secure</li>
             </SupportList>
           </SupportCard>
 

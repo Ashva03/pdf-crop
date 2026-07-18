@@ -2,48 +2,54 @@
 
 import styled from "styled-components";
 import Link from "next/link";
+import React from "react";
+import { Play, Loader, Shield, Info, CheckCircle, FileText } from "lucide-react";
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background: #f2f4f4;
+  background: #f8fafc;
+  font-family: 'Outfit', sans-serif;
 `;
 
 const HeroSection = styled.section`
   text-align: center;
-  padding: 4rem 0;
+  padding: 4.5rem 2rem;
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: white;
   margin-bottom: 3rem;
-  border-radius: 16px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.3);
 `;
 
 const Title = styled.h1`
   font-size: 3rem;
   margin-bottom: 1.5rem;
   font-weight: 800;
+  letter-spacing: -0.025em;
 `;
 
 const Description = styled.p`
   font-size: 1.25rem;
   max-width: 800px;
   margin: 0 auto;
-  opacity: 0.9;
+  opacity: 0.95;
+  line-height: 1.7;
 `;
 
 const ContentSection = styled.section`
   background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   margin-bottom: 2rem;
 `;
 
 const TutorialStep = styled.div`
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 3.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #f1f5f9;
 
   &:last-child {
     border-bottom: none;
@@ -52,85 +58,122 @@ const TutorialStep = styled.div`
   }
 
   h2 {
-    color: #4f46e5;
+    color: #1e1b4b;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
 
   p {
-    color: #4b5563;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin: 1rem 0;
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
   }
 `;
 
-const FeatureGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-`;
-
-const FeatureCard = styled.div`
+const MockupContainer = styled.div`
   background: #f8fafc;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-
-  h3 {
-    color: #4f46e5;
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-  }
-
-  p {
-    color: #4b5563;
-    margin: 0;
-    font-size: 0.9rem;
-  }
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
 `;
+
+const BatchStartMockup = () => (
+  <MockupContainer style={{ background: '#ffffff', borderStyle: 'solid' }}>
+    <div style={{ width: '100%', maxWidth: '420px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+      <div style={{ fontSize: '11px', fontWeight: 600, color: '#64748b', display: 'flex', justifyContent: 'space-between' }}>
+        <span>BATCH UPLOAD QUEUE</span>
+        <span>4 FILES READY</span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        {[
+          { name: 'amazon_labels_july18.pdf', size: '1.4 MB', pages: '12 pages' },
+          { name: 'flipkart_manifest_batch_1.pdf', size: '920 KB', pages: '8 pages' },
+          { name: 'meesho_bulk_invoice.pdf', size: '2.1 MB', pages: '18 pages' },
+          { name: 'custom_labels.pdf', size: '480 KB', pages: '4 pages' }
+        ].map((file, idx) => (
+          <div key={idx} style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: '8px', padding: '0.5rem 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <FileText size={16} color="#6366f1" />
+              <span style={{ fontSize: '11px', fontWeight: 600, color: '#1e293b' }}>{file.name}</span>
+            </div>
+            <span style={{ fontSize: '10px', color: '#64748b' }}>{file.pages} ({file.size})</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </MockupContainer>
+);
+
+const BatchProgressMockup = () => (
+  <MockupContainer>
+    <div style={{ width: '100%', maxWidth: '380px', background: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '10px', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
+      <Loader className="animate-spin" size={32} color="#4f46e5" />
+      <div style={{ textAlign: 'center' }}>
+        <p style={{ margin: 0, fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>Processing Batch Queue...</p>
+        <p style={{ margin: '4px 0 0 0', fontSize: '11px', color: '#64748b' }}>Compiling output pages: 26 of 42 pages completed</p>
+      </div>
+      <div style={{ width: '100%', height: '8px', background: '#e2e8f0', borderRadius: '99px', overflow: 'hidden' }}>
+        <div style={{ background: '#4f46e5', width: '62%', height: '100%', borderRadius: '99px' }}></div>
+      </div>
+    </div>
+  </MockupContainer>
+);
 
 const TipBox = styled.div`
-  background: #f0f9ff;
-  border-left: 4px solid #4f46e5;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 0 8px 8px 0;
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 12px 12px 0;
 
   h3 {
-    color: #4f46e5;
+    color: #14532d;
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   p {
-    color: #4b5563;
+    color: #15803d;
     margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 `;
 
 const NavigationLinks = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #e2e8f0;
 
   a {
     color: #4f46e5;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    transition: color 0.2s;
 
     &:hover {
+      color: #3730a3;
       text-decoration: underline;
     }
   }
@@ -140,96 +183,64 @@ export default function BatchProcessingPage() {
   return (
     <Container>
       <HeroSection>
-        <Title>Batch Processing</Title>
+        <Title>Batch Label Processing Guide</Title>
         <Description>
-          Learn how to efficiently process multiple PDFs at once with PDF
-          Cropper.
+          Learn how to crop, optimize, and combine dozens of shipping labels simultaneously to streamline high-volume dispatch operations.
         </Description>
       </HeroSection>
 
       <ContentSection>
+        <p style={{ fontSize: '1.1rem', lineHeight: 1.8, color: '#334155', marginBottom: '2.5rem' }}>
+          For scaling e-commerce merchants, processing orders individually is a major time drain. PDF Cropper supports batch processing. When you upload multi-page documents containing many shipping labels, our cropping algorithms duplicate your crop coordinates across every page, allowing you to crop a multi-page PDF batch in one go.
+        </p>
+
         <TutorialStep>
-          <h2>Getting Started with Batch Processing</h2>
-          <p>To process multiple PDFs simultaneously:</p>
-          <ul>
-            <li>Click the "Batch Process" button in the toolbar</li>
-            <li>Select multiple PDFs from your computer</li>
-            <li>Choose your desired output format and settings</li>
-            <li>
-              Apply the same crop settings to all files or customize
-              individually
-            </li>
-          </ul>
-          <img src="/tutorials/batch-start.jpg" alt="Starting Batch Process" />
+          <h2>
+            <div style={{ background: '#eef2ff', padding: '0.4rem', borderRadius: '8px', display: 'flex', alignItems: 'center' }}>
+              <Play size={20} color="#4f46e5" />
+            </div>
+            1. Preparing and Uploading Your Bulk Queue
+          </h2>
+          <p>
+            Locate the consolidated shipping label PDF from your supplier dashboard (for example, a multi-page file from Amazon FBA or Flipkart Seller Hub). Ensure all labels use a consistent layout so coordinates align. Drag and drop the bulk PDF file onto the upload workspace canvas. Our vector-perfect engine renders the document thumbnail queue on the workspace margin, listing the file details and total pages.
+          </p>
+          <BatchStartMockup />
         </TutorialStep>
 
         <TutorialStep>
-          <h2>Batch Processing Features</h2>
-          <p>Take advantage of these batch processing capabilities:</p>
-          <FeatureGrid>
-            <FeatureCard>
-              <h3>Template Application</h3>
-              <p>Apply saved crop templates to multiple files</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Custom Settings</h3>
-              <p>Set different options for each file in the batch</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Progress Tracking</h3>
-              <p>Monitor the progress of your batch processing</p>
-            </FeatureCard>
-          </FeatureGrid>
+          <h2>
+            <div style={{ background: '#eef2ff', padding: '0.4rem', borderRadius: '8px', display: 'flex', alignItems: 'center' }}>
+              <Loader size={20} color="#4f46e5" />
+            </div>
+            2. Monitoring Compilation Progress
+          </h2>
+          <p>
+            Once you click compile, the client-side processing script processes the batch page-by-page. For multi-page files, the rendering engine processes elements concurrently, utilizing WebAssembly libraries to compile output files quickly. A progress bar in the settings drawer displays the current processing page index and the percentage completed.
+          </p>
+          <BatchProgressMockup />
           <TipBox>
-            <h3>Pro Tip</h3>
+            <h3><Info size={16} /> Memory Optimization during Bulk Exports</h3>
             <p>
-              Save your batch settings as a preset to reuse them for future
-              processing.
+              Because document parsing occurs in your browser sandbox, processing extremely large files (e.g. over 200 pages) can consume significant system RAM. For large bulk dispatches, we recommend splitting your files into batches of 50-100 pages to ensure optimal performance.
             </p>
           </TipBox>
         </TutorialStep>
 
         <TutorialStep>
-          <h2>Organizing Output Files</h2>
-          <p>Manage your processed files efficiently:</p>
-          <ul>
-            <li>Choose output directory for processed files</li>
-            <li>Use custom naming conventions</li>
-            <li>Create subfolders based on file types</li>
-            <li>Generate processing reports</li>
-          </ul>
-          <img
-            src="/tutorials/output-organization.jpg"
-            alt="Output Organization"
-          />
-        </TutorialStep>
-
-        <TutorialStep>
-          <h2>Advanced Batch Options</h2>
-          <p>Explore these advanced batch processing features:</p>
-          <FeatureGrid>
-            <FeatureCard>
-              <h3>Conditional Processing</h3>
-              <p>Apply different settings based on file properties</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Automated Workflows</h3>
-              <p>Create and save complex processing workflows</p>
-            </FeatureCard>
-            <FeatureCard>
-              <h3>Error Handling</h3>
-              <p>Configure how to handle processing errors</p>
-            </FeatureCard>
-          </FeatureGrid>
+          <h2>
+            <div style={{ background: '#eef2ff', padding: '0.4rem', borderRadius: '8px', display: 'flex', alignItems: 'center' }}>
+              <Shield size={20} color="#4f46e5" />
+            </div>
+            3. Bulk PDF Safety & Security
+          </h2>
+          <p>
+            When processing bulk documents containing customer names, billing rates, and shipping addresses, data privacy is a top priority. PDF Cropper processes files locally. No data is uploaded or transmitted to any external server during batch operations, keeping your customer and business data secure.
+          </p>
         </TutorialStep>
 
         <NavigationLinks>
-          <Link href="/tutorials/advanced-cropping">
-            ← Previous: Advanced Cropping
-          </Link>
-          <Link href="/tutorials/custom-templates">
-            Next: Custom Templates →
-          </Link>
+          <Link href="/tutorials/advanced-cropping">← Previous: Advanced Cropping</Link>
+          <Link href="/tutorials/custom-templates">Next: Custom Templates →</Link>
         </NavigationLinks>
       </ContentSection>
     </Container>
