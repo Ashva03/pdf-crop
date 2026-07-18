@@ -660,92 +660,112 @@ export default function AmazonLabel() {
       )}
 
       <div className={styles.descriptionContainer}>
-        <h2>Amazon Shipping Label Requirements & Best Practices</h2>
+        <h2>Amazon Shipping Label Requirements & Logistics Guidelines</h2>
         <p>
-          Understanding Amazon's shipping label specifications is crucial for
-          successful order fulfillment. Our tool helps you meet these
-          requirements while optimizing your shipping process.
+          Managing and printing Amazon shipping labels correctly is a critical step in maintaining your seller metrics and ensuring customer satisfaction. Amazon's automated sorting centers rely on pixel-perfect barcode scans. If a shipping label is poorly cropped, blurry, or formatted at the wrong scale, it can lead to warehouse processing delays, carrier returns, or even seller account health warnings.
+        </p>
+        <p>
+          Our specialized Amazon shipping label cropper is designed to handle the exact formatting nuances of the Amazon Seller Central platform, whether you're fulfilling orders via FBA (Fulfillment by Amazon) or managing shipping yourself via FBM (Fulfillment by Merchant / Self-Ship).
         </p>
 
-        <h3>Amazon Label Specifications</h3>
-        <ul className={styles.specsList}>
-          <li>
-            <strong>Label Size:</strong> 4" x 6" (101.6mm × 152.4mm) is the
-            standard format
+        <h3>Key Differences: Amazon FBA Box Labels vs. FBM Shipping Labels</h3>
+        <p>
+          Depending on your fulfillment method, the document layout you download from Seller Central will vary significantly:
+        </p>
+        <ul className={styles.specsList} style={{ listStyleType: "disc", paddingLeft: "1.5rem", marginBottom: "1.5rem" }}>
+          <li style={{ marginBottom: "0.5rem" }}>
+            <strong>FBM (Fulfillment by Merchant) Labels:</strong> These typically include a customer shipping address, a carrier barcode (such as ATS, Easy Ship partners like BlueDart, Delhivery, or Xpressbees), and routing information. These labels are optimized for A6 (4" x 6") thermal printers. Our tool extracts these labels perfectly, ensuring the barcode remains crisp at 300 DPI.
           </li>
-          <li>
-            <strong>Print Quality:</strong> Minimum 300 DPI for clear barcode
-            scanning
+          <li style={{ marginBottom: "0.5rem" }}>
+            <strong>FBA (Fulfillment by Amazon) Carton/Box Labels:</strong> When sending inventory to Amazon's fulfillment centers, you receive A4 sheets containing multiple box labels. Each label has a unique FBA box ID barcode and carrier tracking barcode. Our tool lets you isolate individual carton labels and scale them to 4" x 6" for quick printing on thermal labels, eliminating the need to cut paper sheets.
           </li>
-          <li>
-            <strong>Paper Type:</strong> Thermal paper or regular A4 paper
-          </li>
-          <li>
-            <strong>Required Elements:</strong> Amazon barcode, tracking number,
-            delivery address, and seller details
+          <li style={{ marginBottom: "0.5rem" }}>
+            <strong>FBA Product Labels (FN_SKU):</strong> These are individual barcodes placed on each product unit. Our tool supports extracting and reformatting custom PDF sheets to print clean, scan-ready barcodes directly on thermal sticker rolls.
           </li>
         </ul>
 
-        <h3>How to Process Your Amazon Labels</h3>
+        <h3>Step-by-Step: Processing Your Amazon Seller Labels</h3>
         <ol className={styles.stepsList}>
           <li>
-            <strong>Download from Seller Central:</strong> Access your Amazon
-            Seller Central account and download the shipping label PDF for your
-            order.
+            <strong>Generate and Download PDF:</strong> Log into Amazon Seller Central. Navigate to "Manage Orders" (for FBM) or "Shipments" (for FBA), click "Print Shipping Labels", and save the generated PDF file locally to your device.
           </li>
           <li>
-            <strong>Upload to Our Tool:</strong> Click the upload button and
-            select your Amazon label PDF file.
+            <strong>Upload the PDF:</strong> Drag and drop the downloaded file into the upload zone above, or click the upload area to select the file.
           </li>
           <li>
-            <strong>Choose Processing Options:</strong>
+            <strong>Select Custom Label Options:</strong> 
             <ul>
-              <li>Add SKU information to labels</li>
-              <li>Include product descriptions</li>
-              <li>Remove invoice pages</li>
-              <li>Keep invoice pages for reference</li>
+              <li><strong>SKU Inclusion:</strong> Choose whether to print the Seller SKU ID directly on the margin of the label to help your packing team match products.</li>
+              <li><strong>Invoice Stripping:</strong> Choose to automatically remove payment receipts or invoices, processing only the courier shipping labels.</li>
+              <li><strong>Margin Adjustments:</strong> Fine-tune padding and offsets to match your thermal printer's configuration.</li>
             </ul>
           </li>
           <li>
-            <strong>Preview & Adjust:</strong> Review the preview and make any
-            necessary adjustments to ensure all elements are clearly visible.
+            <strong>Instant Secure Cropping:</strong> Our browser-side script reads the PDF vectors, identifies the coordinate system, and automatically crops to the 4" x 6" boundaries. Your files never touch external servers, keeping buyer addresses and commercial data 100% private.
           </li>
           <li>
-            <strong>Download & Print:</strong> Generate your optimized label and
-            print it using a thermal printer or regular printer.
+            <strong>Preview and Output:</strong> Inspect each generated page using the interactive preview, adjust positioning if necessary, and export the file. Print it directly with your thermal printer.
           </li>
         </ol>
 
-        <h3>Best Practices for Amazon Shipping</h3>
-        <ul className={styles.bestPracticesList}>
-          <li>Always verify the delivery address before printing</li>
-          <li>Ensure the Amazon barcode is clear and scannable</li>
-          <li>Use high-quality paper to prevent smudging</li>
-          <li>Keep a digital copy of the label for reference</li>
-          <li>Print labels in batches to save time</li>
-        </ul>
+        <h3>Technical Specifications for Amazon Labels</h3>
+        <table style={{ width: "100%", borderCollapse: "collapse", margin: "1.5rem 0", color: "#333", fontSize: "0.95rem" }}>
+          <thead>
+            <tr style={{ borderBottom: "2px solid #ccc", background: "#f2f2f2" }}>
+              <th style={{ padding: "8px", textAlign: "left" }}>Label Type</th>
+              <th style={{ padding: "8px", textAlign: "left" }}>Standard Dimension</th>
+              <th style={{ padding: "8px", textAlign: "left" }}>Recommended Quality</th>
+              <th style={{ padding: "8px", textAlign: "left" }}>Printer Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style={{ borderBottom: "1px solid #eee" }}>
+              <td style={{ padding: "8px" }}>FBM / ATS Shipping</td>
+              <td style={{ padding: "8px" }}>4" x 6" (101.6mm x 152.4mm)</td>
+              <td style={{ padding: "8px" }}>300 DPI</td>
+              <td style={{ padding: "8px" }}>Thermal / Laser</td>
+            </tr>
+            <tr style={{ borderBottom: "1px solid #eee" }}>
+              <td style={{ padding: "8px" }}>FBA Carton Box Labels</td>
+              <td style={{ padding: "8px" }}>3.3" x 4" (scaled to A6)</td>
+              <td style={{ padding: "8px" }}>300 DPI</td>
+              <td style={{ padding: "8px" }}>Thermal Transfer / Laser</td>
+            </tr>
+            <tr style={{ borderBottom: "1px solid #eee" }}>
+              <td style={{ padding: "8px" }}>FN_SKU Product Labels</td>
+              <td style={{ padding: "8px" }}>1" x 2" (or custom sticker sheet)</td>
+              <td style={{ padding: "8px" }}>300 DPI +</td>
+              <td style={{ padding: "8px" }}>Direct Thermal</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <div className={styles.tipsBox}>
-          <h4>Pro Tips</h4>
-          <ul>
-            <li>
-              Regularly check Amazon's seller guidelines for any updates to
-              label requirements
-            </li>
-            <li>
-              Consider using a thermal printer for faster, more efficient label
-              printing
-            </li>
-            <li>
-              Keep your printer's firmware updated for optimal performance
-            </li>
-            <li>
-              Maintain a backup of all shipping labels for at least 90 days
-            </li>
-            <li>
-              Use the SKU information feature to help with inventory management
-            </li>
-          </ul>
+        <h3>Frequently Asked Questions (FAQ) for Amazon Sellers</h3>
+        <div style={{ marginTop: "1.5rem" }}>
+          <div style={{ marginBottom: "1.2rem" }}>
+            <h4 style={{ margin: "0 0 0.4rem 0", color: "#232f3e" }}>Q: Why does Amazon reject shipping labels with blurred barcodes?</h4>
+            <p style={{ margin: 0, fontSize: "0.95rem" }}>
+              Amazon fulfillment centers utilize high-speed automated sorting tunnels. If a barcode is pixelated due to poor A4-to-A6 scaling, the scanner cannot read the routing ID. This results in the package being marked as "unscannable," leading to manual processing charges (seller fees) or package rejection.
+            </p>
+          </div>
+          <div style={{ marginBottom: "1.2rem" }}>
+            <h4 style={{ margin: "0 0 0.4rem 0", color: "#232f3e" }}>Q: Can I print SKU numbers on the shipping label?</h4>
+            <p style={{ margin: 0, fontSize: "0.95rem" }}>
+              Yes! Our tool has a specific feature to extract the SKU from the invoice/metadata and print it on the label's edge. This helps your packaging staff verify they are pasting the correct label onto the correct item without looking inside the package.
+            </p>
+          </div>
+          <div style={{ marginBottom: "1.2rem" }}>
+            <h4 style={{ margin: "0 0 0.4rem 0", color: "#232f3e" }}>Q: Is it safe to upload customer invoices to this web cropper?</h4>
+            <p style={{ margin: 0, fontSize: "0.95rem" }}>
+              Absolutely. Our tool processes your PDFs entirely inside your browser's local sandbox using client-side JavaScript. No file is ever uploaded to a server or stored in the cloud. Your customer addresses, product pricing, and order details remain completely confidential.
+            </p>
+          </div>
+          <div style={{ marginBottom: "1.2rem" }}>
+            <h4 style={{ margin: "0 0 0.4rem 0", color: "#232f3e" }}>Q: What thermal printer settings are best for Amazon labels?</h4>
+            <p style={{ margin: 0, fontSize: "0.95rem" }}>
+              Set your printer driver margins to "None," select "4x6 inches" (or 101.6mm x 152.4mm) as the media size, and choose "Dithering: None" or "Clones: 100%" to make barcode lines solid black and sharp.
+            </p>
+          </div>
         </div>
       </div>
 

@@ -795,33 +795,27 @@ export default function PdfToJpgPage() {
               >
                 Why Convert PDF to JPG?
               </h3>
+              <p style={{ marginBottom: "1rem" }}>
+                Converting PDF pages into individual JPG images is ideal for presentations, web publishing, and digital sharing. It makes text and graphics compatible with platforms that do not support PDF viewers.
+              </p>
               <ul
                 style={{
                   paddingLeft: "1.5rem",
-                  marginBottom: "1rem",
+                  marginBottom: "1.5rem",
                   listStyleType: "disc",
                 }}
               >
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Universal Compatibility</strong> - JPG files are
-                  viewable on virtually all devices and platforms without
-                  special software
+                  <strong>Universal Access:</strong> JPG images can be opened natively on any smartphone, tablet, or web browser without requiring PDF reader plugins.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Easier Sharing</strong> - JPG images are easier to
-                  share on social media, messaging apps, and email
+                  <strong>Simplified Sharing:</strong> Share specific pages of a document directly on social platforms, text messages, or chat apps.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Web Publishing</strong> - Use in websites, blogs, and
-                  online platforms that may not support PDF embedding
+                  <strong>Presentation Integration:</strong> Insert documents as image slides directly into Microsoft PowerPoint, Google Slides, or Keynote presentations.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Printing Options</strong> - Some printing services
-                  prefer JPG files over PDF format
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Image Editing</strong> - Extract and edit specific
-                  pages or elements from PDF documents
+                  <strong>Web Design Friendly:</strong> Embed specific document pages directly into website templates or blog articles using simple HTML image tags.
                 </li>
               </ul>
 
@@ -833,79 +827,55 @@ export default function PdfToJpgPage() {
                   color: "#1f2937",
                 }}
               >
-                Common Use Cases
-              </h3>
-              <ul
-                style={{
-                  paddingLeft: "1.5rem",
-                  marginBottom: "1rem",
-                  listStyleType: "disc",
-                }}
-              >
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Document Sharing</strong> - Convert reports,
-                  presentations, and documents for easier sharing
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Image Extraction</strong> - Extract images, diagrams,
-                  and charts from PDF documents
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Digital Marketing</strong> - Create visual content for
-                  social media from PDF resources
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>E-commerce</strong> - Convert product catalogs to
-                  images for online stores
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Archiving</strong> - Create image backups of important
-                  PDF documents
-                </li>
-              </ul>
-
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  marginTop: "2rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                Technical Information
+                Technical Sizing & Image Density
               </h3>
               <p style={{ marginBottom: "1rem" }}>
-                Our PDF to JPG converter maintains high image quality while
-                optimizing file size. The conversion process:
+                Our converter ensures that your generated images remain crisp:
               </p>
-              <ul
-                style={{
-                  paddingLeft: "1.5rem",
-                  marginBottom: "1rem",
-                  listStyleType: "disc",
-                }}
-              >
+              <ul style={{ paddingLeft: "1.5rem", marginBottom: "1.5rem", listStyleType: "circle" }}>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  Renders each PDF page with 1.5x scale for crisp image quality
+                  <strong>1.5x Resolution Scaling:</strong> Each vector path and text layer is rendered at 1.5 times the document's scale, yielding a high-DPI output suitable for zoomed viewing.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  Converts to JPG format with 80% quality setting for optimal
-                  file size
+                  <strong>Optimized JPEG Quality:</strong> Images are compressed at an 80% quality ratio. This is the optimal industry balance, ensuring barcodes and fine text outlines stay sharp while keeping download sizes compact.
                 </li>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  Preserves colors, text sharpness, and image details from the
-                  original document
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  Processes multi-page PDFs with accurate page order
-                  preservation
+                  <strong>ZIP Download Option:</strong> For multi-page PDF documents, our tool compiles the images and packs them into a single zip archive for convenient downloading.
                 </li>
               </ul>
-              <p>
-                For documents with many pages, the ZIP download option provides
-                a convenient way to manage all the converted images in a single
-                file.
-              </p>
+
+              <h3
+                style={{
+                  fontSize: "1.25rem",
+                  marginTop: "2.5rem",
+                  marginBottom: "1rem",
+                  color: "#1f2937",
+                  borderTop: "1px solid #eee",
+                  paddingTop: "1.5rem"
+                }}
+              >
+                Frequently Asked Questions (FAQ)
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: What DPI does the PDF to JPG tool render?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    Our browser engine renders at approximately 150 DPI (dots per inch) using a 1.5x canvas scaling ratio. This ensures text remains readable and barcodes scan easily, without bloating image sizes.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Are my PDFs sent to external servers for conversion?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    No. The conversion is performed directly on your local device. We use PDF.js and canvas HTML5 libraries inside your browser, making the tool 100% private and offline-capable.
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Can I convert specific pages instead of the whole document?</h4>
+                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                    Currently, our converter processes all pages in the PDF. You can select and download individual page images from the preview list, or download them all in a single ZIP folder.
+                  </p>
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>

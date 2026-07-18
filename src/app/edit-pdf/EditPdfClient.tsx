@@ -403,6 +403,68 @@ export default function EditPdfClient() {
 
                 </div>
             </div>
+
+            {/* SEO Content Section */}
+            <div className="z-10 max-w-6xl w-full bg-white rounded-2xl shadow-2xl p-6 sm:p-8 md:p-10 mb-16 text-gray-700">
+                <h2 className="text-2xl font-bold text-gray-900 border-b-2 border-indigo-600 pb-2 mb-4 inline-block">Online PDF Page Organizer: Reorder & Delete Pages</h2>
+                <p className="leading-relaxed mb-4">
+                    Managing complex multi-page PDF documents can be difficult without dedicated editing software. Our free online PDF editor provides an easy, visual drag-and-drop solution. Whether you need to reorganize pages in a business report, discard duplicate pages, or change the sequence of a scanned document, you can customize your file layout in seconds.
+                </p>
+                
+                <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Key Features of our Local PDF Editor</h3>
+                <ul className="list-disc pl-5 space-y-2 mb-6">
+                    <li>
+                        <strong>Drag & Drop Organization:</strong> Simply drag the page thumbnails into the correct order. The interface gives you a visual preview of each page before you save changes.
+                    </li>
+                    <li>
+                        <strong>Page Deletion:</strong> Instantly remove blank pages, terms and conditions pages, or redundant invoices from your PDF with a single click.
+                    </li>
+                    <li>
+                        <strong>Privacy-First Processing:</strong> Like all our tools, document rendering occurs entirely on your local device. We use WebAssembly libraries to process the file in your browser sandbox, so your confidential data never reaches remote servers.
+                    </li>
+                    <li>
+                        <strong>High Fidelity Output:</strong> The tool edits document pages without rasterizing text or compressing images, preserving the quality of vector graphics, fonts, and annotations.
+                    </li>
+                </ul>
+
+                <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">How to Rearrange and Edit Your PDF Pages</h3>
+                <ol className="list-decimal pl-5 space-y-2 mb-6">
+                    <li>
+                        <strong>Upload:</strong> Click the drop area or drag your PDF directly onto this page.
+                    </li>
+                    <li>
+                        <strong>Visualize & Reorder:</strong> Wait a few seconds for the page thumbnails to render. Hold and drag any thumbnail to position it.
+                    </li>
+                    <li>
+                        <strong>Delete Unneeded Pages:</strong> Hover over any thumbnail and click the trash can icon to discard that specific page from the final document.
+                    </li>
+                    <li>
+                        <strong>Generate Output:</strong> Click the "Save Changes" button. The client-side script compiles the pages and generates a download link.
+                    </li>
+                </ol>
+
+                <h3 className="text-xl font-semibold text-gray-800 mt-8 mb-4 border-t pt-6">Frequently Asked Questions (FAQ)</h3>
+                <div className="space-y-4">
+                    <div>
+                        <h4 className="font-semibold text-gray-900">Q: Is it secure to upload my confidential business reports?</h4>
+                        <p className="text-sm text-gray-600 mt-1">
+                            Yes. Your files are never uploaded. The PDF processing is completed on your local machine using standard JavaScript and WebAssembly compiled libraries. This guarantees maximum security and privacy for medical, financial, or personal documents.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-gray-900">Q: Does editing a PDF affect its text searchability?</h4>
+                        <p className="text-sm text-gray-600 mt-1">
+                            No. Our tool edits the page order in the document's structure metadata without modifying the content streams. Your text outlines, hyperlinks, and OCR layers remain fully functional and searchable.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-gray-900">Q: Are there limitations on file size or page count?</h4>
+                        <p className="text-sm text-gray-600 mt-1">
+                            We do not impose limits on file size. However, because processing occurs entirely in your browser's memory, extremely large files (e.g., over 500 pages) may take longer to load thumbnails depending on your system RAM.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }
