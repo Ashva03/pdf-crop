@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Script from "next/script";
 import PDFCropper from "@/components/PDFCropper";
 import styled from "styled-components";
+import { MyntraIcon } from "@/components/PlatformIcons";
+import SiteDescription from "@/components/SiteDescription";
 import {
   myntraLabelCropDimensions,
   platformConfigs,
@@ -18,23 +20,33 @@ const PageContainer = styled.div`
 `;
 
 const PageHeader = styled.div`
-  background: linear-gradient(135deg, #1f1f2e 0%, #2e2e42 100%);
+  background: linear-gradient(135deg, #ff3f6c 0%, #d11c5a 100%);
   color: white;
-  padding: 2rem;
-  border-radius: 8px;
+  padding: 3rem 2rem;
+  border-radius: 12px;
   margin-top: 2rem;
   margin-bottom: 2rem;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(255, 63, 108, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
   h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
+    font-size: 2.25rem;
+    margin: 0;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    letter-spacing: -0.025em;
   }
 
   p {
-    color: #ff3f6c; /* Myntra pink */
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.1rem;
     margin: 0;
   }
@@ -143,7 +155,10 @@ export default function MyntraLabel() {
       <PageContainer>
         <main itemScope itemType="https://schema.org/WebApplication">
           <PageHeader>
-            <h1 itemProp="name">Myntra Shipping Label PDF Cropper</h1>
+            <h1 itemProp="name">
+              <MyntraIcon width={36} height={36} />
+              Myntra Shipping Label PDF Cropper
+            </h1>
             <p itemProp="description">Format Myntra PPMP & Omni labels to standard A6 dimensions instantly.</p>
           </PageHeader>
           
@@ -219,6 +234,7 @@ export default function MyntraLabel() {
               </div>
             </div>
           </DescriptionContainer>
+          <SiteDescription />
         </main>
       </PageContainer>
     </>

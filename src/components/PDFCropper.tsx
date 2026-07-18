@@ -190,29 +190,27 @@ const ActionButtonContainer = styled.div`
   bottom: 30px;
   z-index: 1000;
   display: flex;
-  gap: 1rem; /* Add spacing between buttons */
+  gap: 1rem;
 `;
 
 const ActionButton = styled(Button)`
-  background: linear-gradient(135deg, #f13535 0%, hsl(0, 100%, 0.2%) 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   font-weight: 600;
-  padding: 0.5rem 1rem; /* Reduced size */
-  font-size: 0.9rem; /* Reduced font size */
-  animation: ${pulseAnimation} 2s infinite, ${glowAnimation} 3s infinite;
-  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  border-radius: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 
   &:hover {
-    background: linear-gradient(135deg, rgb(6, 6, 6) 0%, #047857 100%);
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
     transform: translateY(-2px);
-    animation: none;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
   }
 
   &:active {
@@ -220,19 +218,28 @@ const ActionButton = styled(Button)`
   }
 `;
 
-const PrintButton = styled(ActionButton)`
-  background: linear-gradient(
-    135deg,
-    rgb(61, 34, 197) 0%,
-    rgb(0, 0, 0) 100%
-  ); /* Green color */
-  animation: ${pulseAnimation} 2s infinite, ${glowAnimation} 3s infinite;
+const PrintButton = styled(Button)`
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
 
   &:hover {
-    background: linear-gradient(135deg, rgb(6, 6, 6) 0%, #047857 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
     transform: translateY(-2px);
-    animation: none;
-    box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  }
+
+  &:active {
+    transform: translateY(1px);
   }
 `;
 
