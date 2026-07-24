@@ -6,170 +6,153 @@ import styled from "styled-components";
 const BlogContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 `;
 
 const BlogHeader = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 `;
 
 const BlogTitle = styled.h1`
-  font-size: 2.5rem;
-  color: #1f2937;
+  font-size: 2.75rem;
+  color: #111827;
+  font-weight: 800;
   margin-bottom: 1rem;
+  letter-spacing: -0.025em;
 `;
 
 const BlogDescription = styled.p`
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: #4b5563;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
+  line-height: 1.6;
 `;
 
 const BlogGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
 `;
 
 const BlogCard = styled.article`
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e5e7eb;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(79, 70, 229, 0.08);
+    border-color: #c7d2fe;
   }
 `;
 
 const BlogImage = styled.div`
-  height: 200px;
-  background: #f3f4f6;
+  height: 220px;
+  background: linear-gradient(135deg, #e0e7ff 0%, #e0f2fe 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 4rem;
 `;
 
 const BlogCardContent = styled.div`
-  padding: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 `;
 
 const BlogCardTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: #1f2937;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
 `;
 
 const BlogExcerpt = styled.p`
   color: #4b5563;
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  font-size: 0.975rem;
+  flex-grow: 1;
+`;
+
+const CardFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 1.25rem;
 `;
 
 const ReadMore = styled(Link)`
   color: #4f46e5;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
 
   &:hover {
-    text-decoration: underline;
+    color: #4338ca;
   }
 `;
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Complete Guide to E-commerce Shipping Label Standards",
-    excerpt:
-      "Learn about the shipping label requirements and standards for major e-commerce platforms including Flipkart, Amazon, Meesho, and Snapdeal.",
-    icon: "📦",
-    slug: "shipping-label-standards",
-  },
-  {
-    id: 2,
-    title: "E-commerce Shipping Label Best Practices",
-    excerpt:
-      "Discover the best practices for creating and managing shipping labels to improve your e-commerce shipping efficiency and customer satisfaction.",
-    icon: "✨",
-    slug: "shipping-label-best-practices",
-  },
-  {
-    id: 3,
-    title: "How to Troubleshoot Common Shipping Label Issues for E-commerce",
-    excerpt:
-      "A practical guide to identifying and fixing common shipping label problems for e-commerce sellers to improve delivery rates and customer satisfaction.",
-    icon: "🔧",
-    slug: "shipping-label-troubleshooting",
-  },
-  {
-    id: 4,
-    title:
-      "Complete Guide to Shipping Cost Optimization for E-commerce Sellers",
-    excerpt:
-      "Learn proven strategies to reduce shipping costs, improve delivery efficiency, and increase profit margins for your e-commerce business.",
-    icon: "💰",
-    slug: "shipping-cost-optimization",
-  },
-  {
-    id: 5,
-    title: "How to Scale Your E-commerce Shipping Operations",
-    excerpt:
-      "Strategies and best practices for scaling your shipping operations as your e-commerce business grows from startup to enterprise.",
-    icon: "📈",
-    slug: "scaling-shipping-operations",
-  },
-  {
-    id: 6,
-    title: "Understanding E-commerce Shipping Carrier Options in India",
-    excerpt:
-      "Comprehensive comparison of shipping carriers available in India including pricing, delivery speeds, and platform integrations.",
-    icon: "🚚",
-    slug: "shipping-carrier-options-india",
-  },
-  {
-    id: 7,
-    title: "Complete Guide to E-commerce Inventory Management",
-    excerpt:
-      "Learn proven strategies for effective inventory management in e-commerce to reduce costs, prevent stockouts, and improve cash flow.",
-    icon: "📊",
-    slug: "inventory-management-ecommerce",
-  },
-  {
-    id: 8,
-    title: "Building Excellent Customer Service for E-commerce",
-    excerpt:
-      "Learn proven strategies to build exceptional customer service in e-commerce, increase customer loyalty, and drive business growth.",
-    icon: "💬",
-    slug: "customer-service-ecommerce",
-  },
-];
+const CategoryTag = styled.span`
+  background: #eef2f6;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+`;
 
-export default function BlogContent() {
+interface Post {
+  id: number;
+  title: string;
+  excerpt: string;
+  icon: string;
+  slug: string;
+  category: string;
+  date: string;
+}
+
+export default function BlogContent({ posts }: { posts: Post[] }) {
   return (
     <BlogContainer>
       <BlogHeader>
-        <BlogTitle>E-commerce Shipping Insights</BlogTitle>
+        <BlogTitle>E-commerce Shipping & Logistics Guides</BlogTitle>
         <BlogDescription>
-          Expert guides, tips, and best practices for efficient shipping label
-          management across multiple e-commerce platforms.
+          Read the latest tips, operational guidelines, and troubleshooting articles from industry experts to scale your storefront's fulfillment.
         </BlogDescription>
       </BlogHeader>
 
       <BlogGrid>
-        {blogPosts.map((post) => (
+        {posts.map((post) => (
           <BlogCard key={post.id}>
             <BlogImage>{post.icon}</BlogImage>
             <BlogCardContent>
               <BlogCardTitle>{post.title}</BlogCardTitle>
               <BlogExcerpt>{post.excerpt}</BlogExcerpt>
-              <ReadMore href={`/blog/${post.slug}`}>Read More →</ReadMore>
+              <CardFooter>
+                <CategoryTag>{post.category}</CategoryTag>
+                <ReadMore href={`/blog/${post.slug}`}>
+                  Read Article <span style={{ transition: "transform 0.2s" }}>→</span>
+                </ReadMore>
+              </CardFooter>
             </BlogCardContent>
           </BlogCard>
         ))}

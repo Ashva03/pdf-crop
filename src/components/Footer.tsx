@@ -156,6 +156,15 @@ export default function FooterComponent() {
               <Link href="/terms">Terms & Conditions</Link>
             </li>
             <li>
+              <Link href="/disclaimer">Disclaimer</Link>
+            </li>
+            <li>
+              <Link href="/gdpr">GDPR Compliance</Link>
+            </li>
+            <li>
+              <Link href="/data-security">Data Security</Link>
+            </li>
+            <li>
               <Link href="/about">About Us</Link>
             </li>
             <li>
