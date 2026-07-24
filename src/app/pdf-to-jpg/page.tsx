@@ -16,6 +16,7 @@ import {
   Info,
 } from "lucide-react";
 import styled from "styled-components";
+import ToolContentSection from "@/components/ToolContentSection";
 
 // Styled Components
 const Container = styled.main`
@@ -757,128 +758,7 @@ export default function PdfToJpgPage() {
           </Card>
         )}
 
-        <Card>
-          <CardContent>
-            <h2>How to Convert PDF to JPG</h2>
-            <div style={{ color: "#4b5563", lineHeight: 1.6 }}>
-              <p style={{ marginBottom: "1rem" }}>
-                Converting PDF documents to JPG images makes them easier to
-                share, embed, and use in various applications. Follow these
-                simple steps:
-              </p>
-              <ol style={{ paddingLeft: "1.5rem", marginBottom: "1rem" }}>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Upload Your PDF</strong> - Drag and drop or click to
-                  select the PDF file you want to convert.
-                </li>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Convert to JPG</strong> - Click the "Convert to JPG"
-                  button and wait while each page is processed.
-                </li>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Download Images</strong> - Download all pages as a ZIP
-                  file or individual pages as needed.
-                </li>
-              </ol>
-              <p style={{ marginBottom: "1rem" }}>
-                This tool processes your files securely in your browser - your
-                PDF is never uploaded to our servers, ensuring complete privacy.
-              </p>
-
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  marginTop: "2rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                Why Convert PDF to JPG?
-              </h3>
-              <p style={{ marginBottom: "1rem" }}>
-                Converting PDF pages into individual JPG images is ideal for presentations, web publishing, and digital sharing. It makes text and graphics compatible with platforms that do not support PDF viewers.
-              </p>
-              <ul
-                style={{
-                  paddingLeft: "1.5rem",
-                  marginBottom: "1.5rem",
-                  listStyleType: "disc",
-                }}
-              >
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Universal Access:</strong> JPG images can be opened natively on any smartphone, tablet, or web browser without requiring PDF reader plugins.
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Simplified Sharing:</strong> Share specific pages of a document directly on social platforms, text messages, or chat apps.
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Presentation Integration:</strong> Insert documents as image slides directly into Microsoft PowerPoint, Google Slides, or Keynote presentations.
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Web Design Friendly:</strong> Embed specific document pages directly into website templates or blog articles using simple HTML image tags.
-                </li>
-              </ul>
-
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  marginTop: "2rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                Technical Sizing & Image Density
-              </h3>
-              <p style={{ marginBottom: "1rem" }}>
-                Our converter ensures that your generated images remain crisp:
-              </p>
-              <ul style={{ paddingLeft: "1.5rem", marginBottom: "1.5rem", listStyleType: "circle" }}>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>1.5x Resolution Scaling:</strong> Each vector path and text layer is rendered at 1.5 times the document's scale, yielding a high-DPI output suitable for zoomed viewing.
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Optimized JPEG Quality:</strong> Images are compressed at an 80% quality ratio. This is the optimal industry balance, ensuring barcodes and fine text outlines stay sharp while keeping download sizes compact.
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>ZIP Download Option:</strong> For multi-page PDF documents, our tool compiles the images and packs them into a single zip archive for convenient downloading.
-                </li>
-              </ul>
-
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  marginTop: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                  borderTop: "1px solid #eee",
-                  paddingTop: "1.5rem"
-                }}
-              >
-                Frequently Asked Questions (FAQ)
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-                <div>
-                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: What DPI does the PDF to JPG tool render?</h4>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    Our browser engine renders at approximately 150 DPI (dots per inch) using a 1.5x canvas scaling ratio. This ensures text remains readable and barcodes scan easily, without bloating image sizes.
-                  </p>
-                </div>
-                <div>
-                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Are my PDFs sent to external servers for conversion?</h4>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    No. The conversion is performed directly on your local device. We use PDF.js and canvas HTML5 libraries inside your browser, making the tool 100% private and offline-capable.
-                  </p>
-                </div>
-                <div>
-                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Can I convert specific pages instead of the whole document?</h4>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    Currently, our converter processes all pages in the PDF. You can select and download individual page images from the preview list, or download them all in a single ZIP folder.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <ToolContentSection toolId="pdf-to-jpg" />
       </ContentWrapper>
     </Container>
   );

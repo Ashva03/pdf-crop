@@ -10,6 +10,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import styled from "styled-components";
+import ToolContentSection from "@/components/ToolContentSection";
 
 // Styled Components
 const Container = styled.main`
@@ -590,141 +591,7 @@ export default function CompressPdfClient() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent>
-            <h2>Why Compress PDF Files?</h2>
-            <div style={{ color: "#4b5563", lineHeight: 1.6 }}>
-              <p style={{ marginBottom: "1rem" }}>
-                PDF compression reduces file size while maintaining document
-                quality, offering numerous benefits:
-              </p>
-              <ul
-                style={{
-                  paddingLeft: "1.5rem",
-                  marginBottom: "1.5rem",
-                  listStyleType: "disc",
-                }}
-              >
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Easier Sharing</strong> - Send PDFs via email without
-                  hitting attachment size limits
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Faster Uploads/Downloads</strong> - Save time when
-                  transferring files online
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Reduced Storage</strong> - Save space on your device
-                  or cloud storage
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Improved Website Performance</strong> - Smaller PDFs
-                  load faster on websites
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Better User Experience</strong> - Faster loading and
-                  viewing on any device
-                </li>
-              </ul>
-
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  marginTop: "2rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                How Our PDF Compression Works
-              </h3>
-              <p style={{ marginBottom: "1rem" }}>
-                Our compression tool uses advanced algorithms to reduce PDF file
-                size while preserving the quality of your document:
-              </p>
-              <ol style={{ paddingLeft: "1.5rem", marginBottom: "1rem" }}>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Upload Your PDF</strong> - Securely upload your PDF
-                  file through your browser
-                </li>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Select Compression Level</strong> - Choose between
-                  low, medium, or high compression based on your needs
-                </li>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Process the File</strong> - Our tool analyzes and
-                  compresses the PDF content and structure
-                </li>
-                <li style={{ marginBottom: "0.75rem" }}>
-                  <strong>Download Result</strong> - Get your compressed PDF
-                  file with reduced size
-                </li>
-              </ol>
-              <p style={{ marginBottom: "1.5rem" }}>
-                This tool processes your files securely in your browser - your
-                PDFs are never uploaded to our servers, ensuring complete
-                privacy and security.
-              </p>
-
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  marginTop: "2rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                }}
-              >
-                Technical Details: Compression Options
-              </h3>
-              <p style={{ marginBottom: "1rem" }}>
-                We support three primary levels of compression to fit different use cases:
-              </p>
-              <ul style={{ paddingLeft: "1.5rem", marginBottom: "1.5rem", listStyleType: "circle" }}>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Low Compression (High Quality):</strong> Reduces file size slightly by cleaning up metadata and duplicate resources, keeping image resolutions intact (ideal for photo-heavy brochures).
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>Medium Compression (Balanced):</strong> Scales down image DPI to 150 and applies standard compression. This is the recommended setting for general office documents, ebooks, and shipping receipts.
-                </li>
-                <li style={{ marginBottom: "0.5rem" }}>
-                  <strong>High Compression (Smallest Size):</strong> Compresses images down to 72 DPI and lowers color depth. Excellent for text-heavy documents or when meeting strict email attachment limits is your top priority.
-                </li>
-              </ul>
-
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  marginTop: "2.5rem",
-                  marginBottom: "1rem",
-                  color: "#1f2937",
-                  borderTop: "1px solid #eee",
-                  paddingTop: "1.5rem"
-                }}
-              >
-                Frequently Asked Questions (FAQ)
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
-                <div>
-                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Will compressing my PDF ruin its quality?</h4>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    Not necessarily. If you select Low or Medium compression, text outlines and vector shapes remain completely unchanged. Only bitmap images contained within the document are scaled, which is typically unnoticeable on standard screens.
-                  </p>
-                </div>
-                <div>
-                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Why did my file size not decrease?</h4>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    If a PDF is already optimized (for instance, exported from a modern word processor with compression enabled) or consists solely of pure scanned text pages that are heavily compressed, further reduction might not be possible.
-                  </p>
-                </div>
-                <div>
-                  <h4 style={{ margin: "0 0 0.3rem 0", color: "#1f2937" }}>Q: Can I compress password-protected PDFs?</h4>
-                  <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                    No, for security reasons, files with password restrictions cannot be read or processed locally by our scripts. You will need to remove the password protection before optimizing.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <ToolContentSection toolId="compress-pdf" />
       </ContentWrapper>
     </Container>
   );

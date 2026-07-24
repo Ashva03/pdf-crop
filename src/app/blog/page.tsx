@@ -1,10 +1,11 @@
 import { Metadata } from "next";
+import fs from "fs";
+import path from "path";
 import BlogContent from "@/components/BlogContent";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title:
-    "E-commerce Shipping Blog | Expert Guides & Best Practices | PDF Cropper",
+  title: "E-commerce Shipping Blog | Expert Guides & Best Practices | PDF Cropper",
   description:
     "Expert guides, tips, and best practices for efficient shipping label management, inventory optimization, customer service, and e-commerce business growth. Learn from industry experts.",
   keywords:
@@ -50,6 +51,18 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  // Read posts from JSON registry dynamically
+  const registryPath = path.join(process.cwd(), "src", "content", "blog-registry.json");
+  let posts = [];
+  try {
+    if (fs.existsSync(registryPath)) {
+      const data = fs.readFileSync(registryPath, "utf8");
+      posts = JSON.parse(data);
+    }
+  } catch (error) {
+    console.error("Error reading blog registry:", error);
+  }
+
   const blogStructuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -64,56 +77,12 @@ export default function BlogPage() {
     },
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: [
-        {
-          "@type": "Article",
-          position: 1,
-          name: "E-commerce Shipping Label Standards",
-          url: "https://pdfcrop.co.in/blog/shipping-label-standards",
-        },
-        {
-          "@type": "Article",
-          position: 2,
-          name: "E-commerce Shipping Label Best Practices",
-          url: "https://pdfcrop.co.in/blog/shipping-label-best-practices",
-        },
-        {
-          "@type": "Article",
-          position: 3,
-          name: "How to Troubleshoot Common Shipping Label Issues",
-          url: "https://pdfcrop.co.in/blog/shipping-label-troubleshooting",
-        },
-        {
-          "@type": "Article",
-          position: 4,
-          name: "Complete Guide to Shipping Cost Optimization",
-          url: "https://pdfcrop.co.in/blog/shipping-cost-optimization",
-        },
-        {
-          "@type": "Article",
-          position: 5,
-          name: "How to Scale Your E-commerce Shipping Operations",
-          url: "https://pdfcrop.co.in/blog/scaling-shipping-operations",
-        },
-        {
-          "@type": "Article",
-          position: 6,
-          name: "Understanding E-commerce Shipping Carrier Options in India",
-          url: "https://pdfcrop.co.in/blog/shipping-carrier-options-india",
-        },
-        {
-          "@type": "Article",
-          position: 7,
-          name: "Complete Guide to E-commerce Inventory Management",
-          url: "https://pdfcrop.co.in/blog/inventory-management-ecommerce",
-        },
-        {
-          "@type": "Article",
-          position: 8,
-          name: "Building Excellent Customer Service for E-commerce",
-          url: "https://pdfcrop.co.in/blog/customer-service-ecommerce",
-        },
-      ],
+      itemListElement: posts.map((post: any, index: number) => ({
+        "@type": "Article",
+        position: index + 1,
+        name: post.title,
+        url: `https://pdfcrop.co.in/blog/${post.slug}`,
+      })),
     },
   };
 
@@ -125,7 +94,7 @@ export default function BlogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogStructuredData) }}
         strategy="worker"
       />
-      <BlogContent />
+      <BlogContent posts={posts} />
     </>
   );
 }

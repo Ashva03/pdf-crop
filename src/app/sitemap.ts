@@ -1,9 +1,12 @@
 import { MetadataRoute } from "next";
+import fs from "fs";
+import path from "path";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://pdfcrop.co.in";
 
-  return [
+  // Base static routes
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -47,58 +50,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     {
+      url: `${baseUrl}/disclaimer`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/gdpr`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/data-security`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/blog/shipping-label-best-practices`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/shipping-label-standards`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/shipping-label-troubleshooting`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/shipping-cost-optimization`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/scaling-shipping-operations`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/shipping-carrier-options-india`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/inventory-management-ecommerce`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/customer-service-ecommerce`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/tutorials`,
@@ -245,4 +218,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
+
+  // Dynamically load blog posts
+  const blogRoutes: MetadataRoute.Sitemap = [];
+  const registryPath = path.join(process.cwd(), "src", "content", "blog-registry.json");
+  try {
+    if (fs.existsSync(registryPath)) {
+      const data = fs.readFileSync(registryPath, "utf8");
+      const posts = JSON.parse(data);
+      posts.forEach((post: any) => {
+        blogRoutes.push({
+          url: `${baseUrl}/blog/${post.slug}`,
+          lastModified: new Date(),
+          changeFrequency: "monthly",
+          priority: 0.8,
+        });
+      });
+    }
+  } catch (error) {
+    console.error("Error reading blog registry for sitemap:", error);
+  }
+
+  return [...staticRoutes, ...blogRoutes];
 }
