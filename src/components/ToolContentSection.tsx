@@ -161,12 +161,36 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
     })),
   };
 
+  // Structured Data (Breadcrumb Schema)
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://pdfcrop.co.in",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": data.title,
+        "item": `https://pdfcrop.co.in/${toolId}`,
+      },
+    ],
+  };
+
   return (
     <Container>
-      {/* Dynamic script injection for FAQ Schema */}
+      {/* Dynamic script injection for FAQ and Breadcrumb Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* 1. Extended Intro */}

@@ -90,12 +90,43 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
   };
 
+  // Breadcrumb Schema Markup
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://pdfcrop.co.in",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://pdfcrop.co.in/blog",
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://pdfcrop.co.in/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <Script
         id={`blog-${post.slug}-schema`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <Script
+        id={`blog-${post.slug}-breadcrumb-schema`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       
       {/* Wrapper to handle client-side rendering styles for Markdown content */}
