@@ -8,7 +8,7 @@ const SiteDescription = () => {
             <section className={styles.aboutSection}>
                 <h2>Your Complete E-commerce Shipping Solution</h2>
                 <p>
-                    Welcome to <strong>pdf-crop.com</strong>, your comprehensive solution for e-commerce shipping label management. We understand the challenges faced by online sellers in managing shipping labels across multiple platforms, and we're here to simplify your workflow.
+                    Welcome to <strong>pdfcrop.co.in</strong>, your comprehensive solution for e-commerce shipping label management. We understand the challenges faced by online sellers in managing shipping labels across multiple platforms, and we're here to simplify your workflow.
                 </p>
                 <p>
                     Our mission is to provide efficient, accurate, and user-friendly tools that help you streamline your shipping process, reduce errors, and save valuable time in your order fulfillment operations.

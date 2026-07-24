@@ -1,37 +1,50 @@
-"use client";
-
 import { Inter } from "next/font/google";
-import { createGlobalStyle } from "styled-components";
-import StyledComponentsRegistry from "@/lib/registry";
 import Navigation from "@/components/Navigation";
 import "./globals.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Script from "next/script";
 import MonetizationLink from "@/components/MonetizationLink";
+import Providers from "@/components/Providers";
+import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const GlobalStyle = createGlobalStyle`
-  :root {
-    --primary-color: #4f46e5;
-    --secondary-color: #818cf8;
-    --background-color: #f9fafb;
-    --text-color: #1f2937;
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: ${inter.style.fontFamily}, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.6;
-  }
-`;
+export const metadata: Metadata = {
+  metadataBase: new URL("https://pdfcrop.co.in"),
+  title: {
+    default: "Crop PDF Labels for Flipkart, Meesho, Amazon & More | Online PDF Cropper Tool",
+    template: "%s | PDF Cropper"
+  },
+  description: "Crop PDF shipping labels quickly for Amazon, Flipkart, Meesho, Snapdeal, and Myntra. Perfect for e-commerce sellers. Supports custom cropping, ASIN/SKU overlay, and batch processing. 100% free and secure browser-based tool.",
+  keywords: "PDF cropper, PDF cropping tool, crop PDF labels, shipping label cropper, e-commerce PDF tool, Flipkart label crop, Meesho PDF crop, Amazon label crop, Myntra label crop, crop PDF online, custom PDF crop, seller tools, online selling, shipping labels PDF, crop invoices, PDF editor for sellers",
+  openGraph: {
+    title: "Crop PDF Labels for Flipkart, Meesho, Amazon & More | Online PDF Cropper Tool",
+    description: "Crop shipping labels from PDF files in seconds. Perfect for online sellers using Flipkart, Amazon, Meesho, Myntra, and more.",
+    type: "website",
+    locale: "en_US",
+    url: "https://pdfcrop.co.in/",
+    siteName: "PDF Label Cropper",
+    images: [
+      {
+        url: "https://pdfcrop.co.in/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PDF Cropper - Free Online PDF Tools",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default function RootLayout({
   children,
@@ -101,8 +114,7 @@ export default function RootLayout({
         itemScope
         itemType="https://schema.org/SearchAction"
       >
-        <StyledComponentsRegistry>
-          <GlobalStyle />
+        <Providers>
           <Navigation />
           <LayoutWrapper>
             {children}
@@ -110,7 +122,7 @@ export default function RootLayout({
               <MonetizationLink />
             </div>
           </LayoutWrapper>
-        </StyledComponentsRegistry>
+        </Providers>
       </body>
     </html>
   );

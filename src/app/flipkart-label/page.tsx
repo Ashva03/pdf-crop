@@ -3,7 +3,7 @@ import Script from "next/script";
 import FlipkartLabel from "./flipkartLabel";
 
 // Define Base URL (Replace with your actual domain)
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://pdf-crop.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://pdfcrop.co.in";
 const pageUrl = `${baseUrl}/flipkart-label`;
 
 // Optimized metadata for SEO

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import MeeshoLabel from "./meeshoLabel";
 
 // Define Base URL (Replace with your actual domain)
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://pdf-crop.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://pdfcrop.co.in";
 const pageUrl = `${baseUrl}/meesho-label`;
 
 // Generate structured data for the page

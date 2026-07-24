@@ -1,12 +1,6 @@
 import { Metadata } from "next";
 import Script from "next/script";
-import dynamic from "next/dynamic";
-
-// Dynamically import the content component
-const ShippingLabelStandardsContent = dynamic(
-  () => import("@/components/ShippingLabelStandardsContent"),
-  { ssr: true, loading: () => <div>Loading article...</div> }
-);
+import ShippingLabelStandardsContent from "@/components/ShippingLabelStandardsContent";
 
 export const metadata: Metadata = {
   title: "Complete Guide to E-commerce Shipping Label Standards | PDF Cropper",
