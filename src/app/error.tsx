@@ -64,9 +64,9 @@ const ActionButton = styled.button<{ $secondary?: boolean }>`
   &:hover {
     transform: translateY(-2px);
     box-shadow: ${(props) =>
-      props.$secondary
-        ? "0 4px 6px rgba(0,0,0,0.05)"
-        : "0 6px 12px rgba(79, 70, 229, 0.3)"};
+    props.$secondary
+      ? "0 4px 6px rgba(0,0,0,0.05)"
+      : "0 6px 12px rgba(79, 70, 229, 0.3)"};
   }
 `;
 
@@ -79,7 +79,7 @@ export default function Error({
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error("Application error boundary:", error);
+    console.error("Application error boundary: ", error);
   }, [error]);
 
   return (
