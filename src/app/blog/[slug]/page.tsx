@@ -152,13 +152,33 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Dynamic HTML renderer with premium styled container styles */}
         <section 
-          className="prose prose-indigo max-w-none leading-relaxed text-lg"
+          className="prose prose-indigo max-w-none leading-relaxed text-lg mb-10"
           style={{
             lineHeight: "1.8",
             fontSize: "1.075rem"
           }}
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
+
+        {/* Affiliate call-to-action box */}
+        <div className="mt-12 p-6 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 border border-orange-200 shadow-sm flex flex-col sm:flex-row items-center gap-6">
+          <div className="text-4xl bg-white p-3 rounded-full shadow-inner flex-shrink-0">🛒</div>
+          <div className="flex-1 text-center sm:text-left">
+            <h3 className="text-xl font-bold text-orange-800 mb-1">Equip Your Shipping Station</h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              To achieve the best printing results, we highly recommend using a high-quality direct thermal printer and standard 4x6 self-adhesive sticker rolls. Shop printers, labels, and supplies directly on Amazon using our verified link.
+            </p>
+          </div>
+          <a 
+            href="https://amzn.to/4wzBAQ1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto text-center font-bold rounded-full text-white bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-102 whitespace-nowrap"
+            style={{ padding: "12px 28px" }}
+          >
+            Shop on Amazon
+          </a>
+        </div>
       </article>
     </>
   );

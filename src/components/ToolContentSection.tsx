@@ -130,6 +130,82 @@ const RelatedLink = styled(Link)`
   }
 `;
 
+const PromoBanner = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 100%);
+  border: 1px dashed #f97316;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  text-decoration: none;
+  color: #374151;
+  transition: all 0.3s ease;
+  max-width: 1000px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.1);
+    border-style: solid;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+`;
+
+const PromoIcon = styled.div`
+  font-size: 2.25rem;
+  background: white;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.1);
+  flex-shrink: 0;
+`;
+
+const PromoContent = styled.div`
+  flex: 1;
+`;
+
+const PromoTitle = styled.h4`
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ea580c;
+  margin: 0 0 0.25rem 0;
+`;
+
+const PromoDescription = styled.p`
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4b5563;
+  margin: 0;
+`;
+
+const PromoButton = styled.span`
+  background: linear-gradient(to right, #f59e0b, #ea580c);
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.2);
+  text-align: center;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+
+  ${PromoBanner}:hover & {
+    background: linear-gradient(to right, #ea580c, #c2410c);
+    box-shadow: 0 4px 8px rgba(234, 88, 12, 0.3);
+  }
+`;
+
 interface ToolContentSectionProps {
   toolId: string;
 }
@@ -248,6 +324,18 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
           </ul>
         </TipBox>
       </Section>
+
+      {/* Promotion / Recommendation Banner */}
+      <PromoBanner href="https://amzn.to/4wzBAQ1" target="_blank" rel="noopener noreferrer">
+        <PromoIcon>🛒</PromoIcon>
+        <PromoContent>
+          <PromoTitle>Need a Thermal Printer or Label Rolls?</PromoTitle>
+          <PromoDescription>
+            Shop high-quality direct thermal printers, 4x6 adhesive sticker rolls, and packing materials on Amazon to streamline your shipping station.
+          </PromoDescription>
+        </PromoContent>
+        <PromoButton>Shop on Amazon</PromoButton>
+      </PromoBanner>
 
       {/* 6. FAQ Accordion */}
       <Section>

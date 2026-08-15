@@ -118,11 +118,11 @@ export default function RootLayout({
           <Navigation />
           <LayoutWrapper>
             {children}
-            <div className="fixed bottom-4 right-4 z-50">
-              <MonetizationLink />
-            </div>
           </LayoutWrapper>
         </Providers>
+        <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 9999 }}>
+          <MonetizationLink />
+        </div>
       </body>
     </html>
   );
