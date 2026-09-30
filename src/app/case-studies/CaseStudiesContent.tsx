@@ -1,345 +1,296 @@
-'use client';
+"use client";
 
-import styled from 'styled-components';
+import styled from "styled-components";
+import Link from "next/link";
+import React from "react";
+import { Scissors, FileText, Layers, Tag, ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1rem;
 `;
 
 const HeroSection = styled.section`
   text-align: center;
-  padding: 4rem 0;
+  padding: 4rem 2rem;
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: white;
   margin-bottom: 3rem;
   border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.2);
 `;
 
 const Title = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.25rem;
   font-weight: 800;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const Description = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   max-width: 800px;
   margin: 0 auto;
-  opacity: 0.9;
+  opacity: 0.95;
+  line-height: 1.7;
 `;
 
-const CaseStudiesGrid = styled.div`
+const WorkflowGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-bottom: 3rem;
 `;
 
-const CaseStudyCard = styled.div`
+const WorkflowCard = styled.div`
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
   }
 
-  h3 {
+  .icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #eef2ff;
     color: #4f46e5;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
   }
-
-  .company {
-    color: #6b7280;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-
-  .industry {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: #e0e7ff;
-    color: #4338ca;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: #4b5563;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e5e7eb;
-  }
-
-  .metric {
-    text-align: center;
-
-    .value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #4f46e5;
-    }
-
-    .label {
-      font-size: 0.75rem;
-      color: #6b7280;
-      margin-top: 0.25rem;
-    }
-  }
-`;
-
-const StatsSection = styled.section`
-  background: white;
-  padding: 3rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 3rem;
-`;
-
-const StatsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  text-align: center;
-
-  .stat {
-    .value {
-      font-size: 3rem;
-      font-weight: 800;
-      color: #4f46e5;
-      margin-bottom: 0.5rem;
-    }
-
-    .label {
-      color: #6b7280;
-      font-size: 1rem;
-    }
-  }
-`;
-
-const CTASection = styled.section`
-  text-align: center;
-  padding: 3rem;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-  color: white;
-  border-radius: 12px;
 
   h2 {
-    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
     margin-bottom: 1rem;
+    align-self: flex-start;
   }
 
   p {
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    color: #475569;
+    line-height: 1.65;
+    font-size: 0.975rem;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
   }
 
-  a {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: white;
-    color: #4f46e5;
-    text-decoration: none;
-    font-weight: 600;
+  .steps-box {
+    background: #f8fafc;
     border-radius: 8px;
-    transition: transform 0.2s ease;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #f1f5f9;
+
+    h3 {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: #64748b;
+      font-size: 0.875rem;
+      line-height: 1.6;
+
+      li {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+
+  .action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4f46e5;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
 
     &:hover {
-      transform: translateY(-2px);
+      text-decoration: underline;
+    }
+  }
+`;
+
+const NoteBox = styled.div`
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  .icon {
+    color: #16a34a;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .content {
+    h3 {
+      margin: 0 0 0.25rem 0;
+      color: #14532d;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      color: #166534;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
   }
 `;
 
 export default function CaseStudiesContent() {
   return (
-    <div style={{ backgroundColor: '#f2f4f4' }}>
+    <div style={{ backgroundColor: "#f8fafc", minHeight: "100vh" }}>
       <Container>
         <HeroSection>
-          <Title>E-commerce Success Stories</Title>
+          <Title>Shipping Label Processing Examples & Workflows</Title>
           <Description>
-            Discover how businesses like yours have transformed their operations with our PDF tools and shipping label solutions
+            Step-by-step demonstrations showing how sellers use our PDF tools to transform standard A4 marketplace downloads into 4x6 inch thermal sticker labels.
           </Description>
         </HeroSection>
 
-        <StatsSection>
-          <StatsGrid>
-            <div className="stat">
-              <div className="value">10,000+</div>
-              <div className="label">Active Users</div>
-            </div>
-            <div className="stat">
-              <div className="value">50M+</div>
-              <div className="label">Labels Created</div>
-            </div>
-            <div className="stat">
-              <div className="value">95%</div>
-              <div className="label">Customer Satisfaction</div>
-            </div>
-            <div className="stat">
-              <div className="value">40%</div>
-              <div className="label">Average Time Saved</div>
-            </div>
-          </StatsGrid>
-        </StatsSection>
+        <NoteBox>
+          <ShieldCheck className="icon" size={24} />
+          <div className="content">
+            <h3>Genuine Technical Workflow Documentation</h3>
+            <p>
+              The workflow examples below illustrate actual software functionality implemented in our client-side cropping and document manipulation utilities. All document processing takes place in your local web browser sandbox.
+            </p>
+          </div>
+        </NoteBox>
 
-        <CaseStudiesGrid>
-          <CaseStudyCard>
-            <div className="company">Fashion Retailer</div>
-            <span className="industry">E-commerce Fashion</span>
-            <h3>Scaling from 100 to 10,000 Orders Daily</h3>
-            <p>
-              A growing fashion retailer faced challenges with manual label creation across multiple platforms. By implementing our automated label tools, they reduced processing time by 70% and eliminated label rejection errors.
-            </p>
-            <p>
-              The retailer now processes 10,000 orders daily with a team of 5, compared to 15 previously. Platform compliance improved from 85% to 99.5%.
-            </p>
-            <div className="metrics">
-              <div className="metric">
-                <div className="value">70%</div>
-                <div className="label">Time Saved</div>
-              </div>
-              <div className="metric">
-                <div className="value">99.5%</div>
-                <div className="label">Compliance Rate</div>
-              </div>
+        <WorkflowGrid>
+          <WorkflowCard>
+            <div className="icon-badge">
+              <Scissors size={24} />
             </div>
-          </CaseStudyCard>
-
-          <CaseStudyCard>
-            <div className="company">Electronics Marketplace</div>
-            <span className="industry">Consumer Electronics</span>
-            <h3>Reducing Shipping Costs by 25%</h3>
+            <span className="tag">Flipkart Seller Hub</span>
+            <h2>Flipkart A4 Manifest to A6 Label Crop</h2>
             <p>
-              An electronics marketplace was struggling with high shipping costs due to inefficient label formatting and carrier selection. Our optimization tools helped them implement dynamic carrier routing and proper label sizing.
+              Demonstrates isolating shipping label blocks from Flipkart Seller Hub PDF exports and converting multi-page A4 sheets into 4x6 inch thermal sticker rolls.
             </p>
-            <p>
-              The result was a 25% reduction in shipping costs and improved delivery times by 2 days on average. Customer satisfaction scores increased by 15 points.
-            </p>
-            <div className="metrics">
-              <div className="metric">
-                <div className="value">25%</div>
-                <div className="label">Cost Reduction</div>
-              </div>
-              <div className="metric">
-                <div className="value">+15</div>
-                <div className="label">CSAT Points</div>
-              </div>
+            <div className="steps-box">
+              <h3>Workflow Steps:</h3>
+              <ul>
+                <li>Upload Flipkart A4 PDF export</li>
+                <li>Extract vector boundary coordinates</li>
+                <li>Resize page box to 101.6mm x 152.4mm</li>
+                <li>Export ready-to-print A6 PDF</li>
+              </ul>
             </div>
-          </CaseStudyCard>
+            <Link href="/flipkart-label" className="action-link">
+              Open Flipkart Label Cropper <ArrowRight size={16} />
+            </Link>
+          </WorkflowCard>
 
-          <CaseStudyCard>
-            <div className="company">Home Decor Brand</div>
-            <span className="industry">Home & Living</span>
-            <h3>Achieving 99.9% On-Time Delivery</h3>
-            <p>
-              A home decor brand was experiencing delivery delays due to label errors and carrier rejections. Our platform-specific label tools ensured 100% compliance with all major e-commerce platforms.
-            </p>
-            <p>
-              Within 3 months, they achieved 99.9% on-time delivery and reduced customer complaints by 80%. Return rates dropped from 8% to 3% due to accurate labeling.
-            </p>
-            <div className="metrics">
-              <div className="metric">
-                <div className="value">99.9%</div>
-                <div className="label">On-Time Delivery</div>
-              </div>
-              <div className="metric">
-                <div className="value">-62%</div>
-                <div className="label">Return Rate</div>
-              </div>
+          <WorkflowCard>
+            <div className="icon-badge">
+              <Tag size={24} />
             </div>
-          </CaseStudyCard>
-
-          <CaseStudyCard>
-            <div className="company">Multi-Platform Seller</div>
-            <span className="industry">Multi-Category Retail</span>
-            <h3>Managing 5 Platforms with One Tool</h3>
+            <span className="tag">Amazon Seller Central</span>
+            <h2>Amazon Easy Ship SKU Overlay & Crop</h2>
             <p>
-              A seller operating across Flipkart, Amazon, Meesho, Snapdeal, and Myntra was overwhelmed by different label requirements. Our unified platform solution streamlined their entire labeling process.
+              Shows how Amazon Easy Ship shipping labels are cropped to A6 format while extracting ASIN/SKU text to print on label margins for packaging verification.
             </p>
-            <p>
-              They reduced label creation time from 5 minutes per order to 30 seconds, enabling them to handle 3x more volume without adding staff. Platform-specific compliance is now automated.
-            </p>
-            <div className="metrics">
-              <div className="metric">
-                <div className="value">90%</div>
-                <div className="label">Time Reduction</div>
-              </div>
-              <div className="metric">
-                <div className="value">3x</div>
-                <div className="label">Volume Increase</div>
-              </div>
+            <div className="steps-box">
+              <h3>Workflow Steps:</h3>
+              <ul>
+                <li>Parse Amazon Easy Ship PDF</li>
+                <li>Extract SKU/ASIN text via regex</li>
+                <li>Strip tax invoice pages if enabled</li>
+                <li>Overlay SKU info on A6 margin space</li>
+              </ul>
             </div>
-          </CaseStudyCard>
+            <Link href="/amazon-label" className="action-link">
+              Open Amazon Label Cropper <ArrowRight size={16} />
+            </Link>
+          </WorkflowCard>
 
-          <CaseStudyCard>
-            <div className="company">Handmade Crafts Store</div>
-            <span className="industry">Arts & Crafts</span>
-            <h3>From Manual to Automated Processing</h3>
-            <p>
-              A handmade crafts store was manually creating labels for 200 daily orders, taking 4-5 hours daily. Our batch processing tools transformed their operations completely.
-            </p>
-            <p>
-              Label processing now takes 30 minutes daily, freeing up 4 hours for business development. The owner expanded to 500 daily orders without hiring additional staff.
-            </p>
-            <div className="metrics">
-              <div className="metric">
-                <div className="value">87%</div>
-                <div className="label">Time Saved</div>
-              </div>
-              <div className="metric">
-                <div className="value">2.5x</div>
-                <div className="label">Order Growth</div>
-              </div>
+          <WorkflowCard>
+            <div className="icon-badge">
+              <FileText size={24} />
             </div>
-          </CaseStudyCard>
-
-          <CaseStudyCard>
-            <div className="company">Book Distributor</div>
-            <span className="industry">Books & Media</span>
-            <h3>Eliminating Label Rejections</h3>
+            <span className="tag">Meesho Supplier Panel</span>
+            <h2>Meesho Order Sheet Label Formatting</h2>
             <p>
-              A book distributor faced frequent label rejections from Flipkart and Amazon, causing shipping delays and penalties. Our compliance-focused tools addressed every platform requirement.
+              Illustrates cropping order details from Meesho Supplier Panel sheets into 4x6 sticker formats without obscuring Cash on Delivery payment values.
             </p>
-              <p>
-              Label rejections dropped from 15% to less than 0.5%. Monthly penalties were eliminated entirely. The distributor saved ₹50,000 monthly in penalty costs alone.
-            </p>
-            <div className="metrics">
-              <div className="metric">
-                <div className="value">97%</div>
-                <div className="label">Rejection Reduction</div>
-              </div>
-              <div className="metric">
-                <div className="value">₹50K</div>
-                <div className="label">Monthly Savings</div>
-              </div>
+            <div className="steps-box">
+              <h3>Workflow Steps:</h3>
+              <ul>
+                <li>Upload Meesho order PDF file</li>
+                <li>Target shipping address & barcode block</li>
+                <li>Format layout to 4x6 thermal paper</li>
+                <li>Download clean PDF for printing</li>
+              </ul>
             </div>
-          </CaseStudyCard>
-        </CaseStudiesGrid>
+            <Link href="/meesho-label" className="action-link">
+              Open Meesho Label Cropper <ArrowRight size={16} />
+            </Link>
+          </WorkflowCard>
 
-        <CTASection>
-          <h2>Ready to Transform Your Operations?</h2>
-          <p>
-            Join thousands of e-commerce businesses who have improved their efficiency with our tools
-          </p>
-          <a href="/contact">Get Started Today</a>
-        </CTASection>
+          <WorkflowCard>
+            <div className="icon-badge">
+              <Layers size={24} />
+            </div>
+            <span className="tag">Multi-File Processing</span>
+            <h2>Multi-PDF Document Merging for Archives</h2>
+            <p>
+              Demonstrates combining daily shipping manifests, carrier pick-up sheets, and packing slips from different platforms into a single consolidated PDF.
+            </p>
+            <div className="steps-box">
+              <h3>Workflow Steps:</h3>
+              <ul>
+                <li>Upload multiple PDF documents</li>
+                <li>Reorder files using drag-and-drop</li>
+                <li>Compile PDF tree client-side</li>
+                <li>Download unified document archive</li>
+              </ul>
+            </div>
+            <Link href="/merge-pdf" className="action-link">
+              Open Merge PDF Tool <ArrowRight size={16} />
+            </Link>
+          </WorkflowCard>
+        </WorkflowGrid>
       </Container>
     </div>
   );
