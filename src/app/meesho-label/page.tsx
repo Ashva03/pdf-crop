@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import MeeshoLabel from "./meeshoLabel";
 
-// Define Base URL (Replace with your actual domain)
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://pdfcrop.co.in";
 const pageUrl = `${baseUrl}/meesho-label`;
 
-// Generate structured data for the page
 const generateStructuredData = () => ({
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -28,7 +26,6 @@ const generateStructuredData = () => ({
   ],
 });
 
-// Optimized metadata for SEO
 export const metadata: Metadata = {
   title: "Meesho PDF Label Cropper | Free & Easy Online Tool",
   description:
@@ -42,8 +39,6 @@ export const metadata: Metadata = {
     "free label tool",
     "resize PDF label",
     "Meesho shipping label",
-    "print label",
-    "label maker",
   ],
   alternates: {
     canonical: "/meesho-label",
@@ -82,7 +77,7 @@ export default function MeeshoLabelPage() {
       <script
         id="meesho-label-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
       <MeeshoLabel />
     </>

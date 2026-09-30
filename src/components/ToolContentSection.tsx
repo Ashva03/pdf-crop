@@ -18,7 +18,7 @@ const Section = styled.section`
 `;
 
 const HeaderTitle = styled.h2`
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #1f2937;
   font-weight: 800;
   margin-bottom: 1.25rem;
@@ -28,8 +28,40 @@ const HeaderTitle = styled.h2`
 
 const Paragraph = styled.p`
   line-height: 1.8;
-  font-size: 1.05rem;
+  font-size: 1.025rem;
   margin-bottom: 1.25rem;
+  color: #4b5563;
+`;
+
+const TechGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
+`;
+
+const TechCard = styled.div`
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+`;
+
+const TechTitle = styled.div`
+  font-size: 0.825rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+`;
+
+const TechValue = styled.div`
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.5;
 `;
 
 const Grid = styled.div`
@@ -48,7 +80,7 @@ const Card = styled.div`
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: #111827;
   font-weight: 700;
   margin-bottom: 0.75rem;
@@ -60,13 +92,19 @@ const List = styled.ol`
 `;
 
 const ListItem = styled.li`
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.875rem;
   line-height: 1.7;
+  font-size: 1.025rem;
+  color: #374151;
+
+  strong {
+    color: #111827;
+  }
 `;
 
 const TipBox = styled.div`
-  background: #fdf2f8;
-  border-left: 4px solid #db2777;
+  background: #f0fdf4;
+  border-left: 4px solid #16a34a;
   padding: 1.25rem;
   border-radius: 0 10px 10px 0;
   margin: 1.5rem 0;
@@ -82,7 +120,7 @@ const FaqQuestion = styled.button`
   text-align: left;
   background: none;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #1f2937;
   display: flex;
@@ -109,9 +147,9 @@ const FaqAnswer = styled.div<{ $isOpen: boolean }>`
 
 const RelatedGrid = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 `;
 
 const RelatedLink = styled(Link)`
@@ -127,82 +165,6 @@ const RelatedLink = styled(Link)`
   &:hover {
     background: #4f46e5;
     color: white;
-  }
-`;
-
-const PromoBanner = styled.a`
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 100%);
-  border: 1px dashed #f97316;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 2rem auto;
-  text-decoration: none;
-  color: #374151;
-  transition: all 0.3s ease;
-  max-width: 1000px;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.1);
-    border-style: solid;
-  }
-
-  @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-`;
-
-const PromoIcon = styled.div`
-  font-size: 2.25rem;
-  background: white;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(249, 115, 22, 0.1);
-  flex-shrink: 0;
-`;
-
-const PromoContent = styled.div`
-  flex: 1;
-`;
-
-const PromoTitle = styled.h4`
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ea580c;
-  margin: 0 0 0.25rem 0;
-`;
-
-const PromoDescription = styled.p`
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #4b5563;
-  margin: 0;
-`;
-
-const PromoButton = styled.span`
-  background: linear-gradient(to right, #f59e0b, #ea580c);
-  color: white;
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 0.65rem 1.5rem;
-  border-radius: 30px;
-  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.2);
-  text-align: center;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-
-  ${PromoBanner}:hover & {
-    background: linear-gradient(to right, #ea580c, #c2410c);
-    box-shadow: 0 4px 8px rgba(234, 88, 12, 0.3);
   }
 `;
 
@@ -223,7 +185,7 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
     }));
   };
 
-  // Structured Data (FAQ Schema)
+  // Structured Data (FAQ Schema) with XSS protection
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -237,7 +199,7 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
     })),
   };
 
-  // Structured Data (Breadcrumb Schema)
+  // Structured Data (Breadcrumb Schema) with XSS protection
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -262,17 +224,38 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
       {/* Dynamic script injection for FAQ and Breadcrumb Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c") }}
       />
 
-      {/* 1. Extended Intro */}
+      {/* 1. Extended Intro & Technical Specs */}
       <Section>
         <HeaderTitle>About {data.title}</HeaderTitle>
         <Paragraph>{data.extendedIntro}</Paragraph>
+
+        {data.technicalInfo && (
+          <TechGrid>
+            <TechCard>
+              <TechTitle>Processing Architecture</TechTitle>
+              <TechValue>{data.technicalInfo.processingType}</TechValue>
+            </TechCard>
+            <TechCard>
+              <TechTitle>Supported Inputs</TechTitle>
+              <TechValue>{data.technicalInfo.supportedInputs}</TechValue>
+            </TechCard>
+            <TechCard>
+              <TechTitle>Output Specifications</TechTitle>
+              <TechValue>{data.technicalInfo.outputFormat}</TechValue>
+            </TechCard>
+            <TechCard>
+              <TechTitle>Operating Limitations</TechTitle>
+              <TechValue>{data.technicalInfo.limitations}</TechValue>
+            </TechCard>
+          </TechGrid>
+        )}
       </Section>
 
       {/* 2. When to Use */}
@@ -283,7 +266,7 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
 
       {/* 3. Key Benefits */}
       <Section>
-        <HeaderTitle>Benefits of Using Our Tool</HeaderTitle>
+        <HeaderTitle>Key Advantages & Features</HeaderTitle>
         <Grid>
           {data.benefits.map((benefit, idx) => (
             <Card key={idx}>
@@ -302,7 +285,7 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
         <List>
           {data.steps.map((step, idx) => (
             <ListItem key={idx}>
-              <strong>{step.title}:</strong> {step.description}
+              <strong>Step {idx + 1}: {step.title}</strong> — {step.description}
             </ListItem>
           ))}
         </List>
@@ -310,32 +293,20 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
 
       {/* 5. Tips & Best Practices */}
       <Section>
-        <HeaderTitle>Tips & Best Practices</HeaderTitle>
+        <HeaderTitle>Best Practices & Troubleshooting Tips</HeaderTitle>
         <TipBox>
-          <strong style={{ display: "block", marginBottom: "0.5rem", color: "#9d174d" }}>
-            Pro Tips for Online Sellers:
+          <strong style={{ display: "block", marginBottom: "0.5rem", color: "#14532d", fontSize: "1.05rem" }}>
+            Recommended Best Practices:
           </strong>
           <ul style={{ paddingLeft: "1.25rem", margin: 0 }}>
             {data.tips.map((tip, idx) => (
-              <li key={idx} style={{ marginBottom: "0.5rem", color: "#be185d", fontSize: "0.95rem" }}>
+              <li key={idx} style={{ marginBottom: "0.5rem", color: "#15803d", fontSize: "0.95rem" }}>
                 {tip}
               </li>
             ))}
           </ul>
         </TipBox>
       </Section>
-
-      {/* Promotion / Recommendation Banner */}
-      <PromoBanner href="https://amzn.to/4wzBAQ1" target="_blank" rel="noopener noreferrer">
-        <PromoIcon>🛒</PromoIcon>
-        <PromoContent>
-          <PromoTitle>Need a Thermal Printer or Label Rolls?</PromoTitle>
-          <PromoDescription>
-            Shop high-quality direct thermal printers, 4x6 adhesive sticker rolls, and packing materials on Amazon to streamline your shipping station.
-          </PromoDescription>
-        </PromoContent>
-        <PromoButton>Shop on Amazon</PromoButton>
-      </PromoBanner>
 
       {/* 6. FAQ Accordion */}
       <Section>
@@ -358,9 +329,9 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
 
       {/* 7. Related Tools */}
       <Section style={{ borderTop: "1px solid #e5e7eb", paddingTop: "2rem" }}>
-        <HeaderTitle style={{ border: "none", marginBottom: "0.5rem" }}>Related PDF Utilities</HeaderTitle>
+        <HeaderTitle style={{ border: "none", marginBottom: "0.5rem" }}>Related PDF Tools</HeaderTitle>
         <Paragraph style={{ fontSize: "0.95rem", margin: 0 }}>
-          Explore our other browser-side utilities built to simplify document administration:
+          Explore our other free document utilities built for efficient administration:
         </Paragraph>
         <RelatedGrid>
           {data.relatedTools.map((link, idx) => (
