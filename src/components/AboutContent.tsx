@@ -111,9 +111,7 @@ export default function AboutContent() {
             simultaneously, saving hours of manual work.
           </li>
           <li>
-            <strong>Privacy-First Approach:</strong> All processing happens
-            locally in your browser. Your files never leave your device,
-            ensuring complete privacy and security.
+            <strong>Privacy-First Approach:</strong> All label cropping and PDF-to-JPG tools process 100% locally in your browser memory so files never leave your device. For server-assisted utilities (like PDF Compression), files are processed statelessly in temporary memory (RAM) and immediately purged without persistent storage.
           </li>
           <li>
             <strong>100% Free:</strong> We believe in providing value without

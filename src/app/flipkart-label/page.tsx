@@ -82,11 +82,9 @@ export default function FlipkartLabelPage() {
 
   return (
     <>
-      <Script
-        id="flipkart-label-structured-data"
+      <script
         type="application/ld+json"
-        strategy="worker"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
       <FlipkartLabel />
     </>

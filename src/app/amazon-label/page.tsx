@@ -94,11 +94,9 @@ const jsonLd = {
 export default function AmazonLabelPage() {
   return (
     <>
-      <Script
-        id="amazon-label-jsonld"
+      <script
         type="application/ld+json"
-        strategy="worker"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
       <AmazonLabelClient />
     </>

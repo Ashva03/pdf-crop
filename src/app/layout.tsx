@@ -3,7 +3,6 @@ import Navigation from "@/components/Navigation";
 import "./globals.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import Script from "next/script";
-import MonetizationLink from "@/components/MonetizationLink";
 import Providers from "@/components/Providers";
 import type { Metadata } from "next";
 
@@ -83,7 +82,7 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin=""
         />
-        {/* Google tag (gtag.js) */}
+        {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-QF2MVJ5SNC"
@@ -100,13 +99,6 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Google AdSense */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6259586123575519"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
       </head>
       <body
         className={inter.className}
@@ -120,9 +112,6 @@ export default function RootLayout({
             {children}
           </LayoutWrapper>
         </Providers>
-        <div style={{ position: "fixed", bottom: "24px", right: "24px", zIndex: 9999 }}>
-          <MonetizationLink />
-        </div>
       </body>
     </html>
   );

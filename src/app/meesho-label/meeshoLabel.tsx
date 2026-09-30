@@ -24,16 +24,6 @@ export default function MeeshoLabel() {
         </h1>
         <p>Easily crop your Meesho shipping labels online.</p>
       </div>
-      {React.createElement('amp-ad', {
-        width: "100vw",
-        height: "320",
-        type: "adsense",
-        layout: "fixed-height",
-        "data-ad-client": "ca-pub-6259586123575519",
-        "data-ad-slot": "7712907827",
-        "data-auto-format": "rspv",
-        "data-full-width": ""
-      }, React.createElement('div', { placeholder: '' }))}
 
       <PDFCropper
         platformConfig={platformConfigs.meesho}

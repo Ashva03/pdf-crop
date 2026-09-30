@@ -51,9 +51,6 @@ export const metadata: Metadata = {
   authors: [{ name: "PDF Cropper" }],
   creator: "PDF Cropper",
   publisher: "PDF Cropper",
-  verification: {
-    google: "your-google-verification-code",
-  },
 };
 
 const structuredData = {
@@ -122,17 +119,13 @@ const organizationData = {
 export default function Home() {
   return (
     <>
-      <Script
-        id="structured-data"
+      <script
         type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
-      <Script
-        id="organization-data"
+      <script
         type="application/ld+json"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData).replace(/</g, "\\u003c") }}
       />
       <HomePage />
     </>

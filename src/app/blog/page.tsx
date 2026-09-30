@@ -88,11 +88,9 @@ export default function BlogPage() {
 
   return (
     <>
-      <Script
-        id="blog-structured-data"
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogStructuredData) }}
-        strategy="worker"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogStructuredData).replace(/</g, "\\u003c") }}
       />
       <BlogContent posts={posts} />
     </>

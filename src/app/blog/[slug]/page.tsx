@@ -118,15 +118,13 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <>
-      <Script
-        id={`blog-${post.slug}-schema`}
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c") }}
       />
-      <Script
-        id={`blog-${post.slug}-breadcrumb-schema`}
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c") }}
       />
       
       {/* Wrapper to handle client-side rendering styles for Markdown content */}

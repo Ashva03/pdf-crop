@@ -234,7 +234,7 @@ export default function TutorialsPage() {
         id="tutorials-structured-data"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        strategy="worker"
+        strategy="afterInteractive"
       />
       <h1 className="sr-only">PDF Cropper Tutorials & Guides</h1>
       <Container>

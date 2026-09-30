@@ -89,11 +89,9 @@ export default function SnapdealLabelPage() {
 
   return (
     <>
-      <Script
-        id="structured-data"
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        strategy="worker"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
       <main itemScope itemType="https://schema.org/WebApplication">
         <h1 className="sr-only">Snapdeal PDF Label Cropper</h1>

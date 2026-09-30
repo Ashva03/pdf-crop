@@ -1,5 +1,4 @@
 "use client";
-"use client";
 
 import { useState, useEffect } from "react";
 import Script from "next/script";
@@ -102,7 +101,7 @@ export default function MyntraLabel() {
         <Script
           id="myntra-label-structured-data"
           type="application/ld+json"
-          strategy="worker"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}

@@ -222,7 +222,7 @@ export default function FAQPage() {
         <Script
           id="faq-structured-data"
           type="application/ld+json"
-          strategy="worker"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}

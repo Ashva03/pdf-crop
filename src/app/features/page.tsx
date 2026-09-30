@@ -285,7 +285,7 @@ export default function Features() {
         <Script
           id="features-structured-data"
           type="application/ld+json"
-          strategy="worker"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}

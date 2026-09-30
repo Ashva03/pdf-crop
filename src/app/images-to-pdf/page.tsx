@@ -483,7 +483,7 @@ export default function ImagesToPdfPage() {
         <Script
           id="images-to-pdf-structured-data"
           type="application/ld+json"
-          strategy="worker"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}

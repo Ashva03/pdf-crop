@@ -171,7 +171,7 @@ export default function HowItWorksPage() {
         <Script
           id="how-it-works-structured-data"
           type="application/ld+json"
-          strategy="worker"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       )}

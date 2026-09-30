@@ -200,7 +200,7 @@ const SupportPage = () => {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(generateStructuredData()),
         }}
-        strategy="worker"
+        strategy="afterInteractive"
       />
       <Container>
         <HeroSection>

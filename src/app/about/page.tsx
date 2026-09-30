@@ -85,11 +85,9 @@ export default function AboutPage() {
 
   return (
     <>
-      <Script
-        id="about-jsonld"
+      <script
         type="application/ld+json"
-        strategy="worker"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
       <AboutContent />
     </>

@@ -72,11 +72,9 @@ export default function TermsPage() {
 
   return (
     <>
-      <Script
-        id="terms-structured-data"
+      <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        strategy="worker"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
       <main itemScope itemType="https://schema.org/WebPage">
         <h1 className="sr-only">Terms and Conditions</h1>
