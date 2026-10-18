@@ -279,8 +279,8 @@ export default function QualitySettingsPage() {
           <Link href="/tutorials/custom-templates">
             ← Previous: Custom Templates
           </Link>
-          <Link href="/tutorials/document-scanning">
-            Next: Document Scanning →
+          <Link href="/tutorials/saving-exporting">
+            Next: Saving & Exporting →
           </Link>
         </NavigationLinks>
       </ContentSection>

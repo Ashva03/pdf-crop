@@ -7,7 +7,6 @@ import * as PDFLib from "pdf-lib";
 import Loading from "@/components/Loading";
 import PDFUpload from "@/components/PDFUpload";
 import { CropDimension, PlatformConfig } from "@/config/staticData";
-import MonetizationLink from "./MonetizationLink";
 
 // Initialize PDF.js worker only on client side
 if (typeof window !== "undefined") {
@@ -515,25 +514,6 @@ export default function PDFCropper({
   return (
     <Container>
       <MainContent>
-        {/* Affiliate Recommendation Banner */}
-        <div className="mb-8 p-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-orange-200 rounded-xl shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 max-w-4xl mx-auto w-full">
-          <div className="flex items-center gap-3">
-            <span className="text-3xl flex-shrink-0">⚙️</span>
-            <div className="text-left">
-              <h4 className="font-bold text-orange-800 text-sm md:text-base">Equip Your Shipping Station</h4>
-              <p className="text-gray-600 text-xs md:text-sm">We recommend using a direct thermal printer & 4x6 labels to streamline order packing.</p>
-            </div>
-          </div>
-          <a 
-            href="https://amzn.to/4wzBAQ1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full md:w-auto text-center text-xs font-bold rounded-full text-white bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-102"
-            style={{ padding: "10px 24px" }}
-          >
-            Buy Printer & Labels
-          </a>
-        </div>
 
         <PDFContainer>
           <PDFViewer>
@@ -622,7 +602,6 @@ export default function PDFCropper({
                 <UploadButton onClick={handleCropAllPages}>
                   Download Auto Cropped PDF
                 </UploadButton>
-                <MonetizationLink />
               </>
             )}
           </Controls>

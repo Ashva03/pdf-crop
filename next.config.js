@@ -15,11 +15,6 @@ const nextConfig = {
     }
     return config;
   },
-  // Turbopack configuration
-  experimental: {
-    // Disable Turbopack for now to use Webpack
-    turbo: false,
-  },
   // Update images configuration to use remotePatterns instead of domains
   images: {
     remotePatterns: [

@@ -86,18 +86,18 @@ export default function DocumentationPage() {
             "hasPart": [
               {
                 "@type": "WebPage",
-                "name": "User Guide",
-                "url": "https://pdfcrop.co.in/documentation/user-guide"
+                "name": "Getting Started Guide",
+                "url": "https://pdfcrop.co.in/tutorials/getting-started"
               },
               {
                 "@type": "WebPage",
-                "name": "Technical Documentation",
-                "url": "https://pdfcrop.co.in/documentation/technical"
+                "name": "Interface & Tools Overview",
+                "url": "https://pdfcrop.co.in/tutorials/interface-overview"
               },
               {
                 "@type": "WebPage",
-                "name": "Best Practices",
-                "url": "https://pdfcrop.co.in/documentation/best-practices"
+                "name": "Quality Settings & Barcode Standards",
+                "url": "https://pdfcrop.co.in/tutorials/quality-settings"
               }
             ]
           })

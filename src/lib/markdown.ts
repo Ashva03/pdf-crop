@@ -13,6 +13,147 @@ export interface BlogPost {
   contentHtml: string;
 }
 
+function parseMarkdownToHtml(markdown: string): string {
+  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  const output: string[] = [];
+  let inList = false;
+  let listType: "ul" | "ol" | null = null;
+  let inTable = false;
+  let tableRows: string[][] = [];
+
+  function flushList() {
+    if (inList) {
+      output.push(listType === "ol" ? "</ol>" : "</ul>");
+      inList = false;
+      listType = null;
+    }
+  }
+
+  function flushTable() {
+    if (inTable && tableRows.length > 0) {
+      let tableHtml = `<div class="overflow-x-auto my-6"><table class="w-full text-left border-collapse border border-gray-200 shadow-sm rounded-lg overflow-hidden text-sm md:text-base">`;
+      const headerRow = tableRows[0];
+      tableHtml += `<thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200"><tr>`;
+      for (const cell of headerRow) {
+        tableHtml += `<th class="p-3 border-r border-gray-200 last:border-r-0">${formatInline(cell)}</th>`;
+      }
+      tableHtml += `</tr></thead><tbody>`;
+      for (let i = 1; i < tableRows.length; i++) {
+        const row = tableRows[i];
+        const bg = i % 2 === 0 ? "bg-gray-50/60" : "bg-white";
+        tableHtml += `<tr class="${bg} border-b border-gray-100 last:border-b-0 hover:bg-indigo-50/30 transition-colors">`;
+        for (const cell of row) {
+          tableHtml += `<td class="p-3 border-r border-gray-100 last:border-r-0 text-gray-700">${formatInline(cell)}</td>`;
+        }
+        tableHtml += `</tr>`;
+      }
+      tableHtml += `</tbody></table></div>`;
+      output.push(tableHtml);
+      inTable = false;
+      tableRows = [];
+    }
+  }
+
+  function formatInline(text: string): string {
+    return text
+      // Bold
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      // Italic
+      .replace(/\*(.+?)\*/g, "<em>$1</em>")
+      // Inline code
+      .replace(/`([^`]+)`/g, '<code class="bg-gray-100 text-indigo-700 px-1.5 py-0.5 rounded text-sm font-mono">$1</code>')
+      // Links
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">$1</a>');
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const rawLine = lines[i];
+    const trimmed = rawLine.trim();
+
+    if (!trimmed) {
+      flushList();
+      flushTable();
+      continue;
+    }
+
+    if (trimmed.startsWith("|") && trimmed.endsWith("|")) {
+      flushList();
+      if (/^\|[\s\-:|]+\|$/.test(trimmed)) {
+        continue;
+      }
+      const cells = trimmed
+        .slice(1, -1)
+        .split("|")
+        .map((c) => c.trim());
+      inTable = true;
+      tableRows.push(cells);
+      continue;
+    } else {
+      flushTable();
+    }
+
+    if (/^---$|^___$|^\*\*\*$/.test(trimmed)) {
+      flushList();
+      output.push('<hr class="my-8 border-t border-gray-200" />');
+      continue;
+    }
+
+    if (trimmed.startsWith("> ")) {
+      flushList();
+      const quoteText = formatInline(trimmed.slice(2));
+      output.push(`<blockquote class="border-l-4 border-indigo-500 pl-4 py-2 my-4 bg-indigo-50/40 text-gray-700 italic rounded-r">${quoteText}</blockquote>`);
+      continue;
+    }
+
+    if (trimmed.startsWith("### ")) {
+      flushList();
+      output.push(`<h3 class="text-xl font-bold text-gray-900 mt-8 mb-3 tracking-tight">${formatInline(trimmed.slice(4))}</h3>`);
+      continue;
+    }
+    if (trimmed.startsWith("## ")) {
+      flushList();
+      output.push(`<h2 class="text-2xl font-extrabold text-gray-900 mt-10 mb-4 pb-2 border-b border-gray-100 tracking-tight">${formatInline(trimmed.slice(3))}</h2>`);
+      continue;
+    }
+    if (trimmed.startsWith("# ")) {
+      flushList();
+      output.push(`<h1 class="text-3xl font-extrabold text-gray-900 mt-6 mb-4 tracking-tight">${formatInline(trimmed.slice(2))}</h1>`);
+      continue;
+    }
+
+    if (trimmed.startsWith("* ") || trimmed.startsWith("- ")) {
+      if (!inList || listType !== "ul") {
+        flushList();
+        inList = true;
+        listType = "ul";
+        output.push('<ul class="list-disc pl-6 my-4 space-y-2 text-gray-700">');
+      }
+      output.push(`<li class="leading-relaxed">${formatInline(trimmed.slice(2))}</li>`);
+      continue;
+    }
+
+    const olMatch = trimmed.match(/^(\d+)\.\s+(.+)$/);
+    if (olMatch) {
+      if (!inList || listType !== "ol") {
+        flushList();
+        inList = true;
+        listType = "ol";
+        output.push('<ol class="list-decimal pl-6 my-4 space-y-2 text-gray-700">');
+      }
+      output.push(`<li class="leading-relaxed">${formatInline(olMatch[2])}</li>`);
+      continue;
+    }
+
+    flushList();
+    output.push(`<p class="my-4 text-gray-700 leading-relaxed text-base md:text-lg">${formatInline(trimmed)}</p>`);
+  }
+
+  flushList();
+  flushTable();
+
+  return output.join("\n");
+}
+
 export function getPostBySlug(slug: string): BlogPost | null {
   try {
     const blogDir = path.join(process.cwd(), "src", "content", "blog");
@@ -21,7 +162,6 @@ export function getPostBySlug(slug: string): BlogPost | null {
 
     const fileContent = fs.readFileSync(filePath, "utf8");
 
-    // Simple robust Frontmatter parser
     const fmMatch = fileContent.match(/^---([\s\S]*?)---([\s\S]*)$/);
     if (!fmMatch) return null;
 
@@ -34,7 +174,6 @@ export function getPostBySlug(slug: string): BlogPost | null {
       if (parts.length >= 2) {
         const key = parts[0].trim();
         let value = parts.slice(1).join(":").trim();
-        // Remove surrounding quotes if any
         if (value.startsWith('"') && value.endsWith('"')) {
           value = value.slice(1, -1);
         }
@@ -50,26 +189,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
       }
     });
 
-    // Simple markdown body parser to HTML
-    let html = bodyRaw
-      .replace(/^#\s+(.+)$/gm, "<h1>$1</h1>")
-      .replace(/^##\s+(.+)$/gm, "<h2>$1</h2>")
-      .replace(/^###\s+(.+)$/gm, "<h3>$1</h3>")
-      .replace(/^\s*\*\s+(.+)$/gm, "<li>$1</li>")
-      .replace(/^\s*\-\s+(.+)$/gm, "<li>$1</li>")
-      .replace(/^\s*\d+\.\s+(.+)$/gm, "<li>$1</li>")
-      // Wrap sequential <li> tags in <ul>
-      .replace(/((?:<li>[\s\S]*?<\/li>\s*)+)/g, "<ul>$1</ul>")
-      .split("\n\n")
-      .map((p) => {
-        const trimmed = p.trim();
-        if (!trimmed) return "";
-        if (trimmed.startsWith("<h") || trimmed.startsWith("<ul") || trimmed.startsWith("---")) {
-          return trimmed;
-        }
-        return `<p>${trimmed.replace(/\n/g, "<br />")}</p>`;
-      })
-      .join("");
+    const html = parseMarkdownToHtml(bodyRaw);
 
     return {
       title: metadata.title || "",

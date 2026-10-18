@@ -194,13 +194,11 @@ const generateStructuredData = () => ({
 const SupportPage = () => {
   return (
     <div style={{ background: "#f2f4f4" }}>
-      <Script
-        id="faq-structured-data"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(generateStructuredData()),
+          __html: JSON.stringify(generateStructuredData()).replace(/</g, "\\u003c"),
         }}
-        strategy="afterInteractive"
       />
       <Container>
         <HeroSection>
@@ -223,13 +221,13 @@ const SupportPage = () => {
                 <SupportLink href="/faq">FAQ</SupportLink>
               </li>
               <li>
-                <SupportLink href="/tutorials">Video Tutorials</SupportLink>
+                <SupportLink href="/tutorials">Tutorials & Guides</SupportLink>
               </li>
               <li>
-                <SupportLink href="/documentation">User Guides</SupportLink>
+                <SupportLink href="/documentation">User Documentation</SupportLink>
               </li>
               <li>
-                <SupportLink href="/blog/tips">Tips & Tricks</SupportLink>
+                <SupportLink href="/how-it-works">How It Works</SupportLink>
               </li>
             </SupportList>
           </SupportCard>
@@ -241,33 +239,27 @@ const SupportPage = () => {
             </p>
             <SupportList>
               <li>Email: ashvainfotech3@gmail.com</li>
-              <li>Alt Email: contact@pdfcrop.co.in</li>
+              <li>Alt Email: support@pdfcrop.co.in</li>
               <li>Response Time: 24-48 business hours</li>
               <li>Sandbox Processing: Fully local and secure</li>
             </SupportList>
           </SupportCard>
 
           <SupportCard>
-            <h2>Community</h2>
-            <p>Join our community of users and share your experiences.</p>
+            <h2>Community & Resources</h2>
+            <p>Explore our latest resources, guides, and contact channels.</p>
             <SupportList>
               <li>
-                <SupportLink href="/blog">Blog</SupportLink>
+                <SupportLink href="/blog">E-commerce Blog</SupportLink>
               </li>
               <li>
-                <SupportLink href="/blog">Blog</SupportLink>
+                <SupportLink href="/case-studies">Workflow Guides</SupportLink>
               </li>
               <li>
-                <SupportLink
-                  href="https://twitter.com/pdfcropper"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Twitter
-                </SupportLink>
+                <SupportLink href="/features">Product Features</SupportLink>
               </li>
               <li>
-                <SupportLink href="/contact">Contact Us</SupportLink>
+                <SupportLink href="/contact">Direct Contact</SupportLink>
               </li>
             </SupportList>
           </SupportCard>

@@ -63,12 +63,12 @@ export default function PrivacyPolicyContent() {
     <PolicyContainer>
       <PolicyHeader>
         <PolicyTitle>Privacy Policy</PolicyTitle>
-        <LastUpdated>Last Updated: March 15, 2024</LastUpdated>
+        <LastUpdated>Last Updated: October 18, 2026</LastUpdated>
       </PolicyHeader>
 
       <PolicyContent>
         <p>
-          At PDF Cropper, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our PDF cropping services.
+          At PDF Cropper (operated by Ashva Infotech), we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our PDF cropping and document optimization services.
         </p>
 
         <h2>Information We Collect & Client-Side Sandbox Processing</h2>
@@ -77,7 +77,7 @@ export default function PrivacyPolicyContent() {
         </p>
         <ul>
           <li><strong>No PDF Document Uploads:</strong> When you select or drag and drop a PDF file, it is processed locally in your browser's memory using JavaScript and WebAssembly. Your files are never uploaded, stored, or processed on our servers, ensuring absolute privacy for sensitive shipping labels and business invoices.</li>
-          <li><strong>Information You Provide:</strong> If you contact us directly via our support email or contact forms, we collect the details you send (such as name, email, and description of your inquiry).</li>
+          <li><strong>Information You Provide:</strong> If you contact us directly via our support email (support@pdfcrop.co.in or ashvainfotech3@gmail.com) or contact forms, we collect the details you send (such as name, email, and description of your inquiry).</li>
           <li><strong>Anonymized Usage & Analytics:</strong> To help us optimize our layouts and features, we gather generic website usage information (such as browser type, anonymous screen clicks, and page view metrics) which does not identify you personally.</li>
         </ul>
 
@@ -104,32 +104,26 @@ export default function PrivacyPolicyContent() {
           <li>No tracking or parsing of content within user PDF documents</li>
         </ul>
 
-        <h2>Third-Party Services</h2>
+        <h2>Third-Party Services & Google AdSense Policy Compliance</h2>
         <p>
-          We use third-party services that may collect information:
+          We partner with third-party vendors, including Google, to analyze traffic and serve advertisements. Please review our third-party advertising disclosures below:
         </p>
         <ul>
-          <li><strong>Google Analytics:</strong> We use Google Analytics to understand how visitors interact with our website. This service may collect information such as your IP address, browser type, pages visited, and time spent on pages. You can opt out of Google Analytics by installing the Google Analytics Opt-out Browser Add-on.</li>
-          <li><strong>Google AdSense:</strong> We use Google AdSense to display advertisements. AdSense uses cookies to serve ads based on your prior visits to our website and other sites. You can opt out of personalized advertising by visiting Google's Ads Settings page.</li>
+          <li><strong>Google Analytics:</strong> We use Google Analytics to understand how visitors interact with our website. This service may collect information such as your IP address, browser type, pages visited, and time spent on pages. You can opt out of Google Analytics by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5", textDecoration: "underline" }}>Google Analytics Opt-out Browser Add-on</a>.</li>
+          <li><strong>Google AdSense & DoubleClick Cookie:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites across the Internet.</li>
+          <li><strong>Advertising Cookies:</strong> Google's use of advertising cookies (including the DoubleClick DART cookie) enables it and its partners to serve ads to users based on their visit to our sites and/or other sites on the Internet.</li>
+          <li><strong>Opt-Out Options:</strong> Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5", textDecoration: "underline" }}>Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5", textDecoration: "underline" }}>www.aboutads.info</a>.</li>
           <li><strong>Cloudflare:</strong> We use Cloudflare for security and performance optimization. Cloudflare may collect technical information about your visit to help protect our website from malicious activity.</li>
         </ul>
 
-        <h2>Advertising and Marketing</h2>
+        <h2>Advertising and Marketing Disclosures</h2>
         <p>
-          We use Google AdSense to display advertisements on our website. These advertisements may be:
+          When you visit our website, advertisements may be displayed via Google AdSense. These advertisements may be:
         </p>
         <ul>
           <li>Contextual advertisements based on the content of our pages</li>
-          <li>Personalized advertisements based on your browsing history</li>
-          <li>Non-personalized advertisements that don't use cookies or personal data</li>
-        </ul>
-        <p>
-          You can control how Google uses your information for advertising by:
-        </p>
-        <ul>
-          <li>Visiting Google's Ads Settings page</li>
-          <li>Using the Google Analytics Opt-out Browser Add-on</li>
-          <li>Managing your cookie preferences through your browser settings</li>
+          <li>Personalized advertisements based on your browsing history (unless opted out)</li>
+          <li>Non-personalized advertisements that don't use cookies for ad personalization</li>
         </ul>
 
         <h2>Data Collection for Advertising</h2>

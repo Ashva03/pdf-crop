@@ -50,13 +50,38 @@ export default function TutorialsPage() {
       },
       {
         "@type": "HowTo",
+        name: "Interface Overview & Workspace Components",
+        url: `${baseUrl}/tutorials/interface-overview`,
+      },
+      {
+        "@type": "HowTo",
         name: "Basic PDF Cropping Techniques",
         url: `${baseUrl}/tutorials/basic-cropping`,
       },
       {
         "@type": "HowTo",
+        name: "Advanced PDF Cropping Techniques",
+        url: `${baseUrl}/tutorials/advanced-cropping`,
+      },
+      {
+        "@type": "HowTo",
         name: "Batch Processing Multi-Page PDFs",
         url: `${baseUrl}/tutorials/batch-processing`,
+      },
+      {
+        "@type": "HowTo",
+        name: "Custom Templates & Offset Margins",
+        url: `${baseUrl}/tutorials/custom-templates`,
+      },
+      {
+        "@type": "HowTo",
+        name: "Quality Settings & Barcode Clarity",
+        url: `${baseUrl}/tutorials/quality-settings`,
+      },
+      {
+        "@type": "HowTo",
+        name: "Saving & Exporting PDF Documents",
+        url: `${baseUrl}/tutorials/saving-exporting`,
       },
     ],
   };

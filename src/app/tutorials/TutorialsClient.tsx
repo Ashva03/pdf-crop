@@ -152,6 +152,14 @@ export default function TutorialsClient() {
       icon: Crop,
     },
     {
+      title: "Advanced PDF Cropping Techniques",
+      description: "Master multi-region cropping, rotation offsets, and coordinate precision for non-standard labels.",
+      href: "/tutorials/advanced-cropping",
+      level: "Advanced",
+      levelClass: "level-advanced",
+      icon: Crop,
+    },
+    {
       title: "Batch Processing Multi-Page PDFs",
       description: "Process multi-page PDFs simultaneously. Format entire order batches into standard A6 labels.",
       href: "/tutorials/batch-processing",

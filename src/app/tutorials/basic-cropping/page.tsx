@@ -298,7 +298,7 @@ export default function BasicCroppingPage() {
 
         <NavigationLinks>
           <Link href="/tutorials/interface-overview">← Previous: Interface Overview</Link>
-          <Link href="/tutorials/saving-exporting">Next: Saving & Exporting →</Link>
+          <Link href="/tutorials/advanced-cropping">Next: Advanced Cropping →</Link>
         </NavigationLinks>
       </ContentSection>
     </Container>

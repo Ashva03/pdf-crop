@@ -296,8 +296,8 @@ export default function SavingExportingPage() {
         </TutorialStep>
 
         <NavigationLinks>
-          <Link href="/tutorials/custom-templates">← Previous: Custom Templates</Link>
-          <Link href="/tutorials">Back to Tutorials Hub</Link>
+          <Link href="/tutorials/quality-settings">← Previous: Quality Settings</Link>
+          <Link href="/tutorials">Back to Tutorials Hub →</Link>
         </NavigationLinks>
       </ContentSection>
     </Container>

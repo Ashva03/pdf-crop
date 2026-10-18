@@ -82,6 +82,8 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin=""
         />
+        {/* Google AdSense Site Verification */}
+        <meta name="google-adsense-account" content="ca-pub-6259586123575519" />
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
@@ -100,12 +102,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={inter.className}
-        itemProp="potentialAction"
-        itemScope
-        itemType="https://schema.org/SearchAction"
-      >
+      <body className={inter.className}>
         <Providers>
           <Navigation />
           <LayoutWrapper>

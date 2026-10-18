@@ -190,16 +190,25 @@ export default function FooterComponent() {
           </ul>
         </FooterSection>
         <FooterSection>
-          <h3>Contact Us</h3>
+          <h3>Publisher & Support</h3>
           <ul>
-            <li>Email: ashvainfotech3@gmail.com</li>
-            <li>Address: Surat Gujarat</li>
+            <li><strong>Organization:</strong> PDF Cropper</li>
+            <li><strong>Operated By:</strong> Ashva Infotech</li>
+            <li><strong>Location:</strong> Surat, Gujarat, India</li>
+            <li><strong>Support:</strong> support@pdfcrop.co.in</li>
+            <li><strong>Business:</strong> ashvainfotech3@gmail.com</li>
+            <li><strong>Hours:</strong> Mon - Fri, 9:00 AM - 6:00 PM IST</li>
           </ul>
         </FooterSection>
       </FooterContent>
+      <div style={{ maxWidth: "1400px", margin: "2rem auto 0", padding: "0 2rem", fontSize: "0.825rem", color: "#9ca3af", lineHeight: "1.6", borderTop: "1px solid #374151", paddingTop: "1.5rem" }}>
+        <p style={{ margin: "0 0 0.5rem" }}>
+          <strong>Platform Disclaimer:</strong> PDF Cropper is an independent browser-based document utility. We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Amazon.com, Inc., Flipkart Internet Private Limited, Meesho (Fashnear Technologies Pvt. Ltd.), Snapdeal Private Limited, or Myntra Designs Pvt. Ltd. All trademarks, service marks, and company names are property of their respective owners.
+        </p>
+      </div>
       <Copyright>
         <img src="/favicon-16x16.png" alt="PDF Cropper Logo" />©{" "}
-        {new Date().getFullYear()} PDF Cropper. All rights reserved.
+        {new Date().getFullYear()} PDF Cropper (Ashva Infotech). All rights reserved.
       </Copyright>
     </Footer>
   );

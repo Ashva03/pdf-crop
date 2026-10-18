@@ -64,7 +64,7 @@ export default function CookiePolicyContent() {
         <PolicyTitle>Cookie Policy</PolicyTitle>
       </PolicyHeader>
       <PolicyContent>
-        <p>Last Updated: {new Date().toLocaleDateString()}</p>
+        <p>Last Updated: October 18, 2026</p>
 
         <h2>What Are Cookies</h2>
         <p>
@@ -76,7 +76,7 @@ export default function CookiePolicyContent() {
         <ul>
           <li><strong>Essential Cookies:</strong> These cookies are necessary for the website to function properly. They enable basic functions like page navigation and access to secure areas of the website.</li>
           <li><strong>Analytics Cookies:</strong> We use Google Analytics to understand how visitors interact with our website. These cookies help us improve our website's performance and user experience.</li>
-          <li><strong>Advertising Cookies:</strong> We use Google AdSense to display relevant advertisements. These cookies help us show you ads that are more relevant to your interests.</li>
+          <li><strong>Advertising Cookies:</strong> We use Google AdSense to display relevant advertisements. Third-party vendors, including Google, use cookies (such as DoubleClick DART cookies) to serve ads based on your prior visits to our website and other websites across the web.</li>
           <li><strong>Preference Cookies:</strong> These cookies remember your settings and preferences to provide you with a more personalized experience.</li>
         </ul>
 
@@ -99,30 +99,30 @@ export default function CookiePolicyContent() {
           </li>
         </ul>
 
-        <h2>Third-Party Cookies</h2>
+        <h2>Third-Party Cookies & AdSense Program Disclosures</h2>
         <p>
           Some cookies are placed by third-party services that appear on our pages:
         </p>
         <ul>
           <li>
-            <strong>Google AdSense:</strong> We use Google AdSense to display advertisements. AdSense uses cookies to:
+            <strong>Google AdSense & DoubleClick:</strong> We use Google AdSense to display advertisements. AdSense uses cookies to:
             <ul>
-              <li>Serve ads based on your prior visits to our website and other sites</li>
-              <li>Limit the number of times you see a particular ad</li>
-              <li>Measure the effectiveness of advertising campaigns</li>
-              <li>Prevent fraud and abuse</li>
+              <li>Serve ads based on a user's prior visits to our website and other sites across the Internet.</li>
+              <li>Limit the frequency of duplicate ads displayed to you.</li>
+              <li>Measure the effectiveness and reach of advertising campaigns.</li>
+              <li>Prevent fraudulent clicks and security vulnerabilities.</li>
             </ul>
-            You can opt out of personalized advertising by visiting Google's Ads Settings page.
+            You can opt out of personalized advertising at any time by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5", textDecoration: "underline" }}>Google's Ads Settings</a> or through the <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5", textDecoration: "underline" }}>Digital Advertising Alliance (aboutads.info)</a>.
           </li>
           <li>
             <strong>Google Analytics:</strong> We use Google Analytics to understand how visitors interact with our website. Google Analytics uses cookies to:
             <ul>
-              <li>Distinguish unique users</li>
-              <li>Remember the number and time of previous visits</li>
-              <li>Remember traffic source information</li>
-              <li>Determine the start and end of a session</li>
+              <li>Distinguish unique users and track aggregated visitor counts.</li>
+              <li>Remember the number and time of previous visits.</li>
+              <li>Remember traffic source channels (organic, direct, referral).</li>
+              <li>Determine the duration of a browsing session.</li>
             </ul>
-            You can opt out of Google Analytics by installing the Google Analytics Opt-out Browser Add-on.
+            You can opt out of Google Analytics by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5", textDecoration: "underline" }}>Google Analytics Opt-out Browser Add-on</a>.
           </li>
         </ul>
 

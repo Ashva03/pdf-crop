@@ -158,7 +158,50 @@ export default async function BlogPostPage({ params }: PageProps) {
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
 
+        {/* Editorial Standards & Author Bio Card */}
+        <footer className="mt-12 pt-8 border-t border-gray-200">
+          <div className="bg-gradient-to-r from-gray-50 to-indigo-50/40 p-6 rounded-2xl border border-gray-200/80 mb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-3">
+              <div className="w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+                PC
+              </div>
+              <div>
+                <h4 className="font-bold text-gray-900 text-base md:text-lg">Written by {post.author}</h4>
+                <p className="text-gray-600 text-xs md:text-sm">Verified for E-Commerce Logistics & Shipping Label Guidelines</p>
+              </div>
+            </div>
+            <p className="text-gray-600 text-sm leading-relaxed mt-2">
+              Our guides are researched and verified by logistics practitioners and e-commerce packaging experts. We regularly audit carrier updates (Ekart, Amazon ATS, Delhivery, Blue Dart, DTDC, Shadowfax) and platform standards (Flipkart, Amazon, Meesho, Myntra) to ensure compliance, reduce barcode scan failures, and minimize RTO fees.
+            </p>
+          </div>
 
+          <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <h3 className="text-lg font-bold text-gray-900 mb-3">Explore Our Free Browser PDF Tools</h3>
+            <p className="text-gray-600 text-sm mb-4">
+              All documents are processed 100% locally in your web browser memory. Zero files uploaded to external servers.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Link href="/flipkart-label" className="text-xs font-semibold bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-800 px-3 py-1.5 rounded-full transition-colors">
+                Flipkart Label Cropper
+              </Link>
+              <Link href="/amazon-label" className="text-xs font-semibold bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-800 px-3 py-1.5 rounded-full transition-colors">
+                Amazon Label Cropper
+              </Link>
+              <Link href="/meesho-label" className="text-xs font-semibold bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-800 px-3 py-1.5 rounded-full transition-colors">
+                Meesho Label Cropper
+              </Link>
+              <Link href="/compress-pdf" className="text-xs font-semibold bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-800 px-3 py-1.5 rounded-full transition-colors">
+                Compress PDF
+              </Link>
+              <Link href="/merge-pdf" className="text-xs font-semibold bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-800 px-3 py-1.5 rounded-full transition-colors">
+                Merge PDF
+              </Link>
+              <Link href="/pdf-to-jpg" className="text-xs font-semibold bg-gray-100 hover:bg-indigo-600 hover:text-white text-gray-800 px-3 py-1.5 rounded-full transition-colors">
+                PDF to JPG
+              </Link>
+            </div>
+          </div>
+        </footer>
       </article>
     </>
   );
