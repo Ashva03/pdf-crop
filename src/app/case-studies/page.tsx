@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "thermal printing guide",
   ],
   alternates: {
-    canonical: "/case-studies",
+    canonical: "https://pdfcrop.co.in/case-studies",
   },
   openGraph: {
     title: "Shipping Label Processing Workflow Examples",

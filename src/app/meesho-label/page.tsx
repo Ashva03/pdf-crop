@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "Meesho shipping label",
   ],
   alternates: {
-    canonical: "/meesho-label",
+    canonical: "https://pdfcrop.co.in/meesho-label",
   },
   openGraph: {
     title: "Free Online Meesho PDF Label Cropper",

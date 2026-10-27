@@ -5,7 +5,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   metadataBase: new URL("https://pdfcrop.co.in"),
   alternates: {
-    canonical: "/",
+    canonical: "https://pdfcrop.co.in",
   },
   title:
     "PDF Cropper - Free Online PDF Tools for E-commerce Sellers | Shipping Label Management",

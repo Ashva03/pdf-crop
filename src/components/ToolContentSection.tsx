@@ -219,9 +219,23 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
     ],
   };
 
+  // Structured Data (HowTo Schema) with XSS protection
+  const howToSchema = data.steps && data.steps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": `How to use ${data.title}`,
+    "description": data.description,
+    "step": data.steps.map((step, idx) => ({
+      "@type": "HowToStep",
+      "position": idx + 1,
+      "name": step.title,
+      "text": step.description,
+    })),
+  } : null;
+
   return (
     <Container>
-      {/* Dynamic script injection for FAQ and Breadcrumb Schema */}
+      {/* Dynamic script injection for FAQ, HowTo, and Breadcrumb Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
@@ -230,6 +244,12 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c") }}
       />
+      {howToSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema).replace(/</g, "\\u003c") }}
+        />
+      )}
 
       {/* 1. Extended Intro & Technical Specs */}
       <Section>
@@ -339,6 +359,22 @@ export default function ToolContentSection({ toolId }: ToolContentSectionProps) 
               {link.title}
             </RelatedLink>
           ))}
+        </RelatedGrid>
+      </Section>
+
+      {/* 8. Related Tutorials & Seller Guides */}
+      <Section style={{ borderTop: "1px solid #e5e7eb", paddingTop: "2rem" }}>
+        <HeaderTitle style={{ border: "none", marginBottom: "0.5rem" }}>Related Tutorials & Seller Guides</HeaderTitle>
+        <Paragraph style={{ fontSize: "0.95rem", margin: 0 }}>
+          Learn best practices for thermal label printing, resolution optimization, and order fulfillment:
+        </Paragraph>
+        <RelatedGrid>
+          <RelatedLink href="/tutorials/quality-settings">Quality Settings & DPI Guide</RelatedLink>
+          <RelatedLink href="/tutorials/batch-processing">Batch Processing Multi-Page Labels</RelatedLink>
+          <RelatedLink href="/tutorials/basic-cropping">Basic Cropping Step-by-Step</RelatedLink>
+          <RelatedLink href="/blog/crop-a4-pdf-to-4x6-label">Convert A4 Invoices to 4x6 Labels</RelatedLink>
+          <RelatedLink href="/blog/optimal-thermal-printer-settings">Optimal Thermal Printer Settings</RelatedLink>
+          <RelatedLink href="/blog/why-thermal-printer-prints-blank">Fix Blank Thermal Label Prints</RelatedLink>
         </RelatedGrid>
       </Section>
     </Container>

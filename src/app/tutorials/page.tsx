@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "PDF optimization steps",
   ],
   alternates: {
-    canonical: "/tutorials",
+    canonical: "https://pdfcrop.co.in/tutorials",
   },
   openGraph: {
     title: "PDF Cropper Tutorials & Step-by-Step Guides",

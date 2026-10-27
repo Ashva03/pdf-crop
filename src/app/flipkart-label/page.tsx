@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     "label cutter",
   ],
   alternates: {
-    canonical: "/flipkart-label",
+    canonical: "https://pdfcrop.co.in/flipkart-label",
   },
   openGraph: {
     title: "Free Flipkart PDF Label Cropper (A4 to A6)",

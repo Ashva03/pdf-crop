@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "combine multiple PDFs",
   ],
   alternates: {
-    canonical: "/merge-pdf",
+    canonical: "https://pdfcrop.co.in/merge-pdf",
   },
   openGraph: {
     title: "Merge PDF Files Online - Combine PDFs Free",

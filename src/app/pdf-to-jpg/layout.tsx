@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "PDF to JPG high quality",
   ],
   alternates: {
-    canonical: "/pdf-to-jpg",
+    canonical: "https://pdfcrop.co.in/pdf-to-jpg",
   },
   openGraph: {
     title: "PDF to JPG Converter | Free Online Tool",

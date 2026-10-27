@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "SKU extraction",
   ],
   alternates: {
-    canonical: "/amazon-label",
+    canonical: "https://pdfcrop.co.in/amazon-label",
   },
   openGraph: {
     title: "Free Amazon PDF Shipping Label Cropper Online",

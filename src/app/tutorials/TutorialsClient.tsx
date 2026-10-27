@@ -133,6 +133,43 @@ const TutorialCard = styled.div`
   }
 `;
 
+const ToolsSection = styled.section`
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  text-align: center;
+  margin-top: 1rem;
+`;
+
+const ToolsGrid = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
+`;
+
+const ToolBadge = styled(Link)`
+  background: #f1f5f9;
+  color: #334155;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #4f46e5;
+    color: white;
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+  }
+`;
+
 export default function TutorialsClient() {
   const tutorials = [
     {
@@ -230,6 +267,23 @@ export default function TutorialsClient() {
           );
         })}
       </TutorialsGrid>
+
+      <ToolsSection>
+        <h2 style={{ fontSize: "1.6rem", fontWeight: 700, color: "#1e293b", marginBottom: "0.5rem" }}>
+          Ready to Format Your Shipping Labels?
+        </h2>
+        <p style={{ color: "#64748b", maxWidth: "600px", margin: "0 auto", fontSize: "1rem" }}>
+          Launch our zero-upload browser tools to auto-crop multi-order PDF invoices into thermal sticker labels:
+        </p>
+        <ToolsGrid>
+          <ToolBadge href="/flipkart-label">Flipkart Label Cropper</ToolBadge>
+          <ToolBadge href="/amazon-label">Amazon Label Cropper</ToolBadge>
+          <ToolBadge href="/meesho-label">Meesho Label Cropper</ToolBadge>
+          <ToolBadge href="/snapdeal-label">Snapdeal Label Cropper</ToolBadge>
+          <ToolBadge href="/myntra-label">Myntra Label Cropper</ToolBadge>
+          <ToolBadge href="/">Universal PDF Cropper</ToolBadge>
+        </ToolsGrid>
+      </ToolsSection>
     </Container>
   );
 }

@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description:
     "Our privacy policy explains how we collect, use, and protect your personal information when using our PDF cropping services.",
   alternates: {
-    canonical: "/privacy-policy",
+    canonical: "https://pdfcrop.co.in/privacy-policy",
   },
   openGraph: {
     title: "Privacy Policy | PDF Cropper",

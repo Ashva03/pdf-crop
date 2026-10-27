@@ -14,10 +14,43 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbJson = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://pdfcrop.co.in",
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tutorials",
+      "item": "https://pdfcrop.co.in/tutorials",
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Basic Cropping Guide",
+      "item": "https://pdfcrop.co.in/tutorials/basic-cropping",
+    },
+  ],
+};
+
 export default function BasicCroppingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson).replace(/</g, "\\u003c") }}
+      />
+      {children}
+    </>
+  );
 }

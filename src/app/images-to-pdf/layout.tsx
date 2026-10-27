@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Easily convert multiple images to a single PDF file online. Supports JPG, PNG, WebP, and more. No registration required - 100% free!",
   alternates: {
-    canonical: "/images-to-pdf",
+    canonical: "https://pdfcrop.co.in/images-to-pdf",
   },
   openGraph: {
     title: "Convert Images to PDF | Free Online Tool",

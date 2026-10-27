@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Learn how to use PDF Cropper to edit, crop, and process your PDF documents with our easy step-by-step guide. Start optimizing your PDFs today!",
   alternates: {
-    canonical: "/how-it-works",
+    canonical: "https://pdfcrop.co.in/how-it-works",
   },
   openGraph: {
     title: "How PDF Cropper Works | Step-by-Step Guide",

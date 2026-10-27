@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "free image converter",
   ],
   alternates: {
-    canonical: "/images-to-pdf",
+    canonical: "https://pdfcrop.co.in/images-to-pdf",
   },
   openGraph: {
     title: "Convert Images to PDF Online - Free Converter",

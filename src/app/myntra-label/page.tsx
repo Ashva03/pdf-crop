@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "Myntra PPMP label",
   ],
   alternates: {
-    canonical: "/myntra-label",
+    canonical: "https://pdfcrop.co.in/myntra-label",
   },
   openGraph: {
     title: "Free Myntra PDF Shipping Label Cropper (A4 to A6)",
