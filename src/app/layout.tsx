@@ -82,8 +82,14 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin=""
         />
-        {/* Google AdSense Site Verification */}
+        {/* Google AdSense Site Verification & Ad Script */}
         <meta name="google-adsense-account" content="ca-pub-6259586123575519" />
+        <Script
+          id="google-adsense-script"
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6259586123575519"
+          crossOrigin="anonymous"
+        />
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"

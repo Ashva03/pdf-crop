@@ -7,6 +7,7 @@ import styles from './flipkart-label.module.css';
 import ToolContentSection from "@/components/ToolContentSection";
 import React from 'react';
 import { FlipkartIcon } from "@/components/PlatformIcons";
+import AdBanner from "@/components/AdBanner";
 
 export default function FlipkartLabel() {
     const [cropDimensions, setCropDimensions] = useState<Record<number, CropDimension>>({});
@@ -33,6 +34,7 @@ export default function FlipkartLabel() {
                 cropDimensions={cropDimensions}
                 onNumPagesChange={handleNumPagesChange}
             />
+            <AdBanner slotId="8472910394" />
             <ToolContentSection toolId="flipkart-label" />
         </div>
     );

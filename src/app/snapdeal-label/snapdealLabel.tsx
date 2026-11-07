@@ -6,6 +6,7 @@ import { CropDimension, snapdealLabelCropDimensions, platformConfigs, generateLa
 import styles from './snapdeal-label.module.css';
 import ToolContentSection from "@/components/ToolContentSection";
 import { SnapdealIcon } from "@/components/PlatformIcons";
+import AdBanner from "@/components/AdBanner";
 
 export default function SnapdealLabel() {
     const [cropDimensions, setCropDimensions] = useState<Record<number, CropDimension>>({});
@@ -31,6 +32,8 @@ export default function SnapdealLabel() {
                 cropDimensions={cropDimensions}
                 onNumPagesChange={handleNumPagesChange}
             />
+
+            <AdBanner slotId="8472910395" />
 
             <ToolContentSection toolId="snapdeal-label" />
         </div>

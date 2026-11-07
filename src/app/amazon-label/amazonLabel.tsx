@@ -6,6 +6,7 @@ import styles from "./amazon-label.module.css";
 import ToolContentSection from "@/components/ToolContentSection";
 import { Document, Page, pdfjs } from "react-pdf";
 import { AmazonIcon } from "@/components/PlatformIcons";
+import AdBanner from "@/components/AdBanner";
 
 // Initialize PDF.js worker on client side
 if (typeof window !== "undefined") {
@@ -49,17 +50,8 @@ async function extractTextFromPage(
 
 // Function to extract SKU information from extracted text
 function extractSkuInfo(text: string, printOption: string): string {
-  // Only use these as absolute last resort fallbacks
-  const defaultProduct =
-    "Brafozy Women's Cotton Lightly Padded Non-Wired Solid Casual Style Lingerie Set (JDWE009_Black_34)";
-  const defaultSkuId = "B08GKCG214";
-  const defaultSellerSku = "WUDH009_BK_34_Brafozy_KD";
-
   if (!text || text.trim().length < 10) {
-    console.warn("No text extracted or text too short, using fallback values");
-    return printOption === "printSkuId"
-      ? `${defaultSkuId} (${defaultSellerSku})`
-      : `${defaultProduct} | ${defaultSkuId} (${defaultSellerSku})`;
+    return "";
   }
 
   // Additional patterns for finding product info
@@ -129,20 +121,17 @@ function extractSkuInfo(text: string, printOption: string): string {
     }
   }
 
-  // Check if we found valid data, otherwise use fallbacks
+  // Check if we found valid data, otherwise use neutral fallbacks
   if (!productName) {
-    console.warn("Could not extract product name, using fallback");
-    productName = defaultProduct;
+    productName = "";
   }
 
   if (!skuId) {
-    console.warn("Could not extract SKU ID, using fallback");
-    skuId = defaultSkuId;
+    skuId = "";
   }
 
   if (!sellerSku) {
-    console.warn("Could not extract seller SKU, using fallback");
-    sellerSku = defaultSellerSku;
+    sellerSku = "";
   }
 
   // Create the formatted output
@@ -659,6 +648,7 @@ export default function AmazonLabel() {
         </div>
       )}
 
+      <AdBanner slotId="8472910396" />
       <ToolContentSection toolId="amazon-label" />
     </div>
   );
