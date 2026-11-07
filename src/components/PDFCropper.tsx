@@ -264,6 +264,103 @@ const SuccessMessage = styled.div`
   text-align: center;
 `;
 
+const PresetButtonGroup = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  justify-content: center;
+`;
+
+const PresetPill = styled.button<{ $active?: boolean }>`
+  background: ${props => props.$active ? "#4f46e5" : "#f1f5f9"};
+  color: ${props => props.$active ? "white" : "#334155"};
+  border: 1px solid ${props => props.$active ? "#4338ca" : "#cbd5e1"};
+  border-radius: 9999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: ${props => props.$active ? "#4338ca" : "#e2e8f0"};
+  }
+`;
+
+const DimensionsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0.75rem 0;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const DimensionInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: white;
+    color: #0f172a;
+
+    &:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+    }
+  }
+`;
+
+const RotationRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: #334155;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const RotateBtn = styled.button<{ $active?: boolean }>`
+  background: ${props => props.$active ? "#10b981" : "#f1f5f9"};
+  color: ${props => props.$active ? "white" : "#334155"};
+  border: 1px solid ${props => props.$active ? "#059669" : "#cbd5e1"};
+  border-radius: 6px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: ${props => props.$active ? "#059669" : "#e2e8f0"};
+  }
+`;
+
 interface PDFCropperProps {
   platformConfig: PlatformConfig;
   cropDimensions: Record<number, CropDimension>;
@@ -282,11 +379,16 @@ export default function PDFCropper({
   const [mounted, setMounted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [customCrop, setCustomCrop] = useState<CropDimension>(platformConfig.defaultCropDimension);
+  const [rotation, setRotation] = useState<number>(0);
+  const [pageSize, setPageSize] = useState<{ width: number; height: number }>({ width: 595, height: 842 });
+  const [renderScale, setRenderScale] = useState<number>(1);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    setCustomCrop(platformConfig.defaultCropDimension);
+  }, [platformConfig]);
 
   const onFileSelect = (file: File) => {
     if (file.type !== "application/pdf") {
@@ -373,7 +475,7 @@ export default function PDFCropper({
         const { width, height } = page.getSize();
 
         const cropBox =
-          cropDimensions[pageNum] || platformConfig.defaultCropDimension;
+          customCrop || cropDimensions[pageNum] || platformConfig.defaultCropDimension;
 
         const cropArea = cropBox.width * cropBox.height;
         const pageArea = width * height;
@@ -407,6 +509,10 @@ export default function PDFCropper({
           height: height,
         });
 
+        if (rotation !== 0) {
+          newPage.setRotation(PDFLib.degrees(rotation));
+        }
+
         processedPages++; // Only increment if the page was actually added
       }
 
@@ -427,7 +533,9 @@ export default function PDFCropper({
       a.download = `${originalFileName}_pdfCropAshvainfo.pdf`;
       a.href = url;
       a.click();
-      URL.revokeObjectURL(url);
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+      }, 60000);
 
       setSuccess(
         `Successfully processed ${processedPages} pages! ${
@@ -464,7 +572,7 @@ export default function PDFCropper({
         const { width, height } = page.getSize();
 
         const cropBox =
-          cropDimensions[pageNum] || platformConfig.defaultCropDimension;
+          customCrop || cropDimensions[pageNum] || platformConfig.defaultCropDimension;
 
         const isSnapdeal = platformConfig.name === "Snapdeal";
         const isOddPageNumber = (pageIndex + 1) % 2 !== 0; // Check for odd page number (even index)
@@ -486,6 +594,10 @@ export default function PDFCropper({
           width: width,
           height: height,
         });
+
+        if (rotation !== 0) {
+          newPage.setRotation(PDFLib.degrees(rotation));
+        }
       }
 
       const pdfBytes = await newPdfDoc.save();
@@ -496,10 +608,13 @@ export default function PDFCropper({
 
       const printWindow = window.open(url, "_blank");
       if (printWindow) {
+        printWindow.focus();
         printWindow.print();
       }
 
-      URL.revokeObjectURL(url);
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+      }, 60000);
     } catch (error) {
       console.error("Error printing cropped PDF:", error);
       setError("Failed to print cropped PDF. Please try again.");
@@ -509,7 +624,7 @@ export default function PDFCropper({
   };
 
   const currentCropBox =
-    cropDimensions[currentPage] || platformConfig.defaultCropDimension;
+    customCrop || cropDimensions[currentPage] || platformConfig.defaultCropDimension;
 
   return (
     <Container>
@@ -519,17 +634,63 @@ export default function PDFCropper({
           <PDFViewer>
             {file ? (
               mounted && (
-                <Document
-                  file={file}
-                  onLoadSuccess={onDocumentLoadSuccess}
-                  onLoadError={onDocumentLoadError}
-                >
-                  <Page
-                    pageNumber={currentPage}
-                    renderTextLayer={false}
-                    renderAnnotationLayer={false}
-                  />
-                </Document>
+                <div style={{ position: "relative", display: "inline-block", overflow: "hidden" }}>
+                  <Document
+                    file={file}
+                    onLoadSuccess={onDocumentLoadSuccess}
+                    onLoadError={onDocumentLoadError}
+                  >
+                    <Page
+                      pageNumber={currentPage}
+                      renderTextLayer={false}
+                      renderAnnotationLayer={false}
+                      onLoadSuccess={(page) => {
+                        const origW = page.originalWidth || 595;
+                        const origH = page.originalHeight || 842;
+                        setPageSize({ width: origW, height: origH });
+                        if (page.width) {
+                          setRenderScale(page.width / origW);
+                        }
+                      }}
+                    />
+                  </Document>
+
+                  {/* Visual Crop Box Overlay with Spotlight Mask */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: `${Math.max(0, currentCropBox.x * renderScale)}px`,
+                      top: `${Math.max(0, (pageSize.height - currentCropBox.y - currentCropBox.height) * renderScale)}px`,
+                      width: `${Math.max(20, currentCropBox.width * renderScale)}px`,
+                      height: `${Math.max(20, currentCropBox.height * renderScale)}px`,
+                      border: "2px solid #ef4444",
+                      backgroundColor: "rgba(239, 68, 68, 0.08)",
+                      pointerEvents: "none",
+                      boxShadow: "0 0 0 9999px rgba(0, 0, 0, 0.35)",
+                      borderRadius: "4px",
+                      zIndex: 10,
+                      transition: "all 0.1s ease",
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: "-24px",
+                        left: "0",
+                        backgroundColor: "#ef4444",
+                        color: "white",
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        padding: "2px 6px",
+                        borderRadius: "3px",
+                        whiteSpace: "nowrap",
+                        boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+                      }}
+                    >
+                      Crop Box: {currentCropBox.width} × {currentCropBox.height} pt
+                    </span>
+                  </div>
+                </div>
               )
             ) : (
               <PDFUpload onFileSelect={onFileSelect} />
@@ -545,17 +706,150 @@ export default function PDFCropper({
                   Page {currentPage} of {numPages}
                 </PageInfo>
                 <CropInfo>
-                  <CropInfoTitle>Auto-Crop Settings</CropInfoTitle>
+                  <CropInfoTitle>Auto-Crop & Print Calibration</CropInfoTitle>
                   <CropInfoText>
-                    Position: X: {currentCropBox.x}, Y: {currentCropBox.y}
+                    Active Crop: ({currentCropBox.width} × {currentCropBox.height} pt) at X: {currentCropBox.x}, Y: {currentCropBox.y}
                   </CropInfoText>
-                  <CropInfoText>
-                    Size: Width: {currentCropBox.width}, Height:{" "}
-                    {currentCropBox.height}
-                  </CropInfoText>
-                  <CropInfoText>
-                    Note: These settings apply to all pages
-                  </CropInfoText>
+
+                  {/* Platform Quick Presets */}
+                  <PresetButtonGroup>
+                    {platformConfig.name === "Meesho" && (
+                      <>
+                        <PresetPill
+                          $active={currentCropBox.y === 410 && rotation === 0}
+                          onClick={() => {
+                            setCustomCrop({ x: 10, y: 410, width: 575, height: 425 });
+                            setRotation(0);
+                          }}
+                        >
+                          Meesho 4×6 (Default)
+                        </PresetPill>
+                        <PresetPill
+                          $active={rotation === 90}
+                          onClick={() => {
+                            setCustomCrop({ x: 10, y: 410, width: 575, height: 425 });
+                            setRotation(90);
+                          }}
+                        >
+                          Rotate 90° (Thermal Roll)
+                        </PresetPill>
+                        <PresetPill
+                          $active={currentCropBox.width === 555}
+                          onClick={() => {
+                            setCustomCrop({ x: 20, y: 425, width: 555, height: 405 });
+                            setRotation(0);
+                          }}
+                        >
+                          Compact Box
+                        </PresetPill>
+                      </>
+                    )}
+
+                    {platformConfig.name === "Flipkart" && (
+                      <>
+                        <PresetPill
+                          $active={currentCropBox.x === 185}
+                          onClick={() => {
+                            setCustomCrop({ x: 185, y: 456, width: 225, height: 365 });
+                            setRotation(0);
+                          }}
+                        >
+                          Ekart A6 Standard
+                        </PresetPill>
+                        <PresetPill
+                          $active={currentCropBox.width === 595}
+                          onClick={() => {
+                            setCustomCrop({ x: 0, y: 0, width: 595, height: 842 });
+                            setRotation(0);
+                          }}
+                        >
+                          Full Page
+                        </PresetPill>
+                      </>
+                    )}
+
+                    {platformConfig.name === "Snapdeal" && (
+                      <PresetPill
+                        $active={currentCropBox.x === 2}
+                        onClick={() => {
+                          setCustomCrop({ x: 2, y: 122, width: 270, height: 295 });
+                          setRotation(0);
+                        }}
+                      >
+                        Snapdeal A6 Standard
+                      </PresetPill>
+                    )}
+
+                    <PresetPill
+                      onClick={() => {
+                        setCustomCrop(platformConfig.defaultCropDimension);
+                        setRotation(0);
+                      }}
+                    >
+                      ↺ Reset
+                    </PresetPill>
+                  </PresetButtonGroup>
+
+                  {/* Rotation Selector */}
+                  <RotationRow>
+                    <span style={{ fontWeight: 600 }}>Print Orientation:</span>
+                    <RotateBtn $active={rotation === 0} onClick={() => setRotation(0)}>
+                      0° Portrait
+                    </RotateBtn>
+                    <RotateBtn $active={rotation === 90} onClick={() => setRotation(90)}>
+                      90° Clockwise
+                    </RotateBtn>
+                    <RotateBtn $active={rotation === 180} onClick={() => setRotation(180)}>
+                      180°
+                    </RotateBtn>
+                    <RotateBtn $active={rotation === 270} onClick={() => setRotation(270)}>
+                      270°
+                    </RotateBtn>
+                  </RotationRow>
+
+                  {/* Manual Coordinate Inputs */}
+                  <DimensionsGrid>
+                    <DimensionInputWrapper>
+                      <label>X (Left)</label>
+                      <input
+                        type="number"
+                        value={currentCropBox.x}
+                        onChange={(e) =>
+                          setCustomCrop({ ...currentCropBox, x: parseInt(e.target.value) || 0 })
+                        }
+                      />
+                    </DimensionInputWrapper>
+                    <DimensionInputWrapper>
+                      <label>Y (Bottom)</label>
+                      <input
+                        type="number"
+                        value={currentCropBox.y}
+                        onChange={(e) =>
+                          setCustomCrop({ ...currentCropBox, y: parseInt(e.target.value) || 0 })
+                        }
+                      />
+                    </DimensionInputWrapper>
+                    <DimensionInputWrapper>
+                      <label>Width</label>
+                      <input
+                        type="number"
+                        value={currentCropBox.width}
+                        onChange={(e) =>
+                          setCustomCrop({ ...currentCropBox, width: parseInt(e.target.value) || 20 })
+                        }
+                      />
+                    </DimensionInputWrapper>
+                    <DimensionInputWrapper>
+                      <label>Height</label>
+                      <input
+                        type="number"
+                        value={currentCropBox.height}
+                        onChange={(e) =>
+                          setCustomCrop({ ...currentCropBox, height: parseInt(e.target.value) || 20 })
+                        }
+                      />
+                    </DimensionInputWrapper>
+                  </DimensionsGrid>
                 </CropInfo>
                 <ButtonGroup>
                   <Button

@@ -19,10 +19,9 @@ export interface PlatformConfig {
 }
 
 // Default dimensions for all pages - top-left corner at (10, 20)
-export const flipkartLabelCropDimensions: CropDimension = { x: 185, y: 456, width: 225, height: 365 }
+export const flipkartLabelCropDimensions: CropDimension = { x: 185, y: 456, width: 225, height: 365 };
 
-export const myntraLabelCropDimensions: CropDimension = { x: 150, y: 400, width: 300, height: 400 }
-
+export const myntraLabelCropDimensions: CropDimension = { x: 150, y: 400, width: 300, height: 400 };
 
 // Function to generate Meesho label crop dimensions for n pages
 export const generateLabelCropDimensions = (numPages: number, cropDimension: CropDimension): Record<number, CropDimension> => {
@@ -33,8 +32,8 @@ export const generateLabelCropDimensions = (numPages: number, cropDimension: Cro
   return dimensions;
 };
 
-// Default Meesho dimensions with 4 pages
-export const meeshoLabelCropDimensions: CropDimension = { x: 0, y: 495, width: 595, height: 345 };
+// Calibrated Meesho dimensions (covers full top shipping label half without truncating bottom address/SKU details)
+export const meeshoLabelCropDimensions: CropDimension = { x: 10, y: 410, width: 575, height: 425 };
 
 export const amazonLabelCropDimensions: Record<number, CropDimension> = {
   1: { x: 180, y: 420, width: 260, height: 390 },
@@ -52,19 +51,17 @@ export const defaultCropDimension: CropDimension = {
   height: 380,
 };
 
-// Placeholder for Snapdeal dimensions - using default for now
-// Update with more accurate dimensions based on Snapdeal label layout
 export const snapdealLabelCropDimensions: CropDimension = {
-  x: 2,    // Adjusted X (closer to left)
-  y: 122,   // Adjusted Y (closer to top)
-  width: 270, // Increased width
-  height: 295 // Adjusted height
+  x: 2,
+  y: 122,
+  width: 270,
+  height: 295,
 };
 
 export const platformConfigs: Record<string, PlatformConfig> = {
   flipkart: {
     name: "Flipkart",
-    defaultCropDimension,
+    defaultCropDimension: flipkartLabelCropDimensions,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
       fileSizeExceeded: "File size exceeds 10MB limit",
@@ -76,7 +73,7 @@ export const platformConfigs: Record<string, PlatformConfig> = {
   },
   myntra: {
     name: "Myntra",
-    defaultCropDimension,
+    defaultCropDimension: myntraLabelCropDimensions,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
       fileSizeExceeded: "File size exceeds 10MB limit",
@@ -88,7 +85,7 @@ export const platformConfigs: Record<string, PlatformConfig> = {
   },
   meesho: {
     name: "Meesho",
-    defaultCropDimension,
+    defaultCropDimension: meeshoLabelCropDimensions,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
       fileSizeExceeded: "File size exceeds 10MB limit",
@@ -100,7 +97,7 @@ export const platformConfigs: Record<string, PlatformConfig> = {
   },
   amazon: {
     name: "Amazon",
-    defaultCropDimension,
+    defaultCropDimension: amazonLabelCropDimensions[1],
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
       fileSizeExceeded: "File size exceeds 10MB limit",
@@ -110,10 +107,9 @@ export const platformConfigs: Record<string, PlatformConfig> = {
     },
     successMessage: "Successfully cropped all pages!"
   },
-  // Add Snapdeal configuration
   snapdeal: {
     name: "Snapdeal",
-    defaultCropDimension: snapdealLabelCropDimensions, // Use the defined snapdeal dimensions
+    defaultCropDimension: snapdealLabelCropDimensions,
     errorMessages: {
       invalidFileType: "Please upload a PDF file",
       fileSizeExceeded: "File size exceeds 10MB limit",
