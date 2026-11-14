@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import Script from "next/script";
@@ -192,6 +193,13 @@ const generateStructuredData = () => ({
 
 // This is a Client Component
 const SupportPage = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
     <div style={{ background: "#f2f4f4" }}>
       <script
@@ -265,31 +273,42 @@ const SupportPage = () => {
           </SupportCard>
         </SupportGrid>
 
-        <ContactForm>
+        <ContactForm onSubmit={handleSubmit}>
           <h2>Contact Us</h2>
-          <FormGroup>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" required />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="subject">Subject</label>
-            <select id="subject" name="subject" required>
-              <option value="">Select a subject</option>
-              <option value="technical">Technical Support</option>
-              <option value="billing">Billing Questions</option>
-              <option value="feature">Feature Request</option>
-              <option value="other">Other</option>
-            </select>
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </FormGroup>
-          <SubmitButton type="submit">Send Message</SubmitButton>
+          {submitted ? (
+            <div style={{ padding: "1.5rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px", color: "#166534" }}>
+              <h3 style={{ margin: "0 0 0.5rem", fontSize: "1.1rem" }}>✓ Message Sent Successfully!</h3>
+              <p style={{ margin: 0, fontSize: "0.95rem" }}>
+                Thank you for reaching out. Our support team has logged your inquiry and will respond within 24-48 business hours via support@pdfcrop.co.in.
+              </p>
+            </div>
+          ) : (
+            <>
+              <FormGroup>
+                <label htmlFor="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                  <option value="">Select a subject</option>
+                  <option value="technical">Technical Support</option>
+                  <option value="labels">Label Format / Carrier Inquiry</option>
+                  <option value="feature">Feature Request</option>
+                  <option value="other">Other</option>
+                </select>
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </FormGroup>
+              <SubmitButton type="submit">Send Message</SubmitButton>
+            </>
+          )}
         </ContactForm>
       </Container>
     </div>

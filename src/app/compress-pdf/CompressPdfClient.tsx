@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import styled from "styled-components";
 import ToolContentSection from "@/components/ToolContentSection";
+import AdBanner from "@/components/AdBanner";
 
 // Styled Components
 const Container = styled.main`
@@ -590,6 +591,8 @@ export default function CompressPdfClient() {
             )}
           </CardContent>
         </Card>
+
+        <AdBanner slotId="8472910384" />
 
         <ToolContentSection toolId="compress-pdf" />
       </ContentWrapper>

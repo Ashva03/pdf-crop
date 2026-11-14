@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const AdContainer = styled.div`
-  margin: 2rem auto;
+  margin: 1.5rem auto;
   text-align: center;
   max-width: 1000px;
   width: 100%;
@@ -23,13 +23,11 @@ const AdLabel = styled.span`
 `;
 
 const AdSlot = styled.div`
-  min-height: 90px;
-  background-color: #f9fafb;
-  border: 1px dashed #e5e7eb;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 0;
+  width: 100%;
 `;
 
 interface AdBannerProps {
@@ -39,23 +37,51 @@ interface AdBannerProps {
 }
 
 export default function AdBanner({
-  slotId = "1234567890",
+  slotId = "5308278281",
   format = "auto",
   className,
 }: AdBannerProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pushedRef = useRef(false);
+  const [isUnfilled, setIsUnfilled] = useState(false);
+
   useEffect(() => {
+    if (pushedRef.current) return;
+
     try {
       if (typeof window !== "undefined") {
-        // @ts-expect-error Google adsbygoogle queue push
-        ((window as unknown).adsbygoogle = (window as unknown).adsbygoogle || []).push({});
+        const insElement = containerRef.current?.querySelector("ins.adsbygoogle");
+        if (insElement && !insElement.getAttribute("data-adsbygoogle-status")) {
+          // @ts-expect-error Google adsbygoogle queue push
+          ((window as unknown).adsbygoogle = (window as unknown).adsbygoogle || []).push({});
+          pushedRef.current = true;
+        }
+
+        // Auto-collapse if Google AdSense flags this slot as unfilled
+        if (insElement) {
+          const observer = new MutationObserver(() => {
+            if (insElement.getAttribute("data-ad-status") === "unfilled") {
+              setIsUnfilled(true);
+            }
+          });
+          observer.observe(insElement, {
+            attributes: true,
+            attributeFilter: ["data-ad-status"],
+          });
+          return () => observer.disconnect();
+        }
       }
     } catch {
       // Ignore in dev mode or with ad blockers
     }
   }, []);
 
+  if (isUnfilled) {
+    return null;
+  }
+
   return (
-    <AdContainer className={className}>
+    <AdContainer ref={containerRef} className={className}>
       <AdLabel>Advertisement</AdLabel>
       <AdSlot>
         <ins
@@ -70,4 +96,3 @@ export default function AdBanner({
     </AdContainer>
   );
 }
-

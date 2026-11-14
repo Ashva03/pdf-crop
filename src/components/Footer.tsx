@@ -130,21 +130,24 @@ export default function FooterComponent() {
           <h3>Quick Links</h3>
           <ul>
             <li>
-              <Link href="/features">Features</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="/how-it-works">How It Works</Link>
+              <Link href="/tutorials">Tutorials & Guides</Link>
             </li>
             <li>
-              <Link href="/blog">Blog</Link>
+              <Link href="/blog">E-Commerce Blog</Link>
             </li>
             <li>
-              <Link href="/contact">Contact</Link>
+              <Link href="/faq">FAQ</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact Support</Link>
             </li>
           </ul>
         </FooterSection>
         <FooterSection>
-          <h3>Legal</h3>
+          <h3>Legal & Privacy</h3>
           <ul>
             <li>
               <Link href="/privacy-policy">Privacy Policy</Link>
@@ -156,7 +159,7 @@ export default function FooterComponent() {
               <Link href="/terms">Terms & Conditions</Link>
             </li>
             <li>
-              <Link href="/disclaimer">Disclaimer</Link>
+              <Link href="/disclaimer">Platform Disclaimer</Link>
             </li>
             <li>
               <Link href="/gdpr">GDPR Compliance</Link>
@@ -167,25 +170,25 @@ export default function FooterComponent() {
             <li>
               <Link href="/about">About Us</Link>
             </li>
-            <li>
-              <Link href="/faq">FAQ</Link>
-            </li>
           </ul>
         </FooterSection>
         <FooterSection>
-          <h3>Resources</h3>
+          <h3>Guides & Resources</h3>
           <ul>
             <li>
-              <Link href="/blog">Blog</Link>
+              <Link href="/tutorials">All Tutorials</Link>
             </li>
             <li>
-              <Link href="/tutorials">Tutorials</Link>
+              <Link href="/blog/crop-a4-pdf-to-4x6-label">A4 to 4x6 Crop Guide</Link>
             </li>
             <li>
-              <Link href="/documentation">Documentation</Link>
+              <Link href="/blog/optimal-thermal-printer-settings">Thermal Printer Setup</Link>
             </li>
             <li>
-              <Link href="/support">Support</Link>
+              <Link href="/blog/why-thermal-printer-prints-blank">Blank Label Fixes</Link>
+            </li>
+            <li>
+              <Link href="/blog/shipping-carrier-options-india">Carrier Comparison</Link>
             </li>
           </ul>
         </FooterSection>

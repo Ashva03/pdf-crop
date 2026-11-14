@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import styled from "styled-components";
 import ToolContentSection from "@/components/ToolContentSection";
+import AdBanner from "@/components/AdBanner";
 
 interface ImageFile extends File {
   preview: string;
@@ -594,6 +595,8 @@ export default function ImagesToPdfClient() {
             </CardContent>
           </Card>
         )}
+
+        <AdBanner slotId="8472910381" />
 
         <ToolContentSection toolId="images-to-pdf" />
       </ContentWrapper>

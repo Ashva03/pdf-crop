@@ -13,6 +13,7 @@ import {
     RotateCcw
 } from 'lucide-react';
 import ToolContentSection from '@/components/ToolContentSection';
+import AdBanner from '@/components/AdBanner';
 
 // Import @dnd-kit components and hooks
 import {
@@ -404,6 +405,8 @@ export default function EditPdfClient() {
 
                 </div>
             </div>
+
+            <AdBanner slotId="8472910385" />
 
             <ToolContentSection toolId="edit-pdf" />
         </main>

@@ -11,6 +11,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import ToolContentSection from "@/components/ToolContentSection";
+import AdBanner from "@/components/AdBanner";
 import {
   DndContext,
   closestCenter,
@@ -702,6 +703,8 @@ export default function MergePdfClient() {
             </CardContent>
           </Card>
         )}
+
+        <AdBanner slotId="8472910382" />
 
         <ToolContentSection toolId="merge-pdf" />
       </ContentWrapper>
