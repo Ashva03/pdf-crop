@@ -74,10 +74,10 @@ export async function POST(req: NextRequest) {
     const pdfBytes = await newPdfDoc.save();
 
     // Convert Uint8Array to Buffer for NextResponse
-    const pdfBuffer: any = Buffer.from(pdfBytes.buffer);
+    const pdfResponseBuffer: any = Buffer.from(pdfBytes.buffer, pdfBytes.byteOffset, pdfBytes.byteLength);
 
     // Return the modified PDF
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(pdfResponseBuffer, {
       status: 200,
       headers: {
         "Content-Type": "application/pdf",

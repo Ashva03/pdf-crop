@@ -64,10 +64,6 @@ export default function AboutPage() {
         width: 250,
         height: 60,
       },
-      sameAs: [
-        "https://twitter.com/pdfcropper",
-        "https://www.linkedin.com/company/pdf-cropper",
-      ],
     },
     mainEntityOfPage: {
       "@type": "WebPage",
