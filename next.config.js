@@ -30,6 +30,31 @@ const nextConfig = {
   },
   // External packages
   serverExternalPackages: ["pdfjs-dist", "canvas"],
+  // 301 Redirects to eliminate thin/doorway duplicate pages
+  async redirects() {
+    return [
+      {
+        source: "/features",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/how-it-works",
+        destination: "/tutorials",
+        permanent: true,
+      },
+      {
+        source: "/documentation",
+        destination: "/tutorials",
+        permanent: true,
+      },
+      {
+        source: "/case-studies",
+        destination: "/blog",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

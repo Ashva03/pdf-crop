@@ -389,14 +389,11 @@ export default function Navigation() {
               Resources
             </NavDropdownTrigger>
             <DropdownMenu>
-              <DropdownItem href="/case-studies" onClick={handleLinkClick}>
-                Case Studies
-              </DropdownItem>
               <DropdownItem href="/tutorials" onClick={handleLinkClick}>
-                Tutorials
+                Tutorials & Guides
               </DropdownItem>
               <DropdownItem href="/about" onClick={handleLinkClick}>
-                About
+                About Us
               </DropdownItem>
               <DropdownItem href="/faq" onClick={handleLinkClick}>
                 FAQ
@@ -510,11 +507,11 @@ export default function Navigation() {
           </div>
         )}
         <NavLink
-          href="/features"
-          $active={pathname === "/features"}
+          href="/tutorials"
+          $active={pathname === "/tutorials"}
           onClick={handleLinkClick}
         >
-          Features
+          Tutorials
         </NavLink>
         <NavLink
           href="/blog"
@@ -536,13 +533,6 @@ export default function Navigation() {
           onClick={handleLinkClick}
         >
           FAQ
-        </NavLink>
-        <NavLink
-          href="/case-studies"
-          $active={pathname === "/case-studies"}
-          onClick={handleLinkClick}
-        >
-          Case Studies
         </NavLink>
         <NavLink
           href="/contact"
