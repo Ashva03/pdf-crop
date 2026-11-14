@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Batch Processing Guide",
   description: "Learn how to crop and optimize multiple e-commerce shipping labels in a single PDF upload, saving hours of manual work in your packing center.",
   alternates: {
@@ -54,3 +55,4 @@ export default function BatchProcessingLayout({
     </>
   );
 }
+

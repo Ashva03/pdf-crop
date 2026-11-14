@@ -32,6 +32,10 @@ export const metadata: Metadata = {
       "Learn how to use PDF Cropper to edit, crop, and process your PDF documents with our easy step-by-step guide.",
     images: [`${baseUrl}/images/og-how-it-works.jpg`],
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function HowItWorksLayout({

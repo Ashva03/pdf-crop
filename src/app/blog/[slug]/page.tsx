@@ -7,6 +7,7 @@ import { getPostBySlug } from "@/lib/markdown";
 import styled from "styled-components";
 import Link from "next/link";
 import Providers from "@/components/Providers";
+import AdBanner from "@/components/AdBanner";
 
 interface PageProps {
   params: Promise<{
@@ -157,6 +158,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           }}
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
+
+        <AdBanner slotId="8472910398" />
 
         {/* Editorial Standards & Author Bio Card */}
         <footer className="mt-12 pt-8 border-t border-gray-200">

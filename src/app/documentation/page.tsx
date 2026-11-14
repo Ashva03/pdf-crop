@@ -31,15 +31,8 @@ export const metadata: Metadata = {
     images: ['https://pdfcrop.co.in/images/documentation-guide.jpg'],
   },
   robots: {
-    index: true,
+    index: false,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 

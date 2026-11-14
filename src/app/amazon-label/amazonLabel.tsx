@@ -227,7 +227,8 @@ export default function AmazonLabel() {
     try {
       // Load the selected PDF file
       const arrayBuffer = await selectedFile.arrayBuffer();
-      const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+      const bufferCopy = arrayBuffer.slice(0);
+      const pdfDoc = await PDFLib.PDFDocument.load(bufferCopy);
       const newPdfDoc = await PDFLib.PDFDocument.create();
 
       // Get the number of pages
@@ -400,9 +401,7 @@ export default function AmazonLabel() {
 
       // Save the processed PDF
       const pdfBytes = await newPdfDoc.save();
-      // Ensure we're working with a proper Uint8Array
-      const bytes: any = new Uint8Array(pdfBytes.buffer);
-      const blob = new Blob([bytes], { type: "application/pdf" });
+      const blob = new Blob([pdfBytes as unknown as BlobPart], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
 
       setProcessedPdfUrl(url);
