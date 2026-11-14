@@ -489,7 +489,7 @@ export default function PdfToJpgClient() {
   const convertPdfToJpg = async (file: File): Promise<string[]> => {
     try {
       const fileArrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: fileArrayBuffer }).promise;
+      const pdf = await pdfjsLib.getDocument({ data: fileArrayBuffer.slice(0) }).promise;
 
       setPageCount(pdf.numPages);
       const urls: string[] = [];

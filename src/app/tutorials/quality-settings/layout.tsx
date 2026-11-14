@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Quality Settings Guide",
   description: "Learn how to manage print quality settings, select correct resolution DPI, adjust vector rendering, and verify label sharpness before printing.",
   alternates: {
@@ -54,3 +55,4 @@ export default function QualitySettingsLayout({
     </>
   );
 }
+

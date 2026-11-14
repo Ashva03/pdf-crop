@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Basic Cropping Guide",
   description: "Learn the step-by-step process of basic shipping label cropping. Select coordinates, adjust simple margins, and prepare labels for thermal printing.",
   alternates: {
@@ -54,3 +55,4 @@ export default function BasicCroppingLayout({
     </>
   );
 }
+

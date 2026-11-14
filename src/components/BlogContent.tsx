@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import styled from "styled-components";
+import AdBanner from "./AdBanner";
 
 const BlogContainer = styled.div`
   max-width: 1200px;
@@ -139,6 +140,8 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
           Read the latest tips, operational guidelines, and troubleshooting articles from industry experts to scale your storefront's fulfillment.
         </BlogDescription>
       </BlogHeader>
+
+      <AdBanner slotId="8472910399" />
 
       <BlogGrid>
         {posts.map((post) => (

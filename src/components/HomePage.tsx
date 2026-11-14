@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import AdBanner from "./AdBanner";
 import {
   AmazonIcon,
   FlipkartIcon,
@@ -981,6 +982,8 @@ export default function HomePage() {
           </PrivacyGrid>
         </PrivacyBox>
       </Section>
+
+      <AdBanner slotId="8472910397" />
 
       {/* 6. Troubleshooting & Common Issues */}
       <Section>

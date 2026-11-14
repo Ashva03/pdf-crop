@@ -33,6 +33,10 @@ export const metadata: Metadata = {
       "Explore step-by-step PDF processing workflow examples for marketplace sellers.",
   },
   metadataBase: new URL("https://pdfcrop.co.in"),
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function CaseStudiesPage() {

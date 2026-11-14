@@ -464,7 +464,8 @@ export default function PDFCropper({
 
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+      const bufferCopy = arrayBuffer.slice(0);
+      const pdfDoc = await PDFLib.PDFDocument.load(bufferCopy);
       const newPdfDoc = await PDFLib.PDFDocument.create();
       let processedPages = 0;
       let skippedPages = 0;
@@ -524,9 +525,7 @@ export default function PDFCropper({
       }
 
       const pdfBytes = await newPdfDoc.save();
-      // Convert to a standard Uint8Array by creating a new array from the bytes
-      const pdfArray = new Uint8Array(Array.from(pdfBytes));
-      const blob = new Blob([pdfArray], { type: "application/pdf" });
+      const blob = new Blob([pdfBytes as unknown as BlobPart], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       const originalFileName = file.name.replace(".pdf", "");
@@ -563,7 +562,8 @@ export default function PDFCropper({
 
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+      const bufferCopy = arrayBuffer.slice(0);
+      const pdfDoc = await PDFLib.PDFDocument.load(bufferCopy);
       const newPdfDoc = await PDFLib.PDFDocument.create();
 
       for (let pageNum = 1; pageNum <= numPages; pageNum++) {
@@ -601,9 +601,7 @@ export default function PDFCropper({
       }
 
       const pdfBytes = await newPdfDoc.save();
-      // Convert to a standard Uint8Array by creating a new array from the bytes
-      const pdfArray = new Uint8Array(Array.from(pdfBytes));
-      const blob = new Blob([pdfArray], { type: "application/pdf" });
+      const blob = new Blob([pdfBytes as unknown as BlobPart], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
 
       const printWindow = window.open(url, "_blank");

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Custom Templates Guide",
   description: "Learn how to configure custom cropping boundaries, define coordinates, and save custom templates for any shipping carrier or marketplace label.",
   alternates: {
@@ -21,3 +22,4 @@ export default function CustomTemplatesLayout({
 }) {
   return <>{children}</>;
 }
+

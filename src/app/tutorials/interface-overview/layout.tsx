@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Interface Overview Guide",
   description: "Take a tour of the PDF Cropper interface. Learn about the options, sidebars, controls, and print settings to optimize your shipping label cropping workflow.",
   alternates: {
@@ -21,3 +22,4 @@ export default function InterfaceOverviewLayout({
 }) {
   return <>{children}</>;
 }
+

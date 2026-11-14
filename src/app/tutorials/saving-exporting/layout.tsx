@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Saving & Exporting Guide",
   description: "Learn best export practices: download individual cropped PDFs, package multiple processed labels in a ZIP archive, or print directly from your browser.",
   alternates: {
@@ -21,3 +22,4 @@ export default function SavingExportingLayout({
 }) {
   return <>{children}</>;
 }
+

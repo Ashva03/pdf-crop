@@ -30,6 +30,10 @@ export const metadata: Metadata = {
       "Discover powerful PDF processing tools including batch processing and secure document handling.",
     images: ["https://pdfcrop.co.in/images/og-features.jpg"],
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function FeaturesLayout({

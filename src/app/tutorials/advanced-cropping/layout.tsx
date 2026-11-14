@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Advanced Cropping Guide",
   description: "Master advanced cropping features: ASIN/SKU text extraction, automatic invoice receipt stripping, margins override, and multi-page layout scaling.",
   alternates: {
@@ -21,3 +22,4 @@ export default function AdvancedCroppingLayout({
 }) {
   return <>{children}</>;
 }
+

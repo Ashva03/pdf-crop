@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: true },
   title: "Getting Started Guide",
   description: "Learn the basics of PDF Cropper. Discover how to get started, set up your workspace, and crop shipping labels in a few simple clicks.",
   alternates: {
@@ -21,3 +22,4 @@ export default function GettingStartedLayout({
 }) {
   return <>{children}</>;
 }
+
