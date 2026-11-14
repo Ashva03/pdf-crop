@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import styled from "styled-components";
 import ToolContentSection from "@/components/ToolContentSection";
+import AdBanner from "@/components/AdBanner";
 
 // Styled Components
 const Container = styled.main`
@@ -743,6 +744,8 @@ export default function PdfToJpgClient() {
             </CardContent>
           </Card>
         )}
+
+        <AdBanner slotId="8472910383" />
 
         <ToolContentSection toolId="pdf-to-jpg" />
       </ContentWrapper>

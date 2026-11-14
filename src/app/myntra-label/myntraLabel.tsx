@@ -5,6 +5,7 @@ import PDFCropper from "@/components/PDFCropper";
 import styled from "styled-components";
 import { MyntraIcon } from "@/components/PlatformIcons";
 import ToolContentSection from "@/components/ToolContentSection";
+import AdBanner from "@/components/AdBanner";
 import {
   myntraLabelCropDimensions,
   platformConfigs,
@@ -79,6 +80,8 @@ export default function MyntraLabelClient() {
         cropDimensions={cropDimensions}
         onNumPagesChange={handleNumPagesChange}
       />
+
+      <AdBanner slotId="8472910391" />
 
       <ToolContentSection toolId="myntra-label" />
     </PageContainer>
