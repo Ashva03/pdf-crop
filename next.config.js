@@ -53,6 +53,26 @@ const nextConfig = {
         destination: "/blog",
         permanent: true,
       },
+      {
+        source: "/cookie-policy",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
+      {
+        source: "/disclaimer",
+        destination: "/terms",
+        permanent: true,
+      },
+      {
+        source: "/gdpr",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
+      {
+        source: "/data-security",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
     ];
   },
 };

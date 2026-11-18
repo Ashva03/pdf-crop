@@ -147,28 +147,22 @@ export default function FooterComponent() {
           </ul>
         </FooterSection>
         <FooterSection>
-          <h3>Legal & Privacy</h3>
+          <h3>Legal & Trust</h3>
           <ul>
             <li>
-              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/privacy-policy">Privacy & Cookie Policy</Link>
             </li>
             <li>
-              <Link href="/cookie-policy">Cookie Policy</Link>
-            </li>
-            <li>
-              <Link href="/terms">Terms & Conditions</Link>
-            </li>
-            <li>
-              <Link href="/disclaimer">Platform Disclaimer</Link>
-            </li>
-            <li>
-              <Link href="/gdpr">GDPR Compliance</Link>
-            </li>
-            <li>
-              <Link href="/data-security">Data Security</Link>
+              <Link href="/terms">Terms of Service</Link>
             </li>
             <li>
               <Link href="/about">About Us</Link>
+            </li>
+            <li>
+              <Link href="/faq">FAQ</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact Support</Link>
             </li>
           </ul>
         </FooterSection>
